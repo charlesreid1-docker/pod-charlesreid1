@@ -1,0 +1,9 @@
+[submodule "d-mysql"]
+	path = d-mysql
+	url = git@git.charlesreid1.com:docker/d-mysql.git
+[submodule "d-mediawiki"]
+	path = d-mediawiki
+	url = git@git.charlesreid1.com:docker/d-mediawiki.git
+[submodule "d-phpmyadmin"]
+	path = d-phpmyadmin
+	url = git@git.charlesreid1.com:docker/d-phpmyadmin.git
