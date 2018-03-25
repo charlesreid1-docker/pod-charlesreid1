@@ -7,12 +7,9 @@ services:
       - "stormy_mysql_data:/var/lib/mysql"
       - "./krash.mysql.cnf:/etc/mysql/conf.d/krash.mysql.cnf"
     environment:
-      - MYSQL_ROOT_PASSWORD=example
-    secrets:
-      - mysql_root_password
+      - MYSQL_ROOT_PASSWORD=REPLACEME
     labels:
-      - com.charlesreid1.pod.name="stormy_mysql"
-      - com.charlesreid1.pod.bin="mysql"
+      - com.charlesreid1.pod.name="mysql"
 
   stormy_myadmin:
     image: "phpmyadmin/phpmyadmin"
@@ -21,8 +18,7 @@ services:
     links:
       - stormy_mysql:db
     labels:
-      - com.charlesreid1.pod.name="stormy_mysql"
-      - com.charlesreid1.pod.bin="mysql"
+      - com.charlesreid1.pod.name="phpmyadmin"
 
   stormy_mw:
     build: d-mediawiki
@@ -37,7 +33,9 @@ services:
       - MEDIAWIKI_DB_HOST=mysql
       - MEDIAWIKI_DB_NAME=wikidb
       - MEDIAWIKI_DB_USER=root
-      - MEDIAWIKI_DB_PASSWORD=example
+      - MEDIAWIKI_DB_PASSWORD=REPLACEME
+    labels:
+      - com.charlesreid1.pod.name="mw"
 
 volumes:
   stormy_mysql_data:
@@ -46,6 +44,6 @@ volumes:
   stormy_mw_data:
     external:
       name: stormy_mw_data
-secrets:
-  mysql_root_password:
-    file: ./root.password
+#secrets:
+#  mysql_root_password:
+#    file: ./root.password

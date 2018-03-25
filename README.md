@@ -10,38 +10,54 @@ The services are:
 
 ## Secrets
 
-MySQL requires an admin password.
+Gave up on Docker secrets, mainly because they are only available 
+at runtime, and Docker provides no mechanism for build-time secrets.
 
-There are some hacky ways to deal with this.
+Pretty tacky.
 
-Docker secrets is a streamlined way of dealing with this.
+My hacky workaround: check in a docker-compose.yml template,
+and a sed one-liner that replaces a MySQL root password 
+placeholder with the real password.
 
-Procedure:
+```
+$ sed "s/REPLACEME/YoFooThisIsYourNewPassword" docker-compose.fixme.yml > docker-compose.yml
+```
 
-* Create a MySQL password
-* Create a docker secret with the MySQL password
-* Pass secret into each container that needs it
-* [link](https://docs.docker.com/compose/compose-file/#short-syntax-2)
+Great if you hard-code the password, but - wasn't that the whole thing 
+we were trying to avoid?
 
+Put the password into a file istead, then grab the password from that file
+and do a find/replace on the docker compose file:
+
+```
+$ cat root.password
+mysecretpassword
+
+$ sed "s/REPLACEME/`cat root.password`/" docker-compose.fixme.yml > docker-compose.yml
+```
+
+The `docker-compose.yml` file and `root.password` files are both ignored 
+by version control.
 
 ## Running
 
 From your project directory, start up your application by running:
 
 ```
-docker-compose up
+$ docker-compose up
 ```
 
-Don't forget to run your docker-compose up command with `--build` 
-if you have already built the image previously, otherwise it will 
-run the old image which may have not included the RUN a2enmod
-rewrite statement.
+If you want to rebuild the images (if you changed the Dockerfile),
+use the `--build` flag:
+
+```
+$ docker-compose up --build
+```
 
 ## Links
 
 docker compose documentation:
 
-* [set environment variables in containers](https://docs.docker.com/compose/environment-variables/#set-environment-variables-in-containers)
-* [docker secrets](https://docs.docker.com/engine/swarm/secrets/)
 * [getting started](https://docs.docker.com/compose/gettingstarted/#step-4-build-and-run-your-app-with-compose)
-
+* [set environment variables in containers](https://docs.docker.com/compose/environment-variables/#set-environment-variables-in-containers)
+* <s>[docker secrets](https://docs.docker.com/engine/swarm/secrets/)</s> (nope)
