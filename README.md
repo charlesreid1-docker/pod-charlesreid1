@@ -8,6 +8,31 @@ The services are:
 * MySQL
 * phpMyAdmin
 
+## Volumes
+
+Before running, you will need to create two external 
+data volumes: one for MySQL, one for MediaWiki.
+
+This is a pain because it creates an extra step outside of 
+docker-compose, but it is necessary because it gives 
+the operator more control over the data volumes.
+
+Create the MySQL data volume (erase it first):
+
+```
+cd d-mysql/
+./erase_mysql_data_volume.sh
+./make_mysql_data_volume.sh
+```
+
+Create the MediaWiki data volume (erase it first):
+
+```
+cd d-mediawiki/
+./erase_mw_volume.sh
+./make_mw_volume.sh
+```
+
 ## Secrets
 
 Gave up on Docker secrets, mainly because they are only available 
