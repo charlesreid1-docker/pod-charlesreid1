@@ -29,11 +29,10 @@ services:
     links:
       - stormy_mysql:mysql
     environment:
-      - MEDIAWIKI_SITE_SERVER=45.56.87.232
-      - MEDIAWIKI_DB_HOST=mysql
-      - MEDIAWIKI_DB_NAME=wikidb
-      - MEDIAWIKI_DB_USER=root
-      - MEDIAWIKI_DB_PASSWORD=REPLACEME
+      - MYSQL_HOST=mysql
+      - MYSQL_DATABASE=wikidb
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=REPLACEME
     labels:
       - com.charlesreid1.pod.name="mw"
 

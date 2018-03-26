@@ -45,7 +45,7 @@ and a sed one-liner that replaces a MySQL root password
 placeholder with the real password.
 
 ```
-$ sed "s/REPLACEME/YoFooThisIsYourNewPassword" docker-compose.fixme.yml > docker-compose.yml
+$ sed "s/REPLACEME/YoFooThisIsYourNewPassword/" docker-compose.fixme.yml > docker-compose.yml
 ```
 
 Great if you hard-code the password, but - wasn't that the whole thing 
