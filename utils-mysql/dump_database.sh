@@ -23,9 +23,12 @@ function usage {
 
 if [[ "$#" -eq 1 ]];
 then
-    docker exec -it podcharlesreid1wiki_stormy_mysql_1 \
+
+    NAME="podcharlesreid1wiki_stormy_mysql_1"
+    docker exec -it ${NAME} \
         sh -c 'exec mysqldump wikidb --databases -uroot -p"$MYSQL_ROOT_PASSWORD"' \
         > $1
+
 else
     usage
 fi
