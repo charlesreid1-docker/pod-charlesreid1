@@ -64,7 +64,7 @@ The output of the commands run by this script are in:
 
 home = os.environ['HOME']
 
-utils_location = join(home,"/codes/docker/d-charlesreid1-utils/mysql-utils")
+utils_location = join(home,"/codes/docker/pod-charlesreid1-wiki/utils-mw")
 
 temp = "/temp"
 log_dir = join(home,".logs")

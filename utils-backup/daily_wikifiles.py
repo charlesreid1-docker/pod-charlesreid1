@@ -51,7 +51,7 @@ The output of the commands run by this script are in:
 
 home = os.environ['HOME']
 
-utils_location = join(home,"/codes/docker/d-charlesreid1-utils/mw-utils")
+utils_location = join(home,"/codes/docker/pod-charlesreid1-wiki/utils-mw")
 
 temp = "/temp"
 log_dir = join(home,".logs")
@@ -101,7 +101,7 @@ today_log_target = join(daily_log_dir,today_prefix+".log")
 logtarget = today_log_target
 
 # Backup utilities location
-dumputil = join(utils_location,"dump_database.sh")
+dumputil = join(utils_location,"backup_wikifiles.sh")
 
 
 print("", file=ml)

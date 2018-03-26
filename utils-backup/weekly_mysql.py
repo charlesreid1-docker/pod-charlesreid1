@@ -67,7 +67,7 @@ The output of the commands run by this script are in:
 
 home = os.environ['HOME']
 
-utils_location = join(home,"/codes/docker/d-charlesreid1-utils/mysql-utils")
+utils_location = join(home,"/codes/docker/pod-charlesreid1-wiki/utils-mysql")
 
 temp = "/temp"
 log_dir = join(home,".logs")
@@ -156,10 +156,9 @@ print("\tSuccess!", file=ml)
 print("", file=ml)
 
 
-
 # Clear out old backups
 
-print("\tRemoving weekly backups > 8 weeks old...", file=ml)
+print("\tRemoving weekly mysql backups > 8 weeks old...", file=ml)
 
 eightweeks = 8 * 7 * 24 * 3600 # seconds in 8 weeks
 
@@ -199,7 +198,7 @@ for f in os.listdir(weekly_backup_dir):
 
 # Check if last week's backup was in a prior month 
 
-print("\tChecking if we need to create monthly mediawiki backup from last month's data...", file=ml)
+print("\tChecking if we need to create monthly mysql backup from last month's data...", file=ml)
 
 sevendays = 7 * 24 * 3600 # seconds in 7 days
 
@@ -213,11 +212,11 @@ if(abs(d2.month - d1.month)>0):
     print("\t\tYes. Yes we do.")
 
     old_date = d2.strftime("%Y-%m-%d")
-    old_prefix = "wikifiles_"+old_date
+    old_prefix = "wikidb_"+old_date
     old_dumptarget = join(weekly_backup_dir,old_prefix)
 
     monthly_date = d2.strftime("%Y-%m-%d")
-    monthly_prefix = "wikifiles_"+monthly_date
+    monthly_prefix = "wikidb_"+monthly_date
     monthly_dumptarget = join(monthly_backup_dir,monthly_prefix)
 
     cpcmd = ["/bin/cp",old_dumptarget,monthly_dumptarget]
