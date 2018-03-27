@@ -36,6 +36,20 @@ services:
     labels:
       - com.charlesreid1.pod.name="mw"
 
+  stormy_nginx:
+    restart: always
+    image: nginx
+    hostname: charlesreid1.blue
+    command: /bin/bash -c "nginx -g 'daemon off;'"
+    volumes:
+      - "./d-nginx-charlesreid1/conf:/etc/nginx/conf/conf.d"
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/letsencrypt:/etc/letsencrypt"
+      - "/www/charlesreid1.blue/htdocs:/usr/share/nginx/html:ro"
+    ports:
+      - "80:80"
+      - "443:443"
+
 volumes:
   stormy_mysql_data:
     external:
