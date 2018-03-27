@@ -38,7 +38,18 @@ docker-compose up --build
 
 ## Volumes
 
-### nginx + letsencrypt
+### letsencrypt
+
+Rather than fuss with getting the letsencrypt 
+docker image working, and because our DNS provider
+does not provide API integration, we decided to
+get SSL certs by hand.
+
+```
+certbot certonly --non-interactive --agree-tos --email "melo@smallmelo.com" --apache -d "git.smallmelo.com"
+```
+
+### nginx
 
 No data volumes are used.
 
