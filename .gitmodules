@@ -7,3 +7,6 @@
 [submodule "d-phpmyadmin"]
 	path = d-phpmyadmin
 	url = git@git.charlesreid1.com:docker/d-phpmyadmin.git
+[submodule "d-nginx-charlesreid1"]
+	path = d-nginx-charlesreid1
+	url = git@git.charlesreid1.com:docker/d-nginx-charlesreid1.git
