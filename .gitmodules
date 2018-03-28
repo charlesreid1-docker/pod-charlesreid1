@@ -10,3 +10,6 @@
 [submodule "d-nginx-charlesreid1"]
 	path = d-nginx-charlesreid1
 	url = git@git.charlesreid1.com:docker/d-nginx-charlesreid1.git
+[submodule "d-gitea"]
+	path = d-gitea
+	url = git@git.charlesreid1.com:docker/d-gitea.git
