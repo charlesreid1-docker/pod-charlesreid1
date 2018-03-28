@@ -57,6 +57,3 @@ volumes:
   stormy_mw_data:
     external:
       name: stormy_mw_data
-#secrets:
-#  mysql_root_password:
-#    file: ./root.password
