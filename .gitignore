@@ -1,2 +1,3 @@
 root.password
 docker-compose.yml
+*.zip
