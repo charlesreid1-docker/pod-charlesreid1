@@ -80,27 +80,20 @@ Updating the site is a ssimple as
 
 ### mediawiki + mysql
 
-Before running, you will need to create two external 
-data volumes: one for MySQL, one for MediaWiki.
+The docker compose file will create two data volumes,
+one for mediawiki and one for mysql.
 
-This is a pain because it creates an extra step outside of 
-docker-compose, but it is necessary because it gives 
-the operator more control over the data volumes.
+These data volumes are resilient to `docker-compose stop`
+and `docker-compose down`.
 
-Create the MySQL data volume (erase it first):
+To remove the volumes, use `docker-compose down -v`.
 
-```
-cd d-mysql/
-./erase_mysql_data_volume.sh
-./make_mysql_data_volume.sh
-```
+To force removal of the volumes, use `docker-compose down -v -f`.
 
-Create the MediaWiki data volume (erase it first):
+To check on the volumes, use
 
 ```
-cd d-mediawiki/
-./erase_mw_volume.sh
-./make_mw_volume.sh
+docker volumes ls
 ```
 
 ## Secrets
