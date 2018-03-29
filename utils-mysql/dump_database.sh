@@ -19,12 +19,11 @@ function usage {
     exit 1;
 }
 
-# FIXME: use value defined in container 
+NAME="podcharlesreid1_stormy_mysql_1"
 
 if [[ "$#" -eq 1 ]];
 then
 
-    NAME="podcharlesreid1wiki_stormy_mysql_1"
     docker exec -it ${NAME} \
         sh -c 'exec mysqldump wikidb --databases -uroot -p"$MYSQL_ROOT_PASSWORD"' \
         > $1
