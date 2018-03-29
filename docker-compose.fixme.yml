@@ -24,8 +24,6 @@ services:
     build: d-mediawiki
     volumes:
       - "stormy_mw_data:/var/www/html"
-    ports:
-      - "8989:80"
     links:
       - stormy_mysql:mysql
     environment:
@@ -41,6 +39,8 @@ services:
     image: nginx
     hostname: charlesreid1.blue
     command: /bin/bash -c "nginx -g 'daemon off;'"
+    links:
+      - stormy_mw:stormy_mw
     volumes:
       - "./d-nginx-charlesreid1/conf.d:/etc/nginx/conf/conf.d"
       - "/etc/localtime:/etc/localtime:ro"
@@ -52,8 +52,4 @@ services:
 
 volumes:
   stormy_mysql_data:
-    external:
-      name: stormy_mysql_data
   stormy_mw_data:
-    external:
-      name: stormy_mw_data
