@@ -24,12 +24,24 @@ function usage {
     exit 1;
 }
 
-# FIXME: use secrets
-MYSQL_ROOT_PASSWORD="`cat ../../root.password`"
+# what a damn mess.
+# docker exec does not support reading from stdin.
+# that means we can't run the command with bash or exec,
+# which means we don't have access to the container's 
+# env variables, which means we can't access the root
+# mysql password via environment variable, which we 
+# specifically chose because of how universal it was.
+# 
+# docker makes dealing with secrets 
+# a complete and utterpain in the ass
+# because of all these one-off 
+# "whoopsie we don't do that" problems.
+# 
+MYSQL_ROOT_PASSWORD="<manually-enter-mysql-pw-here>"
 
 if [[ "$#" -eq 1 ]];
 then
-    docker exec -it podcharlesreid1wiki_stormy_mysql_1 \
+    docker exec -i podcharlesreid1_stormy_mysql_1 \
         mysql -uroot -p$MYSQL_ROOT_PASSWORD \
         < $1 
 else
