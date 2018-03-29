@@ -36,6 +36,18 @@ or, if you want to rebuild all the containers,
 docker-compose up --build
 ```
 
+### Before You Go Further
+
+Once you've gotten the whole fleet of containers up,
+you should be ready to run charlesreid1.com.
+
+First, though, you'll need to restore the 
+MySQL database from a backup, and restore the 
+images directory for the wiki.
+
+These can be done using the scripts in `utils-mysql` 
+and `utils-mw`.
+
 ## Volumes
 
 ### letsencrypt
