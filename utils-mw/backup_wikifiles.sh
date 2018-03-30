@@ -22,7 +22,7 @@ function usage {
 if [[ "$#" -eq 1 ]];
 then
 
-    NAME="podcharlesreid1wiki_stormy_mw_1"
+    NAME="podcharlesreid1_stormy_mw_1"
     TAR="wikifiles.tar.gz"
     docker exec -it ${NAME} tar czf /tmp/${TAR} /var/www/html/images 
     docker cp ${NAME}:/tmp/${TAR} $1
