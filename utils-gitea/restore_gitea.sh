@@ -45,6 +45,9 @@ then
     echo "Restoring 4/4: avatars"
     ${EXEC} /bin/bash -c 'rm -rf /data/gitea/avatars && cp -r /restore/avatars /data/gitea/avatars'
 
+    echo "Moving old app.ini"
+    ${EXEC} /bin/bash -c 'mv /data/gitea/conf/app.ini /data/gitea/conf/app.ini.old'
+
     echo "Cleaning up"
     ${EXEC} /bin/bash -c 'rm -rf /restore'
 
