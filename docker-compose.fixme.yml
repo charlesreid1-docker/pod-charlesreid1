@@ -5,7 +5,7 @@ services:
     build: d-mysql
     volumes:
       - "stormy_mysql_data:/var/lib/mysql"
-      - "./krash.mysql.cnf:/etc/mysql/conf.d/krash.mysql.cnf"
+      #- "./d-mysql/krash.mysql.cnf:/etc/mysql/conf.d/krash.mysql.cnf"
     environment:
       - MYSQL_ROOT_PASSWORD=REPLACEME
     labels:
@@ -13,12 +13,12 @@ services:
 
   stormy_myadmin:
     image: "phpmyadmin/phpmyadmin"
-    ports:
-      - "8080:80"
     links:
       - stormy_mysql:db
     labels:
       - com.charlesreid1.pod.name="phpmyadmin"
+    environment:
+      - PMA_ABSOLUTE_URI=charlesreid1.blue/phpMyAdmin
 
   stormy_mw:
     build: d-mediawiki
@@ -41,8 +41,9 @@ services:
     command: /bin/bash -c "nginx -g 'daemon off;'"
     links:
       - stormy_mw:stormy_mw
+      - stormy_myadmin:stormy_myadmin
     volumes:
-      - "./d-nginx-charlesreid1/conf.d:/etc/nginx/conf/conf.d"
+      - "./d-nginx-charlesreid1/conf.d:/etc/nginx/conf.d"
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/letsencrypt:/etc/letsencrypt"
       - "/www/charlesreid1.blue/htdocs:/usr/share/nginx/html:ro"
