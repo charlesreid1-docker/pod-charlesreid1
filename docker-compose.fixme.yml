@@ -1,6 +1,19 @@
 version: "3.1"
 services:
 
+  stormy_gitea:
+    image: gitea/gitea:latest
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+    restart: always
+    volumes:
+      - "stormy_gitea_data:/data"
+      - "./d-gitea/app.ini:/data/gitea/conf/app.ini"
+    ports:
+      - "222:22"
+      #- "3000:3000"
+
   stormy_mysql:
     build: d-mysql
     volumes:
@@ -40,13 +53,15 @@ services:
     hostname: charlesreid1.blue
     command: /bin/bash -c "nginx -g 'daemon off;'"
     links:
+      - stormy_gitea:stormy_gitea
       - stormy_mw:stormy_mw
       - stormy_myadmin:stormy_myadmin
     volumes:
       - "./d-nginx-charlesreid1/conf.d:/etc/nginx/conf.d"
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/letsencrypt:/etc/letsencrypt"
-      - "/www/charlesreid1.blue/htdocs:/usr/share/nginx/html:ro"
+      - "/www/charlesreid1.blue/htdocs:/www/charlesreid1.blue/htdocs:ro"
+      - "/www/charlesreid1.red/htdocs:/www/charlesreid1.red/htdocs:ro"
     ports:
       - "80:80"
       - "443:443"
@@ -54,3 +69,4 @@ services:
 volumes:
   stormy_mysql_data:
   stormy_mw_data:
+  stormy_gitea_data:
