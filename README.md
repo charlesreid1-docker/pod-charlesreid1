@@ -41,12 +41,11 @@ docker-compose up --build
 Once you've gotten the whole fleet of containers up,
 you should be ready to run charlesreid1.com.
 
-First, though, you'll need to restore the 
-MySQL database from a backup, and restore the 
-images directory for the wiki.
+First, though, you'll need to restore some files:
 
-These can be done using the scripts in `utils-mysql` 
-and `utils-mw`.
+* Restore MySQL wikidb database from backup using scripts in `utils-mysql` dir
+* Restore MediaWiki images dir from backup using scripts in `utils-mw` dir
+* Restore Gitea database and avatars from backup using scripts in `utils-gitea` dir
 
 ## Volumes
 
@@ -66,28 +65,69 @@ certbot certonly --non-interactive --agree-tos --email "melo@smallmelo.com" --ap
 No data volumes are used.
 
 * nginx static content is a bind-mounted host directory
-* lets encrypt container generates site certs into bind-mounted host directory
-* nginx certificates come from docker secrets (?)
+* on the host: `/www/charlesreid1.blue/htdocs/`
+* source: `/www/charlesreid1.blue/charlesreid1.blue-src/`
+* workflow: pelican make from the source dir, and copy the desired files to the htdocs dir
+* we use the more cumbersome "by hand" method because it gives greater control over each site
+
+Re letsencrypt:
+
+* getting the container set up is a mess
+* since certbot only needs to be run every few months, I just set up a dead simple script
+* [certbot](https://charlesreid1.com:3000/charlesreid1/certbot)
+
+Certs in nginx:
+
+* again - dead simple script - creates one set of certs per subdomain
+* nginx ssl configuration has one block per subdomain
+
+Where should certs go?
+
+* on host dir, certs sould be in `/etc/letsencrypt`
+
+### htdocs
+
+Here is how we set up the static content site for each site we are hosting:
+
+Start by making a place for web content to live on this machine,
+specifically the directory `/www`:
 
 ```
-  web:
-    volumes:
-      - ./letsencrypt_certs:/etc/nginx/certs
-      - ./letsencrypt_www:/var/www/letsencrypt
-
-  letsencrypt:
-    image: certbot/certbot
-    command: /bin/true
-    volumes:
-      - ./letsencrypt_certs:/etc/letsencrypt
-      - ./letsencrypt_www:/var/www/letsencrypt
+sudo mkdir -p /www
+sudo chown charles:charles /www
 ```
+
+Now, for each unique site, we do the following:
+
+* Create a folder for that domain
+* Inside the domain folder, create a source directory (git repo) and an htdocs directory (live html content)
+
+The directory structure looks like this:
+
+```
+/www/
+    charlesreid1.blue/
+        htdocs/
+            ...
+        charlesreid1.blue-src/
+            ...
+
+```
+mkdir -p /www/charlesreid1.blue
+mkdir -p /www/charlesreid1.blue/htdocs
+```
+
+To make the 
+
+
+
+
 
 Clone a local copy of the site repo (charlesreid1-src),
 check out a copy of the gh-pages branch,
 and bind mount it into the container.
 
-Updating the site is a ssimple as 
+Updating the site is a simple as 
 `git pull origin gh-pages`.
 
 ### mediawiki + mysql
