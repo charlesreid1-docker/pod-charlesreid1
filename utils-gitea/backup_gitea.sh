@@ -5,7 +5,7 @@ function usage {
     echo "backup_gitea.sh script:"
     echo "Run a gitea dump from the gitea container,"
     echo "and back up the gitea avatars."
-    echo "Gitea backups are dumped to gitea-dump-000000.zip"
+    echo "Gitea backups are dumped to gitea-dump-*.zip"
     echo "and gitea-avatars.zip and copied to the target directory."
     echo ""
     echo "       ./backup_gitea.sh <target-dir>"
@@ -16,7 +16,7 @@ function usage {
     echo ""
     echo "creates the files:"
     echo""
-    echo "      /path/to/backups/gitea-dump-000000.zip"
+    echo "      /path/to/backups/gitea-dump-*.zip"
     echo "      /path/to/backups/gitea-avatars.zip"
     echo ""
     echo ""
@@ -36,9 +36,11 @@ then
     echo " - Creating backup target"
     docker exec -it $NAME /bin/bash -c 'mkdir /backup'
     
-    echo " - Creating backup zip files"
+    echo " - Creating backup zip files:"
+    echo "     - gitea dump zip"
     docker exec -it $NAME /bin/bash -c 'cd /backup && /app/gitea/gitea dump'
-    docker exec -it $NAME /bin/bash -c 'm/data/gitea/ && zip /backup/gitea-avatars.zip avatars'
+    echo "     - gitea avatars zip"
+    docker exec -it $NAME /bin/bash -c 'cd /data/gitea/ && zip /backup/gitea-avatars.zip avatars'
 
     echo " - Copying backup directory (with zip files) to ."
     docker cp $NAME:/backup .
