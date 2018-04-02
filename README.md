@@ -4,233 +4,53 @@ This repo contains a docker compose file
 for running the charlesreid1.com site.
 
 The services are:
-* MediaWiki (Apache + PHP + MediaWiki)
-* MySQL
-* phpMyAdmin
-
-Additionally:
-* nginx
-* Lets Encrypt
-
-Finally:
+* mediawiki
+* apache + php
+* mysql
+* phpmyadmin
+* nginx (Let's Encrypt used offline for SSL certificates)
+* python
 * gitea
 
-## Quick Start
 
-Run this sed one-liner to create the `docker-compose.yml` file 
-with a hard-coded password:
+## Running
 
-```
-$ sed "s/REPLACEME/YoFooThisIsYourNewPassword/" docker-compose.fixme.yml > docker-compose.yml
-```
-
-Now you can run the container pod with
-
-```
-docker-compose up
-```
-
-or, if you want to rebuild all the containers,
-
-```
-docker-compose up --build
-```
-
-You can also rebuild the container using
-
-```
-docker-compose build
-```
-or, to do a really clean build,
-
-```
-docker-compose build --no-cache
-```
-
-(WARNING: if you have a lot of aptitude packages, this will re-download 
-all of them, and is potentially really slow.)
-
-You can restart all containers in a pod using the restart command:
-
-```
-docker-compose restart
-```
-
-Note: this will ***NOT*** pick up any changes to the 
-container's Dockerfile or files copied into the container,
-as this simply restarts the container ***without*** getting
-an up-to-date container image first.
-
-### Quick Start: Startup Service Version
-
-If you want to run the pod as a startup service,
-see the dotfiles/debian repository, in the services/
-subdirectory. You will find a systemd service
-that will start/stop the docker pod.
-
-**`dockerpod-charlesereid1.service:`**
-
-```
-[Unit]
-Description=charlesreid1 docker pod
-Requires=docker.service
-After=docker.service
-
-[Service]
-Restart=always
-ExecStart=/usr/local/bin/docker-compose -f /home/charles/codes/docker/pod-charlesreid1/docker-compose.yml up
-ExecStop=/usr/local/bin/docker-compose  -f /home/charles/codes/docker/pod-charlesreid1/docker-compose.yml stop
-
-[Install]
-WantedBy=default.target
-```
-
-Now install the service to `/etc/systemd/system/dockerpod-charlesreid1.servce`,
-and activate it:
-
-```
-sudo systemctl enable dockerpod-charlesreid1.service
-```
-
-Now you can start/stop the service with:
-
-```
-sudo systemctl (start|stop) dockerpod-charlesreid1.service
-```
-
-NOTE: if you need to debug the containers, 
-or update any config files copied into the container,
-be sure and stop the service before doing a 
-`docker-compose stop` or a `docker-compose up --build`,
-otherwise the pod will continually respawn.
-
-### Before You Go Further
-
-Once you've gotten the whole fleet of containers up,
-you should be ready to run charlesreid1.com.
-
-First, though, you'll need to restore some files:
-
-* Restore MySQL wikidb database from backup using scripts in `utils-mysql` dir
-* Restore MediaWiki images dir from backup using scripts in `utils-mw` dir
-* Restore Gitea database and avatars from backup using scripts in `utils-gitea` dir
-
-
+For information about running this docker pod: [Running.md](/Running.md)
+* [Running the Docker Pod from Comand Line](/Running.md#RunningCLI)
+* [Running the Docker Pod as a Startup Service](/Running.md#RunningService)
+* [Workflow for Charlesreid1 Docker Pod Updates](/Running.md#Workflow)
+* [Restoring the Docker Pod from Backups](/Running.md#Backups)
 
 ## Volumes
 
-### are volumes persistent
+For more information about the volumes used in this docker pod: [Volumes.md](/Volumes.md)
+* [Persistent Data Volumes](/Volumes.md#persistent)
 
-Mostly.
+* [nginx](/Volumes.md#nginx)
+    * [nginx + lets encrypt ssl certificates](/Volumes.md#nginx-ssl)
+    * [nginx static content](/Volumes.md#nginx-static)
+    * [nginx bind-mounted files](/Volumes.md#nginx-files)
 
-When you're using docker-compose, volumes are persistent
-through both `docker-compose stop` and `docker-compose down` commands.
+* [mysql](/Volumes.md#mysql)
 
-The `docker-compose down` command will destroy everything including networks
-and mounted files, while `docker-compose stop` will just stop the containers.
+* [mediawiki](/Volumes.md#mw)
+    * [mediawiki data volume](/Volumes.md#mw-data)
+    * [mediawiki bind-mounted files](/Volumes.md#mw-files)
 
-***DANGER - DANGER - DANGER***
+* [gitea](/Volumes.md#gitea)
+    * [gitea data volume](/Volumes.md#gitea-data)
+    * [gitea bind-mounted files](/Volumes.md#gitea-files)
 
-If you want to remove the volumes, use `docker-compose down -v`.
+* [python file server (pyfiles)](/Volumes.md#pyfiles)
+    * [pyfiles directory](/Volumes.md#pyfiles-dir)
 
-```
-docker-compose down -v   # DANGER!!!
-```
 
-To force removal of the volumes:
-
-```
-docker-compose down -v -f   # DANGER!!!
-```
+-----
 
 
 ### letsencrypt
 
-Rather than fuss with getting the letsencrypt 
-docker image working, and because our DNS provider
-does not provide API integration, we decided to
-get SSL certs by hand.
-
-```
-certbot certonly --non-interactive --agree-tos --email "melo@smallmelo.com" --apache -d "git.smallmelo.com"
-```
-
 ### nginx
-
-No data volumes are used.
-
-* nginx static content is a bind-mounted host directory
-* on the host: `/www/charlesreid1.blue/htdocs/`
-* source: `/www/charlesreid1.blue/charlesreid1.blue-src/`
-* workflow: pelican make from the source dir, and copy the desired files to the htdocs dir
-* we use the more cumbersome "by hand" method because it gives greater control over each site
-
-Re letsencrypt:
-
-* getting the container set up is a mess
-* since certbot only needs to be run every few months, I just set up a dead simple script
-* [certbot](https://charlesreid1.com:3000/charlesreid1/certbot)
-
-Certs in nginx:
-
-* again - dead simple script - creates one set of certs per subdomain
-* nginx ssl configuration has one block per subdomain
-
-Where should certs go?
-
-* on host dir, certs sould be in `/etc/letsencrypt`
-
-### htdocs
-
-Here is how we set up the static content site for each site we are hosting:
-
-Start by making a place for web content to live on this machine,
-specifically the directory `/www`:
-
-```
-sudo mkdir -p /www
-sudo chown charles:charles /www
-```
-
-Now, for each unique site, we do the following:
-
-* Create a folder for that domain
-* Inside the domain folder, create a source directory (git repo) and an htdocs directory (live html content)
-
-The directory structure looks like this:
-
-```
-/www/
-    charlesreid1.blue/
-        htdocs/
-            <web site static contents>
-            ...
-        charlesreid1.blue-src/
-            <pelican files>
-            ...
-
-```
-
-To make the 
-
-
-
-
-
-Clone a local copy of the site repo (charlesreid1-src),
-check out a copy of the gh-pages branch,
-and bind mount it into the container.
-
-Updating the site from htdocs is a simple as 
-`git pull origin pages`.
-
-(Well... ideally. But it's not that simple.
-The `htdocs` dir must be owned by `www-data` 
-so you have to run the git pull as that user.)
-
-```
-sudo -H -u www-data git pull origin pages
-```
 
 ### mediawiki + mysql
 

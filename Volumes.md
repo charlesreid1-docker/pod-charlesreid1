@@ -1,0 +1,195 @@
+# Volumes
+
+<a name="#persistent"></a>
+## Persistent Data Volumes
+
+docker-compose volumes are mostly persistent, but they can
+be deleted relatively easily.
+
+When you're using docker-compose, volumes are persistent
+through both `docker-compose stop` and `docker-compose down` commands.
+
+The `docker-compose down` command will destroy everything including networks
+and mounted files, while `docker-compose stop` will just stop the containers.
+
+***DANGER - DANGER - DANGER***
+
+If you want to remove the volumes, use `docker-compose down -v`.
+
+```
+docker-compose down -v   # DANGER!!!
+```
+
+To force removal of the volumes:
+
+```
+docker-compose down -v -f   # DANGER!!!
+```
+
+-----
+
+<a name="#nginx"></a>
+## nginx
+
+The nginx service does not have any data volumes, 
+but has several static files that are bind-mounted.
+Most importantly, nginx handles the SSL certificates
+for all subdomains.
+
+-----
+
+<a name="#nginx-ssl"></a>
+### nginx + lets encrypt ssl certificates
+
+Rather than fuss with getting the letsencrypt 
+docker image working, we made SSL certs by hand.
+
+See [git.charlesreid1.com/charlesreid1/certbot](https://git.charlesreid1.com/charlesreid1/certbot)
+
+Certbot will put the SSL certificates into
+`/etc/letsencrypt/live/example.com`.
+
+We bind-mount the entire `/etc/letsencrypt` directory
+into the same location in the nginx container 
+(see this volumes line in `docker-compose.yml`):
+
+```
+      - "/etc/letsencrypt:/etc/letsencrypt"
+```
+
+To renew certificates (every few months), just run the certbot script in the certbot repo.
+
+<a name="#nginx-static"></a>
+### nginx static content
+
+The main site hosted by nginx (charlesreid1.com) is served up 
+from a directory of static content under version control.
+
+This static content is bind-mounted and lives on the host 
+(no data volume is used for nginx).
+
+On the host, static site contents are stored at `/www/` 
+with a directory structure and corresponding permissions
+as follows:
+
+```
+/www/                                   # <-- owned by regular user
+
+    charlesreid1.blue/                  # <-- owned by regular user
+        charlesreid1.blue-src/          # <-- owned by regular user
+            <pelican files>
+        htdocs/                         # <-- owned by www-data
+            <web site static contents>
+
+    charlesreid1.red/                   # <-- owned by regular user
+        charlesreid1.red-src/           # <-- owned by regular user
+            <pelican files>
+        htdocs/                         # <-- owned by www-data
+            <web site static contents>
+
+    charlesreid1.com/
+        charlesreid1.com-src/
+            <pelican files>
+        htdocs/
+            <web site static contents>
+
+    ...
+```
+
+Each domain has its own directory, in which there is a source directory 
+(git repository containing pelican files) and an htdocs directory
+(git repository containing live hosted static content).
+
+These are mounted in the container at the same location.
+See the volumes section of the nginx container:
+
+```
+      - "/www/charlesreid1.blue/htdocs:/www/charlesreid1.blue/htdocs:ro"
+      - "/www/charlesreid1.red/htdocs:/www/charlesreid1.red/htdocs:ro"
+      - "/www/charlesreid1.com/htdocs:/www/charlesreid1.com/htdocs:ro"
+```
+
+The source and htdocs directories are separate branches of the same repo.
+Each website has (TODO: will have) its own repository.
+
+The `master` branch contains the source code for that repository,
+mainly pelican files plus html/css/js.
+
+The `pages` branch contains the static content to be hosted 
+by the nginx web server.
+
+Ownership makes dealing with this stuff a pain in the ass.
+The `htdocs` dir must be owned/updated by `www-data`, 
+so you need to update the git repo contents as that user:
+
+```
+sudo -H -u www-data git pull origin pages
+```
+
+<a name=#nginx-config"></a>
+### nginx bind-mounted files
+
+We bind-mount a directory `conf.d` containing 
+nginx configuration files into the container 
+at `/etc/nginx/conf.d`, which is where nginx
+automatically looks for and loads configuration 
+files.
+
+The custom nginx configuration files are split up
+by protocol and subdomain, and can be found 
+in the [d-nginx-charlesreid1](https://git.charlesreid1.com/docker/d-nginx-charlesreid1)
+repository. From the `docker-compose.yml` file
+nginx volumes directive:
+
+```
+      - "./d-nginx-charlesreid1/conf.d:/etc/nginx/conf.d:ro"
+```
+
+<a name="#nginx-files"></a>
+### other nginx bind-mounted files
+
+The last remaining nginx file that is bind-mounted into the container
+is `/etc/localtime`, which ensures our webserver's timestamps match 
+the host's. In the nginx volumes directive:
+
+```
+      - "/etc/localtime:/etc/localtime:ro"
+```
+
+-----
+
+<a name="#mysql"></a>
+## mysql
+
+
+
+-----
+
+<a name="#mw"></a>
+## mediawiki
+
+<a name="#mw-data"></a>
+### mediawiki data volume
+
+<a name="#mw-files"></a>
+### mediawiki bind-mounted files
+
+
+
+<a name="#gitea"></a>
+## gitea
+
+<a name="#gitea-data"></a>
+### gitea data volume
+
+<a name="#gitea-files"></a>
+### gitea bind-mounted files
+
+-----
+
+<a name="#pyfiles"></a>
+## python file server
+
+<a name="#pyfiles-dir"></a>
+### pyfiles directory
+
