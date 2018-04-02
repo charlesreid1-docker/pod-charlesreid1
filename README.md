@@ -44,47 +44,9 @@ used by this docker pod:
 -----
 
 
-### letsencrypt
-
-### nginx
-
-### mediawiki + mysql
-
-The docker compose file will create two data volumes,
-one for mediawiki and one for mysql.
-
-These data volumes are resilient to `docker-compose stop`
-and `docker-compose down`.
-
-To remove the volumes, use `docker-compose down -v`.
-
-To force removal of the volumes, use `docker-compose down -v -f`.
-
-To check on the volumes, use
-
-```
-docker volumes ls
-```
 
 ### mediawiki: Updating Skin/LocalSettings.php
 
-Both the LocalSettings.php file and the skins directory are 
-copied into the docker container when docker uses the Dockerfile 
-to build the container.
-
-If you need to update these files, you must stop and then start
-the containers - restarting them will not update the settings file
-or the skins directory.
-
-Make your changes to `d-mediawiki/charlesreid1-config/mediawiki/skins/Bootstrap2/Bootstrap2.php`
-and `d-mediawiki/charlesreid1-config/mediawiki/LocalSettings.php` as needed,
-then update the charlesreid1 pod mediawiki docker image:
-
-```
-docker-compose build
-docker-compose stop
-docker-compose up
-```
 
 ## Ports
 

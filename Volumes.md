@@ -26,6 +26,15 @@ To force removal of the volumes:
 docker-compose down -v -f   # DANGER!!!
 ```
 
+To see the current list of docker volumes:
+
+```
+docker volume ls
+```
+
+You can also interact with the volumes individually
+this way. Run `docker volume` for help.
+
 -----
 
 <a name="#nginx"></a>
@@ -189,10 +198,51 @@ by adding this to the volumes section of
 <a name="#mw-data"></a>
 ### mediawiki data volume
 
+The MediaWiki container hosts all wiki files
+from `/var/www/html` (in the MediaWiki container).
+
+When the container is built from the Dockerfile, 
+most of the customized MediaWiki files are copied
+into the data volume. These include:
+
+* `LocalSettings.php` - MediaWiki config file
+* `skins/` directory
+* `extensions/` directory
+
+MediaWiki files are kept under version control in the 
+[d-mediawiki](https://git.charlesreid1.com/docker/d-mediawiki)
+repo.
+
+The MediaWiki container uses a data volume called 
+`stormy_mw_data`, which is mounted at `/var/www/html`
+inside the container.
+
+The docker-compose file takes care of creating the data volume.
+
 <a name="#mw-files"></a>
 ### mediawiki bind-mounted files
 
+(TODO: ambiguous how skins dir is mounted;
+copying skins into container in Dockerfile,
+and bind-mounting bootstrap2 at runtime.)
 
+MediaWiki skins are kept under version control
+in the [d-mediawiki](https://git.charlesreid1.com/docker/d-mediawiki)
+repo.
+
+The Bootstrap2 MediaWiki skin is bind-mounted into the container
+at `/var/www/html/skins/Bootstrap2/`.
+
+If you make changes to the skin or MediaWiki config files,
+update the MediaWiki docker image as follows:
+
+```
+docker-compose build
+docker-compose down
+docker-compose up
+```
+
+-----
 
 <a name="#gitea"></a>
 ## gitea
