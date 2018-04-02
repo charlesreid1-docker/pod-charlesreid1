@@ -3,13 +3,13 @@
 function usage {
     echo ""
     echo "restore_gitea.sh script:"
-    echo "Restore a gitea site from a .zip dump file."
+    echo "Restore a gitea site from a .zip dump file and a .zip avatars file."
     echo ""
-    echo "       ./restore_gitea.sh <zip-file>"
+    echo "       ./restore_gitea.sh <dump-zip-file> <avatars-zip-file>"
     echo ""
     echo "Example:"
     echo ""
-    echo "       ./restore_gitea.sh /path/to/gitea.zip /path/to/gitea-avatars.zip"
+    echo "       ./restore_gitea.sh /path/to/gitea-dump.zip /path/to/gitea-avatars.zip"
     echo ""
     echo ""
     exit 1;
