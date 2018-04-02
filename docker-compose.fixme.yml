@@ -1,6 +1,12 @@
 version: "3.1"
 services:
 
+  stormy_files:
+    image: python:3.6
+    command: bash -c "cd /files && python3 -m http.server 8081"
+    volumes:
+      - "/www/files:/files"
+
   stormy_gitea:
     image: gitea/gitea:latest
     environment:
@@ -9,27 +15,23 @@ services:
     restart: always
     volumes:
       - "stormy_gitea_data:/data"
-      - "./d-gitea/app.ini:/data/gitea/conf/app.ini"
+      - "./d-gitea/custom/conf/app.ini:/data/gitea/conf/app.ini"
+      - "./d-gitea/custom/public:/data/gitea/public"
+      - "./d-gitea/custom/templates:/data/gitea/templates"
     ports:
       - "222:22"
-      #- "3000:3000"
 
   stormy_mysql:
     build: d-mysql
     volumes:
       - "stormy_mysql_data:/var/lib/mysql"
-      #- "./d-mysql/krash.mysql.cnf:/etc/mysql/conf.d/krash.mysql.cnf"
     environment:
       - MYSQL_ROOT_PASSWORD=REPLACEME
-    labels:
-      - com.charlesreid1.pod.name="mysql"
 
   stormy_myadmin:
     image: "phpmyadmin/phpmyadmin"
     links:
       - stormy_mysql:db
-    labels:
-      - com.charlesreid1.pod.name="phpmyadmin"
     environment:
       - PMA_ABSOLUTE_URI=charlesreid1.blue/phpMyAdmin
 
@@ -37,6 +39,7 @@ services:
     build: d-mediawiki
     volumes:
       - "stormy_mw_data:/var/www/html"
+      - "./d-mediawiki/charlesreid1-config/mediawiki/skins/Bootstrap2:/var/www/html/skins/Bootstrap2"
     links:
       - stormy_mysql:mysql
     environment:
@@ -44,8 +47,6 @@ services:
       - MYSQL_DATABASE=wikidb
       - MYSQL_USER=root
       - MYSQL_PASSWORD=REPLACEME
-    labels:
-      - com.charlesreid1.pod.name="mw"
 
   stormy_nginx:
     restart: always
@@ -57,14 +58,16 @@ services:
       - stormy_mw:stormy_mw
       - stormy_myadmin:stormy_myadmin
     volumes:
-      - "./d-nginx-charlesreid1/conf.d:/etc/nginx/conf.d"
+      - "./d-nginx-charlesreid1/conf.d:/etc/nginx/conf.d:ro"
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/letsencrypt:/etc/letsencrypt"
       - "/www/charlesreid1.blue/htdocs:/www/charlesreid1.blue/htdocs:ro"
       - "/www/charlesreid1.red/htdocs:/www/charlesreid1.red/htdocs:ro"
+      - "/www/charlesreid1.com/htdocs:/www/charlesreid1.com/htdocs:ro"
     ports:
       - "80:80"
       - "443:443"
+      - "3000:3000"
 
 volumes:
   stormy_mysql_data:
