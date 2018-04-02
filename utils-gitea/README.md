@@ -4,6 +4,7 @@ Fortunately, gitea provides a `gitea dump` command to create a backup.
 
 Unfortunately, gitea does not provide a `gitea restore` command to restore from a backup.
 
+
 ## Quick Start
 
 We provide a backup and restore script.
