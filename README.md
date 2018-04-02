@@ -36,6 +36,43 @@ or, if you want to rebuild all the containers,
 docker-compose up --build
 ```
 
+### Quick Start: Startup Service Version
+
+If you want to run the pod as a startup service,
+see the dotfiles/debian repository, in the services/
+subdirectory. You will find a systemd service
+that will start/stop the docker pod.
+
+**`dockerpod-charlesereid1.service:`**
+
+```
+[Unit]
+Description=charlesreid1 docker pod
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/local/bin/docker-compose -f /home/charles/codes/docker/pod-charlesreid1/docker-compose.yml up
+ExecStop=/usr/local/bin/docker-compose  -f /home/charles/codes/docker/pod-charlesreid1/docker-compose.yml stop
+
+[Install]
+WantedBy=default.target
+```
+
+Now install the service to `/etc/systemd/system/dockerpod-charlesreid1.servce`,
+and activate it:
+
+```
+sudo systemctl enable dockerpod-charlesreid1.service
+```
+
+Now you can start/stop the service with:
+
+```
+sudo systemctl (start|stop) dockerpod-charlesreid1.service
+```
+
 ### Before You Go Further
 
 Once you've gotten the whole fleet of containers up,
