@@ -36,6 +36,31 @@ or, if you want to rebuild all the containers,
 docker-compose up --build
 ```
 
+You can also rebuild the container using
+
+```
+docker-compose build
+```
+or, to do a really clean build,
+
+```
+docker-compose build --no-cache
+```
+
+(WARNING: if you have a lot of aptitude packages, this will re-download 
+all of them, and is potentially really slow.)
+
+You can restart all containers in a pod using the restart command:
+
+```
+docker-compose restart
+```
+
+Note: this will ***NOT*** pick up any changes to the 
+container's Dockerfile or files copied into the container,
+as this simply restarts the container ***without*** getting
+an up-to-date container image first.
+
 ### Quick Start: Startup Service Version
 
 If you want to run the pod as a startup service,
@@ -89,6 +114,8 @@ First, though, you'll need to restore some files:
 * Restore MySQL wikidb database from backup using scripts in `utils-mysql` dir
 * Restore MediaWiki images dir from backup using scripts in `utils-mw` dir
 * Restore Gitea database and avatars from backup using scripts in `utils-gitea` dir
+
+
 
 ## Volumes
 
@@ -191,6 +218,25 @@ To check on the volumes, use
 docker volumes ls
 ```
 
+### mediawiki: Updating Skin/LocalSettings.php
+
+Both the LocalSettings.php file and the skins directory are 
+copied into the docker container when docker uses the Dockerfile 
+to build the container.
+
+If you need to update these files, you must stop and then start
+the containers - restarting them will not update the settings file
+or the skins directory.
+
+Make your changes to `d-mediawiki/charlesreid1-config/mediawiki/skins/Bootstrap2/Bootstrap2.php`
+and `d-mediawiki/charlesreid1-config/mediawiki/LocalSettings.php` as needed,
+then update the charlesreid1 pod mediawiki docker image:
+
+```
+docker-compose build
+docker-compose stop
+docker-compose up
+```
 
 ## Ports
 
