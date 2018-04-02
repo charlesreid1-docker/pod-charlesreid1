@@ -15,34 +15,30 @@ The services are:
 
 ## Running
 
-For information about running this docker pod: [Running.md](/Running.md)
-* [Running the Docker Pod from Comand Line](/Running.md#RunningCLI)
-* [Running the Docker Pod as a Startup Service](/Running.md#RunningService)
-* [Workflow for Charlesreid1 Docker Pod Updates](/Running.md#Workflow)
-* [Restoring the Docker Pod from Backups](/Running.md#Backups)
+See **[Running.md](/Running.md)** for info about running this docker pod:
+* Running the Docker Pod from Comand Line
+* Running the Docker Pod as a Startup Service
+* Workflow for Charlesreid1 Docker Pod Updates
+* Restoring the Docker Pod from Backups
 
 ## Volumes
 
-For more information about the volumes used in this docker pod: [Volumes.md](/Volumes.md)
-* [Persistent Data Volumes](/Volumes.md#persistent)
-
-* [nginx](/Volumes.md#nginx)
-    * [nginx + lets encrypt ssl certificates](/Volumes.md#nginx-ssl)
-    * [nginx static content](/Volumes.md#nginx-static)
-    * [nginx bind-mounted files](/Volumes.md#nginx-files)
-
-* [mysql](/Volumes.md#mysql)
-
-* [mediawiki](/Volumes.md#mw)
-    * [mediawiki data volume](/Volumes.md#mw-data)
-    * [mediawiki bind-mounted files](/Volumes.md#mw-files)
-
-* [gitea](/Volumes.md#gitea)
-    * [gitea data volume](/Volumes.md#gitea-data)
-    * [gitea bind-mounted files](/Volumes.md#gitea-files)
-
-* [python file server (pyfiles)](/Volumes.md#pyfiles)
-    * [pyfiles directory](/Volumes.md#pyfiles-dir)
+See **[Volumes.md](/Volumes.md)** for info about data and volumes 
+used by this docker pod:
+* Persistent Data Volumes
+* nginx
+    * nginx + lets encrypt ssl certificates
+    * nginx static content
+    * nginx bind-mounted files
+* mysql
+* mediawiki
+    * mediawiki data volume
+    * mediawiki bind-mounted files
+* gitea
+    * gitea data volume
+    * gitea bind-mounted files
+* python file server (pyfiles)
+    * pyfiles directory
 
 
 -----
