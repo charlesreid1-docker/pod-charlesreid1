@@ -119,6 +119,31 @@ First, though, you'll need to restore some files:
 
 ## Volumes
 
+### are volumes persistent
+
+Mostly.
+
+When you're using docker-compose, volumes are persistent
+through both `docker-compose stop` and `docker-compose down` commands.
+
+The `docker-compose down` command will destroy everything including networks
+and mounted files, while `docker-compose stop` will just stop the containers.
+
+***DANGER - DANGER - DANGER***
+
+If you want to remove the volumes, use `docker-compose down -v`.
+
+```
+docker-compose down -v   # DANGER!!!
+```
+
+To force removal of the volumes:
+
+```
+docker-compose down -v -f   # DANGER!!!
+```
+
+
 ### letsencrypt
 
 Rather than fuss with getting the letsencrypt 
@@ -178,13 +203,12 @@ The directory structure looks like this:
 /www/
     charlesreid1.blue/
         htdocs/
+            <web site static contents>
             ...
         charlesreid1.blue-src/
+            <pelican files>
             ...
 
-```
-mkdir -p /www/charlesreid1.blue
-mkdir -p /www/charlesreid1.blue/htdocs
 ```
 
 To make the 
@@ -197,8 +221,16 @@ Clone a local copy of the site repo (charlesreid1-src),
 check out a copy of the gh-pages branch,
 and bind mount it into the container.
 
-Updating the site is a simple as 
-`git pull origin gh-pages`.
+Updating the site from htdocs is a simple as 
+`git pull origin pages`.
+
+(Well... ideally. But it's not that simple.
+The `htdocs` dir must be owned by `www-data` 
+so you have to run the git pull as that user.)
+
+```
+sudo -H -u www-data git pull origin pages
+```
 
 ### mediawiki + mysql
 
