@@ -73,6 +73,12 @@ Now you can start/stop the service with:
 sudo systemctl (start|stop) dockerpod-charlesreid1.service
 ```
 
+NOTE: if you need to debug the containers, 
+or update any config files copied into the container,
+be sure and stop the service before doing a 
+`docker-compose stop` or a `docker-compose up --build`,
+otherwise the pod will continually respawn.
+
 ### Before You Go Further
 
 Once you've gotten the whole fleet of containers up,
