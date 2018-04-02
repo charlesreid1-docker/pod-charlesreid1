@@ -161,7 +161,25 @@ the host's. In the nginx volumes directive:
 <a name="#mysql"></a>
 ## mysql
 
+The MySQL database container is used by MediaWiki 
+and stores its data on disk in a data volume.
+Inside the conatiner all MySQL data lives at
 
+```
+/var/lib/mysql
+```
+
+This is mapped to a data volume, `stormy_mysql_data`.
+
+There is no custom configuration of the MySQL database
+at this time, but to add a custom config file,
+mount it in the container via bind-mounting
+by adding this to the volumes section of 
+`docker-compose.yml`:
+
+```
+      - "./d-mysql/krash.mysql.cnf:/etc/mysql/conf.d/krash.mysql.cnf"
+```
 
 -----
 
