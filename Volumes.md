@@ -1,6 +1,5 @@
 # Volumes
 
-<a name="#persistent"></a>
 ## Persistent Data Volumes
 
 docker-compose volumes are mostly persistent, but they can
@@ -37,7 +36,6 @@ this way. Run `docker volume` for help.
 
 -----
 
-<a name="#nginx"></a>
 ## nginx
 
 The nginx service does not have any data volumes, 
@@ -47,7 +45,6 @@ for all subdomains.
 
 -----
 
-<a name="#nginx-ssl"></a>
 ### nginx + lets encrypt ssl certificates
 
 Rather than fuss with getting the letsencrypt 
@@ -68,7 +65,6 @@ into the same location in the nginx container
 
 To renew certificates (every few months), just run the certbot script in the certbot repo.
 
-<a name="#nginx-static"></a>
 ### nginx static content
 
 The main site hosted by nginx (charlesreid1.com) is served up 
@@ -135,7 +131,6 @@ so you need to update the git repo contents as that user:
 sudo -H -u www-data git pull origin pages
 ```
 
-<a name=#nginx-config"></a>
 ### nginx bind-mounted files
 
 We bind-mount a directory `conf.d` containing 
@@ -154,7 +149,6 @@ nginx volumes directive:
       - "./d-nginx-charlesreid1/conf.d:/etc/nginx/conf.d:ro"
 ```
 
-<a name="#nginx-files"></a>
 ### other nginx bind-mounted files
 
 The last remaining nginx file that is bind-mounted into the container
@@ -167,7 +161,6 @@ the host's. In the nginx volumes directive:
 
 -----
 
-<a name="#mysql"></a>
 ## mysql
 
 The MySQL database container is used by MediaWiki 
@@ -192,10 +185,8 @@ by adding this to the volumes section of
 
 -----
 
-<a name="#mw"></a>
 ## mediawiki
 
-<a name="#mw-data"></a>
 ### mediawiki data volume
 
 The MediaWiki container hosts all wiki files
@@ -219,7 +210,6 @@ inside the container.
 
 The docker-compose file takes care of creating the data volume.
 
-<a name="#mw-files"></a>
 ### mediawiki bind-mounted files
 
 (TODO: ambiguous how skins dir is mounted;
@@ -244,20 +234,15 @@ docker-compose up
 
 -----
 
-<a name="#gitea"></a>
 ## gitea
 
-<a name="#gitea-data"></a>
 ### gitea data volume
 
-<a name="#gitea-files"></a>
 ### gitea bind-mounted files
 
 -----
 
-<a name="#pyfiles"></a>
 ## python file server
 
-<a name="#pyfiles-dir"></a>
 ### pyfiles directory
 

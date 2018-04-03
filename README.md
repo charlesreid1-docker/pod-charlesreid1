@@ -4,6 +4,7 @@ This repo contains a docker compose file
 for running the charlesreid1.com site.
 
 The services are:
+
 * mediawiki
 * apache + php
 * mysql
@@ -16,6 +17,7 @@ The services are:
 ## Running
 
 See **[Running.md](/Running.md)** for info about running this docker pod:
+
 * Running the Docker Pod from Comand Line
 * Running the Docker Pod as a Startup Service
 * Workflow for Charlesreid1 Docker Pod Updates
@@ -25,6 +27,7 @@ See **[Running.md](/Running.md)** for info about running this docker pod:
 
 See **[Volumes.md](/Volumes.md)** for info about data and volumes 
 used by this docker pod:
+
 * Persistent Data Volumes
 * nginx
     * nginx + lets encrypt ssl certificates
@@ -40,6 +43,30 @@ used by this docker pod:
 * python file server (pyfiles)
     * pyfiles directory
 
+## Ports
+
+See **[Ports.md](/Ports.md)** for info about ports used by this docker pod:
+
+* domains
+    * nginx domains
+* ports
+    * nginx ports
+    * mediawiki/apache ports
+    * phpmyadmin ports
+    * mysql ports
+    * gitea ports
+    * python file server ports
+
+## Secrets
+
+See **[Secrets.md](/Secrets.md)** for more info about getting secrets like 
+passwords and sensitive files into various containers in the pod,
+without leaking out the information.
+
+* mysql database root password
+* mediawiki mysql database root password
+* gitea secret key and session id
+* nginx ssl certificates
 
 -----
 
