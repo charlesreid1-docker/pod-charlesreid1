@@ -15,4 +15,4 @@
 	url = git@git.charlesreid1.com:docker/d-gitea.git
 [submodule "d-python-files"]
 	path = d-python-files
-	url = git@git.charlesreid1.com:charlesreid1/d-python-files.git
+	url = git@git.charlesreid1.com:docker/d-python-files.git
