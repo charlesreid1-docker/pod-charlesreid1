@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 # Just make a daily MediaWiki files backup.
+set -x
 
 stamp="`date +"%Y-%m-%d"`"
 backup_tool="${HOME}/codes/docker/pod-charlesreid1/utils-mw/backup_wikifiles.sh"

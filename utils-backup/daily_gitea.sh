@@ -4,7 +4,7 @@
 set -x
 
 stamp="`date +"%Y-%m-%d"`"
-backup_tool="${HOME}/codes/docker/pod-charlesreid1/utils-mw/backup_wikifiles.sh"
+backup_tool="${HOME}/codes/docker/pod-charlesreid1/utils-gitea/backup_gitea.sh"
 
 backup_dir="/junkinthetrunk/backups/daily/gitea_${stamp}"
 backup_target="${backup_dir}"
@@ -27,8 +27,7 @@ echo ""                                 >> ${log_target}
 echo "Command: ${backup_tool} ${backup_target} 2>&1 ${log_target}" >> ${log_target}
 echo "" >> ${log_target}
 
-echo "${backup_tool} ${backup_target} 2>&1 ${log_target}"
-#${backup_tool} ${backup_target} 2>&1 ${log_target}
+${backup_tool} ${backup_target} 2>&1 ${log_target}
 
 echo "Done" >> ${log_target}
 
