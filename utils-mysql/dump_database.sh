@@ -2,6 +2,7 @@
 #
 # Dump a database to an .sql file
 # from the stormy_mysql container.
+set -x
 
 function usage {
     echo ""
@@ -21,7 +22,7 @@ function usage {
 
 NAME="podcharlesreid1_stormy_mysql_1"
 
-if [[ "$#" -eq 1 ]];
+if [[ "$#" -gt 0 ]];
 then
 
     docker exec -it ${NAME} \

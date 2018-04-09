@@ -2,6 +2,7 @@
 #
 # Create a tar file containing wiki files
 # from the stormy_mw container.
+set -x
 
 function usage {
     echo ""
@@ -19,7 +20,7 @@ function usage {
     exit 1;
 }
 
-if [[ "$#" -eq 1 ]];
+if [[ "$#" -gt 0 ]];
 then
 
     NAME="podcharlesreid1_stormy_mw_1"

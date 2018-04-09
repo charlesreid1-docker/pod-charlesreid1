@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 function usage {
     echo ""
@@ -23,15 +24,15 @@ function usage {
     exit 1;
 }
 
-echo ""
-echo "Backup Gitea:"
-echo "----------------"
-echo ""
-
 NAME="podcharlesreid1_stormy_gitea_1"
 
-if [[ "$#" -eq 1 ]];
+if [[ "$#" -gt 0 ]];
 then
+
+    echo ""
+    echo "Backup Gitea:"
+    echo "----------------"
+    echo ""
 
     echo " - Creating backup target"
     docker exec -it $NAME /bin/bash -c 'mkdir /backup'
