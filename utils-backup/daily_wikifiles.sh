@@ -10,7 +10,7 @@ backup_dir="/junkinthetrunk/backups/daily/wikifiles_${stamp}"
 backup_target="${backup_dir}/wikifiles.tar.gz"
 
 log_dir="${HOME}/.logs/backups/daily"
-log_target="${log_dir}/wikidb_${stamp}.log"
+log_target="${log_dir}/wikifiles_${stamp}.log"
 
 mkdir -p ${backup_dir}
 mkdir -p ${log_dir}
