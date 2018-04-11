@@ -24,10 +24,10 @@ echo "Backup Utility: ${backup_tool}"       >> ${log_target}
 echo "Backup Target: ${backup_target}"      >> ${log_target}
 echo "Log Target: ${log_target}"            >> ${log_target}
 echo ""                                     >> ${log_target}
-echo "Command: ${backup_tool} ${backup_target} 2>&1 ${log_target}" >> ${log_target}
+echo "Command: ${backup_tool} ${backup_target} >> ${log_target} 2>&1 " >> ${log_target}
 echo "" >> ${log_target}
 
-${backup_tool} ${backup_target} 2>&1 ${log_target}
+${backup_tool} ${backup_target} >> ${log_target} 2>&1 
 
 echo "Done" >> ${log_target}
 
