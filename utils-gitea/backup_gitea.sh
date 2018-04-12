@@ -24,8 +24,6 @@ function usage {
     exit 1;
 }
 
-NAME="podcharlesreid1_stormy_gitea_1"
-
 if [[ "$#" -gt 0 ]];
 then
 
@@ -34,22 +32,35 @@ then
     echo "----------------"
     echo ""
 
+    NAME="podcharlesreid1_stormy_gitea_1"
+
+    # If this script is being run from a cron job,
+    # don't use -i flag with docker
+    CRON="$( pstree -s $$ | /bin/grep -c cron )"
+    DOCKER=""
+    if [[ "$CRON" -eq 1 ]]; 
+    then
+        DOCKER="docker exec -t"
+    else
+        DOCKER="docker exec -it"
+    fi
+
     echo " - Creating backup target"
-    docker exec -it $NAME /bin/bash -c 'mkdir /backup'
+    ${DOCKER} $NAME /bin/bash -c 'mkdir /backup'
     
     echo " - Creating backup zip files:"
     echo "     - gitea dump zip"
-    docker exec -it $NAME /bin/bash -c 'cd /backup && /app/gitea/gitea dump'
+    ${DOCKER} $NAME /bin/bash -c 'cd /backup && /app/gitea/gitea dump'
     echo "     - gitea avatars zip"
-    docker exec -it $NAME /bin/bash -c 'cd /data/gitea/ && zip /backup/gitea-avatars.zip avatars'
+    ${DOCKER} $NAME /bin/bash -c 'cd /data/gitea/ && zip /backup/gitea-avatars.zip avatars'
 
     echo " - Copying backup directory (with zip files) to ."
     docker cp $NAME:/backup .
 
     echo " - Cleaning up container"
-    docker exec -it $NAME /bin/bash -c 'rm -rf /backup'
+    ${DOCKER} $NAME /bin/bash -c 'rm -rf /backup'
 
-    # todo: check if $1 is a directory. 
+    # TODO: check if $1 is a directory. 
     # if not, at least stuff will still be left at backup/
     echo " - Copy zip backup to target"
     mkdir -p $1 && mv backup/*.zip $1/. && rm -rf backup
