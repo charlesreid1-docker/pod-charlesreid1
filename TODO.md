@@ -1,5 +1,11 @@
 # TODO
 
+- nginx configurations in separate files
+- group all subdomain variations in one file
+- one place to go
+- one file = one domain, subdomain, port, etc. but group stuff easier to change 
+
+
 - network overlay
     - nginx can't reverse proxy to 10.5.0.2 b/c doesn't see it
     - need to have two networks:
