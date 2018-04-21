@@ -1,5 +1,9 @@
 # TODO
 
+`underscores_in_headers on;`
+
+[link](https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/)
+
 - nginx configurations in separate files
 - group all subdomain variations in one file
 - one place to go
