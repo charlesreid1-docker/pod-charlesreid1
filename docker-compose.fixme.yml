@@ -53,11 +53,6 @@ services:
     image: nginx
     hostname: charlesreid1.com
     command: /bin/bash -c "nginx -g 'daemon off;'"
-    links:
-      - stormy_gitea:stormy_gitea
-      - stormy_mw:stormy_mw
-      - stormy_myadmin:stormy_myadmin
-      - stormy_files:stormy_files
     volumes:
       - "./d-nginx-charlesreid1/conf.d:/etc/nginx/conf.d:ro"
       - "/etc/localtime:/etc/localtime:ro"
@@ -68,7 +63,6 @@ services:
     ports:
       - "80:80"
       - "443:443"
-      - "3000:3000"
 
 volumes:
   stormy_mysql_data:
