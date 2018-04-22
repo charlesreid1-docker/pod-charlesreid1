@@ -6,6 +6,15 @@ Apache-MediaWiki container.
 
 Also see [Apache + PHP](/Service_apachephp.md).
 
+## The Container
+
+This is based on a MediaWiki container image
+that runs MediaWiki, PHP, and Apache all in one 
+container.
+
+The Apache server is reverse-proxied by nginx 
+in the final pod configuration.
+
 ## Configuration Files and Folders
 
 To set up the MediaWiki container,
@@ -206,4 +215,12 @@ A couple of things have to happen:
     with generic, common-across-all-MediaWikis
     php files, making it difficult to version-control
     site-specific user files.
+
+## Utilities
+
+There are utilities for MediaWiki in `utils-mw`:
+
+* `backup_wikifiles.sh` - back up wiki image files to a tarball
+* `restore_wikifiles.sh` - restore backed up image files from a tarball
+* `update_wikidb.sh` - one-time script to update the wiki database after a version bump
 
