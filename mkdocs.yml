@@ -1,0 +1,30 @@
+site_name: pod-charlesreid1
+docs_dir: docs
+site_dir: site
+theme:
+  name: null
+  custom_dir: 'mkdocs-material/material'
+  palette:
+    primary: 'blue'
+    accent: 'blue'
+  logo:
+    icon: 'dns'
+  font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
+extra_css:
+  - css/custom.css
+pages:
+  - 'Index' : 'index.md'
+  - 'Running the Charlesreid1 Docker Pod' : 'Running.md'
+  - 'Volumes' : 'Volumes.md'
+  - 'Backups (TODO)' : 'Backups.md'
+  - 'Domains and Ports' : 'Ports.md'
+  - 'Secrets' : 'Secrets.md'
+  - 'Pod Service: MediaWiki' : 'Service_mediawiki.md'
+  - 'Pod Service: Apache/PHP' : 'Service_apachephp.md'
+  - 'Pod Service: MySQL' : 'Service_mysql.md'
+  - 'Pod Service: phpMyAdmin' : 'Service_phpmyadmin.md'
+  - 'Pod Service: nginx' : 'Service_nginx.md'
+  - 'Pod Service: Python HTTP Server' : 'Service_python.md'
+  - 'Pod Service: Gitea' : 'Service_gitea.md'

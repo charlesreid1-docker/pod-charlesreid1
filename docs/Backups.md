@@ -1,5 +1,7 @@
 # Backups
 
+## Krash Seed
+
 By competely containerizing charlesreid1.com,
 all of the static files for running programs
 come from docker container images, 
@@ -16,7 +18,7 @@ This service data consists of the following:
 * Gitea repository dump (.zip)
 * Gitea avatar images (.zip)
 
-These four files form a "seed" for charlesreid1.com.
+These four files form a "krash seed" for charlesreid1.com.
 
 ## MySQL Backup/Restore Scripts
 
@@ -56,6 +58,8 @@ Example:
 
 
 # Utilities
+
+Utilities are kept in the `utils-*` folders.
 
 ## MySQL Utilities
 
