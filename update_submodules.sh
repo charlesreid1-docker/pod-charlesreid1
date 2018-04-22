@@ -8,8 +8,11 @@ for dir in `find * -maxdepth 0 -type d`; do
     #git pull origin master
     #)
 
-    # Option 2: slick
-    git submodule update --init --remote $dir
+    ## Option 2: slick
+    #git submodule update --init --remote $dir
+
+    # Option 3: best
+    git submodule update --init --recursive
 done
 
 git commit -a -m 'Updating submodules to latest'
