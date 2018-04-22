@@ -1,0 +1,912 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../">
+      <meta name="generator" content="mkdocs-0.17.3, mkdocs-material-2.7.2">
+    
+    
+      
+        <title>Volumes - pod-charlesreid1</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.8d40d89b.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.6079476c.css">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+      <link rel="stylesheet" href="../css/custom.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <a href="#volumes" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="pod-charlesreid1" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">dns</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                pod-charlesreid1
+              </span>
+              <span class="md-header-nav__topic">
+                Volumes
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <i class="md-icon">dns</i>
+      
+    </span>
+    pod-charlesreid1
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Running/" title="Running the Charlesreid1 Docker Pod" class="md-nav__link">
+      Running the Charlesreid1 Docker Pod
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Volumes
+      </label>
+    
+    <a href="./" title="Volumes" class="md-nav__link md-nav__link--active">
+      Volumes
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#persistent-data-volumes" title="Persistent Data Volumes" class="md-nav__link">
+    Persistent Data Volumes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nginx" title="nginx" class="md-nav__link">
+    nginx
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nginx-lets-encrypt-ssl-certificates" title="nginx + lets encrypt ssl certificates" class="md-nav__link">
+    nginx + lets encrypt ssl certificates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nginx-static-content" title="nginx static content" class="md-nav__link">
+    nginx static content
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nginx-bind-mounted-files" title="nginx bind-mounted files" class="md-nav__link">
+    nginx bind-mounted files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-nginx-bind-mounted-files" title="other nginx bind-mounted files" class="md-nav__link">
+    other nginx bind-mounted files
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mysql" title="mysql" class="md-nav__link">
+    mysql
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mediawiki" title="mediawiki" class="md-nav__link">
+    mediawiki
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mediawiki-data-volume" title="mediawiki data volume" class="md-nav__link">
+    mediawiki data volume
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mediawiki-bind-mounted-files" title="mediawiki bind-mounted files" class="md-nav__link">
+    mediawiki bind-mounted files
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gitea" title="gitea" class="md-nav__link">
+    gitea
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gitea-data-volume" title="gitea data volume" class="md-nav__link">
+    gitea data volume
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gitea-bind-mounted-files" title="gitea bind-mounted files" class="md-nav__link">
+    gitea bind-mounted files
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python-file-server" title="python file server" class="md-nav__link">
+    python file server
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyfiles-directory" title="pyfiles directory" class="md-nav__link">
+    pyfiles directory
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Backups/" title="Backups (TODO)" class="md-nav__link">
+      Backups (TODO)
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Ports/" title="Domains and Ports" class="md-nav__link">
+      Domains and Ports
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Secrets/" title="Secrets" class="md-nav__link">
+      Secrets
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Service_mediawiki/" title="Pod Service: MediaWiki" class="md-nav__link">
+      Pod Service: MediaWiki
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Service_apachephp/" title="Pod Service: Apache/PHP" class="md-nav__link">
+      Pod Service: Apache/PHP
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Service_mysql/" title="Pod Service: MySQL" class="md-nav__link">
+      Pod Service: MySQL
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Service_phpmyadmin/" title="Pod Service: phpMyAdmin" class="md-nav__link">
+      Pod Service: phpMyAdmin
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Service_nginx/" title="Pod Service: nginx" class="md-nav__link">
+      Pod Service: nginx
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Service_python/" title="Pod Service: Python HTTP Server" class="md-nav__link">
+      Pod Service: Python HTTP Server
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Service_gitea/" title="Pod Service: Gitea" class="md-nav__link">
+      Pod Service: Gitea
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#persistent-data-volumes" title="Persistent Data Volumes" class="md-nav__link">
+    Persistent Data Volumes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nginx" title="nginx" class="md-nav__link">
+    nginx
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nginx-lets-encrypt-ssl-certificates" title="nginx + lets encrypt ssl certificates" class="md-nav__link">
+    nginx + lets encrypt ssl certificates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nginx-static-content" title="nginx static content" class="md-nav__link">
+    nginx static content
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nginx-bind-mounted-files" title="nginx bind-mounted files" class="md-nav__link">
+    nginx bind-mounted files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-nginx-bind-mounted-files" title="other nginx bind-mounted files" class="md-nav__link">
+    other nginx bind-mounted files
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mysql" title="mysql" class="md-nav__link">
+    mysql
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mediawiki" title="mediawiki" class="md-nav__link">
+    mediawiki
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mediawiki-data-volume" title="mediawiki data volume" class="md-nav__link">
+    mediawiki data volume
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mediawiki-bind-mounted-files" title="mediawiki bind-mounted files" class="md-nav__link">
+    mediawiki bind-mounted files
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gitea" title="gitea" class="md-nav__link">
+    gitea
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gitea-data-volume" title="gitea data volume" class="md-nav__link">
+    gitea data volume
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gitea-bind-mounted-files" title="gitea bind-mounted files" class="md-nav__link">
+    gitea bind-mounted files
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python-file-server" title="python file server" class="md-nav__link">
+    python file server
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyfiles-directory" title="pyfiles directory" class="md-nav__link">
+    pyfiles directory
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="volumes">Volumes</h1>
+<h2 id="persistent-data-volumes">Persistent Data Volumes</h2>
+<p>docker-compose volumes are mostly persistent, but they can
+be deleted relatively easily.</p>
+<p>When you're using docker-compose, volumes are persistent
+through both <code>docker-compose stop</code> and <code>docker-compose down</code> commands.</p>
+<p>The <code>docker-compose down</code> command will destroy everything including networks
+and mounted files, while <code>docker-compose stop</code> will just stop the containers.</p>
+<p><strong><em>DANGER - DANGER - DANGER</em></strong></p>
+<p>If you want to remove the volumes, use <code>docker-compose down -v</code>.</p>
+<pre><code>docker-compose down -v   # DANGER!!!
+</code></pre>
+
+<p>To force removal of the volumes:</p>
+<pre><code>docker-compose down -v -f   # DANGER!!!
+</code></pre>
+
+<p>To see the current list of docker volumes:</p>
+<pre><code>docker volume ls
+</code></pre>
+
+<p>You can also interact with the volumes individually
+this way. Run <code>docker volume</code> for help.</p>
+<hr />
+<h2 id="nginx">nginx</h2>
+<p>The nginx service does not have any data volumes, 
+but has several static files that are bind-mounted.
+Most importantly, nginx handles the SSL certificates
+for all subdomains.</p>
+<hr />
+<h3 id="nginx-lets-encrypt-ssl-certificates">nginx + lets encrypt ssl certificates</h3>
+<p>Rather than fuss with getting the letsencrypt 
+docker image working, we made SSL certs by hand.</p>
+<p>See <a href="https://git.charlesreid1.com/charlesreid1/certbot">git.charlesreid1.com/charlesreid1/certbot</a></p>
+<p>Certbot will put the SSL certificates into
+<code>/etc/letsencrypt/live/example.com</code>.</p>
+<p>We bind-mount the entire <code>/etc/letsencrypt</code> directory
+into the same location in the nginx container 
+(see this volumes line in <code>docker-compose.yml</code>):</p>
+<pre><code>      - &quot;/etc/letsencrypt:/etc/letsencrypt&quot;
+</code></pre>
+
+<p>To renew certificates (every few months), just run the certbot script in the certbot repo.</p>
+<h3 id="nginx-static-content">nginx static content</h3>
+<p>The main site hosted by nginx (charlesreid1.com) is served up 
+from a directory of static content under version control.</p>
+<p>This static content is bind-mounted and lives on the host 
+(no data volume is used for nginx).</p>
+<p>On the host, static site contents are stored at <code>/www/</code> 
+with a directory structure and corresponding permissions
+as follows:</p>
+<pre><code>/www/                                   # &lt;-- owned by regular user
+
+    charlesreid1.blue/                  # &lt;-- owned by regular user
+        charlesreid1.blue-src/          # &lt;-- owned by regular user
+            &lt;pelican files&gt;
+        htdocs/                         # &lt;-- owned by www-data
+            &lt;web site static contents&gt;
+
+    charlesreid1.red/                   # &lt;-- owned by regular user
+        charlesreid1.red-src/           # &lt;-- owned by regular user
+            &lt;pelican files&gt;
+        htdocs/                         # &lt;-- owned by www-data
+            &lt;web site static contents&gt;
+
+    charlesreid1.com/
+        charlesreid1.com-src/
+            &lt;pelican files&gt;
+        htdocs/
+            &lt;web site static contents&gt;
+
+    ...
+</code></pre>
+
+<p>Each domain has its own directory, in which there is a source directory 
+(git repository containing pelican files) and an htdocs directory
+(git repository containing live hosted static content).</p>
+<p>These are mounted in the container at the same location.
+See the volumes section of the nginx container:</p>
+<pre><code>      - &quot;/www/charlesreid1.blue/htdocs:/www/charlesreid1.blue/htdocs:ro&quot;
+      - &quot;/www/charlesreid1.red/htdocs:/www/charlesreid1.red/htdocs:ro&quot;
+      - &quot;/www/charlesreid1.com/htdocs:/www/charlesreid1.com/htdocs:ro&quot;
+</code></pre>
+
+<p>The source and htdocs directories are separate branches of the same repo.
+Each website has (TODO: will have) its own repository.</p>
+<p>The <code>master</code> branch contains the source code for that repository,
+mainly pelican files plus html/css/js.</p>
+<p>The <code>pages</code> branch contains the static content to be hosted 
+by the nginx web server.</p>
+<p>Ownership makes dealing with this stuff a pain in the ass.
+The <code>htdocs</code> dir must be owned/updated by <code>www-data</code>, 
+so you need to update the git repo contents as that user:</p>
+<pre><code>sudo -H -u www-data git pull origin pages
+</code></pre>
+
+<h3 id="nginx-bind-mounted-files">nginx bind-mounted files</h3>
+<p>We bind-mount a directory <code>conf.d</code> containing 
+nginx configuration files into the container 
+at <code>/etc/nginx/conf.d</code>, which is where nginx
+automatically looks for and loads configuration 
+files.</p>
+<p>The custom nginx configuration files are split up
+by protocol and subdomain, and can be found 
+in the <a href="https://git.charlesreid1.com/docker/d-nginx-charlesreid1">d-nginx-charlesreid1</a>
+repository. From the <code>docker-compose.yml</code> file
+nginx volumes directive:</p>
+<pre><code>      - &quot;./d-nginx-charlesreid1/conf.d:/etc/nginx/conf.d:ro&quot;
+</code></pre>
+
+<h3 id="other-nginx-bind-mounted-files">other nginx bind-mounted files</h3>
+<p>The last remaining nginx file that is bind-mounted into the container
+is <code>/etc/localtime</code>, which ensures our webserver's timestamps match 
+the host's. In the nginx volumes directive:</p>
+<pre><code>      - &quot;/etc/localtime:/etc/localtime:ro&quot;
+</code></pre>
+
+<hr />
+<h2 id="mysql">mysql</h2>
+<p>The MySQL database container is used by MediaWiki 
+and stores its data on disk in a data volume.
+Inside the conatiner all MySQL data lives at</p>
+<pre><code>/var/lib/mysql
+</code></pre>
+
+<p>This is mapped to a data volume, <code>stormy_mysql_data</code>.</p>
+<p>There is no custom configuration of the MySQL database
+at this time, but to add a custom config file,
+mount it in the container via bind-mounting
+by adding this to the volumes section of 
+<code>docker-compose.yml</code>:</p>
+<pre><code>      - &quot;./d-mysql/krash.mysql.cnf:/etc/mysql/conf.d/krash.mysql.cnf&quot;
+</code></pre>
+
+<hr />
+<h2 id="mediawiki">mediawiki</h2>
+<h3 id="mediawiki-data-volume">mediawiki data volume</h3>
+<p>The MediaWiki container hosts all wiki files
+from <code>/var/www/html</code> (in the MediaWiki container).</p>
+<p>When the container is built from the Dockerfile, 
+most of the customized MediaWiki files are copied
+into the data volume. These include:</p>
+<ul>
+<li><code>LocalSettings.php</code> - MediaWiki config file</li>
+<li><code>skins/</code> directory</li>
+<li><code>extensions/</code> directory</li>
+</ul>
+<p>MediaWiki files are kept under version control in the 
+<a href="https://git.charlesreid1.com/docker/d-mediawiki">d-mediawiki</a>
+repo.</p>
+<p>The MediaWiki container uses a data volume called 
+<code>stormy_mw_data</code>, which is mounted at <code>/var/www/html</code>
+inside the container.</p>
+<p>The docker-compose file takes care of creating the data volume.</p>
+<h3 id="mediawiki-bind-mounted-files">mediawiki bind-mounted files</h3>
+<p>(TODO: ambiguous how skins dir is mounted;
+copying skins into container in Dockerfile,
+and bind-mounting bootstrap2 at runtime.)</p>
+<p>MediaWiki skins are kept under version control
+in the <a href="https://git.charlesreid1.com/docker/d-mediawiki">d-mediawiki</a>
+repo.</p>
+<p>The Bootstrap2 MediaWiki skin is bind-mounted into the container
+at <code>/var/www/html/skins/Bootstrap2/</code>.</p>
+<p>If you make changes to the skin or MediaWiki config files,
+update the MediaWiki docker image as follows:</p>
+<pre><code>docker-compose build
+docker-compose down
+docker-compose up
+</code></pre>
+
+<hr />
+<h2 id="gitea">gitea</h2>
+<h3 id="gitea-data-volume">gitea data volume</h3>
+<h3 id="gitea-bind-mounted-files">gitea bind-mounted files</h3>
+<hr />
+<h2 id="python-file-server">python file server</h2>
+<h3 id="pyfiles-directory">pyfiles directory</h3>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../Running/" title="Running the Charlesreid1 Docker Pod" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Running the Charlesreid1 Docker Pod
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../Backups/" title="Backups (TODO)" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Backups (TODO)
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.0cf9b500.js"></script>
+      
+      <script>app.initialize({version:"0.17.3",url:{base:".."}})</script>
+      
+        <script src="../search/require.js"></script>
+      
+        <script src="../search/search.js"></script>
+      
+    
+    
+      
+    
+  </body>
+</html>
