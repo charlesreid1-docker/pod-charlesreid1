@@ -6,6 +6,7 @@
 # Note that this expects the .sql dump
 # to create its own databases.
 # Use the --databases flag with mysqldump.
+set -x
 
 function usage {
     echo ""

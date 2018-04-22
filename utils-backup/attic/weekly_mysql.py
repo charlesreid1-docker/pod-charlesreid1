@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import os
 import subprocess
 import time
@@ -78,7 +78,7 @@ log_dir = join(home,".logs")
 
 today = dt.date.today().strftime("%Y-%m-%d")
 
-# Meta-logging: set up log file for daily_mysql.py
+# Meta-logging: set up log file for weekly_mysql.py
 weekly_log = "weekly_mysql_"+today+".log"
 cron_log_dir = join(log_dir,"cron")
 meta_log = join(cron_log_dir,weekly_log)
@@ -130,7 +130,7 @@ print("", file=ml)
 
 # make today's backup target dir
 mkprocess = subprocess.call(["mkdir","-p",today_target])
-mkprocess = subprocess.call(["mkdir","-p",daily_log_dir])
+mkprocess = subprocess.call(["mkdir","-p",weekly_log_dir])
 
 # do the task:
 print("\tDumping wikidb database...", file=ml)

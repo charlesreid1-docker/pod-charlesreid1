@@ -33,16 +33,16 @@ services:
     links:
       - stormy_mysql:db
     environment:
-      - PMA_ABSOLUTE_URI=charlesreid1.blue/phpMyAdmin
+      - PMA_ABSOLUTE_URI=charlesreid1.com/phpMyAdmin
 
   stormy_mw:
     build: d-mediawiki
     volumes:
       - "stormy_mw_data:/var/www/html"
-      - "./d-mediawiki/charlesreid1-config/mediawiki/skins/Bootstrap2:/var/www/html/skins/Bootstrap2"
     links:
       - stormy_mysql:mysql
     environment:
+      - MEDIAWIKI_SITE_SERVER=https://charlesreid1.com
       - MYSQL_HOST=mysql
       - MYSQL_DATABASE=wikidb
       - MYSQL_USER=root
@@ -51,12 +51,8 @@ services:
   stormy_nginx:
     restart: always
     image: nginx
-    hostname: charlesreid1.blue
+    hostname: charlesreid1.com
     command: /bin/bash -c "nginx -g 'daemon off;'"
-    links:
-      - stormy_gitea:stormy_gitea
-      - stormy_mw:stormy_mw
-      - stormy_myadmin:stormy_myadmin
     volumes:
       - "./d-nginx-charlesreid1/conf.d:/etc/nginx/conf.d:ro"
       - "/etc/localtime:/etc/localtime:ro"
@@ -67,7 +63,6 @@ services:
     ports:
       - "80:80"
       - "443:443"
-      - "3000:3000"
 
 volumes:
   stormy_mysql_data:

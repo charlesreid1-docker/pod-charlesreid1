@@ -2,6 +2,7 @@
 #
 # Restore wiki files from a tar file
 # into the stormy_mw container.
+set -x
 
 function usage {
     echo ""

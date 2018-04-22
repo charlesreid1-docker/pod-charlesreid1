@@ -5,9 +5,9 @@
 There are three domains pointing to this server:
 
 ```
+charlesreid1.com
 charlesreid1.red
 charlesreid1.blue
-charlesreid1.com
 ```
 
 These are pointing to the server's IP address
@@ -155,65 +155,36 @@ like apache on port 8989
 
 ### python file server ports
 
+We have a simple, lightweight Python HTTP server
+that's run in a Docker container with the following
+command:
 
+```
+python -m http.server -b <bind-address> 8080
+```
 
+If there is no index.html, Python will 
+provide a directory listing, and thus
+a lightweight file server.
 
+This is bound to a particular IP address -
+in particular, the IP address of the 
+Python file server container on the 
+Docker private network. The 
+`<bind-address>` piece above should
+be replaced with the name of the container
+(`stormy_files` in this case):
 
+```
+python -m http.server -b stormy_files 8080
+```
 
+This listens on port 8080 inside the 
+python file server container `stormy_files`.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+The nginx server then runs a reverse proxy,
+serving requests to `files.charlesreid1.com`
+on the frontend to the python files container,
+port 8080, on the backend.
 
 

@@ -43,6 +43,10 @@ used by this docker pod:
 * python file server (pyfiles)
     * pyfiles directory
 
+## Backups
+
+See **[Backups.md](/Backups.md)** for coverage of backup and utility scripts.
+
 ## Ports
 
 See **[Ports.md](/Ports.md)** for info about ports used by this docker pod:
@@ -68,11 +72,22 @@ without leaking out the information.
 * gitea secret key and session id
 * nginx ssl certificates
 
------
+## Container-Specific Configuration Details
+
+Each container has a different way of getting
+configuration files into the container.
+In the following documents we cover 
+the specifics of each container.
+
+* [mediawiki](Service_mediawiki.md)
+* [apache + php](Service_apachephp.md)
+* [mysql](Service_mysql.md) (in progress)
+* [phpmyadmin](Service_phpmyadmin.md) (in progress)
+* [nginx](Service_nginx.md) (in progress)
+* [python](Service_python.md) (in progress)
+* [gitea](Service_gitea.md) (in progress)
 
 
-
-### mediawiki: Updating Skin/LocalSettings.php
 
 
 ## Ports
@@ -95,46 +110,10 @@ and acts as a reverse proxy, forwarding the requests to Apache.
 The user transparently sees everything happening via port 80 or (preferrably) 443,
 but on the backend nginx is passing along the URL request and returning the result.
 
-## Secrets
 
-### nginx + letsencrypt 
 
-Secrets (certificates) are dealt with by mounting volumes and files.
 
-Lets Encrypt generates certs in a container 
-with a one-liner, dumps them to bind-mounted 
-host directory.
 
-### mediawiki + mysql
-
-Gave up on Docker secrets, mainly because they are only available 
-at runtime, and Docker provides no mechanism for build-time secrets.
-
-Pretty tacky.
-
-My hacky workaround: check in a docker-compose.yml template,
-and a sed one-liner that replaces a MySQL root password 
-placeholder with the real password.
-
-```
-$ sed "s/REPLACEME/YoFooThisIsYourNewPassword/" docker-compose.fixme.yml > docker-compose.yml
-```
-
-Great if you hard-code the password, but - wasn't that the whole thing 
-we were trying to avoid?
-
-Put the password into a file istead, then grab the password from that file
-and do a find/replace on the docker compose file:
-
-```
-$ cat root.password
-mysecretpassword
-
-$ sed "s/REPLACEME/`cat root.password`/" docker-compose.fixme.yml > docker-compose.yml
-```
-
-The `docker-compose.yml` file and `root.password` files are both ignored 
-by version control.
 
 ## Backups
 

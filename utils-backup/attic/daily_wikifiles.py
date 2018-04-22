@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import os
 import subprocess
 import time
@@ -6,13 +6,13 @@ import datetime as dt
 from os.path import join
 
 """
-Daily Wiki Files Backups
+Daily MediaWiki Files Backups
 
 
 
 Short Description:
 
-Keep a rolling 7-day backup of wiki files.
+Keep a rolling 7-day backup of mediawiki files.
 
 
 
@@ -39,7 +39,7 @@ One log per daily backup:
 
 Logging:
 
-This daily_wikifiles.py cron job logs to its own log file,
+This cron job logs to its own log file,
 
     <log-dir>/cron/daily_wikifiles_YYYY-MM-DD.log
 
@@ -90,12 +90,12 @@ daily_backup_dir = join(backup_dir,daily_prefix)
 # Get date for daily backup target 
 today_prefix = "wikifiles_"+today
 
-# Daily backup target: wikidb_YYYY-MM-DD
+# Daily backup target: wikifiles_YYYY-MM-DD
 today_target = join(daily_backup_dir,today_prefix)
 backupfile = "wikifiles.tar.gz"
 backuptarget = join(today_target,backupfile)
 
-# Daily log target: wikidb_YYYY-MM-DD.log
+# Daily log target: wikifiles_YYYY-MM-DD.log
 today_log_target = join(daily_log_dir,today_prefix+".log")
 logtarget = today_log_target
 
@@ -110,7 +110,7 @@ print("", file=ml)
 
 
 
-# Back up mysql
+# Back up wiki files
 
 # Make today's backup target dir
 subprocess.call(["mkdir","-p",today_target])
