@@ -397,8 +397,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Service_python/" title="Pod Service: Python HTTP Server" class="md-nav__link">
-      Pod Service: Python HTTP Server
+    <a href="../Service_pythonfiles/" title="Pod Service: Python File Server" class="md-nav__link">
+      Pod Service: Python File Server
     </a>
   </li>
 
@@ -515,14 +515,19 @@
                 
                 
                 <h1 id="running-the-charlesreid1-docker-pod">Running the Charlesreid1 Docker Pod</h1>
+<p>The charlesreid1.com site runs in a Docker pod.
+Use <code>docker-compose</code> to run the pod.</p>
 <h2 id="the-docker-compose-file">The Docker Compose File</h2>
 <p>The <code>docker-compose.yml</code> file contains all the directives needed
 to run a docker pod of containers that make Charlesreid1.com work.</p>
 <p>Why use docker-compose instead of docker? 
 docker-compose is the preferred way to run multiple containers.</p>
-<p>You won't see a <code>docker-compose.yml</code> file in this directory.
-Instead, you will see a <code>docker-compose.fixme.yml</code> file,
-which needs a MySQL password to be set.</p>
+<p><strong>Huh? Where's docker-compose.yml??</strong></p>
+<p>Instead of a <code>docker-compose.yml</code> file, 
+you'll see a <code>docker-compose.fixme.yml</code> file.
+You need to fix this YML file by hard-coding your 
+MYSQL password in the file.</p>
+<p>See the steps below.</p>
 <p><a name="RunningCLI"></a></p>
 <h2 id="running-charlesreid1-docker-pod-from-command-line">Running Charlesreid1 Docker Pod from Command Line</h2>
 <p>We start by covering how to run the docker pod from the command line.</p>
@@ -543,12 +548,13 @@ docker-compose up -d    # detached
 <pre><code>docker-compose build
 </code></pre>
 
-<p>or, to rebuild aboslutely everything from scratch,</p>
+<p>and this will rebuild the containers from scratch:</p>
 <pre><code>docker-compose build --no-cache
 </code></pre>
 
-<p><strong><em>WARNING:</em></strong> this will re-download all aptitude packages,
-which can be extremely slow. Use with caution.)</p>
+<p><strong><em>WARNING:</em></strong> for large, complicated container images,
+this command can take a very long time.
+Use with care.)</p>
 <p>You can restart all containers in a pod using the restart command:</p>
 <pre><code>docker-compose restart
 </code></pre>

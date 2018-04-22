@@ -255,8 +255,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#nginx-domains" title="nginx domains" class="md-nav__link">
-    nginx domains
+  <a href="#nginx-domain-handling" title="nginx domain handling" class="md-nav__link">
+    nginx domain handling
   </a>
   
 </li>
@@ -410,8 +410,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Service_python/" title="Pod Service: Python HTTP Server" class="md-nav__link">
-      Pod Service: Python HTTP Server
+    <a href="../Service_pythonfiles/" title="Pod Service: Python File Server" class="md-nav__link">
+      Pod Service: Python File Server
     </a>
   </li>
 
@@ -457,8 +457,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#nginx-domains" title="nginx domains" class="md-nav__link">
-    nginx domains
+  <a href="#nginx-domain-handling" title="nginx domain handling" class="md-nav__link">
+    nginx domain handling
   </a>
   
 </li>
@@ -553,7 +553,7 @@ using an A NAME DNS record.</p>
 <p>There are also various subdomains set up
 (www, git, files), all pointing to the 
 same location.</p>
-<h3 id="nginx-domains">nginx domains</h3>
+<h3 id="nginx-domain-handling">nginx domain handling</h3>
 <p>Nginx handles all of the domains by specifying 
 a different <code>domain_name</code> in each <code>server{}</code> block
 of the nginx config files.</p>
@@ -586,17 +586,24 @@ server {
 but all http urls are redirected to https urls.</p>
 <h2 id="ports">Ports</h2>
 <h3 id="nginx-ports">nginx ports</h3>
+<p>Also see <a href="../Service_nginx/">nginx service</a>.</p>
 <p>Nginx has two main public-facing ports:
 port 80 (HTTP) and port 443 (HTTPS).</p>
 <p>All requests to <code>http://</code> urls go to port 80,
-and all requests to <code>https://</code> urls go to port 443.
-The server will automatically redirect all 
+and all requests to <code>https://</code> urls go to port 443.</p>
+<p>The server will automatically redirect all 
 requests to port 80 to port 443, turning all
 http requests into https requests.</p>
 <p>Nginx also exposes port 3000 and forwards it
 along to <code>git.charlesreid1.com</code>. This is for 
 legacy reasons.</p>
+<p>To work with MediaWiki, nginx must implement 
+rewrite rules: nginx listens for requests going 
+to wiki URLs (prefixed with <code>/w/</code> or <code>/wiki</code>)
+and proxies those to the correct container.</p>
 <h3 id="mediawikiapache-ports">mediawiki/apache ports</h3>
+<p>Also see <a href="../Service_mediawiki/">mediawiki service</a>
+and <a href="../Service_apachephp/">apache/php service</a>.</p>
 <p>The MediaWiki server runs on a PHP and Apache stack.
 Inside the MediaWiki container, Apache listens on 
 port 8989. This port only connects to the nginx container,
@@ -636,51 +643,85 @@ nginx and only nginx, while nginx exposes each container
 to the outside world via requests for various subdomains 
 being redirected to different ports.</p>
 <h3 id="phpmyadmin-ports">phpmyadmin ports</h3>
-<p>phpMyAdmin provides a web interface for MySQL databases.
-Like the MediaWiki Apache container, </p>
+<p>Also see <a href="../Service_phpmyadmin/">phpmyadmin service</a>.</p>
+<p>phpMyAdmin provides a web interface for MySQL databases.</p>
+<p>This follows a similar pattern to the MediaWiki Apache container:</p>
+<ul>
+<li>The phpMyAdmin container is connected to the MySQL container
+    via the docker network created by the <code>docker-compose</code> command
+    (no container links needed)</li>
+<li>The phpMyAdmin container runs an HTTP web interface,
+    and listens only for incoming requests from the local 
+    network. Requests to phpMyAdmin are reverse-proxied 
+    by the nginx container in this pod.</li>
+<li>Because phpMyAdmin is not a heavily-used tool in 
+    daily tasks, and because it provides access to 
+    sensitive data and operations, it should be 
+    completely disabled from public access unless
+    needed.</li>
+</ul>
+<p>To control access to phpMyAdmin, 
+configure the <a href="../Service_nginx/">nginx service</a>
+to whitelist certain IPs to access
+phpMyAdmin (or shut off all access).</p>
 <h3 id="mysql-ports">mysql ports</h3>
+<p>Also see <a href="../Service_mysql/">mysql service</a>.</p>
 <p>The MySQL container listens on port 3306 by default.
 The container is only bound to the MediaWiki container, 
 so MediaWiki is the only service that can access MySQL.</p>
 <h3 id="gitea-ports">gitea ports</h3>
+<p>Also see <a href="../Service_gitea/">gitea service</a>.</p>
 <p>Requests for the subdomain <code>git.charlesreid1.com</code> 
-are redirected to port 3000, where gitea is listening.</p>
-<p>The gitea container configuration is similar to the 
-Apache container configuration. Gitea listens on 3000
-in the container, while Apache listens on port 8989 
-in the container.</p>
-<p>Gitea listens on 
-port 3000 but is only connected to the nginx container,
-and the nginx container intercepts any requests 
-for <code>git.charlesreid1.com</code> and forwards them to 3000.</p>
-<p>port 3000</p>
-<p>like apache on port 8989</p>
+are redirected to port 3000 on the docker internal
+container network, where gitea is listening.</p>
+<p>Like the MediaWiki and phpMyAdmin containers, this follows
+the same reverse proxy pattern:</p>
+<ul>
+<li>The nginx service handles front-end requests and 
+    reverse proxies those rquests to gitea over the 
+    internal docker container network.</li>
+<li>Gitea listens to port 3000 and is bound to the 
+    local docker network only.</li>
+<li>Gitea does not implement HTTP on the back end;
+    nginx handles HTTPS with client on the front end.</li>
+</ul>
 <h3 id="python-file-server-ports">python file server ports</h3>
+<p>Also see <a href="../Service_pythonfiles/">python files service</a>.</p>
 <p>We have a simple, lightweight Python HTTP server
-that's run in a Docker container with the following
+that's run in a Docker container via the following
 command:</p>
 <pre><code>python -m http.server -b &lt;bind-address&gt; 8080
 </code></pre>
 
-<p>If there is no index.html, Python will 
-provide a directory listing, and thus
-a lightweight file server.</p>
-<p>This is bound to a particular IP address -
-in particular, the IP address of the 
-Python file server container on the 
-Docker private network. The 
-<code>&lt;bind-address&gt;</code> piece above should
-be replaced with the name of the container
-(<code>stormy_files</code> in this case):</p>
+<p>This works because Python provides a built-in HTTP server
+that, if no index.html file is present, will provide a 
+directory listing. This is as simple as it gets,
+as far as file servers go.</p>
+<p>This follows the same reverse proxy pattern:</p>
+<ul>
+<li>Python HTTP server listens for incoming requests
+    on the Docker network only. Client requests are 
+    reverse proxied by nginx on the front end.</li>
+<li>The server does not handle HTTPS, this is also 
+    handled by the nginx container on the frontend.</li>
+<li>The bind address and port of the Python HTTP server
+    are set in the command line. The <code>&lt;bind-address&gt;</code>
+    should be set to the name of the docker container image
+    (<code>stormy_files</code>).</li>
+</ul>
 <pre><code>python -m http.server -b stormy_files 8080
 </code></pre>
 
 <p>This listens on port 8080 inside the 
 python file server container <code>stormy_files</code>.</p>
-<p>The nginx server then runs a reverse proxy,
-serving requests to <code>files.charlesreid1.com</code>
-on the frontend to the python files container,
-port 8080, on the backend.</p>
+<p>The nginx server reverse-proxies requests for 
+<a href="https://files.charlesreid1.com">https://files.charlesreid1.com</a>
+and forwards them to the container.</p>
+<p>Note: this container can be expanded to a container
+that serves multiple directories on multilpe ports
+by using twisted. See the 
+<a href="https://git.charlesreid1.com/docker/d-python-helium">d-python-helium</a>
+repository for an example.</p>
                 
                   
                 

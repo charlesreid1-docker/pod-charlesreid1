@@ -220,8 +220,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ports" title="Ports" class="md-nav__link">
-    Ports
+  <a href="#domains-and-ports" title="Domains and Ports" class="md-nav__link">
+    Domains and Ports
   </a>
   
 </li>
@@ -236,20 +236,6 @@
         <li class="md-nav__item">
   <a href="#container-specific-configuration-details" title="Container-Specific Configuration Details" class="md-nav__link">
     Container-Specific Configuration Details
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ports_1" title="Ports" class="md-nav__link">
-    Ports
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#backups_1" title="Backups" class="md-nav__link">
-    Backups
   </a>
   
 </li>
@@ -405,8 +391,8 @@
 
 
   <li class="md-nav__item">
-    <a href="Service_python/" title="Pod Service: Python HTTP Server" class="md-nav__link">
-      Pod Service: Python HTTP Server
+    <a href="Service_pythonfiles/" title="Pod Service: Python File Server" class="md-nav__link">
+      Pod Service: Python File Server
     </a>
   </li>
 
@@ -465,8 +451,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ports" title="Ports" class="md-nav__link">
-    Ports
+  <a href="#domains-and-ports" title="Domains and Ports" class="md-nav__link">
+    Domains and Ports
   </a>
   
 </li>
@@ -481,20 +467,6 @@
         <li class="md-nav__item">
   <a href="#container-specific-configuration-details" title="Container-Specific Configuration Details" class="md-nav__link">
     Container-Specific Configuration Details
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ports_1" title="Ports" class="md-nav__link">
-    Ports
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#backups_1" title="Backups" class="md-nav__link">
-    Backups
   </a>
   
 </li>
@@ -535,13 +507,13 @@
 for running the charlesreid1.com site.</p>
 <p>The services are:</p>
 <ul>
-<li>mediawiki</li>
-<li>apache + php</li>
-<li>mysql</li>
-<li>phpmyadmin</li>
-<li>nginx (Let's Encrypt used offline for SSL certificates)</li>
-<li>python</li>
-<li>gitea</li>
+<li><a href="Service_mediawiki/">mediawiki</a></li>
+<li><a href="Service_apachephp/">apache + php</a></li>
+<li><a href="Service_mysql/">mysql</a></li>
+<li><a href="Service_phpmyadmin/">phpmyadmin</a> (in progress)</li>
+<li><a href="Service_nginx/">nginx + ssl</a> (in progress)</li>
+<li><a href="Service_pythonfiles/">python</a> (in progress)</li>
+<li><a href="Service_gitea/">gitea</a> (in progress)</li>
 </ul>
 <h2 id="running">Running</h2>
 <p>See <strong><a href="Running/">Running.md</a></strong> for info about running this docker pod:</p>
@@ -579,15 +551,22 @@ used by this docker pod:</p>
 </li>
 </ul>
 <h2 id="backups">Backups</h2>
+<p>There are a number of directories containing utility scripts - these are mostly 
+dedicated to creating backups of any non-version-controlled data inside the container.</p>
 <p>See <strong><a href="Backups/">Backups.md</a></strong> for coverage of backup and utility scripts.</p>
-<h2 id="ports">Ports</h2>
-<p>See <strong><a href="Ports/">Ports.md</a></strong> for info about ports used by this docker pod:</p>
+<p><code>utils-backups</code> - backup utilities (use the scripts below; good for cron jobs)</p>
+<p><code>utils-mw</code> - mediawiki backup utilities</p>
+<p><code>utils-mysql</code> mysql backup utilities</p>
+<h2 id="domains-and-ports">Domains and Ports</h2>
+<p>See <strong><a href="Ports/">Ports.md</a></strong> for info about top-level domain names
+and ports used by this docker pod.</p>
+<p>The domains ports document covers:</p>
 <ul>
-<li>domains<ul>
-<li>nginx domains</li>
+<li>Domains<ul>
+<li>nginx domain handling</li>
 </ul>
 </li>
-<li>ports<ul>
+<li>Ports<ul>
 <li>nginx ports</li>
 <li>mediawiki/apache ports</li>
 <li>phpmyadmin ports</li>
@@ -615,30 +594,12 @@ the specifics of each container.</p>
 <ul>
 <li><a href="Service_mediawiki/">mediawiki</a></li>
 <li><a href="Service_apachephp/">apache + php</a></li>
-<li><a href="Service_mysql/">mysql</a> (in progress)</li>
-<li><a href="Service_phpmyadmin/">phpmyadmin</a> (in progress)</li>
-<li><a href="Service_nginx/">nginx</a> (in progress)</li>
-<li><a href="Service_python/">python</a> (in progress)</li>
-<li><a href="Service_gitea/">gitea</a> (in progress)</li>
+<li><a href="Service_mysql/">mysql</a></li>
+<li><a href="Service_phpmyadmin/">phpmyadmin</a> </li>
+<li><a href="Service_nginx/">nginx + ssl</a></li>
+<li><a href="Service_pythonfiles/">python</a></li>
+<li><a href="Service_gitea/">gitea</a></li>
 </ul>
-<h2 id="ports_1">Ports</h2>
-<p>The apache-mediawiki combination is running an apache service listening on port 8989.
-This can be adjusted, but should be adjusted in the Dockerfile, <code>ports.conf</code>, and <code>wiki.conf</code>.</p>
-<p>The apache service listens on all interfaces (hence <code>*:8989</code> in the apache conf file),
-but there is no port mapping specified in <code>docker-compose.yml</code> so it does not listen 
-on any public interfaces.</p>
-<p>Thus, the wiki is not publicly accessible via port 8989, but the wiki is available via port 8989
-to any container linked to, or connected to the same network as, the mediawiki apache container.</p>
-<p>Meanwhile, the nginx container has a public interface listening on port 80 
-and another listening on port 443. nginx listens for requests going to
-the wiki, detected via the url resource prefix being <code>/w/</code> or <code>/wiki/</code>,
-and acts as a reverse proxy, forwarding the requests to Apache.</p>
-<p>The user transparently sees everything happening via port 80 or (preferrably) 443,
-but on the backend nginx is passing along the URL request and returning the result.</p>
-<h2 id="backups_1">Backups</h2>
-<p>See <code>utils-backups</code> for backup utilities.</p>
-<p>See <code>utils-mw</code> for mediawiki utilities.</p>
-<p>See <code>utils-mysql</code> for mysql utilities.</p>
 <h2 id="running_1">Running</h2>
 <p>From your project directory, start up your application by running:</p>
 <pre><code>$ docker-compose up
