@@ -1,15 +1,11 @@
+.md-typeset h1 { font-weight: 600; }
+.md-typeset h2 { font-weight: 600; }
+.md-typeset h3 { font-weight: 600; }
+.md-typeset h4 { font-weight: 600; }
+
 body {
-    background-color: #efefef;
+    background-color: #FAFAFA;
 }
 div.body {
-    background-color: #efefef;
-}
-
-/* default logo font sizes are a bit crazy. */
-div.sphinxsidebar h1.logo {
-    font-size: 24px;
-}
-div.sphinxsidebar h3 {
-    font-size: 16px;
-    padding-top: 30px;
+    background-color: #FAFAFA;
 }

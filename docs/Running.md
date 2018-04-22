@@ -1,5 +1,8 @@
 # Running the Charlesreid1 Docker Pod
 
+The charlesreid1.com site runs in a Docker pod.
+Use `docker-compose` to run the pod.
+
 ## The Docker Compose File
 
 The `docker-compose.yml` file contains all the directives needed
@@ -8,9 +11,14 @@ to run a docker pod of containers that make Charlesreid1.com work.
 Why use docker-compose instead of docker? 
 docker-compose is the preferred way to run multiple containers.
 
-You won't see a `docker-compose.yml` file in this directory.
-Instead, you will see a `docker-compose.fixme.yml` file,
-which needs a MySQL password to be set.
+**Huh? Where's docker-compose.yml??**
+
+Instead of a `docker-compose.yml` file, 
+you'll see a `docker-compose.fixme.yml` file.
+You need to fix this YML file by hard-coding your 
+MYSQL password in the file.
+
+See the steps below.
 
 <a name="RunningCLI"></a>
 ## Running Charlesreid1 Docker Pod from Command Line
@@ -30,8 +38,6 @@ docker-compose up       # interactive
 docker-compose up -d    # detached
 ```
 
-
-
 or, if you want to rebuild all the containers before running up,
 
 ```
@@ -43,14 +49,16 @@ If you just want to rebuild the containers,
 ```
 docker-compose build
 ```
-or, to rebuild aboslutely everything from scratch,
+
+and this will rebuild the containers from scratch:
 
 ```
 docker-compose build --no-cache
 ```
 
-***WARNING:*** this will re-download all aptitude packages,
-which can be extremely slow. Use with caution.)
+***WARNING:*** for large, complicated container images,
+this command can take a very long time.
+Use with care.)
 
 You can restart all containers in a pod using the restart command:
 
