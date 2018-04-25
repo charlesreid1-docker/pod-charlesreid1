@@ -11,6 +11,8 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
+        <link rel="canonical" href="https://pages.charlesreid1.com/pod-charlesreid1/">
+      
       
       
         <meta name="lang:clipboard.copy" content="Copy to clipboard">
@@ -85,7 +87,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="." title="pod-charlesreid1" class="md-header-nav__button md-logo">
+        <a href="https://pages.charlesreid1.com/pod-charlesreid1" title="pod-charlesreid1" class="md-header-nav__button md-logo">
           
             <i class="md-icon">dns</i>
           
@@ -139,6 +141,24 @@
         
       </div>
       
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://git.charlesreid1.com/docker/d-charlesreid1" title="Go to repository" class="md-source" data-md-source="">
+    
+    <div class="md-source__repository">
+      d-charlesreid1
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
     </div>
   </nav>
 </header>
@@ -163,6 +183,22 @@
     </span>
     pod-charlesreid1
   </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://git.charlesreid1.com/docker/d-charlesreid1" title="Go to repository" class="md-source" data-md-source="">
+    
+    <div class="md-source__repository">
+      d-charlesreid1
+    </div>
+  </a>
+
+    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -502,7 +538,7 @@
               
                 
                 
-                <h1 id="pod-charlesreid1">pod-charlesreid1</h1>
+                <h1 id="pod-charlesreid1">pod-charlesreid1<a class="headerlink" href="#pod-charlesreid1" title="Permanent link">&para;</a></h1>
 <p>This repo contains a docker compose file 
 for running the charlesreid1.com site.</p>
 <p>The services are:</p>
@@ -515,7 +551,7 @@ for running the charlesreid1.com site.</p>
 <li><a href="Service_pythonfiles/">python</a> (in progress)</li>
 <li><a href="Service_gitea/">gitea</a> (in progress)</li>
 </ul>
-<h2 id="running">Running</h2>
+<h2 id="running">Running<a class="headerlink" href="#running" title="Permanent link">&para;</a></h2>
 <p>See <strong><a href="Running/">Running.md</a></strong> for info about running this docker pod:</p>
 <ul>
 <li>Running the Docker Pod from Comand Line</li>
@@ -523,7 +559,7 @@ for running the charlesreid1.com site.</p>
 <li>Workflow for Charlesreid1 Docker Pod Updates</li>
 <li>Restoring the Docker Pod from Backups</li>
 </ul>
-<h2 id="volumes">Volumes</h2>
+<h2 id="volumes">Volumes<a class="headerlink" href="#volumes" title="Permanent link">&para;</a></h2>
 <p>See <strong><a href="Volumes/">Volumes.md</a></strong> for info about data and volumes 
 used by this docker pod:</p>
 <ul>
@@ -550,14 +586,14 @@ used by this docker pod:</p>
 </ul>
 </li>
 </ul>
-<h2 id="backups">Backups</h2>
+<h2 id="backups">Backups<a class="headerlink" href="#backups" title="Permanent link">&para;</a></h2>
 <p>There are a number of directories containing utility scripts - these are mostly 
 dedicated to creating backups of any non-version-controlled data inside the container.</p>
 <p>See <strong><a href="Backups/">Backups.md</a></strong> for coverage of backup and utility scripts.</p>
 <p><code>utils-backups</code> - backup utilities (use the scripts below; good for cron jobs)</p>
 <p><code>utils-mw</code> - mediawiki backup utilities</p>
 <p><code>utils-mysql</code> mysql backup utilities</p>
-<h2 id="domains-and-ports">Domains and Ports</h2>
+<h2 id="domains-and-ports">Domains and Ports<a class="headerlink" href="#domains-and-ports" title="Permanent link">&para;</a></h2>
 <p>See <strong><a href="Ports/">Ports.md</a></strong> for info about top-level domain names
 and ports used by this docker pod.</p>
 <p>The domains ports document covers:</p>
@@ -576,7 +612,7 @@ and ports used by this docker pod.</p>
 </ul>
 </li>
 </ul>
-<h2 id="secrets">Secrets</h2>
+<h2 id="secrets">Secrets<a class="headerlink" href="#secrets" title="Permanent link">&para;</a></h2>
 <p>See <strong><a href="Secrets/">Secrets.md</a></strong> for more info about getting secrets like 
 passwords and sensitive files into various containers in the pod,
 without leaking out the information.</p>
@@ -586,7 +622,7 @@ without leaking out the information.</p>
 <li>gitea secret key and session id</li>
 <li>nginx ssl certificates</li>
 </ul>
-<h2 id="container-specific-configuration-details">Container-Specific Configuration Details</h2>
+<h2 id="container-specific-configuration-details">Container-Specific Configuration Details<a class="headerlink" href="#container-specific-configuration-details" title="Permanent link">&para;</a></h2>
 <p>Each container has a different way of getting
 configuration files into the container.
 In the following documents we cover 
@@ -600,17 +636,19 @@ the specifics of each container.</p>
 <li><a href="Service_pythonfiles/">python</a></li>
 <li><a href="Service_gitea/">gitea</a></li>
 </ul>
-<h2 id="running_1">Running</h2>
+<h2 id="running_1">Running<a class="headerlink" href="#running_1" title="Permanent link">&para;</a></h2>
 <p>From your project directory, start up your application by running:</p>
-<pre><code>$ docker-compose up
-</code></pre>
+<div class="codehilite"><pre><span></span>$ docker-compose up
+</pre></div>
+
 
 <p>If you want to rebuild the images (if you changed the Dockerfile),
 use the <code>--build</code> flag:</p>
-<pre><code>$ docker-compose up --build
-</code></pre>
+<div class="codehilite"><pre><span></span>$ docker-compose up --build
+</pre></div>
 
-<h2 id="links">Links</h2>
+
+<h2 id="links">Links<a class="headerlink" href="#links" title="Permanent link">&para;</a></h2>
 <p>docker compose documentation:</p>
 <ul>
 <li><a href="https://docs.docker.com/compose/gettingstarted/#step-4-build-and-run-your-app-with-compose">getting started</a></li>
@@ -658,6 +696,10 @@ use the <code>--build</code> flag:</p>
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2018 <a href="https://charlesreid1.com">Charles Reid</a>
+          </div>
         
         powered by
         <a href="http://www.mkdocs.org">MkDocs</a>

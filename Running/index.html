@@ -11,6 +11,8 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
+        <link rel="canonical" href="https://pages.charlesreid1.com/pod-charlesreid1/Running/">
+      
       
       
         <meta name="lang:clipboard.copy" content="Copy to clipboard">
@@ -85,7 +87,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href=".." title="pod-charlesreid1" class="md-header-nav__button md-logo">
+        <a href="https://pages.charlesreid1.com/pod-charlesreid1" title="pod-charlesreid1" class="md-header-nav__button md-logo">
           
             <i class="md-icon">dns</i>
           
@@ -139,6 +141,24 @@
         
       </div>
       
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://git.charlesreid1.com/docker/d-charlesreid1" title="Go to repository" class="md-source" data-md-source="">
+    
+    <div class="md-source__repository">
+      d-charlesreid1
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
     </div>
   </nav>
 </header>
@@ -163,6 +183,22 @@
     </span>
     pod-charlesreid1
   </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://git.charlesreid1.com/docker/d-charlesreid1" title="Go to repository" class="md-source" data-md-source="">
+    
+    <div class="md-source__repository">
+      d-charlesreid1
+    </div>
+  </a>
+
+    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -514,10 +550,10 @@
               
                 
                 
-                <h1 id="running-the-charlesreid1-docker-pod">Running the Charlesreid1 Docker Pod</h1>
+                <h1 id="running-the-charlesreid1-docker-pod">Running the Charlesreid1 Docker Pod<a class="headerlink" href="#running-the-charlesreid1-docker-pod" title="Permanent link">&para;</a></h1>
 <p>The charlesreid1.com site runs in a Docker pod.
 Use <code>docker-compose</code> to run the pod.</p>
-<h2 id="the-docker-compose-file">The Docker Compose File</h2>
+<h2 id="the-docker-compose-file">The Docker Compose File<a class="headerlink" href="#the-docker-compose-file" title="Permanent link">&para;</a></h2>
 <p>The <code>docker-compose.yml</code> file contains all the directives needed
 to run a docker pod of containers that make Charlesreid1.com work.</p>
 <p>Why use docker-compose instead of docker? 
@@ -529,35 +565,41 @@ You need to fix this YML file by hard-coding your
 MYSQL password in the file.</p>
 <p>See the steps below.</p>
 <p><a name="RunningCLI"></a></p>
-<h2 id="running-charlesreid1-docker-pod-from-command-line">Running Charlesreid1 Docker Pod from Command Line</h2>
+<h2 id="running-charlesreid1-docker-pod-from-command-line">Running Charlesreid1 Docker Pod from Command Line<a class="headerlink" href="#running-charlesreid1-docker-pod-from-command-line" title="Permanent link">&para;</a></h2>
 <p>We start by covering how to run the docker pod from the command line.</p>
 <p>First, set the MySQL password using a sed one-liner:</p>
-<pre><code>$ sed &quot;s/REPLACEME/YoFooThisIsYourNewPassword/&quot; docker-compose.fixme.yml &gt; docker-compose.yml
-</code></pre>
+<div class="codehilite"><pre><span></span>$ sed &quot;s/REPLACEME/YoFooThisIsYourNewPassword/&quot; docker-compose.fixme.yml &gt; docker-compose.yml
+</pre></div>
+
 
 <p>Now you can run the container pod with</p>
-<pre><code>docker-compose up       # interactive
+<div class="codehilite"><pre><span></span>docker-compose up       # interactive
 docker-compose up -d    # detached
-</code></pre>
+</pre></div>
+
 
 <p>or, if you want to rebuild all the containers before running up,</p>
-<pre><code>docker-compose up --build
-</code></pre>
+<div class="codehilite"><pre><span></span>docker-compose up --build
+</pre></div>
+
 
 <p>If you just want to rebuild the containers,</p>
-<pre><code>docker-compose build
-</code></pre>
+<div class="codehilite"><pre><span></span>docker-compose build
+</pre></div>
+
 
 <p>and this will rebuild the containers from scratch:</p>
-<pre><code>docker-compose build --no-cache
-</code></pre>
+<div class="codehilite"><pre><span></span>docker-compose build --no-cache
+</pre></div>
+
 
 <p><strong><em>WARNING:</em></strong> for large, complicated container images,
 this command can take a very long time.
 Use with care.)</p>
 <p>You can restart all containers in a pod using the restart command:</p>
-<pre><code>docker-compose restart
-</code></pre>
+<div class="codehilite"><pre><span></span>docker-compose restart
+</pre></div>
+
 
 <p><strong><em>WARNING:</em></strong> this will <strong><em>NOT</em></strong> pick up changes to 
 Dockerfiles or to files that are mounted into the container.
@@ -565,13 +607,13 @@ This simply restarts the container using the same image
 (in memory) that was previously running, <strong><em>without</em></strong>
 getting an up-to-date container image.</p>
 <p><a name="RunningService"></a></p>
-<h2 id="running-charlesreid1-docker-pod-as-startup-service">Running Charlesreid1 Docker Pod as Startup Service</h2>
+<h2 id="running-charlesreid1-docker-pod-as-startup-service">Running Charlesreid1 Docker Pod as Startup Service<a class="headerlink" href="#running-charlesreid1-docker-pod-as-startup-service" title="Permanent link">&para;</a></h2>
 <p>If you want to run the pod as a startup service,
 see the dotfiles/debian repository, in the services/
 subdirectory. You will find a systemd service
 that will start/stop the docker pod.</p>
 <p><strong><code>dockerpod-charlesereid1.service:</code></strong></p>
-<pre><code>[Unit]
+<div class="codehilite"><pre><span></span>[Unit]
 Description=charlesreid1 docker pod
 Requires=docker.service
 After=docker.service
@@ -583,16 +625,19 @@ ExecStop=/usr/local/bin/docker-compose  -f /home/charles/codes/docker/pod-charle
 
 [Install]
 WantedBy=default.target
-</code></pre>
+</pre></div>
+
 
 <p>Now install the service to <code>/etc/systemd/system/dockerpod-charlesreid1.servce</code>,
 and activate it:</p>
-<pre><code>sudo systemctl enable dockerpod-charlesreid1.service
-</code></pre>
+<div class="codehilite"><pre><span></span>sudo systemctl enable dockerpod-charlesreid1.service
+</pre></div>
+
 
 <p>Now you can start/stop the service with:</p>
-<pre><code>sudo systemctl (start|stop) dockerpod-charlesreid1.service
-</code></pre>
+<div class="codehilite"><pre><span></span>sudo systemctl (start|stop) dockerpod-charlesreid1.service
+</pre></div>
+
 
 <p>NOTE: if you need to debug the containers, 
 or update any config files copied into the container,
@@ -600,7 +645,7 @@ be sure and stop the service before doing a
 <code>docker-compose stop</code> or a <code>docker-compose up --build</code>,
 otherwise the pod will continually respawn.</p>
 <p><a name="Workflow"></a></p>
-<h2 id="workflow-for-charlesreid1-docker-pod-updates">Workflow for Charlesreid1 Docker Pod Updates</h2>
+<h2 id="workflow-for-charlesreid1-docker-pod-updates">Workflow for Charlesreid1 Docker Pod Updates<a class="headerlink" href="#workflow-for-charlesreid1-docker-pod-updates" title="Permanent link">&para;</a></h2>
 <p>This section covers a workflow if you're updating the docker pod.</p>
 <p>As noted abobve, a simple <code>docker-compose restart</code> won't pick up
 changes in Dockerfiles or files mounted into the image, so 
@@ -622,7 +667,7 @@ and that will be your total amount of downtime.</p>
 your site to be down for even a few seconds of downtime, 
 hire me and I'll tell you how to do it with <strong><em>ZERO</em></strong> downtime.</p>
 <p><a name="Backups"></a></p>
-<h2 id="restoring-docker-pod-from-backups">Restoring Docker Pod from Backups</h2>
+<h2 id="restoring-docker-pod-from-backups">Restoring Docker Pod from Backups<a class="headerlink" href="#restoring-docker-pod-from-backups" title="Permanent link">&para;</a></h2>
 <p>Now that the pod is running, you probably need to seed it with data.</p>
 <p>You will need two mediawiki restore files and two gitea restore files,
 everything else comes from git.charlesreid1.com or github.com
@@ -639,25 +684,27 @@ everything else comes from git.charlesreid1.com or github.com
 <li>MediaWiki image directory restore scripts are in <code>utils-mw/</code> dir</li>
 <li>Gitea database and avatars come from backups using scripts in <code>utils-gitea/</code> dir</li>
 </ul>
-<h3 id="mysql-restore">mysql restore</h3>
+<h3 id="mysql-restore">mysql restore<a class="headerlink" href="#mysql-restore" title="Permanent link">&para;</a></h3>
 <p>To restore a database from a dump:</p>
-<pre><code>cd utils-mysql/
+<div class="codehilite"><pre><span></span>cd utils-mysql/
 ./restore_database.sh /path/to/dump/wikidb.sql
-</code></pre>
+</pre></div>
+
 
 <p>The MySQL container must be running for this to work.
 (You may need to adjust the MySQL container name in the script.)</p>
-<h3 id="mediawiki-restore">mediawiki restore</h3>
+<h3 id="mediawiki-restore">mediawiki restore<a class="headerlink" href="#mediawiki-restore" title="Permanent link">&para;</a></h3>
 <p>To restore the MediaWiki images directory:</p>
-<pre><code>cd utils-mw/
+<div class="codehilite"><pre><span></span>cd utils-mw/
 ./restore_wikifiles.sh /path/to/wikifiles.tar.gz
-</code></pre>
+</pre></div>
 
-<h3 id="gitea-restore">gitea restore</h3>
+
+<h3 id="gitea-restore">gitea restore<a class="headerlink" href="#gitea-restore" title="Permanent link">&para;</a></h3>
 <p>The gitea container can be restored from a backup as follows:</p>
-<pre><code>cd utils-gitea/
+<div class="codehilite"><pre><span></span>cd utils-gitea/
 ./restore_gitea.sh /path/to/gitea-dump.zip /path/to/gitea-avatars.zip
-</code></pre>
+</pre></div>
                 
                   
                 
@@ -713,6 +760,10 @@ everything else comes from git.charlesreid1.com or github.com
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2018 <a href="https://charlesreid1.com">Charles Reid</a>
+          </div>
         
         powered by
         <a href="http://www.mkdocs.org">MkDocs</a>

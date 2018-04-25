@@ -11,6 +11,8 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
+        <link rel="canonical" href="https://pages.charlesreid1.com/pod-charlesreid1/Service_apachephp/">
+      
       
       
         <meta name="lang:clipboard.copy" content="Copy to clipboard">
@@ -85,7 +87,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href=".." title="pod-charlesreid1" class="md-header-nav__button md-logo">
+        <a href="https://pages.charlesreid1.com/pod-charlesreid1" title="pod-charlesreid1" class="md-header-nav__button md-logo">
           
             <i class="md-icon">dns</i>
           
@@ -139,6 +141,24 @@
         
       </div>
       
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://git.charlesreid1.com/docker/d-charlesreid1" title="Go to repository" class="md-source" data-md-source="">
+    
+    <div class="md-source__repository">
+      d-charlesreid1
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
     </div>
   </nav>
 </header>
@@ -163,6 +183,22 @@
     </span>
     pod-charlesreid1
   </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://git.charlesreid1.com/docker/d-charlesreid1" title="Go to repository" class="md-source" data-md-source="">
+    
+    <div class="md-source__repository">
+      d-charlesreid1
+    </div>
+  </a>
+
+    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -432,19 +468,19 @@
               
                 
                 
-                <h1 id="apache-php">Apache + PHP</h1>
+                <h1 id="apache-php">Apache + PHP<a class="headerlink" href="#apache-php" title="Permanent link">&para;</a></h1>
 <p>This describes the container-specific
 details of the Apache part of the 
 Apache-MediaWiki container.</p>
 <p>Also see <a href="../Service_mediawiki/">MediaWiki</a>.</p>
-<h2 id="configuration-files-and-folders">Configuration Files and Folders</h2>
+<h2 id="configuration-files-and-folders">Configuration Files and Folders<a class="headerlink" href="#configuration-files-and-folders" title="Permanent link">&para;</a></h2>
 <p>We have two Apache configuration files
 to set up Apache:</p>
 <ul>
 <li><code>ports.conf</code> sets the port Apache listens on</li>
 <li><code>wiki.conf</code> sets the <code>&lt;VirtualHost&gt;</code> block for the wiki</li>
 </ul>
-<h2 id="where-does-stuff-live">Where Does Stuff Live?</h2>
+<h2 id="where-does-stuff-live">Where Does Stuff Live?<a class="headerlink" href="#where-does-stuff-live" title="Permanent link">&para;</a></h2>
 <p>The <code>ports.conf</code> and <code>wiki.conf</code> configuration files
 live in the <code>d-mediawiki</code> submodule
 (see <a href="https://git.charlesreid1.com/docker/d-mediawiki">docker/d-mediawiki</a>
@@ -455,7 +491,7 @@ on git.charlesreid1.com),
 in the <code>apache/</code> directory.</p>
 <p>See <a href="https://git.charlesreid1.com/wiki/charlesreid1-config">wiki/charlesreid1-config</a>
 on git.charlesreid1.com.</p>
-<h2 id="getting-stuff-into-the-container">Getting Stuff Into The Container</h2>
+<h2 id="getting-stuff-into-the-container">Getting Stuff Into The Container<a class="headerlink" href="#getting-stuff-into-the-container" title="Permanent link">&para;</a></h2>
 <p>Unlike MediaWiki, Apache has a sane way
 of separating the static program files
 from the instance-specific configuration
@@ -466,13 +502,14 @@ into the container at
 <code>/etc/nginx/conf.d</code>
 via the following line
 in the docker-compose file:</p>
-<pre><code>services:
+<div class="codehilite"><pre><span></span>services:
   ...
   stormy_nginx:
     ...
     volumes:
       - &quot;./d-nginx-charlesreid1/conf.d:/etc/nginx/conf.d:ro&quot;
-</code></pre>
+</pre></div>
+
 
 <p>That's it!</p>
                 
@@ -530,6 +567,10 @@ in the docker-compose file:</p>
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2018 <a href="https://charlesreid1.com">Charles Reid</a>
+          </div>
         
         powered by
         <a href="http://www.mkdocs.org">MkDocs</a>

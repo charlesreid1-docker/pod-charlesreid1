@@ -11,6 +11,8 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
+        <link rel="canonical" href="https://pages.charlesreid1.com/pod-charlesreid1/Backups/">
+      
       
       
         <meta name="lang:clipboard.copy" content="Copy to clipboard">
@@ -85,7 +87,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href=".." title="pod-charlesreid1" class="md-header-nav__button md-logo">
+        <a href="https://pages.charlesreid1.com/pod-charlesreid1" title="pod-charlesreid1" class="md-header-nav__button md-logo">
           
             <i class="md-icon">dns</i>
           
@@ -139,6 +141,24 @@
         
       </div>
       
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://git.charlesreid1.com/docker/d-charlesreid1" title="Go to repository" class="md-source" data-md-source="">
+    
+    <div class="md-source__repository">
+      d-charlesreid1
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
     </div>
   </nav>
 </header>
@@ -163,6 +183,22 @@
     </span>
     pod-charlesreid1
   </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://git.charlesreid1.com/docker/d-charlesreid1" title="Go to repository" class="md-source" data-md-source="">
+    
+    <div class="md-source__repository">
+      d-charlesreid1
+    </div>
+  </a>
+
+    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -446,8 +482,8 @@
               
                 
                 
-                <h1 id="backups">Backups</h1>
-<h2 id="krash-seed">Krash Seed</h2>
+                <h1 id="backups">Backups<a class="headerlink" href="#backups" title="Permanent link">&para;</a></h1>
+<h2 id="krash-seed">Krash Seed<a class="headerlink" href="#krash-seed" title="Permanent link">&para;</a></h2>
 <p>By competely containerizing charlesreid1.com,
 all of the static files for running programs
 come from docker container images, 
@@ -464,9 +500,9 @@ This service data consists of the following:</p>
 <li>Gitea avatar images (.zip)</li>
 </ul>
 <p>These four files form a "krash seed" for charlesreid1.com.</p>
-<h2 id="mysql-backuprestore-scripts">MySQL Backup/Restore Scripts</h2>
+<h2 id="mysql-backuprestore-scripts">MySQL Backup/Restore Scripts<a class="headerlink" href="#mysql-backuprestore-scripts" title="Permanent link">&para;</a></h2>
 <p>To create a MySQL backup, use the <code>utils-mysql/dump_database.sh</code> script.</p>
-<pre><code>dump_database.sh script:
+<div class="codehilite"><pre><span></span>dump_database.sh script:
 Dump a database to an .sql file 
 from the stormy_mysql container.
 
@@ -475,11 +511,11 @@ from the stormy_mysql container.
 Example:
 
        ./dump_database.sh /path/to/wikidb_dump.sql
+</pre></div>
 
-</code></pre>
 
-<h2 id="mediawiki-backuprestore-scripts">MediaWiki Backup/Restore Scripts</h2>
-<pre><code>backup_wikifiles.sh script:
+<h2 id="mediawiki-backuprestore-scripts">MediaWiki Backup/Restore Scripts<a class="headerlink" href="#mediawiki-backuprestore-scripts" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>backup_wikifiles.sh script:
 Create a tar file containing wiki files
 from the stormy_mw container
 
@@ -488,14 +524,15 @@ from the stormy_mw container
 Example:
 
        ./backup_wikifiles.sh /path/to/wikifiles.tar.gz
-</code></pre>
+</pre></div>
 
-<h2 id="gitea-backuprestore-scripts">Gitea Backup/Restore Scripts</h2>
-<h1 id="utilities">Utilities</h1>
+
+<h2 id="gitea-backuprestore-scripts">Gitea Backup/Restore Scripts<a class="headerlink" href="#gitea-backuprestore-scripts" title="Permanent link">&para;</a></h2>
+<h1 id="utilities">Utilities<a class="headerlink" href="#utilities" title="Permanent link">&para;</a></h1>
 <p>Utilities are kept in the <code>utils-*</code> folders.</p>
-<h2 id="mysql-utilities">MySQL Utilities</h2>
-<h2 id="mediawiki-utilities">MediaWiki Utilities</h2>
-<h2 id="mysql-utilities_1">MySQL Utilities</h2>
+<h2 id="mysql-utilities">MySQL Utilities<a class="headerlink" href="#mysql-utilities" title="Permanent link">&para;</a></h2>
+<h2 id="mediawiki-utilities">MediaWiki Utilities<a class="headerlink" href="#mediawiki-utilities" title="Permanent link">&para;</a></h2>
+<h2 id="mysql-utilities_1">MySQL Utilities<a class="headerlink" href="#mysql-utilities_1" title="Permanent link">&para;</a></h2>
                 
                   
                 
@@ -551,6 +588,10 @@ Example:
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2018 <a href="https://charlesreid1.com">Charles Reid</a>
+          </div>
         
         powered by
         <a href="http://www.mkdocs.org">MkDocs</a>

@@ -11,6 +11,8 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
+        <link rel="canonical" href="https://pages.charlesreid1.com/pod-charlesreid1/Volumes/">
+      
       
       
         <meta name="lang:clipboard.copy" content="Copy to clipboard">
@@ -85,7 +87,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href=".." title="pod-charlesreid1" class="md-header-nav__button md-logo">
+        <a href="https://pages.charlesreid1.com/pod-charlesreid1" title="pod-charlesreid1" class="md-header-nav__button md-logo">
           
             <i class="md-icon">dns</i>
           
@@ -139,6 +141,24 @@
         
       </div>
       
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://git.charlesreid1.com/docker/d-charlesreid1" title="Go to repository" class="md-source" data-md-source="">
+    
+    <div class="md-source__repository">
+      d-charlesreid1
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
     </div>
   </nav>
 </header>
@@ -163,6 +183,22 @@
     </span>
     pod-charlesreid1
   </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://git.charlesreid1.com/docker/d-charlesreid1" title="Go to repository" class="md-source" data-md-source="">
+    
+    <div class="md-source__repository">
+      d-charlesreid1
+    </div>
+  </a>
+
+    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -648,8 +684,8 @@
               
                 
                 
-                <h1 id="volumes">Volumes</h1>
-<h2 id="persistent-data-volumes">Persistent Data Volumes</h2>
+                <h1 id="volumes">Volumes<a class="headerlink" href="#volumes" title="Permanent link">&para;</a></h1>
+<h2 id="persistent-data-volumes">Persistent Data Volumes<a class="headerlink" href="#persistent-data-volumes" title="Permanent link">&para;</a></h2>
 <p>docker-compose volumes are mostly persistent, but they can
 be deleted relatively easily.</p>
 <p>When you're using docker-compose, volumes are persistent
@@ -658,27 +694,30 @@ through both <code>docker-compose stop</code> and <code>docker-compose down</cod
 and mounted files, while <code>docker-compose stop</code> will just stop the containers.</p>
 <p><strong><em>DANGER - DANGER - DANGER</em></strong></p>
 <p>If you want to remove the volumes, use <code>docker-compose down -v</code>.</p>
-<pre><code>docker-compose down -v   # DANGER!!!
-</code></pre>
+<div class="codehilite"><pre><span></span>docker-compose down -v   # DANGER!!!
+</pre></div>
+
 
 <p>To force removal of the volumes:</p>
-<pre><code>docker-compose down -v -f   # DANGER!!!
-</code></pre>
+<div class="codehilite"><pre><span></span>docker-compose down -v -f   # DANGER!!!
+</pre></div>
+
 
 <p>To see the current list of docker volumes:</p>
-<pre><code>docker volume ls
-</code></pre>
+<div class="codehilite"><pre><span></span>docker volume ls
+</pre></div>
+
 
 <p>You can also interact with the volumes individually
 this way. Run <code>docker volume</code> for help.</p>
 <hr />
-<h2 id="nginx">nginx</h2>
+<h2 id="nginx">nginx<a class="headerlink" href="#nginx" title="Permanent link">&para;</a></h2>
 <p>The nginx service does not have any data volumes, 
 but has several static files that are bind-mounted.
 Most importantly, nginx handles the SSL certificates
 for all subdomains.</p>
 <hr />
-<h3 id="nginx-lets-encrypt-ssl-certificates">nginx + lets encrypt ssl certificates</h3>
+<h3 id="nginx-lets-encrypt-ssl-certificates">nginx + lets encrypt ssl certificates<a class="headerlink" href="#nginx-lets-encrypt-ssl-certificates" title="Permanent link">&para;</a></h3>
 <p>Rather than fuss with getting the letsencrypt 
 docker image working, we made SSL certs by hand.</p>
 <p>See <a href="https://git.charlesreid1.com/charlesreid1/certbot">git.charlesreid1.com/charlesreid1/certbot</a></p>
@@ -687,11 +726,12 @@ docker image working, we made SSL certs by hand.</p>
 <p>We bind-mount the entire <code>/etc/letsencrypt</code> directory
 into the same location in the nginx container 
 (see this volumes line in <code>docker-compose.yml</code>):</p>
-<pre><code>      - &quot;/etc/letsencrypt:/etc/letsencrypt&quot;
-</code></pre>
+<div class="codehilite"><pre><span></span>      - &quot;/etc/letsencrypt:/etc/letsencrypt&quot;
+</pre></div>
+
 
 <p>To renew certificates (every few months), just run the certbot script in the certbot repo.</p>
-<h3 id="nginx-static-content">nginx static content</h3>
+<h3 id="nginx-static-content">nginx static content<a class="headerlink" href="#nginx-static-content" title="Permanent link">&para;</a></h3>
 <p>The main site hosted by nginx (charlesreid1.com) is served up 
 from a directory of static content under version control.</p>
 <p>This static content is bind-mounted and lives on the host 
@@ -699,7 +739,7 @@ from a directory of static content under version control.</p>
 <p>On the host, static site contents are stored at <code>/www/</code> 
 with a directory structure and corresponding permissions
 as follows:</p>
-<pre><code>/www/                                   # &lt;-- owned by regular user
+<div class="codehilite"><pre><span></span>/www/                                   # &lt;-- owned by regular user
 
     charlesreid1.blue/                  # &lt;-- owned by regular user
         charlesreid1.blue-src/          # &lt;-- owned by regular user
@@ -720,17 +760,19 @@ as follows:</p>
             &lt;web site static contents&gt;
 
     ...
-</code></pre>
+</pre></div>
+
 
 <p>Each domain has its own directory, in which there is a source directory 
 (git repository containing pelican files) and an htdocs directory
 (git repository containing live hosted static content).</p>
 <p>These are mounted in the container at the same location.
 See the volumes section of the nginx container:</p>
-<pre><code>      - &quot;/www/charlesreid1.blue/htdocs:/www/charlesreid1.blue/htdocs:ro&quot;
+<div class="codehilite"><pre><span></span>      - &quot;/www/charlesreid1.blue/htdocs:/www/charlesreid1.blue/htdocs:ro&quot;
       - &quot;/www/charlesreid1.red/htdocs:/www/charlesreid1.red/htdocs:ro&quot;
       - &quot;/www/charlesreid1.com/htdocs:/www/charlesreid1.com/htdocs:ro&quot;
-</code></pre>
+</pre></div>
+
 
 <p>The source and htdocs directories are separate branches of the same repo.
 Each website has (TODO: will have) its own repository.</p>
@@ -741,10 +783,11 @@ by the nginx web server.</p>
 <p>Ownership makes dealing with this stuff a pain in the ass.
 The <code>htdocs</code> dir must be owned/updated by <code>www-data</code>, 
 so you need to update the git repo contents as that user:</p>
-<pre><code>sudo -H -u www-data git pull origin pages
-</code></pre>
+<div class="codehilite"><pre><span></span>sudo -H -u www-data git pull origin pages
+</pre></div>
 
-<h3 id="nginx-bind-mounted-files">nginx bind-mounted files</h3>
+
+<h3 id="nginx-bind-mounted-files">nginx bind-mounted files<a class="headerlink" href="#nginx-bind-mounted-files" title="Permanent link">&para;</a></h3>
 <p>We bind-mount a directory <code>conf.d</code> containing 
 nginx configuration files into the container 
 at <code>/etc/nginx/conf.d</code>, which is where nginx
@@ -755,23 +798,26 @@ by protocol and subdomain, and can be found
 in the <a href="https://git.charlesreid1.com/docker/d-nginx-charlesreid1">d-nginx-charlesreid1</a>
 repository. From the <code>docker-compose.yml</code> file
 nginx volumes directive:</p>
-<pre><code>      - &quot;./d-nginx-charlesreid1/conf.d:/etc/nginx/conf.d:ro&quot;
-</code></pre>
+<div class="codehilite"><pre><span></span>      - &quot;./d-nginx-charlesreid1/conf.d:/etc/nginx/conf.d:ro&quot;
+</pre></div>
 
-<h3 id="other-nginx-bind-mounted-files">other nginx bind-mounted files</h3>
+
+<h3 id="other-nginx-bind-mounted-files">other nginx bind-mounted files<a class="headerlink" href="#other-nginx-bind-mounted-files" title="Permanent link">&para;</a></h3>
 <p>The last remaining nginx file that is bind-mounted into the container
 is <code>/etc/localtime</code>, which ensures our webserver's timestamps match 
 the host's. In the nginx volumes directive:</p>
-<pre><code>      - &quot;/etc/localtime:/etc/localtime:ro&quot;
-</code></pre>
+<div class="codehilite"><pre><span></span>      - &quot;/etc/localtime:/etc/localtime:ro&quot;
+</pre></div>
+
 
 <hr />
-<h2 id="mysql">mysql</h2>
+<h2 id="mysql">mysql<a class="headerlink" href="#mysql" title="Permanent link">&para;</a></h2>
 <p>The MySQL database container is used by MediaWiki 
 and stores its data on disk in a data volume.
 Inside the conatiner all MySQL data lives at</p>
-<pre><code>/var/lib/mysql
-</code></pre>
+<div class="codehilite"><pre><span></span>/var/lib/mysql
+</pre></div>
+
 
 <p>This is mapped to a data volume, <code>stormy_mysql_data</code>.</p>
 <p>There is no custom configuration of the MySQL database
@@ -779,12 +825,13 @@ at this time, but to add a custom config file,
 mount it in the container via bind-mounting
 by adding this to the volumes section of 
 <code>docker-compose.yml</code>:</p>
-<pre><code>      - &quot;./d-mysql/krash.mysql.cnf:/etc/mysql/conf.d/krash.mysql.cnf&quot;
-</code></pre>
+<div class="codehilite"><pre><span></span>      - &quot;./d-mysql/krash.mysql.cnf:/etc/mysql/conf.d/krash.mysql.cnf&quot;
+</pre></div>
+
 
 <hr />
-<h2 id="mediawiki">mediawiki</h2>
-<h3 id="mediawiki-data-volume">mediawiki data volume</h3>
+<h2 id="mediawiki">mediawiki<a class="headerlink" href="#mediawiki" title="Permanent link">&para;</a></h2>
+<h3 id="mediawiki-data-volume">mediawiki data volume<a class="headerlink" href="#mediawiki-data-volume" title="Permanent link">&para;</a></h3>
 <p>The MediaWiki container hosts all wiki files
 from <code>/var/www/html</code> (in the MediaWiki container).</p>
 <p>When the container is built from the Dockerfile, 
@@ -802,7 +849,7 @@ repo.</p>
 <code>stormy_mw_data</code>, which is mounted at <code>/var/www/html</code>
 inside the container.</p>
 <p>The docker-compose file takes care of creating the data volume.</p>
-<h3 id="mediawiki-bind-mounted-files">mediawiki bind-mounted files</h3>
+<h3 id="mediawiki-bind-mounted-files">mediawiki bind-mounted files<a class="headerlink" href="#mediawiki-bind-mounted-files" title="Permanent link">&para;</a></h3>
 <p>(TODO: ambiguous how skins dir is mounted;
 copying skins into container in Dockerfile,
 and bind-mounting bootstrap2 at runtime.)</p>
@@ -813,18 +860,19 @@ repo.</p>
 at <code>/var/www/html/skins/Bootstrap2/</code>.</p>
 <p>If you make changes to the skin or MediaWiki config files,
 update the MediaWiki docker image as follows:</p>
-<pre><code>docker-compose build
+<div class="codehilite"><pre><span></span>docker-compose build
 docker-compose down
 docker-compose up
-</code></pre>
+</pre></div>
+
 
 <hr />
-<h2 id="gitea">gitea</h2>
-<h3 id="gitea-data-volume">gitea data volume</h3>
-<h3 id="gitea-bind-mounted-files">gitea bind-mounted files</h3>
+<h2 id="gitea">gitea<a class="headerlink" href="#gitea" title="Permanent link">&para;</a></h2>
+<h3 id="gitea-data-volume">gitea data volume<a class="headerlink" href="#gitea-data-volume" title="Permanent link">&para;</a></h3>
+<h3 id="gitea-bind-mounted-files">gitea bind-mounted files<a class="headerlink" href="#gitea-bind-mounted-files" title="Permanent link">&para;</a></h3>
 <hr />
-<h2 id="python-file-server">python file server</h2>
-<h3 id="pyfiles-directory">pyfiles directory</h3>
+<h2 id="python-file-server">python file server<a class="headerlink" href="#python-file-server" title="Permanent link">&para;</a></h2>
+<h3 id="pyfiles-directory">pyfiles directory<a class="headerlink" href="#pyfiles-directory" title="Permanent link">&para;</a></h3>
                 
                   
                 
@@ -880,6 +928,10 @@ docker-compose up
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2018 <a href="https://charlesreid1.com">Charles Reid</a>
+          </div>
         
         powered by
         <a href="http://www.mkdocs.org">MkDocs</a>

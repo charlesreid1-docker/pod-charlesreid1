@@ -11,6 +11,8 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
+        <link rel="canonical" href="https://pages.charlesreid1.com/pod-charlesreid1/Ports/">
+      
       
       
         <meta name="lang:clipboard.copy" content="Copy to clipboard">
@@ -85,7 +87,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href=".." title="pod-charlesreid1" class="md-header-nav__button md-logo">
+        <a href="https://pages.charlesreid1.com/pod-charlesreid1" title="pod-charlesreid1" class="md-header-nav__button md-logo">
           
             <i class="md-icon">dns</i>
           
@@ -139,6 +141,24 @@
         
       </div>
       
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://git.charlesreid1.com/docker/d-charlesreid1" title="Go to repository" class="md-source" data-md-source="">
+    
+    <div class="md-source__repository">
+      d-charlesreid1
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
     </div>
   </nav>
 </header>
@@ -163,6 +183,22 @@
     </span>
     pod-charlesreid1
   </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://git.charlesreid1.com/docker/d-charlesreid1" title="Go to repository" class="md-source" data-md-source="">
+    
+    <div class="md-source__repository">
+      d-charlesreid1
+    </div>
+  </a>
+
+    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -540,25 +576,26 @@
               
                 
                 
-                <h1 id="domains-and-ports">Domains and Ports</h1>
-<h2 id="domains">Domains</h2>
+                <h1 id="domains-and-ports">Domains and Ports<a class="headerlink" href="#domains-and-ports" title="Permanent link">&para;</a></h1>
+<h2 id="domains">Domains<a class="headerlink" href="#domains" title="Permanent link">&para;</a></h2>
 <p>There are three domains pointing to this server:</p>
-<pre><code>charlesreid1.com
+<div class="codehilite"><pre><span></span>charlesreid1.com
 charlesreid1.red
 charlesreid1.blue
-</code></pre>
+</pre></div>
+
 
 <p>These are pointing to the server's IP address
 using an A NAME DNS record.</p>
 <p>There are also various subdomains set up
 (www, git, files), all pointing to the 
 same location.</p>
-<h3 id="nginx-domain-handling">nginx domain handling</h3>
+<h3 id="nginx-domain-handling">nginx domain handling<a class="headerlink" href="#nginx-domain-handling" title="Permanent link">&para;</a></h3>
 <p>Nginx handles all of the domains by specifying 
 a different <code>domain_name</code> in each <code>server{}</code> block
 of the nginx config files.</p>
 <p>For example:</p>
-<pre><code>server {
+<div class="codehilite"><pre><span></span>server {
     listen 80;
     listen [::]:80;
     server_name charlesreid1.com;
@@ -578,14 +615,15 @@ server {
     server_name charlesreid1.red;
     ...
 }
-</code></pre>
+</pre></div>
+
 
 <p>See the <code>conf.d</code> dir of
 <a href="https://git.charlesreid1.com/docker/d-nginx-charlesreid1">d-nginx-charlesreid1</a>.</p>
 <p>We will cover this in the nginx ports section,
 but all http urls are redirected to https urls.</p>
-<h2 id="ports">Ports</h2>
-<h3 id="nginx-ports">nginx ports</h3>
+<h2 id="ports">Ports<a class="headerlink" href="#ports" title="Permanent link">&para;</a></h2>
+<h3 id="nginx-ports">nginx ports<a class="headerlink" href="#nginx-ports" title="Permanent link">&para;</a></h3>
 <p>Also see <a href="../Service_nginx/">nginx service</a>.</p>
 <p>Nginx has two main public-facing ports:
 port 80 (HTTP) and port 443 (HTTPS).</p>
@@ -601,7 +639,7 @@ legacy reasons.</p>
 rewrite rules: nginx listens for requests going 
 to wiki URLs (prefixed with <code>/w/</code> or <code>/wiki</code>)
 and proxies those to the correct container.</p>
-<h3 id="mediawikiapache-ports">mediawiki/apache ports</h3>
+<h3 id="mediawikiapache-ports">mediawiki/apache ports<a class="headerlink" href="#mediawikiapache-ports" title="Permanent link">&para;</a></h3>
 <p>Also see <a href="../Service_mediawiki/">mediawiki service</a>
 and <a href="../Service_apachephp/">apache/php service</a>.</p>
 <p>The MediaWiki server runs on a PHP and Apache stack.
@@ -612,22 +650,25 @@ and only over port 8989.</p>
 <p>This nginx-apache connection is not encrypted 
 because it happens on the same machine. </p>
 <p>When the user connects to the wiki, for example at the url</p>
-<pre><code>https://charlesreid1.com/wiki/Nmap
-</code></pre>
+<div class="codehilite"><pre><span></span>https://charlesreid1.com/wiki/Nmap
+</pre></div>
+
 
 <p>the user's connection is with the nginx server.
 The session is an https session happening over port 443
 and signed by nginx's certificates.</p>
 <p>If the user goes to </p>
-<pre><code>http://charlesreid1.com/wiki/Nmap
-</code></pre>
+<div class="codehilite"><pre><span></span>http://charlesreid1.com/wiki/Nmap
+</pre></div>
+
 
 <p>on port 80, this is rewritten to</p>
-<pre><code>https://charlesreid1.com/wiki/Nmap
-</code></pre>
+<div class="codehilite"><pre><span></span>https://charlesreid1.com/wiki/Nmap
+</pre></div>
+
 
 <p>on port 443. In nginx, this is done with a 301:</p>
-<pre><code>server {
+<div class="codehilite"><pre><span></span>server {
     listen 80;
     listen [::]:80;
     server_name charlesreid1.com;
@@ -635,14 +676,15 @@ and signed by nginx's certificates.</p>
         return 301 https://charlesreid1.com$request_uri;
     }
 }
-</code></pre>
+</pre></div>
+
 
 <p>Note that nginx plays the role of a central dispatcher 
 in the charlesreid1 pod - all containers connect to
 nginx and only nginx, while nginx exposes each container 
 to the outside world via requests for various subdomains 
 being redirected to different ports.</p>
-<h3 id="phpmyadmin-ports">phpmyadmin ports</h3>
+<h3 id="phpmyadmin-ports">phpmyadmin ports<a class="headerlink" href="#phpmyadmin-ports" title="Permanent link">&para;</a></h3>
 <p>Also see <a href="../Service_phpmyadmin/">phpmyadmin service</a>.</p>
 <p>phpMyAdmin provides a web interface for MySQL databases.</p>
 <p>This follows a similar pattern to the MediaWiki Apache container:</p>
@@ -664,12 +706,12 @@ being redirected to different ports.</p>
 configure the <a href="../Service_nginx/">nginx service</a>
 to whitelist certain IPs to access
 phpMyAdmin (or shut off all access).</p>
-<h3 id="mysql-ports">mysql ports</h3>
+<h3 id="mysql-ports">mysql ports<a class="headerlink" href="#mysql-ports" title="Permanent link">&para;</a></h3>
 <p>Also see <a href="../Service_mysql/">mysql service</a>.</p>
 <p>The MySQL container listens on port 3306 by default.
 The container is only bound to the MediaWiki container, 
 so MediaWiki is the only service that can access MySQL.</p>
-<h3 id="gitea-ports">gitea ports</h3>
+<h3 id="gitea-ports">gitea ports<a class="headerlink" href="#gitea-ports" title="Permanent link">&para;</a></h3>
 <p>Also see <a href="../Service_gitea/">gitea service</a>.</p>
 <p>Requests for the subdomain <code>git.charlesreid1.com</code> 
 are redirected to port 3000 on the docker internal
@@ -685,13 +727,14 @@ the same reverse proxy pattern:</p>
 <li>Gitea does not implement HTTP on the back end;
     nginx handles HTTPS with client on the front end.</li>
 </ul>
-<h3 id="python-file-server-ports">python file server ports</h3>
+<h3 id="python-file-server-ports">python file server ports<a class="headerlink" href="#python-file-server-ports" title="Permanent link">&para;</a></h3>
 <p>Also see <a href="../Service_pythonfiles/">python files service</a>.</p>
 <p>We have a simple, lightweight Python HTTP server
 that's run in a Docker container via the following
 command:</p>
-<pre><code>python -m http.server -b &lt;bind-address&gt; 8080
-</code></pre>
+<div class="codehilite"><pre><span></span>python -m http.server -b &lt;bind-address&gt; 8080
+</pre></div>
+
 
 <p>This works because Python provides a built-in HTTP server
 that, if no index.html file is present, will provide a 
@@ -709,8 +752,9 @@ as far as file servers go.</p>
     should be set to the name of the docker container image
     (<code>stormy_files</code>).</li>
 </ul>
-<pre><code>python -m http.server -b stormy_files 8080
-</code></pre>
+<div class="codehilite"><pre><span></span>python -m http.server -b stormy_files 8080
+</pre></div>
+
 
 <p>This listens on port 8080 inside the 
 python file server container <code>stormy_files</code>.</p>
@@ -777,6 +821,10 @@ repository for an example.</p>
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2018 <a href="https://charlesreid1.com">Charles Reid</a>
+          </div>
         
         powered by
         <a href="http://www.mkdocs.org">MkDocs</a>
