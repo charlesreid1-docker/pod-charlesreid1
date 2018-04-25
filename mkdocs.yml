@@ -26,5 +26,5 @@ pages:
   - 'Pod Service: MySQL' : 'Service_mysql.md'
   - 'Pod Service: phpMyAdmin' : 'Service_phpmyadmin.md'
   - 'Pod Service: nginx' : 'Service_nginx.md'
-  - 'Pod Service: Python HTTP Server' : 'Service_python.md'
+  - 'Pod Service: Python File Server' : 'Service_pythonfiles.md'
   - 'Pod Service: Gitea' : 'Service_gitea.md'

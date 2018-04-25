@@ -10,7 +10,7 @@ The services are:
 * [mysql](Service_mysql.md)
 * [phpmyadmin](Service_phpmyadmin.md) (in progress)
 * [nginx + ssl](Service_nginx.md) (in progress)
-* [python](Service_python.md) (in progress)
+* [python](Service_pythonfiles.md) (in progress)
 * [gitea](Service_gitea.md) (in progress)
 
 
@@ -96,7 +96,7 @@ the specifics of each container.
 * [mysql](Service_mysql.md)
 * [phpmyadmin](Service_phpmyadmin.md) 
 * [nginx + ssl](Service_nginx.md)
-* [python](Service_python.md)
+* [python](Service_pythonfiles.md)
 * [gitea](Service_gitea.md)
 
 
