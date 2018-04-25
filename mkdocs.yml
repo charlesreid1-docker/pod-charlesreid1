@@ -1,6 +1,15 @@
 site_name: pod-charlesreid1
+site_url: https://pages.charlesreid1.com/pod-charlesreid1
+repo_name: d-charlesreid1
+repo_url: https://git.charlesreid1.com/docker/d-charlesreid1
+edit_uri: ""
+
+copyright: 'Copyright &copy; 2018 <a href="https://charlesreid1.com">Charles Reid</a>'
+
 docs_dir: docs
 site_dir: site
+extra_css:
+  - css/custom.css
 theme:
   name: null
   custom_dir: 'mkdocs-material/material'
@@ -12,8 +21,6 @@ theme:
   font:
     text: 'Roboto'
     code: 'Roboto Mono'
-extra_css:
-  - css/custom.css
 pages:
   - 'Index' : 'index.md'
   - 'Running the Charlesreid1 Docker Pod' : 'Running.md'
@@ -28,3 +35,11 @@ pages:
   - 'Pod Service: nginx' : 'Service_nginx.md'
   - 'Pod Service: Python File Server' : 'Service_pythonfiles.md'
   - 'Pod Service: Gitea' : 'Service_gitea.md'
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true
