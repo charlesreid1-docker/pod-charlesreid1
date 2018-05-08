@@ -20,17 +20,20 @@ if [ "$(id -u)" == "0" ]; then
 fi
 
 WORKDIR="/tmp/gitea-temp"
-GITDIR="/tmp/gitea-temp/charlesreid1-data"
+DATDIR="/tmp/gitea-temp/charlesreid1-data"
+CLONEDIR="/tmp/gitea-temp/charlesreid1-data2"
 
-git clone ssh://git@gitdatabot:222/data/charlesreid1-data.git ${GITDIR}
+rm -rf ${CLONEDIR}
+git clone ssh://git@gitdatabot:222/data/charlesreid1-data.git ${CLONEDIR}
 
 (
-cd ${GITDIR}
-sudo -H -u charles git config user.name "databot"
-sudo -H -u charles git config user.email "databot@charlesreid1.com"
-sudo -H -u charles git add commit_counts.csv
-sudo -H -u charles git commit commit_counts.csv -m '[scrape_gitea_as_sudo.sh] updating gitea commit count data'
-sudo -H -u charles git push origin master
+cp ${DATDIR}/commit_counts.csv ${CLONEDIR}/.
+cd ${CLONEDIR}
+git config user.name "databot"
+git config user.email "databot@charlesreid1.com"
+git add commit_counts.csv
+git commit commit_counts.csv -m '[scrape_gitea_as_sudo.sh] updating gitea commit count data'
+git push origin master
 )
 
-
+# rm -rf ${WORKDIR}
