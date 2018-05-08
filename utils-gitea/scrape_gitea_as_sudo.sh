@@ -1,4 +1,16 @@
 #!/bin/bash
+# 
+# This stupid script needs too be scaled back,
+# because sudo and ssh can't play nicely together.
+#
+# This entire idiotic adventure in docker land
+# has been chock full of the most inane, stupid
+# landmines that containers cannot avoid,
+# like this one - if you try and run ssh through sudo,
+# you can't deal with keys or passphrases.
+# 
+# Seriously. Gimme a fucking break.
+#
 #
 # This script scrapes repository logs
 # from the docker volume holding gitea.
@@ -23,17 +35,31 @@ GITDIR="/tmp/gitea-temp/charlesreid1-data"
 
 rm -rf ${WORKDIR}
 mkdir -p ${WORKDIR} 
+
 sudo chown -R charles:charles ${WORKDIR}
 
+rm -rf ${GITDIR}
+mkdir -p ${GITDIR} 
 
-# Step 1: clone repo
 
-sudo -H -u charles git clone ssh://git@git.charlesreid1.com:222/data/charlesreid1-data.git ${GITDIR}
+# Because sudo and ssh are too stupid to play nicely,
+# we're forced to use this sudo script to dump out
+# information every hour,
+# and leave it up to some user script somewhere
+# to grab the latest whenever they need it.
+#
+# This is the most idiotic problem yet.
+
+
+# don't clone data repo, that's the whole stupid problem
+
+### sudo -H -u charles git clone ssh://git@gitdatabot:222/data/charlesreid1-data.git ${GITDIR}
+
 
 
 # Step 2: extract commit dates
 
-rm -f ${GITDIR}/commit_dates
+
 
 for dir in `find /var/lib/docker/volumes/podcharlesreid1_stormy_gitea_data/_data/git/repositories -mindepth 2 -maxdepth 2 -type d`; do
     git --git-dir=$dir --work-tree=${WORKDIR} \
@@ -57,18 +83,14 @@ rm -f ${GITDIR}/commit_dates
 chown charles:charles ${GITDIR}/commit_counts.csv
 
 
-
-# Step 4: Commit New Data
-
-(
-cd ${GITDIR}
-sudo -H -u charles git add commit_counts.csv
-sudo -H -u charles git commit commit_counts.csv -m '[scrape_gitea_as_sudo.sh] updating git commit count data'
-sudo -H -u charles git push origin master
-)
-
-
-# Step 5: Clean Up
-
-sudo rm -rf ${WORKDIR}
+# leave commits to the user.
+### 
+### (
+### cd ${GITDIR}
+### sudo -H -u charles git config user.name "databot"
+### sudo -H -u charles git config user.email "databot@charlesreid1.com"
+### sudo -H -u charles git add commit_counts.csv
+### sudo -H -u charles git commit commit_counts.csv -m '[scrape_gitea_as_sudo.sh] updating gitea commit count data'
+### sudo -H -u charles git push origin master
+### )
 
