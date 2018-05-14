@@ -1,6 +1,8 @@
 #!/bin/bash
 
-for dir in `/bin/ls -1 | /bin/grep "d-"`; do
+GREP="`which grep`"
+
+for dir in `/bin/ls -1 | $GREP "d-"`; do
     cd $dir
     git checkout master
     git pull origin master
