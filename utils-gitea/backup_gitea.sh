@@ -52,18 +52,23 @@ then
     echo "     - gitea dump zip"
     ${DOCKER} $NAME /bin/bash -c 'cd /backup && /app/gitea/gitea dump'
     echo "     - gitea avatars zip"
-    ${DOCKER} $NAME /bin/bash -c 'cd /data/gitea/ && zip /backup/gitea-avatars.zip avatars'
+    ${DOCKER} $NAME /bin/bash -c 'cd /data/gitea/ && tar czf /backup/gitea-avatars.tar.gz avatars'
 
-    echo " - Copying backup directory (with zip files) to ."
-    docker cp $NAME:/backup .
+    echo " - Copying backup directory (with zip files) to temporary backup location ${TEMP_BACKUP}"
+    TEMP_BACKUP=`mktemp -d 2>/dev/null || mktemp -d -t 'mytmpdir'`
+    mkdir -p $TEMP_BACKUP
+    docker cp $NAME:/backup $TEMP_BACKUP
 
     echo " - Cleaning up container"
     ${DOCKER} $NAME /bin/bash -c 'rm -rf /backup'
 
     # TODO: check if $1 is a directory. 
     # if not, at least stuff will still be left at backup/
-    echo " - Copy zip backup to target"
-    mkdir -p $1 && mv backup/*.zip $1/. && rm -rf backup
+    echo " - Copy zip backup from ${TEMP_BACKUP} to target"
+    mkdir -p $1 && mv $TEMP_BACKUP/*.{zip,gz} $1/.
+
+    echo " - Peace out"
+    rm -rf $TEMP_BACKUP
 
 else
     usage
