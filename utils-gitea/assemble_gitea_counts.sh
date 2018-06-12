@@ -36,4 +36,3 @@ git commit commit_counts.csv -m '[scrape_gitea_as_sudo.sh] updating gitea commit
 git push origin master
 )
 
-# rm -rf ${WORKDIR}
