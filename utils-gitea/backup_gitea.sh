@@ -62,8 +62,6 @@ then
     echo " - Cleaning up container"
     ${DOCKER} $NAME /bin/bash -c 'rm -rf /backup'
 
-    /bin/ls -l ${TEMP_BACKUP}
-
     # TODO: check if $1 is a directory. 
     # if not, at least stuff will still be left at backup/
     echo " - Copy zip backup from ${TEMP_BACKUP} to target"
