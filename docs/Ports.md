@@ -55,6 +55,8 @@ We will cover this in the nginx ports section,
 but all http urls are redirected to https urls.
 
 
+
+
 ## Ports
 
 ### nginx ports
@@ -79,6 +81,8 @@ To work with MediaWiki, nginx must implement
 rewrite rules: nginx listens for requests going 
 to wiki URLs (prefixed with `/w/` or `/wiki`)
 and proxies those to the correct container.
+
+
 
 
 ### mediawiki/apache ports
@@ -135,6 +139,7 @@ in the charlesreid1 pod - all containers connect to
 nginx and only nginx, while nginx exposes each container 
 to the outside world via requests for various subdomains 
 being redirected to different ports.
+
 
 
 ### phpmyadmin ports

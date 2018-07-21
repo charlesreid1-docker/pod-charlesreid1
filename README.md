@@ -3,6 +3,10 @@
 This repo contains a docker compose file 
 for running the charlesreid1.com site.
 
+See the documentation site here: <https://pages.charlesreid1.com/pod-charlesreid1>
+
+Or visit [docs/index.md](/docs/index.md)
+
 The services are:
 
 * mediawiki
@@ -45,15 +49,25 @@ used by this docker pod:
 
 ## Backups
 
-See **[Backups.md](/Backups.md)** for coverage of backup and utility scripts.
+There are a number of directories containing utility scripts - these are mostly 
+dedicated to creating backups of any non-version-controlled data inside the container.
 
-## Ports
+See **[Backups.md](Backups.md)** for coverage of backup and utility scripts.
 
-See **[Ports.md](/Ports.md)** for info about ports used by this docker pod:
+`utils-backups` - backup utilities (use the scripts below; good for cron jobs)
 
-* domains
-    * nginx domains
-* ports
+`utils-mw` - mediawiki backup utilities
+
+`utils-mysql` mysql backup utilities
+
+## Domains
+
+Domains and ports setup is described in the
+[Domains and Ports](Ports.md) document. It covers:
+
+* Domains
+    * nginx domain handling
+* Ports
     * nginx ports
     * mediawiki/apache ports
     * phpmyadmin ports
@@ -61,36 +75,7 @@ See **[Ports.md](/Ports.md)** for info about ports used by this docker pod:
     * gitea ports
     * python file server ports
 
-## Secrets
-
-See **[Secrets.md](/Secrets.md)** for more info about getting secrets like 
-passwords and sensitive files into various containers in the pod,
-without leaking out the information.
-
-* mysql database root password
-* mediawiki mysql database root password
-* gitea secret key and session id
-* nginx ssl certificates
-
-## Container-Specific Configuration Details
-
-Each container has a different way of getting
-configuration files into the container.
-In the following documents we cover 
-the specifics of each container.
-
-* [mediawiki](Service_mediawiki.md)
-* [apache + php](Service_apachephp.md)
-* [mysql](Service_mysql.md) (in progress)
-* [phpmyadmin](Service_phpmyadmin.md) (in progress)
-* [nginx](Service_nginx.md) (in progress)
-* [python](Service_python.md) (in progress)
-* [gitea](Service_gitea.md) (in progress)
-
-
-
-
-## Ports
+### Additional Port Info
 
 The apache-mediawiki combination is running an apache service listening on port 8989.
 This can be adjusted, but should be adjusted in the Dockerfile, `ports.conf`, and `wiki.conf`.
@@ -109,6 +94,42 @@ and acts as a reverse proxy, forwarding the requests to Apache.
 
 The user transparently sees everything happening via port 80 or (preferrably) 443,
 but on the backend nginx is passing along the URL request and returning the result.
+
+Subdomains are served via reverse proxy on port 7777+. 
+
+The webhook server is a flask server listening on port 50000.
+
+
+## Secrets
+
+See **[Secrets.md](Secrets.md)** for more info about getting secrets like 
+passwords and sensitive files into various containers in the pod,
+without leaking out the information.
+
+* mysql database root password
+* mediawiki mysql database root password
+* gitea secret key and session id
+* nginx ssl certificates
+
+## Container-Specific Configuration Details
+
+Each container has a different way of getting
+configuration files into the container.
+In the following documents we cover 
+the specifics of each container.
+
+* [mediawiki](Service_mediawiki.md)
+* [apache + php](Service_apachephp.md)
+* [mysql](Service_mysql.md)
+* [phpmyadmin](Service_phpmyadmin.md) 
+* [nginx + ssl](Service_nginx.md)
+* [python](Service_pythonfiles.md)
+* [gitea](Service_gitea.md)
+
+
+
+
+
 
 
 

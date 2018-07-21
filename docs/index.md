@@ -48,7 +48,7 @@ used by this docker pod:
 There are a number of directories containing utility scripts - these are mostly 
 dedicated to creating backups of any non-version-controlled data inside the container.
 
-See **[Backups.md](/Backups.md)** for coverage of backup and utility scripts.
+See **[Backups.md](Backups.md)** for coverage of backup and utility scripts.
 
 `utils-backups` - backup utilities (use the scripts below; good for cron jobs)
 
@@ -58,7 +58,7 @@ See **[Backups.md](/Backups.md)** for coverage of backup and utility scripts.
 
 ## Domains and Ports
 
-See **[Ports.md](/Ports.md)** for info about top-level domain names
+See **[Ports.md](Ports.md)** for info about top-level domain names
 and ports used by this docker pod.
 
 The domains ports document covers:
@@ -75,7 +75,7 @@ The domains ports document covers:
 
 ## Secrets
 
-See **[Secrets.md](/Secrets.md)** for more info about getting secrets like 
+See **[Secrets.md](Secrets.md)** for more info about getting secrets like 
 passwords and sensitive files into various containers in the pod,
 without leaking out the information.
 
