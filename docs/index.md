@@ -73,6 +73,31 @@ The domains ports document covers:
     * gitea ports
     * python file server ports
 
+### Additional Port Info
+
+The apache-mediawiki combination is running an apache service listening on port 8989.
+This can be adjusted, but should be adjusted in the Dockerfile, `ports.conf`, and `wiki.conf`.
+
+The apache service listens on all interfaces (hence `*:8989` in the apache conf file),
+but there is no port mapping specified in `docker-compose.yml` so it does not listen 
+on any public interfaces.
+
+Thus, the wiki is not publicly accessible via port 8989, but the wiki is available via port 8989
+to any container linked to, or connected to the same network as, the mediawiki apache container.
+
+Meanwhile, the nginx container has a public interface listening on port 80 
+and another listening on port 443. nginx listens for requests going to
+the wiki, detected via the url resource prefix being `/w/` or `/wiki/`,
+and acts as a reverse proxy, forwarding the requests to Apache.
+
+The user transparently sees everything happening via port 80 or (preferrably) 443,
+but on the backend nginx is passing along the URL request and returning the result.
+
+Subdomains are served via reverse proxy on port 7777+. 
+
+The webhook server is a flask server listening on port 50000.
+
+
 ## Secrets
 
 See **[Secrets.md](Secrets.md)** for more info about getting secrets like 
@@ -99,6 +124,14 @@ the specifics of each container.
 * [python](Service_pythonfiles.md)
 * [gitea](Service_gitea.md)
 
+
+## Backups
+
+See `utils-backups` for backup utilities.
+
+See `utils-mw` for mediawiki utilities.
+
+See `utils-mysql` for mysql utilities.
 
 ## Running
 
