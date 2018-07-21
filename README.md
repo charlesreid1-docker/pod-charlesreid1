@@ -127,15 +127,6 @@ the specifics of each container.
 * [gitea](Service_gitea.md)
 
 
-
-
-
-
-
-
-
-
-
 ## Backups
 
 See `utils-backups` for backup utilities.
