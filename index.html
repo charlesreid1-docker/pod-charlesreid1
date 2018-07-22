@@ -260,6 +260,19 @@
     Domains and Ports
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#additional-port-info" title="Additional Port Info" class="md-nav__link">
+    Additional Port Info
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -272,6 +285,13 @@
         <li class="md-nav__item">
   <a href="#container-specific-configuration-details" title="Container-Specific Configuration Details" class="md-nav__link">
     Container-Specific Configuration Details
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backups_1" title="Backups" class="md-nav__link">
+    Backups
   </a>
   
 </li>
@@ -491,6 +511,19 @@
     Domains and Ports
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#additional-port-info" title="Additional Port Info" class="md-nav__link">
+    Additional Port Info
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -503,6 +536,13 @@
         <li class="md-nav__item">
   <a href="#container-specific-configuration-details" title="Container-Specific Configuration Details" class="md-nav__link">
     Container-Specific Configuration Details
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backups_1" title="Backups" class="md-nav__link">
+    Backups
   </a>
   
 </li>
@@ -612,6 +652,22 @@ and ports used by this docker pod.</p>
 </ul>
 </li>
 </ul>
+<h3 id="additional-port-info">Additional Port Info<a class="headerlink" href="#additional-port-info" title="Permanent link">&para;</a></h3>
+<p>The apache-mediawiki combination is running an apache service listening on port 8989.
+This can be adjusted, but should be adjusted in the Dockerfile, <code>ports.conf</code>, and <code>wiki.conf</code>.</p>
+<p>The apache service listens on all interfaces (hence <code>*:8989</code> in the apache conf file),
+but there is no port mapping specified in <code>docker-compose.yml</code> so it does not listen 
+on any public interfaces.</p>
+<p>Thus, the wiki is not publicly accessible via port 8989, but the wiki is available via port 8989
+to any container linked to, or connected to the same network as, the mediawiki apache container.</p>
+<p>Meanwhile, the nginx container has a public interface listening on port 80 
+and another listening on port 443. nginx listens for requests going to
+the wiki, detected via the url resource prefix being <code>/w/</code> or <code>/wiki/</code>,
+and acts as a reverse proxy, forwarding the requests to Apache.</p>
+<p>The user transparently sees everything happening via port 80 or (preferrably) 443,
+but on the backend nginx is passing along the URL request and returning the result.</p>
+<p>Subdomains are served via reverse proxy on port 7777+. </p>
+<p>The webhook server is a flask server listening on port 50000.</p>
 <h2 id="secrets">Secrets<a class="headerlink" href="#secrets" title="Permanent link">&para;</a></h2>
 <p>See <strong><a href="Secrets/">Secrets.md</a></strong> for more info about getting secrets like 
 passwords and sensitive files into various containers in the pod,
@@ -636,6 +692,10 @@ the specifics of each container.</p>
 <li><a href="Service_pythonfiles/">python</a></li>
 <li><a href="Service_gitea/">gitea</a></li>
 </ul>
+<h2 id="backups_1">Backups<a class="headerlink" href="#backups_1" title="Permanent link">&para;</a></h2>
+<p>See <code>utils-backups</code> for backup utilities.</p>
+<p>See <code>utils-mw</code> for mediawiki utilities.</p>
+<p>See <code>utils-mysql</code> for mysql utilities.</p>
 <h2 id="running_1">Running<a class="headerlink" href="#running_1" title="Permanent link">&para;</a></h2>
 <p>From your project directory, start up your application by running:</p>
 <div class="codehilite"><pre><span></span>$ docker-compose up
