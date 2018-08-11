@@ -21,7 +21,7 @@ theme:
   font:
     text: 'Roboto'
     code: 'Roboto Mono'
-pages:
+nav:
   - 'Index' : 'index.md'
   - 'Running the Charlesreid1 Docker Pod' : 'Running.md'
   - 'Volumes' : 'Volumes.md'
@@ -43,3 +43,6 @@ markdown_extensions:
       guess_lang: false
   - toc:
       permalink: true
+
+
+strict: true
