@@ -1,15 +1,15 @@
 #!/bin/bash
 #
-# Just make a daily MediaWiki files backup.
+# Just make a monthly MediaWiki files backup.
 set -x
 
 stamp="`date +"%Y-%m-%d"`"
 backup_tool="${HOME}/codes/docker/pod-charlesreid1/utils-gitea/backup_gitea.sh"
 
-backup_dir="/junkinthetrunk/backups/daily/gitea_${stamp}"
+backup_dir="/junkinthetrunk/backups/monthly/gitea_${stamp}"
 backup_target="${backup_dir}"
 
-log_dir="${HOME}/.logs/backups/daily"
+log_dir="${HOME}/.logs/backups/monthly"
 log_target="${log_dir}/gitea_${stamp}.log"
 
 mkdir -p ${backup_dir}

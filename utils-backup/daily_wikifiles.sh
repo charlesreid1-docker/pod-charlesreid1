@@ -17,7 +17,7 @@ mkdir -p ${log_dir}
 cat /dev/null > ${log_target}
 
 echo "====================================" >> ${log_target}
-echo "=== Daily MediaWiki Files Backup ===" >> ${log_target}
+echo "=== MediaWiki Files Backup =========" >> ${log_target}
 echo "====================================" >> ${log_target}
 echo ""                                     >> ${log_target}
 echo "Backup Utility: ${backup_tool}"       >> ${log_target}
