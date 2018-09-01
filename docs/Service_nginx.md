@@ -270,6 +270,57 @@ This is a pain because of the need to automatically renew certificates
 every 90 days, and because of missing information in their documentation.
 
 
+### Where To Put Certificates
+
+We leave the certificates where Let's Encrypt puts them, namely, in `/etc/letsencrypt/live`.
+
+The certificates are bind-mounted into the container at the same location,
+`/etc/letsencrypt/live`. The [`docker-compose.yml` file](#)
+then contains the following:
+
+```
+    volumes:
+      - "/etc/letsencrypt:/etc/letsencrypt"
+      ...
+```
+
+
+### Which Server Needs Certificates
+
+Because the [d-nginx-charlesreid1 docker container](#)
+is serving as the front-end nginx server handling all
+incoming charlesreid1.com web requests, it is also the
+one negotiating HTTPS sessions with clients, so it is
+the container that needs the Let's Encrypt certificates.
+
+This means that, for example, the SSL certificate for 
+`pages.charlesreid1.com` is on krash, even though the
+content served up by the site is on blackbeard.
+
+
+### Getting and Renewing Certificates
+
+Once you have worked everything out and gotten auto-renew cron scripts
+running smoothly, everything is unicorns and rainbows. But when you hit
+the Let's Encrypt rate limit because they did not explain it properly
+in the documentation, you may want everyone to die.
+
+Let's Encrypt provides a command line utility called certbot that can be
+used to automate the process of creating and renewing certificates.
+
+See the [charlesreid1/certbot](https://git.charlesreid1.com/charlesreid1/certbot)
+repository for scripts. The basic setup is as follows:
+
+* Use the [`krash_make_cert.sh`](https://git.charlesreid1.com/charlesreid1/certbot/src/branch/master/krash_make_cert.sh)
+  script (which wraps the [`make_cert.sh`](https://git.charlesreid1.com/charlesreid1/certbot/src/branch/master/make_cert.sh)
+  script) to create SSL certificates for each domain and subdomain
+
+* Use the [`krash_renew.sh`](https://git.charlesreid1.com/charlesreid1/certbot/src/branch/master/krash_renew.sh)
+  script (which wraps the [`renew_cert.sh`](https://git.charlesreid1.com/charlesreid1/certbot/src/branch/master/renew_cert.sh)
+  script) to renew SSL certificates for each domain and subdomain
+
+* Certificates must be renewed every 90 days. I run the certificate renewal
+  script in the root acount's crontab every 15 days so the certs never expire.
 
 
 ## Domain Control
