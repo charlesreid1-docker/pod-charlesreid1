@@ -289,13 +289,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#running_1" title="Running" class="md-nav__link">
-    Running
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#links" title="Links" class="md-nav__link">
     Links
   </a>
@@ -551,13 +544,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#running_1" title="Running" class="md-nav__link">
-    Running
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#links" title="Links" class="md-nav__link">
     Links
   </a>
@@ -603,6 +589,17 @@ for running the charlesreid1.com site.</p>
 <li>Workflow for Charlesreid1 Docker Pod Updates</li>
 <li>Restoring the Docker Pod from Backups</li>
 </ul>
+<p>The quickstart: run</p>
+<div class="codehilite"><pre><span></span>$ docker-compose up
+</pre></div>
+
+
+<p>If you want to rebuild the images (if you changed the Dockerfile),
+use the <code>--build</code> flag:</p>
+<div class="codehilite"><pre><span></span>$ docker-compose up --build
+</pre></div>
+
+
 <h2 id="volumes">Volumes<a class="headerlink" href="#volumes" title="Permanent link">&para;</a></h2>
 <p>See <strong><a href="Volumes/">Volumes.md</a></strong> for info about data and volumes 
 used by this docker pod and each of its services:</p>
@@ -670,18 +667,6 @@ without leaking out the information.</p>
 <p>See <code>utils-backups</code> for backup utilities.</p>
 <p>See <code>utils-mw</code> for mediawiki utilities.</p>
 <p>See <code>utils-mysql</code> for mysql utilities.</p>
-<h2 id="running_1">Running<a class="headerlink" href="#running_1" title="Permanent link">&para;</a></h2>
-<p>From your project directory, start up your application by running:</p>
-<div class="codehilite"><pre><span></span>$ docker-compose up
-</pre></div>
-
-
-<p>If you want to rebuild the images (if you changed the Dockerfile),
-use the <code>--build</code> flag:</p>
-<div class="codehilite"><pre><span></span>$ docker-compose up --build
-</pre></div>
-
-
 <h2 id="links">Links<a class="headerlink" href="#links" title="Permanent link">&para;</a></h2>
 <p>docker compose documentation:</p>
 <ul>
