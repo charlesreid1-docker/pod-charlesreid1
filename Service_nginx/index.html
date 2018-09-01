@@ -460,6 +460,33 @@
     SSL Certificates
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#where-to-put-certificates" title="Where To Put Certificates" class="md-nav__link">
+    Where To Put Certificates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#which-server-needs-certificates" title="Which Server Needs Certificates" class="md-nav__link">
+    Which Server Needs Certificates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-and-renewing-certificates" title="Getting and Renewing Certificates" class="md-nav__link">
+    Getting and Renewing Certificates
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -624,6 +651,33 @@
   <a href="#ssl-certificates" title="SSL Certificates" class="md-nav__link">
     SSL Certificates
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#where-to-put-certificates" title="Where To Put Certificates" class="md-nav__link">
+    Where To Put Certificates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#which-server-needs-certificates" title="Which Server Needs Certificates" class="md-nav__link">
+    Which Server Needs Certificates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-and-renewing-certificates" title="Getting and Renewing Certificates" class="md-nav__link">
+    Getting and Renewing Certificates
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -890,6 +944,51 @@ git -C /www/example.com <span class="se">\</span>
 <p>We utilize Let's Encrypt to issue SSL certificates for our domain.
 This is a pain because of the need to automatically renew certificates
 every 90 days, and because of missing information in their documentation.</p>
+<h3 id="where-to-put-certificates">Where To Put Certificates<a class="headerlink" href="#where-to-put-certificates" title="Permanent link">&para;</a></h3>
+<p>We leave the certificates where Let's Encrypt puts them, namely, in <code>/etc/letsencrypt/live</code>.</p>
+<p>The certificates are bind-mounted into the container at the same location,
+<code>/etc/letsencrypt/live</code>. The <a href="#"><code>docker-compose.yml</code> file</a>
+then contains the following:</p>
+<div class="codehilite"><pre><span></span>    volumes:
+      - &quot;/etc/letsencrypt:/etc/letsencrypt&quot;
+      ...
+</pre></div>
+
+
+<h3 id="which-server-needs-certificates">Which Server Needs Certificates<a class="headerlink" href="#which-server-needs-certificates" title="Permanent link">&para;</a></h3>
+<p>Because the <a href="#">d-nginx-charlesreid1 docker container</a>
+is serving as the front-end nginx server handling all
+incoming charlesreid1.com web requests, it is also the
+one negotiating HTTPS sessions with clients, so it is
+the container that needs the Let's Encrypt certificates.</p>
+<p>This means that, for example, the SSL certificate for 
+<code>pages.charlesreid1.com</code> is on krash, even though the
+content served up by the site is on blackbeard.</p>
+<h3 id="getting-and-renewing-certificates">Getting and Renewing Certificates<a class="headerlink" href="#getting-and-renewing-certificates" title="Permanent link">&para;</a></h3>
+<p>Once you have worked everything out and gotten auto-renew cron scripts
+running smoothly, everything is unicorns and rainbows. But when you hit
+the Let's Encrypt rate limit because they did not explain it properly
+in the documentation, you may want everyone to die.</p>
+<p>Let's Encrypt provides a command line utility called certbot that can be
+used to automate the process of creating and renewing certificates.</p>
+<p>See the <a href="https://git.charlesreid1.com/charlesreid1/certbot">charlesreid1/certbot</a>
+repository for scripts. The basic setup is as follows:</p>
+<ul>
+<li>
+<p>Use the <a href="https://git.charlesreid1.com/charlesreid1/certbot/src/branch/master/krash_make_cert.sh"><code>krash_make_cert.sh</code></a>
+  script (which wraps the <a href="https://git.charlesreid1.com/charlesreid1/certbot/src/branch/master/make_cert.sh"><code>make_cert.sh</code></a>
+  script) to create SSL certificates for each domain and subdomain</p>
+</li>
+<li>
+<p>Use the <a href="https://git.charlesreid1.com/charlesreid1/certbot/src/branch/master/krash_renew.sh"><code>krash_renew.sh</code></a>
+  script (which wraps the <a href="https://git.charlesreid1.com/charlesreid1/certbot/src/branch/master/renew_cert.sh"><code>renew_cert.sh</code></a>
+  script) to renew SSL certificates for each domain and subdomain</p>
+</li>
+<li>
+<p>Certificates must be renewed every 90 days. I run the certificate renewal
+  script in the root acount's crontab every 15 days so the certs never expire.</p>
+</li>
+</ul>
 <h2 id="domain-control">Domain Control<a class="headerlink" href="#domain-control" title="Permanent link">&para;</a></h2>
 <p>There are three top-level domains controlled by pod-charlesreid1:</p>
 <ul>
