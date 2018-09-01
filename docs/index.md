@@ -3,7 +3,9 @@
 This repo contains a docker compose file 
 for running the charlesreid1.com site.
 
-The services are:
+## Services
+
+The services available through pod-charlesreid1 are:
 
 * [mediawiki](Service_mediawiki.md)
 * [apache + php](Service_apachephp.md)
