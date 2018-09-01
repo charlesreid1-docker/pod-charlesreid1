@@ -30,6 +30,8 @@ Daily backups of MediaWiki images folder go into:
 
 ### daily gitea
 
+WARNING: This uses a nutso amount of disk space.
+
 Daily backups of Gitea dump and avatars go into:
 
 ```
