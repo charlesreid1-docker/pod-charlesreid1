@@ -224,9 +224,117 @@
       
 
 
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Services
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Services
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
   <li class="md-nav__item">
-    <a href="../Running/" title="Running the Charlesreid1 Docker Pod" class="md-nav__link">
-      Running the Charlesreid1 Docker Pod
+    <a href="../Service_mediawiki/" title="Pod Service: MediaWiki" class="md-nav__link">
+      Pod Service: MediaWiki
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Service_apachephp/" title="Pod Service: Apache/PHP" class="md-nav__link">
+      Pod Service: Apache/PHP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Service_mysql/" title="Pod Service: MySQL" class="md-nav__link">
+      Pod Service: MySQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Service_phpmyadmin/" title="Pod Service: phpMyAdmin" class="md-nav__link">
+      Pod Service: phpMyAdmin
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Service_nginx/" title="Pod Service: nginx" class="md-nav__link">
+      Pod Service: nginx
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Service_pythonfiles/" title="Pod Service: Python File Server" class="md-nav__link">
+      Pod Service: Python File Server
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Service_gitea/" title="Pod Service: Gitea" class="md-nav__link">
+      Pod Service: Gitea
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Running/" title="Running the Pod" class="md-nav__link">
+      Running the Pod
     </a>
   </li>
 
@@ -249,8 +357,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Backups/" title="Backups (TODO)" class="md-nav__link">
-      Backups (TODO)
+    <a href="../Backups/" title="Backups" class="md-nav__link">
+      Backups
     </a>
   </li>
 
@@ -314,6 +422,13 @@
   
     <nav class="md-nav">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" title="overview" class="md-nav__link">
+    overview
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#nginx-ports" title="nginx ports" class="md-nav__link">
@@ -385,90 +500,6 @@
   </li>
 
     
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../Service_mediawiki/" title="Pod Service: MediaWiki" class="md-nav__link">
-      Pod Service: MediaWiki
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../Service_apachephp/" title="Pod Service: Apache/PHP" class="md-nav__link">
-      Pod Service: Apache/PHP
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../Service_mysql/" title="Pod Service: MySQL" class="md-nav__link">
-      Pod Service: MySQL
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../Service_phpmyadmin/" title="Pod Service: phpMyAdmin" class="md-nav__link">
-      Pod Service: phpMyAdmin
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../Service_nginx/" title="Pod Service: nginx" class="md-nav__link">
-      Pod Service: nginx
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../Service_pythonfiles/" title="Pod Service: Python File Server" class="md-nav__link">
-      Pod Service: Python File Server
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../Service_gitea/" title="Pod Service: Gitea" class="md-nav__link">
-      Pod Service: Gitea
-    </a>
-  </li>
-
-    
   </ul>
 </nav>
                   </div>
@@ -516,6 +547,13 @@
   
     <nav class="md-nav">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" title="overview" class="md-nav__link">
+    overview
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#nginx-ports" title="nginx ports" class="md-nav__link">
@@ -628,6 +666,22 @@ server {
 <p>We will cover this in the nginx ports section,
 but all http urls are redirected to https urls.</p>
 <h2 id="ports">Ports<a class="headerlink" href="#ports" title="Permanent link">&para;</a></h2>
+<h3 id="overview">overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h3>
+<p>The apache-mediawiki combination is running an apache service listening on port 8989.
+This can be adjusted, but should be adjusted in the Dockerfile, <code>ports.conf</code>, and <code>wiki.conf</code>.</p>
+<p>The apache service listens on all interfaces (hence <code>*:8989</code> in the apache conf file),
+but there is no port mapping specified in <code>docker-compose.yml</code> so it does not listen 
+on any public interfaces.</p>
+<p>Thus, the wiki is not publicly accessible via port 8989, but the wiki is available via port 8989
+to any container linked to, or connected to the same network as, the mediawiki apache container.</p>
+<p>Meanwhile, the nginx container has a public interface listening on port 80 
+and another listening on port 443. nginx listens for requests going to
+the wiki, detected via the url resource prefix being <code>/w/</code> or <code>/wiki/</code>,
+and acts as a reverse proxy, forwarding the requests to Apache.</p>
+<p>The user transparently sees everything happening via port 80 or (preferrably) 443,
+but on the backend nginx is passing along the URL request and returning the result.</p>
+<p>Subdomains are served via reverse proxy on port 7777+. </p>
+<p>The webhook server is a flask server listening on port 50000.</p>
 <h3 id="nginx-ports">nginx ports<a class="headerlink" href="#nginx-ports" title="Permanent link">&para;</a></h3>
 <p>Also see <a href="../Service_nginx/">nginx service</a>.</p>
 <p>Nginx has two main public-facing ports:
@@ -742,10 +796,10 @@ the same reverse proxy pattern:</p>
 </ul>
 <h3 id="python-file-server-ports">python file server ports<a class="headerlink" href="#python-file-server-ports" title="Permanent link">&para;</a></h3>
 <p>Also see <a href="../Service_pythonfiles/">python files service</a>.</p>
-<p>We have a simple, lightweight Python HTTP server
-that's run in a Docker container via the following
-command:</p>
-<div class="codehilite"><pre><span></span>python -m http.server -b &lt;bind-address&gt; 8080
+<p>We have a simple, lightweight Python HTTP server on port 8081
+on the Docker network. This container runs the following Python
+command to start the server:</p>
+<div class="codehilite"><pre><span></span>python -m http.server -b &lt;bind-address&gt; 8081
 </pre></div>
 
 
@@ -755,27 +809,35 @@ directory listing. This is as simple as it gets,
 as far as file servers go.</p>
 <p>This follows the same reverse proxy pattern:</p>
 <ul>
-<li>Python HTTP server listens for incoming requests
-    on the Docker network only. Client requests are 
-    reverse proxied by nginx on the front end.</li>
-<li>The server does not handle HTTPS, this is also 
-    handled by the nginx container on the frontend.</li>
-<li>The bind address and port of the Python HTTP server
-    are set in the command line. The <code>&lt;bind-address&gt;</code>
-    should be set to the name of the docker container image
-    (<code>stormy_files</code>).</li>
+<li>
+<p>Python HTTP server listens for incoming requests
+  on port 8081 on the Docker network only. Client 
+  requests are reverse proxied by <a href="https://git.charlesreid1.com/docker/d-nginx-charlesreid1">d-nginx-charlesreid1</a>
+  on the front end.</p>
+</li>
+<li>
+<p>The server does not handle HTTPS, this is also 
+  handled by the nginx container on the frontend.</p>
+</li>
+<li>
+<p>The bind address and port of the Python HTTP server
+  are set in the command line. The <code>&lt;bind-address&gt;</code>
+  should be set to the name of the docker container image
+  (<code>stormy_files</code>).</p>
+</li>
 </ul>
-<div class="codehilite"><pre><span></span>python -m http.server -b stormy_files 8080
+<p>The command</p>
+<div class="codehilite"><pre><span></span>python -m http.server -b stormy_files 8081
 </pre></div>
 
 
-<p>This listens on port 8080 inside the 
-python file server container <code>stormy_files</code>.</p>
+<p>listens on port 8081 inside the python file server 
+container <code>stormy_files</code> (the container itself).</p>
 <p>The nginx server reverse-proxies requests for 
 <a href="https://files.charlesreid1.com">https://files.charlesreid1.com</a>
 and forwards them to the container.</p>
 <p>Note: this container can be expanded to a container
-that serves multiple directories on multilpe ports
+that serves multiple directories on multiple ports
 by using twisted. See the 
 <a href="https://git.charlesreid1.com/docker/d-python-helium">d-python-helium</a>
 repository for an example.</p>
@@ -799,7 +861,7 @@ repository for an example.</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../Backups/" title="Backups (TODO)" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../Backups/" title="Backups" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -808,7 +870,7 @@ repository for an example.</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Backups (TODO)
+                Backups
               </span>
             </div>
           </a>
