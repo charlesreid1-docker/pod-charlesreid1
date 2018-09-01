@@ -8,7 +8,7 @@ The services are:
 * [mediawiki](Service_mediawiki.md)
 * [apache + php](Service_apachephp.md)
 * [mysql](Service_mysql.md)
-* [phpmyadmin](Service_phpmyadmin.md) (in progress)
+* [phpmyadmin](Service_phpmyadmin.md)
 * [nginx + ssl](Service_nginx.md) (in progress)
 * [python](Service_pythonfiles.md) (in progress)
 * [gitea](Service_gitea.md) (in progress)
