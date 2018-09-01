@@ -87,21 +87,6 @@ without leaking out the information.
 * gitea secret key and session id
 * nginx ssl certificates
 
-## Container-Specific Configuration Details
-
-Each container has a different way of getting
-configuration files into the container.
-In the following documents we cover 
-the specifics of each container.
-
-* [mediawiki](Service_mediawiki.md)
-* [apache + php](Service_apachephp.md)
-* [mysql](Service_mysql.md)
-* [phpmyadmin](Service_phpmyadmin.md) 
-* [nginx + ssl](Service_nginx.md)
-* [python](Service_pythonfiles.md)
-* [gitea](Service_gitea.md)
-
 
 ## Backups
 
