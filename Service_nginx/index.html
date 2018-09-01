@@ -456,29 +456,16 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ssl-certificates" title="SSL Certificates" class="md-nav__link">
+    SSL Certificates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#domain-control" title="Domain Control" class="md-nav__link">
     Domain Control
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#top-level-domains" title="Top-Level Domains" class="md-nav__link">
-    Top-Level Domains
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#subdomains" title="Subdomains" class="md-nav__link">
-    Subdomains
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -634,29 +621,16 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ssl-certificates" title="SSL Certificates" class="md-nav__link">
+    SSL Certificates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#domain-control" title="Domain Control" class="md-nav__link">
     Domain Control
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#top-level-domains" title="Top-Level Domains" class="md-nav__link">
-    Top-Level Domains
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#subdomains" title="Subdomains" class="md-nav__link">
-    Subdomains
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -680,8 +654,6 @@
                 <h1 id="nginx">Nginx<a class="headerlink" href="#nginx" title="Permanent link">&para;</a></h1>
 <p>This describes the configuration of the main nginx container
 for the charlesreid1.com pod.</p>
-<p><br />
-<br /></p>
 <h2 id="configuration-files">Configuration Files<a class="headerlink" href="#configuration-files" title="Permanent link">&para;</a></h2>
 <p>The nginx container is critical to routing operations on
 charlesreid1.com, so we cover how the configuration files
@@ -719,18 +691,24 @@ hooks.charlesreid1.com, bots.charlesreid1.com):</p>
 <li><code>https.blue.charlesreid1.subdomains.conf</code></li>
 </ul>
 <h3 id="http-config-files">HTTP Config Files<a class="headerlink" href="#http-config-files" title="Permanent link">&para;</a></h3>
-<p>The HTTP config files do the following:</p>
-<ul>
-<li>Requests for port 80 (for a domain or subdomain) are always redirected
-  to port 443 for the same domain/subdomain</li>
-</ul>
-<p><strong>FILES LIST:</strong></p>
+<p>The HTTP config files are listed below:</p>
 <ul>
 <li><code>http.com.charlesreid1.conf</code></li>
 <li><code>http.red.charlesreid1.conf</code></li>
 <li><code>http.blue.charlesreid1.conf</code></li>
 </ul>
+<p>The HTTP config files do the following:</p>
+<ul>
+<li>Requests for port 80 (for a domain or subdomain) are always redirected
+  to port 443 for the same domain/subdomain</li>
+</ul>
 <h3 id="https-config-files">HTTPS Config Files<a class="headerlink" href="#https-config-files" title="Permanent link">&para;</a></h3>
+<p>The HTTPS config files are listed below:</p>
+<ul>
+<li><code>https.com.charlesreid1.conf</code></li>
+<li><code>https.red.charlesreid1.conf</code></li>
+<li><code>https.blue.charlesreid1.conf</code></li>
+</ul>
 <p>The HTTPS config files (without "subdomain" in their name) do the following:</p>
 <ul>
 <li>
@@ -753,13 +731,13 @@ hooks.charlesreid1.com, bots.charlesreid1.com):</p>
   <a href="../Service_pythonfiles/">Python files</a> on port 8081</p>
 </li>
 </ul>
-<p><strong>FILES LIST:</strong></p>
-<ul>
-<li><code>https.com.charlesreid1.conf</code></li>
-<li><code>https.red.charlesreid1.conf</code></li>
-<li><code>https.blue.charlesreid1.conf</code></li>
-</ul>
 <h3 id="https-subdomain-config-files">HTTPS Subdomain Config Files<a class="headerlink" href="#https-subdomain-config-files" title="Permanent link">&para;</a></h3>
+<p>The HTTPS subdomain config files are listed below:</p>
+<ul>
+<li><code>https.com.charlesreid1.subdomains.conf</code></li>
+<li><code>https.red.charlesreid1.subdomains.conf</code></li>
+<li><code>https.blue.charlesreid1.subdomains.conf</code></li>
+</ul>
 <p>The subdomains config files redirect requests for a set of subdomains
 on charlesreid1.com, namely:</p>
 <ul>
@@ -775,12 +753,6 @@ under the <a href="https://pages.charlesreid1.com">https://pages.charlesreid1.co
 container also runs a Python webhook server that receives webhooks from git.charlesreid1.com,
 which enables push-to-deploy functionality similar to Github Pages.</p>
 <p>Also see <a href="https://pages.charlesreid1.com/pod-webhooks/">https://pages.charlesreid1.com/pod-webhooks/</a>.</p>
-<p><strong>FILES LIST:</strong></p>
-<ul>
-<li><code>https.com.charlesreid1.subdomains.conf</code></li>
-<li><code>https.red.charlesreid1.subdomains.conf</code></li>
-<li><code>https.blue.charlesreid1.subdomains.conf</code></li>
-</ul>
 <h3 id="why-all-the-config-files">Why All The Config Files?<a class="headerlink" href="#why-all-the-config-files" title="Permanent link">&para;</a></h3>
 <p>If everything is stuffed into a smaller number of
 nginx config files, they become long and unwieldy,
@@ -795,8 +767,6 @@ by bind-mounting the <code>conf.d</code> folder of the <code>d-nginx-charlesreid
 submodule at <code>/et/nginx/conf.d</code> in the container.</p>
 <p>This is done in the <a href="https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/docker-compose.fixme.yml#L57">charlesreid1 pod docker-compose
 file</a>.</p>
-<p><br />
-<br /></p>
 <h2 id="static-content">Static Content<a class="headerlink" href="#static-content" title="Permanent link">&para;</a></h2>
 <p>The nginx container hosts static content, in addition to serving
 as a reverse-proxy for several other services. This section covers
@@ -916,21 +886,29 @@ git -C /www/example.com <span class="se">\</span>
 </pre></div>
 </td></tr></table>
 
-<p><br />
-<br /></p>
+<h2 id="ssl-certificates">SSL Certificates<a class="headerlink" href="#ssl-certificates" title="Permanent link">&para;</a></h2>
+<p>We utilize Let's Encrypt to issue SSL certificates for our domain.
+This is a pain because of the need to automatically renew certificates
+every 90 days, and because of missing information in their documentation.</p>
 <h2 id="domain-control">Domain Control<a class="headerlink" href="#domain-control" title="Permanent link">&para;</a></h2>
 <p>There are three top-level domains controlled by pod-charlesreid1:</p>
 <ul>
-<li>charlesreid1.com</li>
-<li>charlesreid1.blue</li>
-<li>charlesreid1.red</li>
+<li><a href="https://charlesreid1.com">https://charlesreid1.com</a></li>
+<li><a href="https://charlesreid1.blue">https://charlesreid1.blue</a></li>
+<li><a href="https://charlesreid1.red">https://charlesreid1.red</a></li>
 </ul>
-<h3 id="top-level-domains">Top-Level Domains<a class="headerlink" href="#top-level-domains" title="Permanent link">&para;</a></h3>
-<p>.com, .blue, .red</p>
-<h3 id="subdomains">Subdomains<a class="headerlink" href="#subdomains" title="Permanent link">&para;</a></h3>
-<p>bots, pages, hooks</p>
-<p><br />
-<br /></p>
+<p>There are several subdomains available on charlesreid1.com.</p>
+<p>Hosted on krash:</p>
+<ul>
+<li><a href="https://git.charlesreid1.com">https://git.charlesreid1.com</a> - gitea service</li>
+<li><a href="https://files.charlesreid1.com">https://files.charlesreid1.com</a> - static file hosting</li>
+</ul>
+<p>Hosted on blackbeard:</p>
+<ul>
+<li><a href="https://pages.charlesreid1.com">https://pages.charlesreid1.com</a> - push-to-deploy static pages</li>
+<li><a href="https://hooks.charlesreid1.com">https://hooks.charlesreid1.com</a> - webhook server</li>
+<li><a href="https://bots.charlesreid1.com">https://bots.charlesreid1.com</a> - info about bots</li>
+</ul>
                 
                   
                 
