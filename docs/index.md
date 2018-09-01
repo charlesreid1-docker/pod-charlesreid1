@@ -9,7 +9,7 @@ The services are:
 * [apache + php](Service_apachephp.md)
 * [mysql](Service_mysql.md)
 * [phpmyadmin](Service_phpmyadmin.md)
-* [nginx + ssl](Service_nginx.md) (in progress)
+* [nginx + ssl](Service_nginx.md)
 * [python](Service_pythonfiles.md) (in progress)
 * [gitea](Service_gitea.md) (in progress)
 
