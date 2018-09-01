@@ -54,19 +54,25 @@ hooks.charlesreid1.com, bots.charlesreid1.com):
 
 ### HTTP Config Files
 
-The HTTP config files do the following:
-
-* Requests for port 80 (for a domain or subdomain) are always redirected
-  to port 443 for the same domain/subdomain
-
-**FILES LIST:**
+The HTTP config files are listed below:
 
 * `http.com.charlesreid1.conf`
 * `http.red.charlesreid1.conf`
 * `http.blue.charlesreid1.conf`
 
+The HTTP config files do the following:
+
+* Requests for port 80 (for a domain or subdomain) are always redirected
+  to port 443 for the same domain/subdomain
+
 
 ### HTTPS Config Files
+
+The HTTPS config files are listed below:
+
+* `https.com.charlesreid1.conf`
+* `https.red.charlesreid1.conf`
+* `https.blue.charlesreid1.conf`
 
 The HTTPS config files (without "subdomain" in their name) do the following:
 
@@ -84,14 +90,14 @@ The HTTPS config files (without "subdomain" in their name) do the following:
 * Requests for `files.charlesreid1.com` are reverse-proxied to the local
   [Python files](Service_pythonfiles.md) on port 8081
 
-**FILES LIST:**
-
-* `https.com.charlesreid1.conf`
-* `https.red.charlesreid1.conf`
-* `https.blue.charlesreid1.conf`
-
 
 ### HTTPS Subdomain Config Files
+
+The HTTPS subdomain config files are listed below:
+
+* `https.com.charlesreid1.subdomains.conf`
+* `https.red.charlesreid1.subdomains.conf`
+* `https.blue.charlesreid1.subdomains.conf`
 
 The subdomains config files redirect requests for a set of subdomains
 on charlesreid1.com, namely:
@@ -111,12 +117,6 @@ which enables push-to-deploy functionality similar to Github Pages.
 
 Also see <https://pages.charlesreid1.com/pod-webhooks/>.
 
-**FILES LIST:**
-
-* `https.com.charlesreid1.subdomains.conf`
-* `https.red.charlesreid1.subdomains.conf`
-* `https.blue.charlesreid1.subdomains.conf`
-
 
 ### Why All The Config Files?
 
@@ -126,6 +126,7 @@ and more prone to mistakes.
 
 * HTTP config files only contain redirects
 * HTTPS (no subdomain) config files handle 
+
 
 ### Getting Configuration Files Into Container
 
@@ -272,27 +273,22 @@ git -C /www/example.com \
 
 There are three top-level domains controlled by pod-charlesreid1:
 
-* charlesreid1.com
-* charlesreid1.blue
-* charlesreid1.red
+* <https://charlesreid1.com>
+* <https://charlesreid1.blue>
+* <https://charlesreid1.red>
+
+There are several subdomains available on charlesreid1.com.
+
+Hosted on krash:
+
+* <https://git.charlesreid1.com> - gitea service
+* <https://files.charlesreid1.com> - static file hosting
+
+Hosted on blackbeard:
+
+* <https://pages.charlesreid1.com> - push-to-deploy static pages
+* <https://hooks.charlesreid1.com> - webhook server
+* <https://bots.charlesreid1.com> - info about bots
 
 
-
-
-
-
-
-
-
-
-### Top-Level Domains
-
-.com, .blue, .red
-
-### Subdomains
-
-bots, pages, hooks
-
-<br />
-<br />
 
