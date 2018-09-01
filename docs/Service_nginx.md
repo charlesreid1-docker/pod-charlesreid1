@@ -3,8 +3,6 @@
 This describes the configuration of the main nginx container
 for the charlesreid1.com pod.
 
-<br />
-<br />
 
 ## Configuration Files
 
@@ -137,8 +135,6 @@ submodule at `/et/nginx/conf.d` in the container.
 This is done in the [charlesreid1 pod docker-compose
 file](https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/docker-compose.fixme.yml#L57).
 
-<br />
-<br />
 
 ## Static Content
 
@@ -266,8 +262,15 @@ git -C /www/example.com \
 ```
 
 
-<br />
-<br />
+
+## SSL Certificates
+
+We utilize Let's Encrypt to issue SSL certificates for our domain.
+This is a pain because of the need to automatically renew certificates
+every 90 days, and because of missing information in their documentation.
+
+
+
 
 ## Domain Control
 
