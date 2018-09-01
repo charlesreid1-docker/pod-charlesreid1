@@ -12,15 +12,15 @@ is [here](https://git.charlesreid1.com/docker/d-phpmyadmin/src/branch/master/run
 in the [docker/d-phpmyadmin](https://git.charlesreid1.com/docker/d-phpmyadmin)
 repository on git.charlesreid1.com.
 
-Inside the container, the phpMyAdmin service is available
-on port 80, so this should be mapped to the outside of the 
-container to a different port that is unique to phpMyAdmin
-on the Docker pod's network, for example on port 8080.
+The phpMyAdmin service is a web interface that is available
+on port 80. The container should only be bound to the
+Docker container network (default behavior). Then any
+container on the network can reach the container's 
+phpMyAdmin service on port 80.
 
-This enables requests for `/phpMyAdmin` to be reverse-proxied
-by the nginx container and sent to the phpMyAdmin service 
-container on pot 8080, and will ensure that phpMyAdmin is
-only bound to the Docker pod network.
+This allows the phpMyAdmin service to be made available at
+a URL like `/phpMyAdmin` and have all requests reverse-proxied 
+by the nginx container and passed to port 80 on the back end.
 
 The phpMyAdmin service can also be disabled/enabled by 
 commenting it out of the nginx configuration files containing
