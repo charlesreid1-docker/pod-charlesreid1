@@ -22,8 +22,8 @@ theme:
     text: 'Roboto'
     code: 'Roboto Mono'
 nav:
-  - Index: 'index.md'
-  - Services:
+  - 'Index': 'index.md'
+  - 'Services':
     - 'Pod Service: MediaWiki' : 'Service_mediawiki.md'
     - 'Pod Service: Apache/PHP' : 'Service_apachephp.md'
     - 'Pod Service: MySQL' : 'Service_mysql.md'

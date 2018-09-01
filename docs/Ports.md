@@ -59,6 +59,32 @@ but all http urls are redirected to https urls.
 
 ## Ports
 
+
+### overview
+
+The apache-mediawiki combination is running an apache service listening on port 8989.
+This can be adjusted, but should be adjusted in the Dockerfile, `ports.conf`, and `wiki.conf`.
+
+The apache service listens on all interfaces (hence `*:8989` in the apache conf file),
+but there is no port mapping specified in `docker-compose.yml` so it does not listen 
+on any public interfaces.
+
+Thus, the wiki is not publicly accessible via port 8989, but the wiki is available via port 8989
+to any container linked to, or connected to the same network as, the mediawiki apache container.
+
+Meanwhile, the nginx container has a public interface listening on port 80 
+and another listening on port 443. nginx listens for requests going to
+the wiki, detected via the url resource prefix being `/w/` or `/wiki/`,
+and acts as a reverse proxy, forwarding the requests to Apache.
+
+The user transparently sees everything happening via port 80 or (preferrably) 443,
+but on the backend nginx is passing along the URL request and returning the result.
+
+Subdomains are served via reverse proxy on port 7777+. 
+
+The webhook server is a flask server listening on port 50000.
+
+
 ### nginx ports
 
 Also see [nginx service](Service_nginx.md).
@@ -81,7 +107,6 @@ To work with MediaWiki, nginx must implement
 rewrite rules: nginx listens for requests going 
 to wiki URLs (prefixed with `/w/` or `/wiki`)
 and proxies those to the correct container.
-
 
 
 
@@ -205,12 +230,12 @@ the same reverse proxy pattern:
 
 Also see [python files service](Service_pythonfiles.md).
 
-We have a simple, lightweight Python HTTP server
-that's run in a Docker container via the following
-command:
+We have a simple, lightweight Python HTTP server on port 8081
+on the Docker network. This container runs the following Python
+command to start the server:
 
 ```
-python -m http.server -b <bind-address> 8080
+python -m http.server -b <bind-address> 8081
 ```
 
 This works because Python provides a built-in HTTP server
@@ -221,28 +246,33 @@ as far as file servers go.
 This follows the same reverse proxy pattern:
 
 * Python HTTP server listens for incoming requests
-    on the Docker network only. Client requests are 
-    reverse proxied by nginx on the front end.
+  on port 8081 on the Docker network only. Client 
+  requests are reverse proxied by [d-nginx-charlesreid1](https://git.charlesreid1.com/docker/d-nginx-charlesreid1)
+  on the front end.
+
 * The server does not handle HTTPS, this is also 
-    handled by the nginx container on the frontend.
+  handled by the nginx container on the frontend.
+
 * The bind address and port of the Python HTTP server
-    are set in the command line. The `<bind-address>`
-    should be set to the name of the docker container image
-    (`stormy_files`).
+  are set in the command line. The `<bind-address>`
+  should be set to the name of the docker container image
+  (`stormy_files`).
+
+The command
 
 ```
-python -m http.server -b stormy_files 8080
+python -m http.server -b stormy_files 8081
 ```
 
-This listens on port 8080 inside the 
-python file server container `stormy_files`.
+listens on port 8081 inside the python file server 
+container `stormy_files` (the container itself).
 
 The nginx server reverse-proxies requests for 
-[https://files.charlesreid1.com](https://files.charlesreid1.com)
+<https://files.charlesreid1.com>
 and forwards them to the container.
 
 Note: this container can be expanded to a container
-that serves multiple directories on multilpe ports
+that serves multiple directories on multiple ports
 by using twisted. See the 
 [d-python-helium](https://git.charlesreid1.com/docker/d-python-helium)
 repository for an example.
