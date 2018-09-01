@@ -151,17 +151,20 @@ phpMyAdmin provides a web interface for MySQL databases.
 This follows a similar pattern to the MediaWiki Apache container:
 
 * The phpMyAdmin container is connected to the MySQL container
-    via the docker network created by the `docker-compose` command
-    (no container links needed)
-* The phpMyAdmin container runs an HTTP web interface,
-    and listens only for incoming requests from the local 
-    network. Requests to phpMyAdmin are reverse-proxied 
-    by the nginx container in this pod.
-* Because phpMyAdmin is not a heavily-used tool in 
-    daily tasks, and because it provides access to 
-    sensitive data and operations, it should be 
-    completely disabled from public access unless
-    needed.
+  via the docker network created by the `docker-compose` command
+  (no container links needed)
+
+* The phpMyAdmin container runs an HTTP web interface available inside
+  the container on port 80. This service is exposed on port 80 on the 
+  internal docker network only.
+
+* Since phpMyAdmin only listens on the Docker pod network for incoming
+  requests, all requests to phpMyAdmin must come through nginx via 
+  reverse proxy. These are forwarded to port 80 of the phpMyAdmin container
+  on the back end.
+
+* We keep phpMyAdmin disabled on a regular basis, as it is not
+  heavily used and provides access to sensitive data and operations.
 
 To control access to phpMyAdmin, 
 configure the [nginx service](Service_nginx.md)
