@@ -25,6 +25,20 @@ See **[Running.md](/Running.md)** for info about running this docker pod:
 * Workflow for Charlesreid1 Docker Pod Updates
 * Restoring the Docker Pod from Backups
 
+The quickstart: run
+
+```
+$ docker-compose up
+```
+
+If you want to rebuild the images (if you changed the Dockerfile),
+use the `--build` flag:
+
+```
+$ docker-compose up --build
+```
+
+
 ## Volumes
 
 See **[Volumes.md](/Volumes.md)** for info about data and volumes 
@@ -95,21 +109,6 @@ See `utils-backups` for backup utilities.
 See `utils-mw` for mediawiki utilities.
 
 See `utils-mysql` for mysql utilities.
-
-## Running
-
-From your project directory, start up your application by running:
-
-```
-$ docker-compose up
-```
-
-If you want to rebuild the images (if you changed the Dockerfile),
-use the `--build` flag:
-
-```
-$ docker-compose up --build
-```
 
 ## Links
 
