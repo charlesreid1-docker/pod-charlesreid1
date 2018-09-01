@@ -3,10 +3,6 @@
 This repo contains a docker compose file 
 for running the charlesreid1.com site.
 
-See the documentation site here: <https://pages.charlesreid1.com/pod-charlesreid1>
-
-Or visit [docs/index.md](/docs/index.md)
-
 The services are:
 
 * mediawiki
@@ -17,6 +13,15 @@ The services are:
 * python
 * gitea
 
+## Links
+
+See the documentation site here: <https://pages.charlesreid1.com/pod-charlesreid1>
+
+Or visit [docs/index.md](/docs/index.md)
+
+Source code on git.charlesreid1.com: <https://git.charlesreid1.com/docker/pod-charlesreid1>
+
+Source code on github.com: <https://github.com/charlesreid1-docker/pod-charlesreid1>
 
 ## Running
 
