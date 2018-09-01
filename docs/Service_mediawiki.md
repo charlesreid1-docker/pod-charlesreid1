@@ -45,8 +45,9 @@ in the `mediawiki/` directory.
 
 That's also where the `extensions/`
 directory goes. There is also 
-a script there called `build_extensions_dir.sh`
-to clone copies of each MediaWiki extension.
+a script in the [wiki/charlesreid1-config](https://git.charlesreid1.com/wiki/charlesreid1-config)
+repo called [`build_extensions_dir.sh`](https://git.charlesreid1.com/wiki/charlesreid1-config/src/branch/master/mediawiki/build_extensions_dir.sh)
+that clone copies of each MediaWiki extension.
 
 Inside the MediaWiki container,
 the live HTML directory is at 
@@ -66,7 +67,7 @@ on git.charlesreid1.com.
 
 The configuration files mentioned above
 (LocalSettings, skins, and extensions)
-must be coiped into the container at build time.
+must be copied into the container at build time.
 
 This is done in the MediaWiki Dockerfile - 
 see [d-mediawiki](https://git.charlesreid1.com/docker/d-mediawiki).
@@ -152,7 +153,7 @@ CMD cd /var/www/html/extensions/Math/math && make && apache2-foreground
 ## Updating Skin or LocalSettings.php
 
 Note that if you update the MediaWiki skin 
-or the LocalSettings.php file, 
+or the `LocalSettings.php` file, 
 you will need to rebuild the container
 and restart it.
 
@@ -178,7 +179,7 @@ git push or git pull.
 
 (This is not currently how
 it is structured, as the 
-skin and LocalSettings.php
+skin and `LocalSettings.php`
 files are not under version 
 control in the container. 
 This would be difficult for 
@@ -220,7 +221,7 @@ A couple of things have to happen:
 
 There are utilities for MediaWiki in `utils-mw`:
 
-* `backup_wikifiles.sh` - back up wiki image files to a tarball
-* `restore_wikifiles.sh` - restore backed up image files from a tarball
-* `update_wikidb.sh` - one-time script to update the wiki database after a version bump
+* [`backup_wikifiles.sh`](https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/utils-mw/backup_wikifiles.sh) - back up wiki image files to a tarball from the `story_mw` container
+* [`restore_wikifiles.sh`](https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/utils-mw/restore_wikifiles.sh) - restore backed up image files from a tarball into the `story_mw` container
+* [`update_wikidb.sh`](https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/utils-mw/update_wikidb.sh) - one-time script to update the wiki database after a version bump
 
