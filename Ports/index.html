@@ -34,7 +34,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="..">
-      <meta name="generator" content="mkdocs-1.0, mkdocs-material-3.0.3">
+      <meta name="generator" content="mkdocs-1.0.2, mkdocs-material-3.0.3">
     
     
       
@@ -694,18 +694,26 @@ being redirected to different ports.</p>
 <p>phpMyAdmin provides a web interface for MySQL databases.</p>
 <p>This follows a similar pattern to the MediaWiki Apache container:</p>
 <ul>
-<li>The phpMyAdmin container is connected to the MySQL container
-    via the docker network created by the <code>docker-compose</code> command
-    (no container links needed)</li>
-<li>The phpMyAdmin container runs an HTTP web interface,
-    and listens only for incoming requests from the local 
-    network. Requests to phpMyAdmin are reverse-proxied 
-    by the nginx container in this pod.</li>
-<li>Because phpMyAdmin is not a heavily-used tool in 
-    daily tasks, and because it provides access to 
-    sensitive data and operations, it should be 
-    completely disabled from public access unless
-    needed.</li>
+<li>
+<p>The phpMyAdmin container is connected to the MySQL container
+  via the docker network created by the <code>docker-compose</code> command
+  (no container links needed)</p>
+</li>
+<li>
+<p>The phpMyAdmin container runs an HTTP web interface available inside
+  the container on port 80. This service is exposed on port 80 on the 
+  internal docker network only.</p>
+</li>
+<li>
+<p>Since phpMyAdmin only listens on the Docker pod network for incoming
+  requests, all requests to phpMyAdmin must come through nginx via 
+  reverse proxy. These are forwarded to port 80 of the phpMyAdmin container
+  on the back end.</p>
+</li>
+<li>
+<p>We keep phpMyAdmin disabled on a regular basis, as it is not
+  heavily used and provides access to sensitive data and operations.</p>
+</li>
 </ul>
 <p>To control access to phpMyAdmin, 
 configure the <a href="../Service_nginx/">nginx service</a>
@@ -848,7 +856,7 @@ repository for an example.</p>
     
       <script src="../assets/javascripts/application.e72fd936.js"></script>
       
-      <script>app.initialize({version:"1.0",url:{base:".."}})</script>
+      <script>app.initialize({version:"1.0.2",url:{base:".."}})</script>
       
         <script src="../search/main.js"></script>
       

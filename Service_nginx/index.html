@@ -34,7 +34,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="..">
-      <meta name="generator" content="mkdocs-1.0, mkdocs-material-3.0.3">
+      <meta name="generator" content="mkdocs-1.0.2, mkdocs-material-3.0.3">
     
     
       
@@ -82,6 +82,10 @@
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../#nginx" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
     
     
       <header class="md-header" data-md-component="header">
@@ -334,10 +338,157 @@
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Pod Service: nginx
+      </label>
     
     <a href="./" title="Pod Service: nginx" class="md-nav__link md-nav__link--active">
       Pod Service: nginx
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-files" title="Configuration Files" class="md-nav__link">
+    Configuration Files
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#where-are-the-nginx-config-files" title="Where are the nginx config files?" class="md-nav__link">
+    Where are the nginx config files?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-files-are-there" title="What Files Are There?" class="md-nav__link">
+    What Files Are There?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-config-files" title="HTTP Config Files" class="md-nav__link">
+    HTTP Config Files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#https-config-files" title="HTTPS Config Files" class="md-nav__link">
+    HTTPS Config Files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#https-subdomain-config-files" title="HTTPS Subdomain Config Files" class="md-nav__link">
+    HTTPS Subdomain Config Files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-all-the-config-files" title="Why All The Config Files?" class="md-nav__link">
+    Why All The Config Files?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-configuration-files-into-container" title="Getting Configuration Files Into Container" class="md-nav__link">
+    Getting Configuration Files Into Container
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-content" title="Static Content" class="md-nav__link">
+    Static Content
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#outside-the-container-www" title="Outside the Container: /www/" class="md-nav__link">
+    Outside the Container: /www/
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inside-the-container-usrsharenginxhtml" title="Inside the Container: /usr/share/nginx/html" class="md-nav__link">
+    Inside the Container: /usr/share/nginx/html
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#utility-scripts-updating-site-contents" title="Utility Scripts: Updating Site Contents" class="md-nav__link">
+    Utility Scripts: Updating Site Contents
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#domain-control" title="Domain Control" class="md-nav__link">
+    Domain Control
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#top-level-domains" title="Top-Level Domains" class="md-nav__link">
+    Top-Level Domains
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subdomains" title="Subdomains" class="md-nav__link">
+    Subdomains
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -373,15 +524,413 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-files" title="Configuration Files" class="md-nav__link">
+    Configuration Files
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#where-are-the-nginx-config-files" title="Where are the nginx config files?" class="md-nav__link">
+    Where are the nginx config files?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-files-are-there" title="What Files Are There?" class="md-nav__link">
+    What Files Are There?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-config-files" title="HTTP Config Files" class="md-nav__link">
+    HTTP Config Files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#https-config-files" title="HTTPS Config Files" class="md-nav__link">
+    HTTPS Config Files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#https-subdomain-config-files" title="HTTPS Subdomain Config Files" class="md-nav__link">
+    HTTPS Subdomain Config Files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-all-the-config-files" title="Why All The Config Files?" class="md-nav__link">
+    Why All The Config Files?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-configuration-files-into-container" title="Getting Configuration Files Into Container" class="md-nav__link">
+    Getting Configuration Files Into Container
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-content" title="Static Content" class="md-nav__link">
+    Static Content
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#outside-the-container-www" title="Outside the Container: /www/" class="md-nav__link">
+    Outside the Container: /www/
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inside-the-container-usrsharenginxhtml" title="Inside the Container: /usr/share/nginx/html" class="md-nav__link">
+    Inside the Container: /usr/share/nginx/html
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#utility-scripts-updating-site-contents" title="Utility Scripts: Updating Site Contents" class="md-nav__link">
+    Utility Scripts: Updating Site Contents
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#domain-control" title="Domain Control" class="md-nav__link">
+    Domain Control
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#top-level-domains" title="Top-Level Domains" class="md-nav__link">
+    Top-Level Domains
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subdomains" title="Subdomains" class="md-nav__link">
+    Subdomains
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
                 
                 
-                  <h1>Pod Service: nginx</h1>
-                
-                
+                <h1 id="nginx">Nginx<a class="headerlink" href="#nginx" title="Permanent link">&para;</a></h1>
+<p>This describes the configuration of the main nginx container
+for the charlesreid1.com pod.</p>
+<p><br />
+<br /></p>
+<h2 id="configuration-files">Configuration Files<a class="headerlink" href="#configuration-files" title="Permanent link">&para;</a></h2>
+<p>The nginx container is critical to routing operations on
+charlesreid1.com, so we cover how the configuration files
+are split up and organized on this page, and include
+a summary of each file below.</p>
+<h3 id="where-are-the-nginx-config-files">Where are the nginx config files?<a class="headerlink" href="#where-are-the-nginx-config-files" title="Permanent link">&para;</a></h3>
+<p>Nginx configuration files are located in the <code>d-nginx-charlesreid1</code>
+submodule of this repository, which points to the
+<a href="https://git.charlesreid1.com/docker/d-nginx-charlesreid1">docker/d-nginx-charlesreid1</a>
+repository.</p>
+<p>Within that repository is the <a href="https://git.charlesreid1.com/docker/d-nginx-charlesreid1/src/branch/master/conf.d"><code>conf.d/</code></a>
+folder, which contains several <code>.conf</code> files.</p>
+<h3 id="what-files-are-there">What Files Are There?<a class="headerlink" href="#what-files-are-there" title="Permanent link">&para;</a></h3>
+<p>We have three sets of files present:</p>
+<p>HTTP config files that redirect HTTP traffic on port 80 to
+be HTTPS traffic on port 443, one for each top-level domain
+(charlesreid1.com, charlesreid1.blue, and charlesreid1.red):</p>
+<ul>
+<li><code>http.com.charlesreid1.conf</code></li>
+<li><code>http.red.charlesreid1.conf</code></li>
+<li><code>http.blue.charlesreid1.conf</code></li>
+</ul>
+<p>HTTPS rules for charlesreid1.com endpoints (the wiki,
+phpMyAdmin, and ignoring <code>.git</code> directories):</p>
+<ul>
+<li><code>https.com.charlesreid1.conf</code></li>
+<li><code>https.red.charlesreid1.conf</code></li>
+<li><code>https.blue.charlesreid1.conf</code></li>
+</ul>
+<p>HTTPS rules for subdomains (pages.charlesreid1.com,
+hooks.charlesreid1.com, bots.charlesreid1.com):</p>
+<ul>
+<li><code>https.com.charlesreid1.subdomains.conf</code></li>
+<li><code>https.red.charlesreid1.subdomains.conf</code></li>
+<li><code>https.blue.charlesreid1.subdomains.conf</code></li>
+</ul>
+<h3 id="http-config-files">HTTP Config Files<a class="headerlink" href="#http-config-files" title="Permanent link">&para;</a></h3>
+<p>The HTTP config files do the following:</p>
+<ul>
+<li>Requests for port 80 (for a domain or subdomain) are always redirected
+  to port 443 for the same domain/subdomain</li>
+</ul>
+<p><strong>FILES LIST:</strong></p>
+<ul>
+<li><code>http.com.charlesreid1.conf</code></li>
+<li><code>http.red.charlesreid1.conf</code></li>
+<li><code>http.blue.charlesreid1.conf</code></li>
+</ul>
+<h3 id="https-config-files">HTTPS Config Files<a class="headerlink" href="#https-config-files" title="Permanent link">&para;</a></h3>
+<p>The HTTPS config files (without "subdomain" in their name) do the following:</p>
+<ul>
+<li>
+<p>Requests for <code>/</code> are redirected to the htdocs folders mentioned above</p>
+</li>
+<li>
+<p>Requests for <code>/w/</code> or <code>/wiki/</code> are reverse-proxied to the local
+  <a href="../Service_apachephp/">Apache+PHP container</a> on port 8989</p>
+</li>
+<li>
+<p>(Optional) requests for <code>/phpMyAdmin/</code> are reverse-proxied to the local
+  <a href="../Service_phpmyadmin/">phpMyAdmin container</a> on port 80</p>
+</li>
+<li>
+<p>Requests for <code>git.charlesreid1.com</code> are reverse-proxied to the local
+  <a href="../Service_gitea/">Gitea container</a> on port 3000</p>
+</li>
+<li>
+<p>Requests for <code>files.charlesreid1.com</code> are reverse-proxied to the local
+  <a href="../Service_pythonfiles/">Python files</a> on port 8081</p>
+</li>
+</ul>
+<p><strong>FILES LIST:</strong></p>
+<ul>
+<li><code>https.com.charlesreid1.conf</code></li>
+<li><code>https.red.charlesreid1.conf</code></li>
+<li><code>https.blue.charlesreid1.conf</code></li>
+</ul>
+<h3 id="https-subdomain-config-files">HTTPS Subdomain Config Files<a class="headerlink" href="#https-subdomain-config-files" title="Permanent link">&para;</a></h3>
+<p>The subdomains config files redirect requests for a set of subdomains
+on charlesreid1.com, namely:</p>
+<ul>
+<li><code>pages.charlesreid1.com</code></li>
+<li><code>hooks.charlesreid1.com</code></li>
+<li><code>bots.charlesreid1.com</code></li>
+</ul>
+<p>This charlesreid1.com docker pod will redirect requests for these subdomains
+to another server running another docker pod, called the webhook docker pod,
+available at <a href="https://git.charlesreid1.com/docker/pod-webhooks">docker/pod-webhooks</a>).</p>
+<p>The webhook docker pod runs an nginx server, both to serve up static sites that live
+under the <a href="https://pages.charlesreid1.com">https://pages.charlesreid1.com</a> domain, and to handle webhook traffic - the 
+container also runs a Python webhook server that receives webhooks from git.charlesreid1.com,
+which enables push-to-deploy functionality similar to Github Pages.</p>
+<p>Also see <a href="https://pages.charlesreid1.com/pod-webhooks/">https://pages.charlesreid1.com/pod-webhooks/</a>.</p>
+<p><strong>FILES LIST:</strong></p>
+<ul>
+<li><code>https.com.charlesreid1.subdomains.conf</code></li>
+<li><code>https.red.charlesreid1.subdomains.conf</code></li>
+<li><code>https.blue.charlesreid1.subdomains.conf</code></li>
+</ul>
+<h3 id="why-all-the-config-files">Why All The Config Files?<a class="headerlink" href="#why-all-the-config-files" title="Permanent link">&para;</a></h3>
+<p>If everything is stuffed into a smaller number of
+nginx config files, they become long and unwieldy,
+and more prone to mistakes.</p>
+<ul>
+<li>HTTP config files only contain redirects</li>
+<li>HTTPS (no subdomain) config files handle </li>
+</ul>
+<h3 id="getting-configuration-files-into-container">Getting Configuration Files Into Container<a class="headerlink" href="#getting-configuration-files-into-container" title="Permanent link">&para;</a></h3>
+<p>The configuration files are mounted into the container
+by bind-mounting the <code>conf.d</code> folder of the <code>d-nginx-charlesreid1</code>
+submodule at <code>/et/nginx/conf.d</code> in the container.</p>
+<p>This is done in the <a href="https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/docker-compose.fixme.yml#L57">charlesreid1 pod docker-compose
+file</a>.</p>
+<p><br />
+<br /></p>
+<h2 id="static-content">Static Content<a class="headerlink" href="#static-content" title="Permanent link">&para;</a></h2>
+<p>The nginx container hosts static content, in addition to serving
+as a reverse-proxy for several other services. This section covers
+how static content is treated by the charlesreid1.com nginx
+container</p>
+<h3 id="outside-the-container-www">Outside the Container: <code>/www/</code><a class="headerlink" href="#outside-the-container-www" title="Permanent link">&para;</a></h3>
+<p>Static content hosted by the container is stored on the host
+machine in <code>/www/</code>. </p>
+<p>Each site (e.g., charlesreid1.com) has its own folder, containing
+the source for the static site and an htdocs folder containing the
+static content actually being hosted.</p>
+<p>Additionally, because the static content for the site is actually
+contained on the <code>gh-pages</code> branch of <a href="https://git.charlesreid1.com/charlesreid1/charlesreid1.com">charlesreid1/charlesreid1.com</a>,
+the <code>htodcs</code> folder is actually a git repository. When it is
+cloned, it is cloned such that the git repo's contents go into 
+<code>/www/charlesreid1.com/htdocs/</code> and the contents of the <code>.git</code>
+folder go into <code>/www/charlesreid1.com/git</code>.</p>
+<p>This allows the site static content to be updated to reflect the
+contents of the <code>gh-pages</code> branch by pulling the latest upstream
+changes into htdocs.</p>
+<p>The directory structure used is as follows:</p>
+<div class="codehilite"><pre><span></span>/www
+    /charlesreid1.com
+        /charlesreid1-src
+            ...source for pelican site... 
+        /htdocs
+            ...static content...
+        /git
+            ...dot git folder...
+
+    /charlesreid1.blue
+        /charlesreid1-blue-src
+            ...source for pelican site... 
+        /htodcs
+            ...static content...
+        /git
+            ...dot git folder...
+
+    /charlesreid1.red
+        /charlesreid1-red-src
+            ...source for pelican site... 
+        /htodcs
+            ...static content...
+        /git
+            ...dot git folder...
+</pre></div>
+
+
+<p>This directory structure can be achieved using the following 
+bash command:</p>
+<div class="codehilite"><pre><span></span>REPOURL=&quot;https://git.charlesreid1.com/charlesreid1/charlesreid1.com.git&quot;
+
+git -C /www/example.com \
+    clone \
+    --separate-git-dir=git \
+    -b gh-pages \
+    $REPOURL htdocs
+</pre></div>
+
+
+<p>The <a href="https://git.charlesreid1.com/debian/dotfiles">dotfiles/debian</a>
+repository contains scripts for krash, which runs the charlesreid1.com
+pod, to set up the directory structure as above, as well as scripts
+to pull the latest changes from upstream for each of the live
+web directories above.</p>
+<h3 id="inside-the-container-usrsharenginxhtml">Inside the Container: <code>/usr/share/nginx/html</code><a class="headerlink" href="#inside-the-container-usrsharenginxhtml" title="Permanent link">&para;</a></h3>
+<p>Once the contents of the <code>/www/</code> directory have been set up,
+the content can be made avialable inside the container by 
+bind-mounting the htdocs directories into the <code>/www/</code> directory
+inside the container. This is done with the following
+volume directives in the <a href="https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/docker-compose.fixme.yml#L60-L62"><code>docker-compose.yml</code> file</a>:</p>
+<div class="codehilite"><pre><span></span>    volumes:
+      - &quot;/www/charlesreid1.blue/htdocs:/www/charlesreid1.blue/htdocs:ro&quot;
+      - &quot;/www/charlesreid1.red/htdocs:/www/charlesreid1.red/htdocs:ro&quot;
+      - &quot;/www/charlesreid1.com/htdocs:/www/charlesreid1.com/htdocs:ro&quot;
+      ...
+</pre></div>
+
+
+<h3 id="utility-scripts-updating-site-contents">Utility Scripts: Updating Site Contents<a class="headerlink" href="#utility-scripts-updating-site-contents" title="Permanent link">&para;</a></h3>
+<p>In the <a href="https://git.charlesreid1.com/dotfiles/debian/src/branch/master/dotfiles/krash_scripts"><code>krash_scripts/</code> folder</a>
+of the debian/dotfiles](https://git.charlesreid1.com/dotfiles/debian)
+repository, there are several utility scripts to help with
+setting up and updating this directory structure.</p>
+<p>To set up the directory structure, use the <a href="https://git.charlesreid1.com/dotfiles/debian/src/branch/master/dotfiles/krash_scripts/git_clone_www.sh"><code>git_clone_www.sh</code> script</a>.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nv">REPOURL</span><span class="o">=</span><span class="s2">&quot;https://git.charlesreid1.com/charlesreid1/charlesreid1.com.git&quot;</span>
+
+git -C /www/example.com <span class="se">\</span>
+    clone <span class="se">\</span>
+    --separate-git-dir<span class="o">=</span>git <span class="se">\</span>
+    -b gh-pages <span class="se">\</span>
+    <span class="nv">$REPOURL</span> htdocs
+</pre></div>
+</td></tr></table>
+
+<p>To update the contents of the <code>htdocs/</code> folder using the latest changes
+on the <code>gh-pages</code> branch, use the <a href="https://git.charlesreid1.com/dotfiles/debian/src/branch/master/dotfiles/krash_scripts/git_pull_www.sh"><code>git_pull_www.sh</code> script</a>.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+git -C /www/example.com <span class="se">\</span>
+    --git-dir<span class="o">=</span>git --work-tree<span class="o">=</span>htdocs <span class="se">\</span>
+    pull origin gh-pages
+</pre></div>
+</td></tr></table>
+
+<p><br />
+<br /></p>
+<h2 id="domain-control">Domain Control<a class="headerlink" href="#domain-control" title="Permanent link">&para;</a></h2>
+<p>There are three top-level domains controlled by pod-charlesreid1:</p>
+<ul>
+<li>charlesreid1.com</li>
+<li>charlesreid1.blue</li>
+<li>charlesreid1.red</li>
+</ul>
+<h3 id="top-level-domains">Top-Level Domains<a class="headerlink" href="#top-level-domains" title="Permanent link">&para;</a></h3>
+<p>.com, .blue, .red</p>
+<h3 id="subdomains">Subdomains<a class="headerlink" href="#subdomains" title="Permanent link">&para;</a></h3>
+<p>bots, pages, hooks</p>
+<p><br />
+<br /></p>
                 
                   
                 
@@ -459,7 +1008,7 @@
     
       <script src="../assets/javascripts/application.e72fd936.js"></script>
       
-      <script>app.initialize({version:"1.0",url:{base:".."}})</script>
+      <script>app.initialize({version:"1.0.2",url:{base:".."}})</script>
       
         <script src="../search/main.js"></script>
       

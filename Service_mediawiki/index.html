@@ -34,7 +34,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="..">
-      <meta name="generator" content="mkdocs-1.0, mkdocs-material-3.0.3">
+      <meta name="generator" content="mkdocs-1.0.2, mkdocs-material-3.0.3">
     
     
       
@@ -581,8 +581,9 @@ on git.charlesreid1.com),
 in the <code>mediawiki/</code> directory.</p>
 <p>That's also where the <code>extensions/</code>
 directory goes. There is also 
-a script there called <code>build_extensions_dir.sh</code>
-to clone copies of each MediaWiki extension.</p>
+a script in the <a href="https://git.charlesreid1.com/wiki/charlesreid1-config">wiki/charlesreid1-config</a>
+repo called <a href="https://git.charlesreid1.com/wiki/charlesreid1-config/src/branch/master/mediawiki/build_extensions_dir.sh"><code>build_extensions_dir.sh</code></a>
+that clone copies of each MediaWiki extension.</p>
 <p>Inside the MediaWiki container,
 the live HTML directory is at 
 <code>/var/www/html/</code>. That is where
@@ -597,7 +598,7 @@ on git.charlesreid1.com.</p>
 <h2 id="getting-stuff-into-the-container">Getting Stuff Into The Container<a class="headerlink" href="#getting-stuff-into-the-container" title="Permanent link">&para;</a></h2>
 <p>The configuration files mentioned above
 (LocalSettings, skins, and extensions)
-must be coiped into the container at build time.</p>
+must be copied into the container at build time.</p>
 <p>This is done in the MediaWiki Dockerfile - 
 see <a href="https://git.charlesreid1.com/docker/d-mediawiki">d-mediawiki</a>.</p>
 <p>Why don't we bind-mount them into the container?
@@ -665,7 +666,7 @@ in the stock MediaWiki container.</p>
 
 <h2 id="updating-skin-or-localsettingsphp">Updating Skin or LocalSettings.php<a class="headerlink" href="#updating-skin-or-localsettingsphp" title="Permanent link">&para;</a></h2>
 <p>Note that if you update the MediaWiki skin 
-or the LocalSettings.php file, 
+or the <code>LocalSettings.php</code> file, 
 you will need to rebuild the container
 and restart it.</p>
 <p>(It's a pain in the ass, but hard to avoid.)</p>
@@ -686,7 +687,7 @@ and can be updated with a
 git push or git pull.</p>
 <p>(This is not currently how
 it is structured, as the 
-skin and LocalSettings.php
+skin and <code>LocalSettings.php</code>
 files are not under version 
 control in the container. 
 This would be difficult for 
@@ -727,9 +728,9 @@ in that directory.)</p>
 <h2 id="utilities">Utilities<a class="headerlink" href="#utilities" title="Permanent link">&para;</a></h2>
 <p>There are utilities for MediaWiki in <code>utils-mw</code>:</p>
 <ul>
-<li><code>backup_wikifiles.sh</code> - back up wiki image files to a tarball</li>
-<li><code>restore_wikifiles.sh</code> - restore backed up image files from a tarball</li>
-<li><code>update_wikidb.sh</code> - one-time script to update the wiki database after a version bump</li>
+<li><a href="https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/utils-mw/backup_wikifiles.sh"><code>backup_wikifiles.sh</code></a> - back up wiki image files to a tarball from the <code>story_mw</code> container</li>
+<li><a href="https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/utils-mw/restore_wikifiles.sh"><code>restore_wikifiles.sh</code></a> - restore backed up image files from a tarball into the <code>story_mw</code> container</li>
+<li><a href="https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/utils-mw/update_wikidb.sh"><code>update_wikidb.sh</code></a> - one-time script to update the wiki database after a version bump</li>
 </ul>
                 
                   
@@ -808,7 +809,7 @@ in that directory.)</p>
     
       <script src="../assets/javascripts/application.e72fd936.js"></script>
       
-      <script>app.initialize({version:"1.0",url:{base:".."}})</script>
+      <script>app.initialize({version:"1.0.2",url:{base:".."}})</script>
       
         <script src="../search/main.js"></script>
       

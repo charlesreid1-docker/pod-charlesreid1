@@ -34,7 +34,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="..">
-      <meta name="generator" content="mkdocs-1.0, mkdocs-material-3.0.3">
+      <meta name="generator" content="mkdocs-1.0.2, mkdocs-material-3.0.3">
     
     
       
@@ -500,27 +500,32 @@ nothing fancy.</p>
 <p>We don't have an extensive MySQL configuration.
 The container demostrates how to mount a configuration
 file into the container, but this is optional.</p>
+<p>See <a href="https://git.charlesreid1.com/docker/d-mysql/src/branch/master/run_super_mysql.sh#L17">this line</a>
+of the run script in the <a href="https://git.charlesreid1.com/docker/d-mysql">docker/d-mysql</a>
+repository.</p>
 <h2 id="getting-stuff-into-the-container-how-to-seed-mysql">Getting Stuff Into The Container (How To Seed MySQL?)<a class="headerlink" href="#getting-stuff-into-the-container-how-to-seed-mysql" title="Permanent link">&para;</a></h2>
 <p>This section refers to scripts contained in 
-the <code>utils-mysql</code> directory.</p>
+the <a href="https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/utils-mw"><code>utils-mysql/</code></a>
+directory.</p>
 <p>The MySQL data must come from a seed
 (what we call a krash seed). This seed
 consists of a prior backup of the MediaWiki
 MySQL database, from which the database
 can be restored.</p>
 <p>There are both backup and restore scripts
-in the repo under <code>utils-mysql</code>.</p>
-<p>Running the <code>mysqldump</code> tool will dump 
-database backup files in <code>.sql</code> format.
-These can be created using the <code>dump_database.sh</code>
-script.</p>
+in the repo under <a href="https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/utils-mysql"><code>utils-mysql/</code></a>.</p>
+<p>The <a href="https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/utils-mysql/dump_database.sh"><code>dump_database.sh</code></a>
+script will run the <code>mysqldump</code> tool to back up
+all the databases in the container into a file 
+in <code>.sql</code> format.</p>
 <p>These <code>.sql</code> files can be used to restore a 
-MySQL database using the <code>restore_database.sh</code>.</p>
+MySQL database using the <a href="https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/utils-mysql/restore_database.sh"><code>restore_database.sh</code></a>
+script.</p>
 <h2 id="utilities">Utilities<a class="headerlink" href="#utilities" title="Permanent link">&para;</a></h2>
 <p>There are utilities for MySQL in <code>utils-mysql</code>:</p>
 <ul>
-<li><code>dump_databases.sh</code> - create an <code>..sql</code> dump file from a database</li>
-<li><code>restore_database.sh</code> - restore a database from an <code>.sql</code> dump file</li>
+<li><a href="https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/utils-mysql/dump_database.sh"><code>dump_databases.sh</code></a> - create an <code>.sql</code> dump file from a database</li>
+<li><a href="https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/utils-mysql/restore_database.sh"><code>restore_database.sh</code></a> - restore a database from an <code>.sql</code> dump file</li>
 </ul>
                 
                   
@@ -599,7 +604,7 @@ MySQL database using the <code>restore_database.sh</code>.</p>
     
       <script src="../assets/javascripts/application.e72fd936.js"></script>
       
-      <script>app.initialize({version:"1.0",url:{base:".."}})</script>
+      <script>app.initialize({version:"1.0.2",url:{base:".."}})</script>
       
         <script src="../search/main.js"></script>
       
