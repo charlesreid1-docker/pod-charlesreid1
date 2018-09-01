@@ -40,7 +40,8 @@ Apache `*.conf` files
 into the container at 
 `/etc/nginx/conf.d`
 via the following line
-in the docker-compose file:
+in the [pod-charlesreid1 
+docker-compose file](https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/docker-compose.fixme.yml):
 
 ```
 services:

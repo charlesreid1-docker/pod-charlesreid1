@@ -17,10 +17,15 @@ We don't have an extensive MySQL configuration.
 The container demostrates how to mount a configuration
 file into the container, but this is optional.
 
+See [this line](https://git.charlesreid1.com/docker/d-mysql/src/branch/master/run_super_mysql.sh#L17)
+of the run script in the [docker/d-mysql](https://git.charlesreid1.com/docker/d-mysql)
+repository.
+
 ## Getting Stuff Into The Container (How To Seed MySQL?)
 
 This section refers to scripts contained in 
-the `utils-mysql` directory.
+the [`utils-mysql/`](https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/utils-mw)
+directory.
 
 The MySQL data must come from a seed
 (what we call a krash seed). This seed
@@ -29,23 +34,22 @@ MySQL database, from which the database
 can be restored.
 
 There are both backup and restore scripts
-in the repo under `utils-mysql`.
+in the repo under [`utils-mysql/`](https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/utils-mysql).
 
-Running the `mysqldump` tool will dump 
-database backup files in `.sql` format.
-These can be created using the `dump_database.sh`
-script.
+The [`dump_database.sh`](https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/utils-mysql/dump_database.sh)
+script will run the `mysqldump` tool to back up
+all the databases in the container into a file 
+in `.sql` format.
 
 These `.sql` files can be used to restore a 
-MySQL database using the `restore_database.sh`.
+MySQL database using the [`restore_database.sh`](https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/utils-mysql/restore_database.sh)
+script.
 
 
 ## Utilities
 
 There are utilities for MySQL in `utils-mysql`:
 
-* `dump_databases.sh` - create an `..sql` dump file from a database
-* `restore_database.sh` - restore a database from an `.sql` dump file
-
-
+* [`dump_databases.sh`](https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/utils-mysql/dump_database.sh) - create an `.sql` dump file from a database
+* [`restore_database.sh`](https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/utils-mysql/restore_database.sh) - restore a database from an `.sql` dump file
 

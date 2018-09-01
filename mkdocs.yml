@@ -22,19 +22,20 @@ theme:
     text: 'Roboto'
     code: 'Roboto Mono'
 nav:
-  - 'Index' : 'index.md'
-  - 'Running the Charlesreid1 Docker Pod' : 'Running.md'
+  - 'Index': 'index.md'
+  - 'Services':
+    - 'Pod Service: MediaWiki' : 'Service_mediawiki.md'
+    - 'Pod Service: Apache/PHP' : 'Service_apachephp.md'
+    - 'Pod Service: MySQL' : 'Service_mysql.md'
+    - 'Pod Service: phpMyAdmin' : 'Service_phpmyadmin.md'
+    - 'Pod Service: nginx' : 'Service_nginx.md'
+    - 'Pod Service: Python File Server' : 'Service_pythonfiles.md'
+    - 'Pod Service: Gitea' : 'Service_gitea.md'
+  - 'Running the Pod' : 'Running.md'
   - 'Volumes' : 'Volumes.md'
-  - 'Backups (TODO)' : 'Backups.md'
+  - 'Backups' : 'Backups.md'
   - 'Domains and Ports' : 'Ports.md'
   - 'Secrets' : 'Secrets.md'
-  - 'Pod Service: MediaWiki' : 'Service_mediawiki.md'
-  - 'Pod Service: Apache/PHP' : 'Service_apachephp.md'
-  - 'Pod Service: MySQL' : 'Service_mysql.md'
-  - 'Pod Service: phpMyAdmin' : 'Service_phpmyadmin.md'
-  - 'Pod Service: nginx' : 'Service_nginx.md'
-  - 'Pod Service: Python File Server' : 'Service_pythonfiles.md'
-  - 'Pod Service: Gitea' : 'Service_gitea.md'
 
 # Extensions
 markdown_extensions:
