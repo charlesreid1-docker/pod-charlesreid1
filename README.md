@@ -23,6 +23,21 @@ Source code on git.charlesreid1.com: <https://git.charlesreid1.com/docker/pod-ch
 
 Source code on github.com: <https://github.com/charlesreid1-docker/pod-charlesreid1>
 
+## Quick Start
+
+From your project directory, start up the pod:
+
+```
+$ docker-compose up
+```
+
+If you want to rebuild the images (if you changed the Dockerfile),
+use the `--build` flag:
+
+```
+$ docker-compose up --build
+```
+
 ## Running
 
 See **[Running.md](/Running.md)** for info about running this docker pod:
@@ -65,7 +80,7 @@ See **[Backups.md](Backups.md)** for coverage of backup and utility scripts.
 
 `utils-mysql` mysql backup utilities
 
-## Domains
+## Domains and Ports
 
 Domains and ports setup is described in the
 [Domains and Ports](Ports.md) document. It covers:
@@ -139,21 +154,6 @@ See `utils-backups` for backup utilities.
 See `utils-mw` for mediawiki utilities.
 
 See `utils-mysql` for mysql utilities.
-
-## Running
-
-From your project directory, start up your application by running:
-
-```
-$ docker-compose up
-```
-
-If you want to rebuild the images (if you changed the Dockerfile),
-use the `--build` flag:
-
-```
-$ docker-compose up --build
-```
 
 ## Links
 
