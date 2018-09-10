@@ -3,7 +3,9 @@
 This repo contains a docker compose file 
 for running the charlesreid1.com site.
 
-The services are:
+## Services
+
+The services available through pod-charlesreid1 are:
 
 * mediawiki
 * apache + php
@@ -82,8 +84,10 @@ See **[Backups.md](Backups.md)** for coverage of backup and utility scripts.
 
 ## Domains and Ports
 
-Domains and ports setup is described in the
-[Domains and Ports](Ports.md) document. It covers:
+See **[Domains and Ports.md](Ports.md)** for info about top-level domain names
+and ports used by this docker pod.
+
+The domains ports document covers:
 
 * Domains
     * nginx domain handling
@@ -146,14 +150,6 @@ the specifics of each container.
 * [python](Service_pythonfiles.md)
 * [gitea](Service_gitea.md)
 
-
-## Backups
-
-See `utils-backups` for backup utilities.
-
-See `utils-mw` for mediawiki utilities.
-
-See `utils-mysql` for mysql utilities.
 
 ## Links
 

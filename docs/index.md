@@ -15,17 +15,19 @@ The services available through pod-charlesreid1 are:
 * [python](Service_pythonfiles.md) (in progress)
 * [gitea](Service_gitea.md) (in progress)
 
+## Links
 
-## Running
+See the documentation site here: <https://pages.charlesreid1.com/pod-charlesreid1>
 
-See **[Running.md](/Running.md)** for info about running this docker pod:
+Or visit [docs/index.md](/docs/index.md)
 
-* Running the Docker Pod from Comand Line
-* Running the Docker Pod as a Startup Service
-* Workflow for Charlesreid1 Docker Pod Updates
-* Restoring the Docker Pod from Backups
+Source code on git.charlesreid1.com: <https://git.charlesreid1.com/docker/pod-charlesreid1>
 
-The quickstart: run
+Source code on github.com: <https://github.com/charlesreid1-docker/pod-charlesreid1>
+
+## Quick Start
+
+From your project directory, start up the pod:
 
 ```
 $ docker-compose up
@@ -38,11 +40,19 @@ use the `--build` flag:
 $ docker-compose up --build
 ```
 
+## Running
+
+See **[Running.md](/Running.md)** for info about running this docker pod:
+
+* Running the Docker Pod from Comand Line
+* Running the Docker Pod as a Startup Service
+* Workflow for Charlesreid1 Docker Pod Updates
+* Restoring the Docker Pod from Backups
 
 ## Volumes
 
 See **[Volumes.md](/Volumes.md)** for info about data and volumes 
-used by this docker pod and each of its services:
+used by this docker pod:
 
 * Persistent Data Volumes
 * nginx
@@ -90,6 +100,31 @@ The domains ports document covers:
     * python file server ports
 
 
+### Additional Port Info
+
+The apache-mediawiki combination is running an apache service listening on port 8989.
+This can be adjusted, but should be adjusted in the Dockerfile, `ports.conf`, and `wiki.conf`.
+
+The apache service listens on all interfaces (hence `*:8989` in the apache conf file),
+but there is no port mapping specified in `docker-compose.yml` so it does not listen 
+on any public interfaces.
+
+Thus, the wiki is not publicly accessible via port 8989, but the wiki is available via port 8989
+to any container linked to, or connected to the same network as, the mediawiki apache container.
+
+Meanwhile, the nginx container has a public interface listening on port 80 
+and another listening on port 443. nginx listens for requests going to
+the wiki, detected via the url resource prefix being `/w/` or `/wiki/`,
+and acts as a reverse proxy, forwarding the requests to Apache.
+
+The user transparently sees everything happening via port 80 or (preferrably) 443,
+but on the backend nginx is passing along the URL request and returning the result.
+
+Subdomains are served via reverse proxy on port 7777+. 
+
+The webhook server is a flask server listening on port 50000.
+
+
 ## Secrets
 
 See **[Secrets.md](Secrets.md)** for more info about getting secrets like 
@@ -101,14 +136,20 @@ without leaking out the information.
 * gitea secret key and session id
 * nginx ssl certificates
 
+## Container-Specific Configuration Details
 
-## Backups
+Each container has a different way of getting
+configuration files into the container.
+In the following documents we cover 
+the specifics of each container.
 
-See `utils-backups` for backup utilities.
-
-See `utils-mw` for mediawiki utilities.
-
-See `utils-mysql` for mysql utilities.
+* [mediawiki](Service_mediawiki.md)
+* [apache + php](Service_apachephp.md)
+* [mysql](Service_mysql.md)
+* [phpmyadmin](Service_phpmyadmin.md) 
+* [nginx + ssl](Service_nginx.md)
+* [python](Service_pythonfiles.md)
+* [gitea](Service_gitea.md)
 
 ## Links
 
@@ -117,3 +158,4 @@ docker compose documentation:
 * [getting started](https://docs.docker.com/compose/gettingstarted/#step-4-build-and-run-your-app-with-compose)
 * [set environment variables in containers](https://docs.docker.com/compose/environment-variables/#set-environment-variables-in-containers)
 * <s>[docker secrets](https://docs.docker.com/engine/swarm/secrets/)</s> (nope)
+
