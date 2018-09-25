@@ -3,7 +3,9 @@
 This repo contains a docker compose file 
 for running the charlesreid1.com site.
 
-The services are:
+## Services
+
+The services available through pod-charlesreid1 are:
 
 * mediawiki
 * apache + php
@@ -22,6 +24,21 @@ Or visit [docs/index.md](/docs/index.md)
 Source code on git.charlesreid1.com: <https://git.charlesreid1.com/docker/pod-charlesreid1>
 
 Source code on github.com: <https://github.com/charlesreid1-docker/pod-charlesreid1>
+
+## Quick Start
+
+From your project directory, start up the pod:
+
+```
+$ docker-compose up
+```
+
+If you want to rebuild the images (if you changed the Dockerfile),
+use the `--build` flag:
+
+```
+$ docker-compose up --build
+```
 
 ## Running
 
@@ -65,10 +82,12 @@ See **[Backups.md](Backups.md)** for coverage of backup and utility scripts.
 
 `utils-mysql` mysql backup utilities
 
-## Domains
+## Domains and Ports
 
-Domains and ports setup is described in the
-[Domains and Ports](Ports.md) document. It covers:
+See **[Domains and Ports.md](Ports.md)** for info about top-level domain names
+and ports used by this docker pod.
+
+The domains ports document covers:
 
 * Domains
     * nginx domain handling
@@ -131,29 +150,6 @@ the specifics of each container.
 * [python](Service_pythonfiles.md)
 * [gitea](Service_gitea.md)
 
-
-## Backups
-
-See `utils-backups` for backup utilities.
-
-See `utils-mw` for mediawiki utilities.
-
-See `utils-mysql` for mysql utilities.
-
-## Running
-
-From your project directory, start up your application by running:
-
-```
-$ docker-compose up
-```
-
-If you want to rebuild the images (if you changed the Dockerfile),
-use the `--build` flag:
-
-```
-$ docker-compose up --build
-```
 
 ## Links
 

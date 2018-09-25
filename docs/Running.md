@@ -80,7 +80,7 @@ see the dotfiles/debian repository, in the services/
 subdirectory. You will find a systemd service
 that will start/stop the docker pod.
 
-**`dockerpod-charlesereid1.service:`**
+**`dockerpod-charlesreid1.service:`**
 
 ```
 [Unit]
@@ -146,6 +146,8 @@ hire me and I'll tell you how to do it with ***ZERO*** downtime.
 
 <a name="Backups"></a>
 ## Restoring Docker Pod from Backups
+
+Also see **[Backups.md](Backups.md)**.
 
 Now that the pod is running, you probably need to seed it with data.
 
