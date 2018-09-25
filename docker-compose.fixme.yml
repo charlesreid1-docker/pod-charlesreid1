@@ -1,4 +1,4 @@
-version: "3.1"
+version: "3.3"
 services:
 
   stormy_files:
@@ -6,6 +6,8 @@ services:
     command: bash -c "cd /files && python3 -m http.server 8081"
     volumes:
       - "/www/files:/files"
+    logging:
+      driver: "json-file"
 
   stormy_gitea:
     image: gitea/gitea:latest
@@ -18,6 +20,8 @@ services:
       - "./d-gitea/custom/conf/app.ini:/data/gitea/conf/app.ini"
       - "./d-gitea/custom/public:/data/gitea/public"
       - "./d-gitea/custom/templates:/data/gitea/templates"
+    logging:
+      driver: "json-file"
     ports:
       - "222:22"
 
@@ -25,6 +29,8 @@ services:
     build: d-mysql
     volumes:
       - "stormy_mysql_data:/var/lib/mysql"
+    logging:
+      driver: "json-file"
     environment:
       - MYSQL_ROOT_PASSWORD=REPLACEME
 
@@ -39,6 +45,8 @@ services:
     build: d-mediawiki
     volumes:
       - "stormy_mw_data:/var/www/html"
+    logging:
+      driver: "json-file"
     links:
       - stormy_mysql:mysql
     environment:
@@ -60,6 +68,8 @@ services:
       - "/www/charlesreid1.blue/htdocs:/www/charlesreid1.blue/htdocs:ro"
       - "/www/charlesreid1.red/htdocs:/www/charlesreid1.red/htdocs:ro"
       - "/www/charlesreid1.com/htdocs:/www/charlesreid1.com/htdocs:ro"
+    logging:
+      driver: "json-file"
     ports:
       - "80:80"
       - "443:443"
