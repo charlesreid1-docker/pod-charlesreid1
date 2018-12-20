@@ -127,8 +127,13 @@ The webhook server is a flask server listening on port 50000.
 ## Secrets
 
 See **[Secrets.md](Secrets.md)** for more info about getting secrets like 
-passwords and sensitive files into various containers in the pod,
-without leaking out the information.
+passwords and sensitive files into various containers in the pod.
+
+The important bit: we use `root.password` to store the password, and pass it
+into containers as an environment variable. Only this top-level pod-charlesreid1
+repo should use the file `root.password`.
+
+Details covered on the secrets page:
 
 * mysql database root password
 * mediawiki mysql database root password
