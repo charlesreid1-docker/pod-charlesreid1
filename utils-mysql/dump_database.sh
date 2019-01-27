@@ -25,9 +25,8 @@ NAME="podcharlesreid1_stormy_mysql_1"
 if [[ "$#" -gt 0 ]];
 then
 
-    docker exec -it ${NAME} \
-        sh -c 'exec mysqldump wikidb --databases -uroot -p"$MYSQL_ROOT_PASSWORD"' \
-        > $1
+    TARGET="$1"
+    docker exec -it ${NAME} sh -c 'exec mysqldump wikidb --databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > $TARGET
 
 else
     usage
