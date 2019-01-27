@@ -45,30 +45,34 @@ then
         DOCKER="docker exec -it"
     fi
 
-    echo " - Creating backup target"
+    echo "Step 1: Creating backup target"
     ${DOCKER} $NAME /bin/bash -c 'mkdir /backup'
     
-    echo " - Creating backup zip files:"
-    echo "     - gitea dump zip"
-    ${DOCKER} $NAME /bin/bash -c 'cd /backup && /app/gitea/gitea dump'
-    echo "     - gitea avatars zip"
+    echo "Step 2: Creating backup zip files:"
+    echo "     Step 2A: gitea dump zip"
+    ${DOCKER} $NAME /bin/bash -c '/app/gitea/gitea dump'
+    echo "     Step 2B: gitea avatars zip"
     ${DOCKER} $NAME /bin/bash -c 'cd /data/gitea/ && tar czf /backup/gitea-avatars.tar.gz avatars'
 
-    echo " - Copying backup directory (with zip files) to temporary backup location ${TEMP_BACKUP}"
+    echo "Step 3: Moving gitea dump to /backup directory"
+    ${DOCKER} $NAME /bin/bash -c 'mv /tmp/gitea-dump-*/* /backup/.'
+
     TEMP_BACKUP=`mktemp -d 2>/dev/null || mktemp -d -t 'mytmpdir'`
+
+    echo "Step 4: Copying backup directory (with zip files) to temporary backup location ${TEMP_BACKUP}"
+    echo "     Step 4A: Making temporary backup location"
     mkdir -p $TEMP_BACKUP
-    docker cp $NAME:/backup $TEMP_BACKUP
+    echo "     Step 4B: Copying /backup directory to temporary backup location ${TEMP_BACKUP}"
+    docker cp $NAME:/backup/* $1/.
 
-    echo " - Cleaning up container"
+    echo "Step 6: Cleaning up container"
     ${DOCKER} $NAME /bin/bash -c 'rm -rf /backup'
+    ${DOCKER} $NAME /bin/bash -c 'rm -rf /tmp/gitea-dump-*'
 
-    # TODO: check if $1 is a directory. 
-    # if not, at least stuff will still be left at backup/
-    echo " - Copy zip backup from ${TEMP_BACKUP} to target"
-    mkdir -p $1 && mv $TEMP_BACKUP/backup/*.{zip,gz} $1/.
-
-    echo " - Peace out"
+    echo "Step 7: Cleaning up local host"
     rm -rf $TEMP_BACKUP
+
+    echo "    ~ ~ ~ ~ PEACE OUT ~ ~ ~ ~"
 
 else
     usage
