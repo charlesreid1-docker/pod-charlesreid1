@@ -15,13 +15,14 @@ function usage {
     echo "Restores the database into the "
     echo "stormy_msyql container."
     echo "Obtains MySQL password from"
-    echo "MYSQL_ROOT_PASSWORD env var."
+    echo "MYSQL_ROOT_PASSWORD env var"
+    echo "inside mysql container."
     echo ""
-    echo "       MYSQL_ROOT_PASSWORD=<password> ./restore_database.sh <sql-dump-file>"
+    echo "       ./restore_database.sh <sql-dump-file>"
     echo ""
     echo "Example:"
     echo ""
-    echo "       MYSQL_ROOT_PASSWORD=pw ./restore_database.sh /path/to/wikidb_dump.sql"
+    echo "       ./restore_database.sh /path/to/wikidb_dump.sql"
     echo ""
     echo ""
     exit 1;
@@ -40,17 +41,6 @@ function usage {
 # because of all these one-off 
 # "whoopsie we don't do that" problems.
 # 
-#
-# 
-# neat trick alert:
-# ${var+x} substitutes x if var is set,
-# and is empty otherwise
-if [ -z ${var+x} ]; then 
-    echo ""
-    echo "Error: you must set the MYSQL_ROOT_PASSWORD variable!"
-    echo ""
-    usage
-fi
 
 if [[ "$#" -eq 1 ]];
 then

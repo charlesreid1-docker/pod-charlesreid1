@@ -26,7 +26,7 @@ if [[ "$#" -gt 0 ]];
 then
 
     TARGET="$1"
-    docker exec -it ${NAME} sh -c 'exec mysqldump wikidb --databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > $TARGET
+    docker exec -i ${NAME} sh -c 'exec mysqldump wikidb --databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > $TARGET
 
 else
     usage
