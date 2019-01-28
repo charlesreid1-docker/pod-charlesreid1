@@ -121,7 +121,7 @@ otherwise the pod will continually respawn.
 
 This section covers a workflow if you're updating the docker pod.
 
-As noted abobve, a simple `docker-compose restart` won't pick up
+As noted above, a simple `docker-compose restart` won't pick up
 changes in Dockerfiles or files mounted into the image, so 
 you often need to stop the containers and restart them after 
 rebuilding the container images.
