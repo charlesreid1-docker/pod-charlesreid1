@@ -23,7 +23,7 @@ function usage {
 # NOTE: 
 # I assume images/ is the only directory to back up/restore.
 # If there are more I forgot, add them back in here.
-# (skins and extensions are static, added into image at build time.
+# (skins and extensions are static, added into image at build time.)
 
 if [[ "$#" -eq 1 ]];
 then
