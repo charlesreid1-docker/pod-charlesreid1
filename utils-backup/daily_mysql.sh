@@ -7,7 +7,7 @@ stamp=$(date +"%Y-%m-%d")
 backup_tool="${HOME}/codes/docker/pod-charlesreid1/utils-mysql/dump_database.sh"
 
 backup_dir="/junkinthetrunk/backups/daily/wikidb_${stamp}"
-backup_target="${backup_dir}/wikidb.sql"
+backup_target="${backup_dir}/wikidb_${stamp}.sql"
 
 log_dir="${HOME}/.logs/backups/daily"
 log_target="${log_dir}/wikidb_${stamp}.log"
