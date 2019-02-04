@@ -46,6 +46,7 @@ then
     ${DOCKER} ${NAME} tar czf /tmp/${TAR} /var/www/html/images 
 
     # copy from container to target $1
+    mkdir -p $(dirname $TARGET)
     ${DOCKER} cp ${NAME}:/tmp/${TAR} $1
 
     # clean up container

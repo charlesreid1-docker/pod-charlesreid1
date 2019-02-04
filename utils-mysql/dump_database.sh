@@ -26,6 +26,7 @@ if [[ "$#" -gt 0 ]];
 then
 
     TARGET="$1"
+    mkdir -p $(dirname $TARGET)
     docker exec -i ${NAME} sh -c 'exec mysqldump wikidb --databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > $TARGET
 
 else
