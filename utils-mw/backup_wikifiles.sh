@@ -42,8 +42,13 @@ then
         DOCKER="docker exec -it"
     fi
 
+    # zip to temp dir inside container
     ${DOCKER} ${NAME} tar czf /tmp/${TAR} /var/www/html/images 
-    docker cp ${NAME}:/tmp/${TAR} $1
+
+    # copy from container to target $1
+    ${DOCKER} cp ${NAME}:/tmp/${TAR} $1
+
+    # clean up container
     ${DOCKER} ${NAME} rm /tmp/${TAR}
 
 else
