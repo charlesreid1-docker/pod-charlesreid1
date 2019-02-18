@@ -2,6 +2,7 @@
 set -x
 
 function usage {
+    set +x
     echo ""
     echo "backup_gitea.sh script:"
     echo "Run a gitea dump from the gitea container,"
@@ -59,18 +60,23 @@ then
 
     TEMP_BACKUP=`mktemp -d 2>/dev/null || mktemp -d -t 'mytmpdir'`
 
-    echo "Step 4: Copying backup directory (with zip files) to temporary backup location ${TEMP_BACKUP}"
+    echo "Step 4: Copying backup directory (with zip files) to backup location $1"
     echo "     Step 4A: Making temporary backup location"
-    mkdir -p $TEMP_BACKUP
-    echo "     Step 4B: Copying /backup directory to temporary backup location ${TEMP_BACKUP}"
+    #mkdir -p $TEMP_BACKUP
+    echo "     Step 4B: Copying /backup directory to temporary backup location $1"
     docker cp $NAME:/backup/* $1/.
+
+    TAR_PREFIX="$(echo $V | sed 's+/$++g')"
+
+    tar -cvf ${TAR_PREFIX}.tar $1
+    rm -fr $1
 
     echo "Step 6: Cleaning up container"
     ${DOCKER} $NAME /bin/bash -c 'rm -rf /backup'
     ${DOCKER} $NAME /bin/bash -c 'rm -rf /tmp/gitea-dump-*'
 
     echo "Step 7: Cleaning up local host"
-    rm -rf $TEMP_BACKUP
+    #rm -rf $TEMP_BACKUP
 
     echo "    ~ ~ ~ ~ PEACE OUT ~ ~ ~ ~"
 
