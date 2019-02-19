@@ -47,7 +47,7 @@ then
 
     # copy from container to target $1
     mkdir -p $(dirname $TARGET)
-    ${DOCKER} cp ${NAME}:/tmp/${TAR} $1
+    ${DOCKER} ${NAME} cp ${NAME}:/tmp/${TAR} $1
 
     # clean up container
     ${DOCKER} ${NAME} rm /tmp/${TAR}
