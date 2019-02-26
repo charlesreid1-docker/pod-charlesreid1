@@ -17,7 +17,7 @@ services:
     restart: always
     volumes:
       - "stormy_gitea_data:/data"
-      - "./d-gitea/custom/conf/app.ini:/data/gitea/conf/app.ini"
+      - "./d-gitea/custom/conf:/data/gitea/conf"
       - "./d-gitea/custom/public:/data/gitea/public"
       - "./d-gitea/custom/templates:/data/gitea/templates"
     logging:
