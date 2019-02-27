@@ -32,8 +32,6 @@ services:
       - "stormy_mw_data:/var/www/html"
     logging:
       driver: "json-file"
-    links:
-      - stormy_mysql:mysql
     environment:
       - MEDIAWIKI_SITE_SERVER=https://charlesreid1.com
       - MYSQL_HOST=mysql
