@@ -10,13 +10,17 @@ for DOMAIN in "${DOMAINS[@]}"; do
     # github.com:
     REPOURL="https://github.com/charlesreid1-docker/${DOMAIN}.git"
 
-    echo "Cloning repo for ${DOMAIN} to /wwww"
+    if [ -d "/www/${DOMAIN}" ]; then
 
-    git -C /www/${DOMAIN} \
-        clone \
-        --separate-git-dir=git \
-        -b gh-pages \
-        $REPOURL htdocs
+        echo "Cloning repo for ${DOMAIN} to /wwww"
+
+        git -C /www/${DOMAIN} \
+            clone \
+            --separate-git-dir=git \
+            -b gh-pages \
+            $REPOURL htdocs
+
+    fi
 
 done
 
