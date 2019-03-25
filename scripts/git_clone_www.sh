@@ -4,7 +4,7 @@ declare -a DOMAINS=("charlesreid1.com" "charlesreid1.blue" "charlesreid1.red")
 
 for DOMAIN in "${DOMAINS[@]}"; do
 
-    ## git.charlesreid1.com (probably not available):
+    ## git.charlesreid1.com:
     #REPOURL="https://git.charlesreid1.com/charlesreid1/${DOMAIN}.git"
 
     # github.com:
