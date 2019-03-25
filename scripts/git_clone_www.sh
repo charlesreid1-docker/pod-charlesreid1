@@ -10,7 +10,9 @@ for DOMAIN in "${DOMAINS[@]}"; do
     # github.com:
     REPOURL="https://github.com/charlesreid1-docker/${DOMAIN}.git"
 
-    if [ -d "/www/${DOMAIN}" ]; then
+    if [ ! -d "/www/${DOMAIN}/htdocs" ]; then
+
+        # Only do this if /www/<domain>/htdocs does not exist
 
         echo "Cloning repo for ${DOMAIN} to /wwww"
 
