@@ -34,7 +34,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="..">
-      <meta name="generator" content="mkdocs-1.0.2, mkdocs-material-3.0.3">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.3">
     
     
       
@@ -641,7 +641,7 @@ getting an up-to-date container image.</p>
 see the dotfiles/debian repository, in the services/
 subdirectory. You will find a systemd service
 that will start/stop the docker pod.</p>
-<p><strong><code>dockerpod-charlesereid1.service:</code></strong></p>
+<p><strong><code>dockerpod-charlesreid1.service:</code></strong></p>
 <div class="codehilite"><pre><span></span>[Unit]
 Description=charlesreid1 docker pod
 Requires=docker.service
@@ -676,7 +676,7 @@ otherwise the pod will continually respawn.</p>
 <p><a name="Workflow"></a></p>
 <h2 id="workflow-for-charlesreid1-docker-pod-updates">Workflow for Charlesreid1 Docker Pod Updates<a class="headerlink" href="#workflow-for-charlesreid1-docker-pod-updates" title="Permanent link">&para;</a></h2>
 <p>This section covers a workflow if you're updating the docker pod.</p>
-<p>As noted abobve, a simple <code>docker-compose restart</code> won't pick up
+<p>As noted above, a simple <code>docker-compose restart</code> won't pick up
 changes in Dockerfiles or files mounted into the image, so 
 you often need to stop the containers and restart them after 
 rebuilding the container images.</p>
@@ -697,6 +697,7 @@ your site to be down for even a few seconds of downtime,
 hire me and I'll tell you how to do it with <strong><em>ZERO</em></strong> downtime.</p>
 <p><a name="Backups"></a></p>
 <h2 id="restoring-docker-pod-from-backups">Restoring Docker Pod from Backups<a class="headerlink" href="#restoring-docker-pod-from-backups" title="Permanent link">&para;</a></h2>
+<p>Also see <strong><a href="../Backups/">Backups.md</a></strong>.</p>
 <p>Now that the pod is running, you probably need to seed it with data.</p>
 <p>You will need two mediawiki restore files and two gitea restore files,
 everything else comes from git.charlesreid1.com or github.com
@@ -811,7 +812,7 @@ everything else comes from git.charlesreid1.com or github.com
     
       <script src="../assets/javascripts/application.e72fd936.js"></script>
       
-      <script>app.initialize({version:"1.0.2",url:{base:".."}})</script>
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
       
         <script src="../search/main.js"></script>
       

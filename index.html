@@ -34,7 +34,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href=".">
-      <meta name="generator" content="mkdocs-1.0.2, mkdocs-material-3.0.3">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.3">
     
     
       
@@ -247,6 +247,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#links" title="Links" class="md-nav__link">
+    Links
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" title="Quick Start" class="md-nav__link">
+    Quick Start
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#running" title="Running" class="md-nav__link">
     Running
   </a>
@@ -272,6 +286,19 @@
     Domains and Ports
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#additional-port-info" title="Additional Port Info" class="md-nav__link">
+    Additional Port Info
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -282,14 +309,14 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#backups_1" title="Backups" class="md-nav__link">
-    Backups
+  <a href="#container-specific-configuration-details" title="Container-Specific Configuration Details" class="md-nav__link">
+    Container-Specific Configuration Details
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#links" title="Links" class="md-nav__link">
+  <a href="#links_1" title="Links" class="md-nav__link">
     Links
   </a>
   
@@ -502,6 +529,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#links" title="Links" class="md-nav__link">
+    Links
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" title="Quick Start" class="md-nav__link">
+    Quick Start
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#running" title="Running" class="md-nav__link">
     Running
   </a>
@@ -527,6 +568,19 @@
     Domains and Ports
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#additional-port-info" title="Additional Port Info" class="md-nav__link">
+    Additional Port Info
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -537,14 +591,14 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#backups_1" title="Backups" class="md-nav__link">
-    Backups
+  <a href="#container-specific-configuration-details" title="Container-Specific Configuration Details" class="md-nav__link">
+    Container-Specific Configuration Details
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#links" title="Links" class="md-nav__link">
+  <a href="#links_1" title="Links" class="md-nav__link">
     Links
   </a>
   
@@ -581,15 +635,13 @@ for running the charlesreid1.com site.</p>
 <li><a href="Service_pythonfiles/">python</a> (in progress)</li>
 <li><a href="Service_gitea/">gitea</a> (in progress)</li>
 </ul>
-<h2 id="running">Running<a class="headerlink" href="#running" title="Permanent link">&para;</a></h2>
-<p>See <strong><a href="Running/">Running.md</a></strong> for info about running this docker pod:</p>
-<ul>
-<li>Running the Docker Pod from Comand Line</li>
-<li>Running the Docker Pod as a Startup Service</li>
-<li>Workflow for Charlesreid1 Docker Pod Updates</li>
-<li>Restoring the Docker Pod from Backups</li>
-</ul>
-<p>The quickstart: run</p>
+<h2 id="links">Links<a class="headerlink" href="#links" title="Permanent link">&para;</a></h2>
+<p>See the documentation site here: <a href="https://pages.charlesreid1.com/pod-charlesreid1">https://pages.charlesreid1.com/pod-charlesreid1</a></p>
+<p>Or visit <a href="/docs/index.md">docs/index.md</a></p>
+<p>Source code on git.charlesreid1.com: <a href="https://git.charlesreid1.com/docker/pod-charlesreid1">https://git.charlesreid1.com/docker/pod-charlesreid1</a></p>
+<p>Source code on github.com: <a href="https://github.com/charlesreid1-docker/pod-charlesreid1">https://github.com/charlesreid1-docker/pod-charlesreid1</a></p>
+<h2 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
+<p>From your project directory, start up the pod:</p>
 <div class="codehilite"><pre><span></span>$ docker-compose up
 </pre></div>
 
@@ -600,9 +652,17 @@ use the <code>--build</code> flag:</p>
 </pre></div>
 
 
+<h2 id="running">Running<a class="headerlink" href="#running" title="Permanent link">&para;</a></h2>
+<p>See <strong><a href="/Running.md">Running.md</a></strong> for info about running this docker pod:</p>
+<ul>
+<li>Running the Docker Pod from Comand Line</li>
+<li>Running the Docker Pod as a Startup Service</li>
+<li>Workflow for Charlesreid1 Docker Pod Updates</li>
+<li>Restoring the Docker Pod from Backups</li>
+</ul>
 <h2 id="volumes">Volumes<a class="headerlink" href="#volumes" title="Permanent link">&para;</a></h2>
-<p>See <strong><a href="Volumes/">Volumes.md</a></strong> for info about data and volumes 
-used by this docker pod and each of its services:</p>
+<p>See <strong><a href="/Volumes.md">Volumes.md</a></strong> for info about data and volumes 
+used by this docker pod:</p>
 <ul>
 <li>Persistent Data Volumes</li>
 <li>nginx<ul>
@@ -653,6 +713,22 @@ and ports used by this docker pod.</p>
 </ul>
 </li>
 </ul>
+<h3 id="additional-port-info">Additional Port Info<a class="headerlink" href="#additional-port-info" title="Permanent link">&para;</a></h3>
+<p>The apache-mediawiki combination is running an apache service listening on port 8989.
+This can be adjusted, but should be adjusted in the Dockerfile, <code>ports.conf</code>, and <code>wiki.conf</code>.</p>
+<p>The apache service listens on all interfaces (hence <code>*:8989</code> in the apache conf file),
+but there is no port mapping specified in <code>docker-compose.yml</code> so it does not listen 
+on any public interfaces.</p>
+<p>Thus, the wiki is not publicly accessible via port 8989, but the wiki is available via port 8989
+to any container linked to, or connected to the same network as, the mediawiki apache container.</p>
+<p>Meanwhile, the nginx container has a public interface listening on port 80 
+and another listening on port 443. nginx listens for requests going to
+the wiki, detected via the url resource prefix being <code>/w/</code> or <code>/wiki/</code>,
+and acts as a reverse proxy, forwarding the requests to Apache.</p>
+<p>The user transparently sees everything happening via port 80 or (preferrably) 443,
+but on the backend nginx is passing along the URL request and returning the result.</p>
+<p>Subdomains are served via reverse proxy on port 7777+. </p>
+<p>The webhook server is a flask server listening on port 50000.</p>
 <h2 id="secrets">Secrets<a class="headerlink" href="#secrets" title="Permanent link">&para;</a></h2>
 <p>See <strong><a href="Secrets/">Secrets.md</a></strong> for more info about getting secrets like 
 passwords and sensitive files into various containers in the pod,
@@ -663,11 +739,21 @@ without leaking out the information.</p>
 <li>gitea secret key and session id</li>
 <li>nginx ssl certificates</li>
 </ul>
-<h2 id="backups_1">Backups<a class="headerlink" href="#backups_1" title="Permanent link">&para;</a></h2>
-<p>See <code>utils-backups</code> for backup utilities.</p>
-<p>See <code>utils-mw</code> for mediawiki utilities.</p>
-<p>See <code>utils-mysql</code> for mysql utilities.</p>
-<h2 id="links">Links<a class="headerlink" href="#links" title="Permanent link">&para;</a></h2>
+<h2 id="container-specific-configuration-details">Container-Specific Configuration Details<a class="headerlink" href="#container-specific-configuration-details" title="Permanent link">&para;</a></h2>
+<p>Each container has a different way of getting
+configuration files into the container.
+In the following documents we cover 
+the specifics of each container.</p>
+<ul>
+<li><a href="Service_mediawiki/">mediawiki</a></li>
+<li><a href="Service_apachephp/">apache + php</a></li>
+<li><a href="Service_mysql/">mysql</a></li>
+<li><a href="Service_phpmyadmin/">phpmyadmin</a> </li>
+<li><a href="Service_nginx/">nginx + ssl</a></li>
+<li><a href="Service_pythonfiles/">python</a></li>
+<li><a href="Service_gitea/">gitea</a></li>
+</ul>
+<h2 id="links_1">Links<a class="headerlink" href="#links_1" title="Permanent link">&para;</a></h2>
 <p>docker compose documentation:</p>
 <ul>
 <li><a href="https://docs.docker.com/compose/gettingstarted/#step-4-build-and-run-your-app-with-compose">getting started</a></li>
@@ -737,7 +823,7 @@ without leaking out the information.</p>
     
       <script src="assets/javascripts/application.e72fd936.js"></script>
       
-      <script>app.initialize({version:"1.0.2",url:{base:"."}})</script>
+      <script>app.initialize({version:"1.0.4",url:{base:"."}})</script>
       
         <script src="search/main.js"></script>
       
