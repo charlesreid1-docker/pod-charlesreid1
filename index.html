@@ -637,7 +637,7 @@ for running the charlesreid1.com site.</p>
 </ul>
 <h2 id="links">Links<a class="headerlink" href="#links" title="Permanent link">&para;</a></h2>
 <p>See the documentation site here: <a href="https://pages.charlesreid1.com/pod-charlesreid1">https://pages.charlesreid1.com/pod-charlesreid1</a></p>
-<p>Or visit <a href="/docs/index.md">docs/index.md</a></p>
+<p>Or visit docs/index.md`.</p>
 <p>Source code on git.charlesreid1.com: <a href="https://git.charlesreid1.com/docker/pod-charlesreid1">https://git.charlesreid1.com/docker/pod-charlesreid1</a></p>
 <p>Source code on github.com: <a href="https://github.com/charlesreid1-docker/pod-charlesreid1">https://github.com/charlesreid1-docker/pod-charlesreid1</a></p>
 <h2 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
@@ -653,7 +653,7 @@ use the <code>--build</code> flag:</p>
 
 
 <h2 id="running">Running<a class="headerlink" href="#running" title="Permanent link">&para;</a></h2>
-<p>See <strong><a href="/Running.md">Running.md</a></strong> for info about running this docker pod:</p>
+<p>See <strong><a href="Running/">Running.md</a></strong> for info about running this docker pod:</p>
 <ul>
 <li>Running the Docker Pod from Comand Line</li>
 <li>Running the Docker Pod as a Startup Service</li>
@@ -661,7 +661,7 @@ use the <code>--build</code> flag:</p>
 <li>Restoring the Docker Pod from Backups</li>
 </ul>
 <h2 id="volumes">Volumes<a class="headerlink" href="#volumes" title="Permanent link">&para;</a></h2>
-<p>See <strong><a href="/Volumes.md">Volumes.md</a></strong> for info about data and volumes 
+<p>See <strong><a href="Volumes/">Volumes.md</a></strong> for info about data and volumes 
 used by this docker pod:</p>
 <ul>
 <li>Persistent Data Volumes</li>
@@ -731,8 +731,11 @@ but on the backend nginx is passing along the URL request and returning the resu
 <p>The webhook server is a flask server listening on port 50000.</p>
 <h2 id="secrets">Secrets<a class="headerlink" href="#secrets" title="Permanent link">&para;</a></h2>
 <p>See <strong><a href="Secrets/">Secrets.md</a></strong> for more info about getting secrets like 
-passwords and sensitive files into various containers in the pod,
-without leaking out the information.</p>
+passwords and sensitive files into various containers in the pod.</p>
+<p>The important bit: we use <code>root.password</code> to store the password, and pass it
+into containers as an environment variable. Only this top-level pod-charlesreid1
+repo should use the file <code>root.password</code>.</p>
+<p>Details covered on the secrets page:</p>
 <ul>
 <li>mysql database root password</li>
 <li>mediawiki mysql database root password</li>
@@ -758,7 +761,6 @@ the specifics of each container.</p>
 <ul>
 <li><a href="https://docs.docker.com/compose/gettingstarted/#step-4-build-and-run-your-app-with-compose">getting started</a></li>
 <li><a href="https://docs.docker.com/compose/environment-variables/#set-environment-variables-in-containers">set environment variables in containers</a></li>
-<li><s><a href="https://docs.docker.com/engine/swarm/secrets/">docker secrets</a></s> (nope)</li>
 </ul>
                 
                   
