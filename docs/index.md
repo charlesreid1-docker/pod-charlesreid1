@@ -19,7 +19,7 @@ The services available through pod-charlesreid1 are:
 
 See the documentation site here: <https://pages.charlesreid1.com/pod-charlesreid1>
 
-Or visit [docs/index.md](/docs/index.md)
+Or visit docs/index.md`.
 
 Source code on git.charlesreid1.com: <https://git.charlesreid1.com/docker/pod-charlesreid1>
 
@@ -42,7 +42,7 @@ $ docker-compose up --build
 
 ## Running
 
-See **[Running.md](/Running.md)** for info about running this docker pod:
+See **[Running.md](Running.md)** for info about running this docker pod:
 
 * Running the Docker Pod from Comand Line
 * Running the Docker Pod as a Startup Service
@@ -51,7 +51,7 @@ See **[Running.md](/Running.md)** for info about running this docker pod:
 
 ## Volumes
 
-See **[Volumes.md](/Volumes.md)** for info about data and volumes 
+See **[Volumes.md](Volumes.md)** for info about data and volumes 
 used by this docker pod:
 
 * Persistent Data Volumes
@@ -128,8 +128,13 @@ The webhook server is a flask server listening on port 50000.
 ## Secrets
 
 See **[Secrets.md](Secrets.md)** for more info about getting secrets like 
-passwords and sensitive files into various containers in the pod,
-without leaking out the information.
+passwords and sensitive files into various containers in the pod.
+
+The important bit: we use `root.password` to store the password, and pass it
+into containers as an environment variable. Only this top-level pod-charlesreid1
+repo should use the file `root.password`.
+
+Details covered on the secrets page:
 
 * mysql database root password
 * mediawiki mysql database root password
@@ -151,11 +156,11 @@ the specifics of each container.
 * [python](Service_pythonfiles.md)
 * [gitea](Service_gitea.md)
 
+
 ## Links
 
 docker compose documentation:
 
 * [getting started](https://docs.docker.com/compose/gettingstarted/#step-4-build-and-run-your-app-with-compose)
 * [set environment variables in containers](https://docs.docker.com/compose/environment-variables/#set-environment-variables-in-containers)
-* <s>[docker secrets](https://docs.docker.com/engine/swarm/secrets/)</s> (nope)
 
