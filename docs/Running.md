@@ -19,7 +19,10 @@ you'll see a `docker-compose.fixme.yml` file.
 You need to fix this YML file by hard-coding your 
 MYSQL password in the file.
 
-See the steps below.
+(There is also a Jinja template, `docker-compose.yml.j2`,
+usable with [charlesreid1-ansible](https://git.charlesreid1.com/charlesreid1/charlesreid1-ansible).)
+
+See the steps below for using the "fixme" file.
 
 
 <a name="RunningCLI"></a>
@@ -79,11 +82,11 @@ getting an up-to-date container image.
 ## Running Charlesreid1 Docker Pod as Startup Service
 
 If you want to run the pod as a startup service,
-see the dotfiles/debian repository, in the services/
-subdirectory. You will find a systemd service
-that will start/stop the docker pod.
+see the `scripts/` folder for a startup service
+that can be used with systemd. This is also included
+below:
 
-**`dockerpod-charlesreid1.service:`**
+**`pod-charlesreid1.service:`**
 
 ```
 [Unit]
@@ -100,17 +103,17 @@ ExecStop=/usr/local/bin/docker-compose  -f /home/charles/codes/docker/pod-charle
 WantedBy=default.target
 ```
 
-Now install the service to `/etc/systemd/system/dockerpod-charlesreid1.servce`,
+Now install the service to `/etc/systemd/system/pod-charlesreid1.servce`,
 and activate it:
 
 ```
-sudo systemctl enable dockerpod-charlesreid1.service
+sudo systemctl enable pod-charlesreid1.service
 ```
 
 Now you can start/stop the service with:
 
 ```
-sudo systemctl (start|stop) dockerpod-charlesreid1.service
+sudo systemctl (start|stop) pod-charlesreid1.service
 ```
 
 NOTE: if you need to debug the containers, 
