@@ -19,7 +19,7 @@ The services available through pod-charlesreid1 are:
 
 See the documentation site here: <https://pages.charlesreid1.com/pod-charlesreid1>
 
-Or visit docs/index.md`.
+Or visit `docs/index.md`.
 
 Source code on git.charlesreid1.com: <https://git.charlesreid1.com/docker/pod-charlesreid1>
 
