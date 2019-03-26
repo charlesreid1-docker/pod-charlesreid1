@@ -33,12 +33,29 @@ From your project directory, start up the pod:
 $ docker-compose up
 ```
 
-If you want to rebuild the images (if you changed the Dockerfile),
-use the `--build` flag:
+If you want to rebuild the images before starting them
+(i.e., if you changed the Dockerfile and want to rebuild the
+Docker image), use the `--build` flag:
 
 ```
 $ docker-compose up --build
 ```
+
+If you only want to rebuild the images without starting the
+Docker pod, use the build verb:
+
+```
+$ docker-compose build
+```
+
+And finally, if you want to rebuild every container from scratch,
+rather than using cached data (note that this may take a while),
+add the `--no-cache` flag:
+
+```
+$ docker-compose build --no-cache
+```
+
 
 ## Running
 
@@ -48,6 +65,7 @@ See **[Running.md](Running.md)** for info about running this docker pod:
 * Running the Docker Pod as a Startup Service
 * Workflow for Charlesreid1 Docker Pod Updates
 * Restoring the Docker Pod from Backups
+
 
 ## Volumes
 
@@ -69,6 +87,7 @@ used by this docker pod:
 * python file server (pyfiles)
     * pyfiles directory
 
+
 ## Backups
 
 There are a number of directories containing utility scripts - these are mostly 
@@ -81,6 +100,7 @@ See **[Backups.md](Backups.md)** for coverage of backup and utility scripts.
 `utils-mw` - mediawiki backup utilities
 
 `utils-mysql` mysql backup utilities
+
 
 ## Domains and Ports
 
@@ -140,6 +160,7 @@ Details covered on the secrets page:
 * mediawiki mysql database root password
 * gitea secret key and session id
 * nginx ssl certificates
+
 
 ## Container-Specific Configuration Details
 

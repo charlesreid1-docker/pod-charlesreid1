@@ -1,7 +1,8 @@
 # Running the Charlesreid1 Docker Pod
 
-The charlesreid1.com site runs in a Docker pod.
-Use `docker-compose` to run the pod.
+This docker pod runs the main charlesreid1.com site.
+To run the pod, use the `docker-compose` command.
+
 
 ## The Docker Compose File
 
@@ -19,6 +20,7 @@ You need to fix this YML file by hard-coding your
 MYSQL password in the file.
 
 See the steps below.
+
 
 <a name="RunningCLI"></a>
 ## Running Charlesreid1 Docker Pod from Command Line
@@ -72,6 +74,7 @@ This simply restarts the container using the same image
 (in memory) that was previously running, ***without***
 getting an up-to-date container image.
 
+
 <a name="RunningService"></a>
 ## Running Charlesreid1 Docker Pod as Startup Service
 
@@ -116,6 +119,7 @@ be sure and stop the service before doing a
 `docker-compose stop` or a `docker-compose up --build`,
 otherwise the pod will continually respawn.
 
+
 <a name="Workflow"></a>
 ## Workflow for Charlesreid1 Docker Pod Updates
 
@@ -140,9 +144,6 @@ To minimize downtime, use the following workflow:
 It may take a few seconds to bring the pod down,
 and that will be your total amount of downtime.
 
-If you make a thousand dollars a second and can't afford
-your site to be down for even a few seconds of downtime, 
-hire me and I'll tell you how to do it with ***ZERO*** downtime.
 
 <a name="Backups"></a>
 ## Restoring Docker Pod from Backups
@@ -166,6 +167,7 @@ Now you can restore the database as follows:
 * MediaWiki image directory restore scripts are in `utils-mw/` dir
 * Gitea database and avatars come from backups using scripts in `utils-gitea/` dir
 
+
 ### mysql restore
 
 To restore a database from a dump:
@@ -178,6 +180,7 @@ cd utils-mysql/
 The MySQL container must be running for this to work.
 (You may need to adjust the MySQL container name in the script.)
 
+
 ### mediawiki restore
 
 To restore the MediaWiki images directory:
@@ -186,6 +189,7 @@ To restore the MediaWiki images directory:
 cd utils-mw/
 ./restore_wikifiles.sh /path/to/wikifiles.tar.gz
 ```
+
 
 ### gitea restore
 
