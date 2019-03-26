@@ -592,7 +592,9 @@ docker-compose is the preferred way to run multiple containers.</p>
 you'll see a <code>docker-compose.fixme.yml</code> file.
 You need to fix this YML file by hard-coding your 
 MYSQL password in the file.</p>
-<p>See the steps below.</p>
+<p>(There is also a Jinja template, <code>docker-compose.yml.j2</code>,
+usable with <a href="https://git.charlesreid1.com/charlesreid1/charlesreid1-ansible">charlesreid1-ansible</a>.)</p>
+<p>See the steps below for using the "fixme" file.</p>
 <p><a name="RunningCLI"></a></p>
 <h2 id="running-charlesreid1-docker-pod-from-command-line">Running Charlesreid1 Docker Pod from Command Line<a class="headerlink" href="#running-charlesreid1-docker-pod-from-command-line" title="Permanent link">&para;</a></h2>
 <p>We start by covering how to run the docker pod from the command line.</p>
@@ -638,10 +640,10 @@ getting an up-to-date container image.</p>
 <p><a name="RunningService"></a></p>
 <h2 id="running-charlesreid1-docker-pod-as-startup-service">Running Charlesreid1 Docker Pod as Startup Service<a class="headerlink" href="#running-charlesreid1-docker-pod-as-startup-service" title="Permanent link">&para;</a></h2>
 <p>If you want to run the pod as a startup service,
-see the dotfiles/debian repository, in the services/
-subdirectory. You will find a systemd service
-that will start/stop the docker pod.</p>
-<p><strong><code>dockerpod-charlesreid1.service:</code></strong></p>
+see the <code>scripts/</code> folder for a startup service
+that can be used with systemd. This is also included
+below:</p>
+<p><strong><code>pod-charlesreid1.service:</code></strong></p>
 <div class="codehilite"><pre><span></span>[Unit]
 Description=charlesreid1 docker pod
 Requires=docker.service
@@ -657,14 +659,14 @@ WantedBy=default.target
 </pre></div>
 
 
-<p>Now install the service to <code>/etc/systemd/system/dockerpod-charlesreid1.servce</code>,
+<p>Now install the service to <code>/etc/systemd/system/pod-charlesreid1.servce</code>,
 and activate it:</p>
-<div class="codehilite"><pre><span></span>sudo systemctl enable dockerpod-charlesreid1.service
+<div class="codehilite"><pre><span></span>sudo systemctl enable pod-charlesreid1.service
 </pre></div>
 
 
 <p>Now you can start/stop the service with:</p>
-<div class="codehilite"><pre><span></span>sudo systemctl (start|stop) dockerpod-charlesreid1.service
+<div class="codehilite"><pre><span></span>sudo systemctl (start|stop) pod-charlesreid1.service
 </pre></div>
 
 
