@@ -646,9 +646,23 @@ for running the charlesreid1.com site.</p>
 </pre></div>
 
 
-<p>If you want to rebuild the images (if you changed the Dockerfile),
-use the <code>--build</code> flag:</p>
+<p>If you want to rebuild the images before starting them
+(i.e., if you changed the Dockerfile and want to rebuild the
+Docker image), use the <code>--build</code> flag:</p>
 <div class="codehilite"><pre><span></span>$ docker-compose up --build
+</pre></div>
+
+
+<p>If you only want to rebuild the images without starting the
+Docker pod, use the build verb:</p>
+<div class="codehilite"><pre><span></span>$ docker-compose build
+</pre></div>
+
+
+<p>And finally, if you want to rebuild every container from scratch,
+rather than using cached data (note that this may take a while),
+add the <code>--no-cache</code> flag:</p>
+<div class="codehilite"><pre><span></span>$ docker-compose build --no-cache
 </pre></div>
 
 
