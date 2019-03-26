@@ -16,7 +16,7 @@ services:
       driver: "json-file"
       options:
         max-size: 1m
-        max-file: 10
+        max-file: "10"
     ports:
       - "222:22"
 
@@ -28,7 +28,7 @@ services:
       driver: "json-file"
       options:
         max-size: 1m
-        max-file: 10
+        max-file: "10"
     environment:
       - MYSQL_ROOT_PASSWORD={{ mysql_password }}
 
@@ -40,7 +40,7 @@ services:
       driver: "json-file"
       options:
         max-size: 1m
-        max-file: 10
+        max-file: "10"
     environment:
       - MEDIAWIKI_SITE_SERVER=https://charlesreid1.com
       - MYSQL_HOST=mysql
@@ -64,7 +64,7 @@ services:
       driver: "json-file"
       options:
         max-size: 1m
-        max-file: 10
+        max-file: "10"
     ports:
       - "80:80"
       - "443:443"
