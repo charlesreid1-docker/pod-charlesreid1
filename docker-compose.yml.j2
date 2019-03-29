@@ -43,6 +43,7 @@ services:
         max-file: "10"
     environment:
       - MEDIAWIKI_SITE_SERVER=https://charlesreid1.com
+      - MEDIAWIKI_SECRETKEY={{ mediawiki_secretkey }}
       - MYSQL_HOST=mysql
       - MYSQL_DATABASE=wikidb
       - MYSQL_USER=root
