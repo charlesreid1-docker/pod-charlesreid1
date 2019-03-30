@@ -1,30 +1,25 @@
 #!/bin/bash
 
-declare -a DOMAINS=("charlesreid1.com" "charlesreid1.blue" "charlesreid1.red")
+DOMAIN="charlesreid1.com"
+## git.charlesreid1.com:
+#REPOURL="https://git.charlesreid1.com/charlesreid1/${DOMAIN}.git"
 
-for DOMAIN in "${DOMAINS[@]}"; do
+# github.com:
+REPOURL="https://github.com/charlesreid1-docker/${DOMAIN}.git"
 
-    ## git.charlesreid1.com:
-    #REPOURL="https://git.charlesreid1.com/charlesreid1/${DOMAIN}.git"
+mkdir -p /www/${DOMAIN}
 
-    # github.com:
-    REPOURL="https://github.com/charlesreid1-docker/${DOMAIN}.git"
+if [ ! -d "/www/${DOMAIN}/htdocs" ]; then
 
-    mkdir -p /www/${DOMAIN}
+    # Only do this if /www/<domain>/htdocs does not exist
 
-    if [ ! -d "/www/${DOMAIN}/htdocs" ]; then
+    echo "Cloning repo for ${DOMAIN} to /wwww"
 
-        # Only do this if /www/<domain>/htdocs does not exist
+    git -C /www/${DOMAIN} \
+        clone \
+        --separate-git-dir=git \
+        -b gh-pages \
+        $REPOURL htdocs
 
-        echo "Cloning repo for ${DOMAIN} to /wwww"
-
-        git -C /www/${DOMAIN} \
-            clone \
-            --separate-git-dir=git \
-            -b gh-pages \
-            $REPOURL htdocs
-
-    fi
-
-done
+fi
 
