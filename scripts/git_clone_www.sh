@@ -10,6 +10,8 @@ for DOMAIN in "${DOMAINS[@]}"; do
     # github.com:
     REPOURL="https://github.com/charlesreid1-docker/${DOMAIN}.git"
 
+    mkdir -p /www/${DOMAIN}
+
     if [ ! -d "/www/${DOMAIN}/htdocs" ]; then
 
         # Only do this if /www/<domain>/htdocs does not exist
