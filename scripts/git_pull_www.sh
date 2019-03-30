@@ -1,13 +1,22 @@
 #!/bin/bash
+# 
+# pull the charlesreid1.com repo,
+# gh-pages branch, in the /www/${DOMAIN}
+# directory structure
 
-declare -a DOMAINS=("charlesreid1.com" "charlesreid1.blue" "charlesreid1.red")
+if [[ "$#" -eq "0" ]]; then
+    # default value
+    DOMAIN="charlesreid1.com"
+elif [[ "$#" -eq "1" ]]; then
+    # user-provided value
+    DOMAIN="$1"
+else
+    # huh?
+    echo "git_pull_www.sh takes 0 or 1 input arguments, you provided $#"
+    exit 1;
+fi
 
-for DOMAIN in "${DOMAINS[@]}"; do
+git -C /www/${DOMAIN} \
+    --git-dir=git --work-tree=htdocs \
+    pull origin gh-pages
 
-    echo "Cloning repo for ${DOMAIN} to /wwww"
-
-    git -C /www/${DOMAIN} \
-        --git-dir=git --work-tree=htdocs \
-        pull origin gh-pages
-
-done
