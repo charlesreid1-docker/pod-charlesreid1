@@ -1,14 +1,6 @@
 version: "3.3"
 services:
 
-  stormy_files:
-    image: python:3.6
-    command: bash -c "cd /files && python3 -m http.server 8081"
-    volumes:
-      - "/www/files:/files"
-    logging:
-      driver: "json-file"
-
   stormy_gitea:
     image: gitea/gitea:latest
     environment:
@@ -22,6 +14,9 @@ services:
       - "./d-gitea/custom/templates:/data/gitea/templates"
     logging:
       driver: "json-file"
+      options:
+        max-size: 1m
+        max-file: "10"
     ports:
       - "222:22"
 
@@ -31,15 +26,11 @@ services:
       - "stormy_mysql_data:/var/lib/mysql"
     logging:
       driver: "json-file"
+      options:
+        max-size: 1m
+        max-file: "10"
     environment:
-      - MYSQL_ROOT_PASSWORD=REPLACEME
-
-  stormy_myadmin:
-    image: "phpmyadmin/phpmyadmin"
-    links:
-      - stormy_mysql:db
-    environment:
-      - PMA_ABSOLUTE_URI=charlesreid1.com/phpMyAdmin
+      - MYSQL_ROOT_PASSWORD={{ mysql_password }}
 
   stormy_mw:
     build: d-mediawiki
@@ -47,14 +38,16 @@ services:
       - "stormy_mw_data:/var/www/html"
     logging:
       driver: "json-file"
-    links:
-      - stormy_mysql:mysql
+      options:
+        max-size: 1m
+        max-file: "10"
     environment:
       - MEDIAWIKI_SITE_SERVER=https://charlesreid1.com
+      - MEDIAWIKI_SECRETKEY={{ mediawiki_secretkey }}
       - MYSQL_HOST=mysql
       - MYSQL_DATABASE=wikidb
       - MYSQL_USER=root
-      - MYSQL_PASSWORD=REPLACEME
+      - MYSQL_PASSWORD={{ mysql_password }}
 
   stormy_nginx:
     restart: always
@@ -70,11 +63,30 @@ services:
       - "/www/charlesreid1.com/htdocs:/www/charlesreid1.com/htdocs:ro"
     logging:
       driver: "json-file"
+      options:
+        max-size: 1m
+        max-file: "10"
     ports:
       - "80:80"
       - "443:443"
+
+  ### stormy_myadmin:
+  ###   image: "phpmyadmin/phpmyadmin"
+  ###   links:
+  ###     - stormy_mysql:db
+  ###   environment:
+  ###     - PMA_ABSOLUTE_URI=charlesreid1.com/phpMyAdmin
+
+  ### stormy_files:
+  ###   image: python:3.6
+  ###   command: bash -c "cd /files && python3 -m http.server 8081"
+  ###   volumes:
+  ###     - "/www/files:/files"
+  ###   logging:
+  ###     driver: "json-file"
 
 volumes:
   stormy_mysql_data:
   stormy_mw_data:
   stormy_gitea_data:
+

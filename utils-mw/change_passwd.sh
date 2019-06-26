@@ -20,7 +20,7 @@ if [[ "$#" -eq 0 ]];
 then
 
     NAME="podcharlesreid1_stormy_mw_1"
-    docker exec -it ${NAME} ls /var/www/html/maintenance/changePassword.php --user="Anna Graham"
+    docker exec -it ${NAME} ls /var/www/html/maintenance/changePassword.php --user="Admin"
 
 else
     usage

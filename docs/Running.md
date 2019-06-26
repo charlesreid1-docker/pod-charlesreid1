@@ -1,7 +1,8 @@
 # Running the Charlesreid1 Docker Pod
 
-The charlesreid1.com site runs in a Docker pod.
-Use `docker-compose` to run the pod.
+This docker pod runs the main charlesreid1.com site.
+To run the pod, use the `docker-compose` command.
+
 
 ## The Docker Compose File
 
@@ -18,7 +19,11 @@ you'll see a `docker-compose.fixme.yml` file.
 You need to fix this YML file by hard-coding your 
 MYSQL password in the file.
 
-See the steps below.
+(There is also a Jinja template, `docker-compose.yml.j2`,
+usable with [charlesreid1-ansible](https://git.charlesreid1.com/charlesreid1/charlesreid1-ansible).)
+
+See the steps below for using the "fixme" file.
+
 
 <a name="RunningCLI"></a>
 ## Running Charlesreid1 Docker Pod from Command Line
@@ -72,15 +77,16 @@ This simply restarts the container using the same image
 (in memory) that was previously running, ***without***
 getting an up-to-date container image.
 
+
 <a name="RunningService"></a>
 ## Running Charlesreid1 Docker Pod as Startup Service
 
 If you want to run the pod as a startup service,
-see the dotfiles/debian repository, in the services/
-subdirectory. You will find a systemd service
-that will start/stop the docker pod.
+see the `scripts/` folder for a startup service
+that can be used with systemd. This is also included
+below:
 
-**`dockerpod-charlesreid1.service:`**
+**`pod-charlesreid1.service:`**
 
 ```
 [Unit]
@@ -97,17 +103,17 @@ ExecStop=/usr/local/bin/docker-compose  -f /home/charles/codes/docker/pod-charle
 WantedBy=default.target
 ```
 
-Now install the service to `/etc/systemd/system/dockerpod-charlesreid1.servce`,
+Now install the service to `/etc/systemd/system/pod-charlesreid1.servce`,
 and activate it:
 
 ```
-sudo systemctl enable dockerpod-charlesreid1.service
+sudo systemctl enable pod-charlesreid1.service
 ```
 
 Now you can start/stop the service with:
 
 ```
-sudo systemctl (start|stop) dockerpod-charlesreid1.service
+sudo systemctl (start|stop) pod-charlesreid1.service
 ```
 
 NOTE: if you need to debug the containers, 
@@ -115,6 +121,7 @@ or update any config files copied into the container,
 be sure and stop the service before doing a 
 `docker-compose stop` or a `docker-compose up --build`,
 otherwise the pod will continually respawn.
+
 
 <a name="Workflow"></a>
 ## Workflow for Charlesreid1 Docker Pod Updates
@@ -140,9 +147,6 @@ To minimize downtime, use the following workflow:
 It may take a few seconds to bring the pod down,
 and that will be your total amount of downtime.
 
-If you make a thousand dollars a second and can't afford
-your site to be down for even a few seconds of downtime, 
-hire me and I'll tell you how to do it with ***ZERO*** downtime.
 
 <a name="Backups"></a>
 ## Restoring Docker Pod from Backups
@@ -166,6 +170,7 @@ Now you can restore the database as follows:
 * MediaWiki image directory restore scripts are in `utils-mw/` dir
 * Gitea database and avatars come from backups using scripts in `utils-gitea/` dir
 
+
 ### mysql restore
 
 To restore a database from a dump:
@@ -178,6 +183,7 @@ cd utils-mysql/
 The MySQL container must be running for this to work.
 (You may need to adjust the MySQL container name in the script.)
 
+
 ### mediawiki restore
 
 To restore the MediaWiki images directory:
@@ -186,6 +192,7 @@ To restore the MediaWiki images directory:
 cd utils-mw/
 ./restore_wikifiles.sh /path/to/wikifiles.tar.gz
 ```
+
 
 ### gitea restore
 

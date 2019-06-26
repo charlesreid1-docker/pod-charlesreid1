@@ -33,25 +33,43 @@ From your project directory, start up the pod:
 $ docker-compose up
 ```
 
-If you want to rebuild the images (if you changed the Dockerfile),
-use the `--build` flag:
+If you want to rebuild the images before starting them
+(i.e., if you changed the Dockerfile and want to rebuild the
+Docker image), use the `--build` flag:
 
 ```
 $ docker-compose up --build
 ```
 
+If you only want to rebuild the images without starting the
+Docker pod, use the build verb:
+
+```
+$ docker-compose build
+```
+
+And finally, if you want to rebuild every container from scratch,
+rather than using cached data (note that this may take a while),
+add the `--no-cache` flag:
+
+```
+$ docker-compose build --no-cache
+```
+
+
 ## Running
 
-See **[Running.md](/Running.md)** for info about running this docker pod:
+See **[Running.md](Running.md)** for info about running this docker pod:
 
 * Running the Docker Pod from Comand Line
 * Running the Docker Pod as a Startup Service
 * Workflow for Charlesreid1 Docker Pod Updates
 * Restoring the Docker Pod from Backups
 
+
 ## Volumes
 
-See **[Volumes.md](/Volumes.md)** for info about data and volumes 
+See **[Volumes.md](Volumes.md)** for info about data and volumes 
 used by this docker pod:
 
 * Persistent Data Volumes
@@ -69,6 +87,7 @@ used by this docker pod:
 * python file server (pyfiles)
     * pyfiles directory
 
+
 ## Backups
 
 There are a number of directories containing utility scripts - these are mostly 
@@ -81,6 +100,7 @@ See **[Backups.md](Backups.md)** for coverage of backup and utility scripts.
 `utils-mw` - mediawiki backup utilities
 
 `utils-mysql` mysql backup utilities
+
 
 ## Domains and Ports
 
@@ -128,13 +148,19 @@ The webhook server is a flask server listening on port 5000.
 ## Secrets
 
 See **[Secrets.md](Secrets.md)** for more info about getting secrets like 
-passwords and sensitive files into various containers in the pod,
-without leaking out the information.
+passwords and sensitive files into various containers in the pod.
+
+The important bit: we use `root.password` to store the password, and pass it
+into containers as an environment variable. Only this top-level pod-charlesreid1
+repo should use the file `root.password`.
+
+Details covered on the secrets page:
 
 * mysql database root password
 * mediawiki mysql database root password
 * gitea secret key and session id
 * nginx ssl certificates
+
 
 ## Container-Specific Configuration Details
 
@@ -151,11 +177,11 @@ the specifics of each container.
 * [python](Service_pythonfiles.md)
 * [gitea](Service_gitea.md)
 
+
 ## Links
 
 docker compose documentation:
 
 * [getting started](https://docs.docker.com/compose/gettingstarted/#step-4-build-and-run-your-app-with-compose)
 * [set environment variables in containers](https://docs.docker.com/compose/environment-variables/#set-environment-variables-in-containers)
-* <s>[docker secrets](https://docs.docker.com/engine/swarm/secrets/)</s> (nope)
 
