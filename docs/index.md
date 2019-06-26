@@ -19,7 +19,7 @@ The services available through pod-charlesreid1 are:
 
 See the documentation site here: <https://pages.charlesreid1.com/pod-charlesreid1>
 
-Or visit [docs/index.md](/docs/index.md)
+Or visit [`docs/index.md`](/docs/index.md)
 
 Source code on git.charlesreid1.com: <https://git.charlesreid1.com/docker/pod-charlesreid1>
 
@@ -122,7 +122,7 @@ but on the backend nginx is passing along the URL request and returning the resu
 
 Subdomains are served via reverse proxy on port 7777+. 
 
-The webhook server is a flask server listening on port 50000.
+The webhook server is a flask server listening on port 5000.
 
 
 ## Secrets
