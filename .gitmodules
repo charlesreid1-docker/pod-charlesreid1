@@ -1,21 +1,21 @@
 [submodule "d-mysql"]
 	path = d-mysql
-	url = https://git.charlesreid1.com/docker/d-mysql.git
+	url = git@github.com:charlesreid1-docker/d-mysql.git
 [submodule "d-mediawiki"]
 	path = d-mediawiki
-	url = https://git.charlesreid1.com/docker/d-mediawiki.git
+	url = git@github.com:charlesreid1-docker/d-mediawiki.git
 [submodule "d-phpmyadmin"]
 	path = d-phpmyadmin
-	url = https://git.charlesreid1.com/docker/d-phpmyadmin.git
+	url = git@github.com:charlesreid1-docker/d-phpmyadmin.git
 [submodule "d-nginx-charlesreid1"]
 	path = d-nginx-charlesreid1
-	url = https://git.charlesreid1.com/docker/d-nginx-charlesreid1.git
+	url = git@github.com:charlesreid1-docker/d-nginx-charlesreid1.git
 [submodule "d-gitea"]
 	path = d-gitea
-	url = https://git.charlesreid1.com/docker/d-gitea.git
+	url = git@github.com:charlesreid1-docker/d-gitea.git
 [submodule "d-python-files"]
 	path = d-python-files
-	url = https://git.charlesreid1.com/docker/d-python-files.git
+	url = git@github.com:charlesreid1-docker/d-python-files.git
 [submodule "mkdocs-material"]
 	path = mkdocs-material
-	url = https://git.charlesreid1.com/charlesreid1/mkdocs-material.git
+	url = git@github.com:charlesreid1/mkdocs-material.git
