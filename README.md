@@ -56,10 +56,32 @@ add the `--no-cache` flag:
 $ docker-compose build --no-cache
 ```
 
-**IMPORTANT:** You should modify the contents of `d-mediawiki/charlesreid1-config/`
-(which is the repository <https://github.com/charlesreid1-docker/charlesreid1-wiki-config>)
-to make the MediaWiki extensions folder and turn the configuration file templates
-into actual, usable configuration files.
+**IMPORTANT:** If you are not setting up the charlesreid1 pod using
+ansible, you must also modify the contents of the following subdirectories
+to render the templates in each submodule into usable configuration files.
+
+* `d-mediawiki/charlesreid1-config/` - contains MediaWiki extensions and configuration
+  files for MediaWiki. See <https://github.com/charlesreid1-docker/charlesreid1-wiki-config>
+  for details.
+
+    * Build mediawiki extensions dir by running
+      `d-mediawiki/charlesreid1-config/build_extensions_dir.sh`
+
+    * Render mediawiki config template (`LocalSettings.php`) by running
+      `d-mediawiki/charlesreid1-config/mediawiki/apply_templates.py`
+
+    * Render apache config template (`charlesreid1.wiki.conf`) by running
+      `d-mediawiki/charlesreid1-config/apache/apply_templates.py`
+
+* `d-nginx-charlesreid1/conf.d` - contains templates for nginx config files, but are not
+  rendered until the render templates script is run.
+
+    * Render nginx configuration file templates (`d-nginx-charlesreid1/conf.d/`)
+      by running `d-nginx-charlesreid1/apply_templates.py`
+      (note that this _should_ render templates into `d-nginx-charlesreid1/conf.d/`
+      but may actually render templates into `d-nginx-charlesreid1/conf.d_examples`,
+      in which case you need to copy the configuration files in the `conf.d_examples` 
+      directory into the `conf.d` directory)
 
 
 ## Running
