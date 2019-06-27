@@ -8,10 +8,10 @@ for dir in `find . -type d -maxdepth 1 | $GREP -v "docs" | $GREP -v ".git"`; do
     (
     cd $dir
     git checkout master
-    git pull origin master
+    git pull gh master
     )
 done
 
 git commit -a -m 'Updating submodules to latest'
-git push origin master
+git push gh master
 
