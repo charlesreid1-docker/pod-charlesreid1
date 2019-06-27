@@ -19,7 +19,7 @@ The services available through pod-charlesreid1 are:
 
 See the documentation site here: <https://pages.charlesreid1.com/pod-charlesreid1>
 
-Or visit `docs/index.md`.
+Or visit [`docs/index.md`](/docs/index.md)
 
 Source code on git.charlesreid1.com: <https://git.charlesreid1.com/docker/pod-charlesreid1>
 
@@ -33,8 +33,9 @@ From your project directory, start up the pod:
 $ docker-compose up
 ```
 
-If you want to rebuild the images (if you changed the Dockerfile),
-use the `--build` flag:
+If you want to rebuild the images before starting them
+(i.e., if you changed the Dockerfile and want to rebuild the
+Docker image), use the `--build` flag:
 
 ```
 $ docker-compose up --build
@@ -54,6 +55,11 @@ add the `--no-cache` flag:
 ```
 $ docker-compose build --no-cache
 ```
+
+**IMPORTANT:** You should modify the contents of `d-mediawiki/charlesreid1-config/`
+(which is the repository <https://github.com/charlesreid1-docker/charlesreid1-wiki-config>)
+to make the MediaWiki extensions folder and turn the configuration file templates
+into actual, usable configuration files.
 
 
 ## Running
@@ -141,7 +147,7 @@ but on the backend nginx is passing along the URL request and returning the resu
 
 Subdomains are served via reverse proxy on port 7777+. 
 
-The webhook server is a flask server listening on port 50000.
+The webhook server is a flask server listening on port 5000.
 
 
 ## Secrets

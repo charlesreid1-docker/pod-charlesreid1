@@ -19,7 +19,7 @@ The services available through pod-charlesreid1 are:
 
 See the documentation site here: <https://pages.charlesreid1.com/pod-charlesreid1>
 
-Or visit [`docs/index.md`](/docs/index.md)
+Or visit `docs/index.md`.
 
 Source code on git.charlesreid1.com: <https://git.charlesreid1.com/docker/pod-charlesreid1>
 
@@ -55,6 +55,11 @@ add the `--no-cache` flag:
 ```
 $ docker-compose build --no-cache
 ```
+
+**IMPORTANT:** You should modify the contents of `d-mediawiki/charlesreid1-config/`
+(which is the repository <https://github.com/charlesreid1-docker/charlesreid1-wiki-config>)
+to make the MediaWiki extensions folder and turn the configuration file templates
+into actual, usable configuration files.
 
 
 ## Running
