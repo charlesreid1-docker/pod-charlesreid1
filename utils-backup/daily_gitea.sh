@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Just make a daily MediaWiki files backup.
+# Just make a daily gitea files backup.
 set -x
 
 stamp="`date +"%Y-%m-%d"`"
