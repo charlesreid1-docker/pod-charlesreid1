@@ -18,4 +18,4 @@
 	url = git@github.com:charlesreid1-docker/d-python-files.git
 [submodule "mkdocs-material"]
 	path = mkdocs-material
-	url = git@github.com:charlesreid1/mkdocs-material.git
+	url = git@github.com:charlesreid1-docker/mkdocs-material.git
