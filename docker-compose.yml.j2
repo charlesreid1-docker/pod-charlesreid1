@@ -1,6 +1,9 @@
 version: "3.3"
 services:
 
+# Note: depends_on is from here
+# https://stackoverflow.com/a/39039830
+
   stormy_gitea:
     image: gitea/gitea:latest
     environment:
@@ -48,6 +51,8 @@ services:
       - MYSQL_DATABASE=wikidb
       - MYSQL_USER=root
       - MYSQL_PASSWORD={{ mysql_password }}
+    depends_on:
+      - stormy_mysql
 
   stormy_nginx:
     restart: always
@@ -66,6 +71,9 @@ services:
       options:
         max-size: 1m
         max-file: "10"
+    depends_on:
+      - stormy_mw
+      - stormy_gitea
     ports:
       - "80:80"
       - "443:443"
