@@ -51,7 +51,6 @@ services:
       - MYSQL_DATABASE=wikidb
       - MYSQL_USER=root
       - MYSQL_PASSWORD={{ mysql_password }}
-      ###- MEDIAWIKI_SITE_SERVER=https://charlesreid1.com
     depends_on:
       - stormy_mysql
 
@@ -65,9 +64,6 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/letsencrypt:/etc/letsencrypt"
       - "/www/{{ server_name_default }}/htdocs:/www/{{ server_name_default }}/htdocs:ro"
-      ### - "/www/charlesreid1.blue/htdocs:/www/charlesreid1.blue/htdocs:ro"
-      ### - "/www/charlesreid1.red/htdocs:/www/charlesreid1.red/htdocs:ro"
-      ### - "/www/charlesreid1.com/htdocs:/www/charlesreid1.com/htdocs:ro"
     logging:
       driver: "json-file"
       options:
@@ -76,16 +72,11 @@ services:
     depends_on:
       - stormy_mw
       - stormy_gitea
+      #- stormy_files
+      #- stormy_myadmin
     ports:
       - "80:80"
       - "443:443"
-
-  ### stormy_myadmin:
-  ###   image: "phpmyadmin/phpmyadmin"
-  ###   links:
-  ###     - stormy_mysql:db
-  ###   environment:
-  ###     - PMA_ABSOLUTE_URI={{ server_name_default }}/phpMyAdmin
 
   ### stormy_files:
   ###   image: python:3.6
@@ -94,6 +85,13 @@ services:
   ###     - "/www/files.{{ server_name_default }}:/files"
   ###   logging:
   ###     driver: "json-file"
+
+  ### stormy_myadmin:
+  ###   image: "phpmyadmin/phpmyadmin"
+  ###   links:
+  ###     - stormy_mysql:db
+  ###   environment:
+  ###     - PMA_ABSOLUTE_URI={{ server_name_default }}/phpMyAdmin
 
 volumes:
   stormy_mysql_data:
