@@ -1,0 +1,88 @@
+#!/usr/bin/env python3
+import subprocess
+import os
+
+"""
+/www Initial Setup
+
+This script setups up the initial /www
+directory structure for charlesreid1.com
+content. (Or, charlesreid1.XYZ, whatever.)
+"""
+
+SERVER_NAME_DEFAULT = '{{ server_name_default }}'
+USERNAME = '{{ username }}'
+
+
+
+# Set repo urls
+# Use git.charlesreid1.com to clone charlesreid1.com content
+repourl = "https://git.charlesreid1.com/data/charlesreid1-data.git"
+#
+### # Use github.com to clone charlesreid1.com content
+### repourl = "https://github.com/charlesreid1-docker/charlesreid1.com.git"
+
+# Set directory locations
+root = '/www'
+basedir = os.path.join(root,SERVER_NAME_DEFAULT)
+dotgitdir = os.path.join(basedir,'git.data')
+htdocsdir = os.path.join(basedir,'htdocs')
+datadir = os.path.join(htdocsdir,'data')
+
+# Start by making sure the base directory exists
+subprocess.call(['mkdir','-p',basedir])
+
+# Run the clone command, but only if 
+# /www/<domain>/htdocs 
+# actually exists
+if os.path.exists(htdocsdir):
+
+    # Run the clone command, but only if 
+    # /www/<domain>/htdocs/data
+    # does not exist
+    if not os.path.exists(datadir):
+
+        clonecmd = ['git','clone',
+                    '--separate-git-dir=%s'%(dotgitdir),
+                    '-b','master',
+                    repourl,
+                    datadir]
+
+
+        print("About to clone htdocs for %s using command:\n"%(SERVER_NAME_DEFAULT))
+        print("    $ " + " ".join(clonecmd))
+        print("\n")
+        try:
+            p = subprocess.Popen(clonecmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        except:
+            msg = "Something went wrong with the clone command. Output:"
+            msg += "\n"
+            msg += p.stdout.readline()
+            msg += "\n"
+            msg += p.stderr.readline()
+            print(msg)
+        finally:
+            print("Done.")
+
+
+# Step 2: chown everybody
+# Construct chown command
+chowncmd = ['chown','-R',
+            USERNAME+":"+USERNAME,
+            basedir]
+
+print("About to chown htdocs using command:\n")
+print("    $ " + " ".join(chowncmd))
+print("\n")
+try:
+    p = subprocess.Popen(chowncmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+except:
+    msg = "Something went wrong with the chown command. Output:"
+    msg += "\n"
+    msg += p.stdout.readline()
+    msg += "\n"
+    msg += p.stderr.readline()
+    print(msg)
+finally:
+    print("Done.")
+

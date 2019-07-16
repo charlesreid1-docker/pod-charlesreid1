@@ -28,7 +28,7 @@ mkdir -p /www/${DOMAIN}
 # /www/<domain>/htdocs does not exist
 if [ ! -d "/www/${DOMAIN}/htdocs" ]; then
 
-    echo "Cloning repo for ${DOMAIN} to /wwww"
+    echo "Cloning repo for ${DOMAIN} to /www"
 
     git -C /www/${DOMAIN} \
         clone \
