@@ -33,7 +33,7 @@ subprocess.call(['mkdir','-p',basedir])
 
 # Run the clone command, but only if we don't have an htdocs dir yet
 # /www/SERVER_NAME_DEFAULT/htdocs 
-if not os.path.exists(htdocs_dir):
+if not os.path.exists(htdocsdir):
 
     # Clone htdocs folder for SERVER_NAME_DEFAULT
     clonecmd = ['git','clone',
