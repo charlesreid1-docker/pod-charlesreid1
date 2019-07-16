@@ -1,0 +1,73 @@
+#!/usr/bin/env python3
+import subprocess
+import os
+
+"""
+Pull /www
+
+This script git pulls the /www directory
+for updating charlesreid1.com content.
+"""
+
+SERVER_NAME_DEFAULT = '{{ server_name_default }}'
+USERNAME = '{{ username }}'
+
+
+
+# Set directory locations
+root = '/www'
+basedir = os.path.join(root,SERVER_NAME_DEFAULT)
+htdocsdir = os.path.join(basedir,'htdocs')
+dotgitdir = os.path.join(basedir,'git.%s'%(SERVER_NAME_DEFAULT))
+
+# Run the pull command, but only if 
+# the htdocs dir already exists
+# /www/<domain>/htdocs 
+if os.path.exists(htdocs_dir):
+    
+    # Git pull, respecting the non-standard
+    # layout of the .git directory
+    pullcmd = ['git',
+               '-C',basedir,
+               '--git-dir=%s'%(dotgitdir),
+               '--work-tree=%s'%(htdocsdir),
+               'pull','origin','gh-pages']
+
+    print("About to pull /www content for %s using command:\n"%(SERVER_NAME_DEFAULT))
+    print("    $ " + " ".join(pullcmd))
+    print("\n")
+    try:
+        p = subprocess.Popen(pullcmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    except:
+        msg = "Something went wrong with the pull command. Output:"
+        msg += "\n"
+        msg += p.stdout.readline()
+        msg += "\n"
+        msg += p.stderr.readline()
+        print(msg)
+    finally:
+        print("Done.")
+
+
+
+# Step 2: chown everybody
+# Construct chown command
+chowncmd = ['chown','-R',
+            USERNAME+":"+USERNAME,
+            basedir]
+
+print("About to chown /www directory using command:\n")
+print("    $ " + " ".join(chowncmd))
+print("\n")
+try:
+    p = subprocess.Popen(chowncmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+except:
+    msg = "Something went wrong with the chown command. Output:"
+    msg += "\n"
+    msg += p.stdout.readline()
+    msg += "\n"
+    msg += p.stderr.readline()
+    print(msg)
+finally:
+    print("Done.")
+
