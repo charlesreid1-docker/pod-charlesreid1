@@ -26,7 +26,7 @@ only variables are:
 TEMPLATEDIR = '.'
 
 # Where rendered templates will go
-OUTDIR = '.'
+OUTDIR = 'output'
 
 # Should existing (destination) files 
 # be overwritten if they exist?
@@ -54,7 +54,7 @@ def apply_templates(template_dir, output_dir, template_vars, overwrite=False):
         raise Exception(msg)
 
     # Jinja env
-    env = Environment(loader=FileSystemLoader('conf.d_templates/'))
+    env = Environment(loader=FileSystemLoader('.'))
 
     # Render templates
     template_files = glob.glob('*.py.j2')
