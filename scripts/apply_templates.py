@@ -34,7 +34,7 @@ OVERWRITE = True
 
 # Template variables
 TV = {
-        'server_name_default':  'charlesreid1.com',
+        'server_name_default':  'charlesreid1.red',
         'username':             'charles'
 }
 

@@ -26,7 +26,7 @@ repourl = "https://github.com/charlesreid1-docker/charlesreid1.com.git"
 root = '/www'
 basedir = os.path.join(root,SERVER_NAME_DEFAULT)
 htdocsdir = os.path.join(basedir,'htdocs')
-dotgitdir = os.path.join(basedir,'git.%s'%(SERVER_NAME_DEFAULT))
+dotgitdir = os.path.join(basedir,'git.htdocs')
 
 # Start by making sure the base directory exists
 subprocess.call(['mkdir','-p',basedir])
