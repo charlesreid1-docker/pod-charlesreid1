@@ -35,7 +35,7 @@ if os.path.exists(datadir):
                '-C',basedir,
                '--git-dir=%s'%(dotgitdir),
                '--work-tree=%s'%(datadir),
-               'pull','origin','gh-pages']
+               'pull','origin','master']
 
     print("About to pull /www data content for %s using command:\n"%(SERVER_NAME_DEFAULT))
     print("    $ " + " ".join(pullcmd))
