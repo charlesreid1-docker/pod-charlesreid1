@@ -13,7 +13,9 @@ def execute(cmd):
     for stdout_line in iter(p.stdout.readline, ""):
         yield stdout_line
     p.stdout.close()
+    err = "".join([j for j in iter(p.stderr.readline,"")])
     return_code = p.wait()
     if return_code:
+        yield err
         raise subprocess.CalledProcessError(return_code, cmd)
 

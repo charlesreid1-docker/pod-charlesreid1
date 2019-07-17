@@ -38,9 +38,10 @@ if os.path.exists(datadir):
                'pull','origin','gh-pages']
 
     print("About to pull /www data content for %s using command:\n"%(SERVER_NAME_DEFAULT))
-    print("    $ " + " ".join(clonecmd))
+    print("    $ " + " ".join(pullcmd))
     print("\n")
 
+    print("\t> Command output:\n", end="")
     for loo in execute(pullcmd):
         print("\t> "+loo, end="")
 
