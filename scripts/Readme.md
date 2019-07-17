@@ -3,6 +3,15 @@
 Contains useful scripts for setting up and maintaining
 the charlesreid1.com docker pod.
 
+## TODO
+
+Update:
+
+- jinja templates
+- apply template scripts
+- executioner
+
+
 ## `dockerpod-charlesreid1.service`
 
 This .service script is a systemd startup script that
