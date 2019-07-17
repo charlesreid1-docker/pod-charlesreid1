@@ -41,9 +41,9 @@ if os.path.exists(datadir):
     print("    $ " + " ".join(pullcmd))
     print("\n")
 
-    print("\t> Command output:\n", end="")
+    print("%s %s %s"%("\t",">","Command output:"), end="")
     for loo in execute(pullcmd):
-        print("\t> "+loo, end="")
+        print("%s %s %s"%("\t",">",loo), end="")
     print("\n")
 
     print("Done.")
