@@ -44,6 +44,7 @@ if os.path.exists(datadir):
     print("\t> Command output:\n", end="")
     for loo in execute(pullcmd):
         print("\t> "+loo, end="")
+    print("\n")
 
     print("Done.")
 
@@ -61,8 +62,7 @@ print("\n")
 
 for loo in execute(chowncmd):
     print("\t> "+loo, end="")
+print("\n")
 
 print("Done.")
-
-print("\n")
 
