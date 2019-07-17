@@ -12,6 +12,20 @@ for updating charlesreid1.com content.
 SERVER_NAME_DEFAULT = '{{ server_name_default }}'
 USERNAME = '{{ username }}'
 
+def execute(cmd):
+    """
+    A function to run a command and return the
+    lines of output as they are generated,
+    allowing the calling function to "stream"
+    the output of the command to print() or etc.
+    """
+    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
+    for stdout_line in iter(p.stdout.readline, ""):
+        yield stdout_line
+    p.stdout.close()
+    return_code = p.wait()
+    if return_code:
+        raise subprocess.CalledProcessError(return_code, cmd)
 
 
 # Set directory locations
@@ -20,6 +34,7 @@ basedir = os.path.join(root,SERVER_NAME_DEFAULT)
 htdocsdir = os.path.join(basedir,'htdocs')
 dotgitdir = os.path.join(basedir,'git.htdocs')
 
+# Step 1: git pull
 # Run the pull command, but only if 
 # the htdocs dir already exists
 # /www/<domain>/htdocs 
@@ -36,18 +51,11 @@ if os.path.exists(htdocsdir):
     print("About to pull /www content for %s using command:\n"%(SERVER_NAME_DEFAULT))
     print("    $ " + " ".join(pullcmd))
     print("\n")
-    try:
-        p = subprocess.Popen(pullcmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    except:
-        msg = "Something went wrong with the pull command. Output:"
-        msg += "\n"
-        msg += p.stdout.readline()
-        msg += "\n"
-        msg += p.stderr.readline()
-        print(msg)
-    finally:
-        print("Done.")
 
+    for loo in execute(pullcmd):
+        print("\t> "+loo, end="")
+
+    print("Done.")
 
 
 # Step 2: chown everybody
@@ -59,15 +67,9 @@ chowncmd = ['chown','-R',
 print("About to chown /www directory using command:\n")
 print("    $ " + " ".join(chowncmd))
 print("\n")
-try:
-    p = subprocess.Popen(chowncmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-except:
-    msg = "Something went wrong with the chown command. Output:"
-    msg += "\n"
-    msg += p.stdout.readline()
-    msg += "\n"
-    msg += p.stderr.readline()
-    print(msg)
-finally:
-    print("Done.")
+
+for loo in execute(chowncmd):
+    print("\t> "+loo, end="")
+
+print("Done.")
 
