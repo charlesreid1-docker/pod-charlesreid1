@@ -44,17 +44,13 @@ if os.path.exists(htdocsdir) and not os.path.exists(datadir):
     print("About to clone /www data content for %s using command:\n"%(SERVER_NAME_DEFAULT))
     print("    $ " + " ".join(clonecmd))
     print("\n")
-    try:
-        p = subprocess.Popen(clonecmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    except:
-        msg = "Something went wrong with the clone data command. Output:"
-        msg += "\n"
-        msg += p.stdout.readline()
-        msg += "\n"
-        msg += p.stderr.readline()
-        print(msg)
-    finally:
-        print("Done.")
+
+    print("Command Output:")
+    for loo in execute(pullcmd):
+        print(loo)
+    print("\n")
+
+    print("Done.")
 
 
 # Step 2: chown everybody
