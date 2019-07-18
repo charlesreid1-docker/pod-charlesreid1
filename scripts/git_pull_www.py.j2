@@ -39,9 +39,9 @@ if os.path.exists(htdocsdir):
     print("    $ " + " ".join(pullcmd))
     print("\n")
 
-    print("%s %s %s"%("\t",">","Command output:"), end="")
+    print("\tCommand Output:")
     for loo in execute(pullcmd):
-        print("%s %s %s"%("\t",">",loo), end="")
+        print("\t %s"%(loo), end="")
     print("\n")
 
     print("Done.")
