@@ -29,17 +29,14 @@ dotgitdir = os.path.join(basedir,'git.data')
 # Start by making sure the base directory exists
 subprocess.call(['mkdir','-p',basedir])
 
-# Run the clone command, but only if:
-# /www/<domain>/htdocs actually exists
-# /www/<domain>/htdocs/data does not exist
-
-if os.path.exists(htdocsdir) and not os.path.exists(datadir):
+# Run the clone command, but only if there is no dot git directory
+# (and if there is an htdocs dir)
+if os.path.exists(htdocsdir) and not os.path.exists(dotgitdir):
 
     clonecmd = ['git','clone',
                 '--separate-git-dir=%s'%(dotgitdir),
                 '-b','master',
                 repourl, datadir]
-
 
     print("About to clone /www data content for %s using command:\n"%(SERVER_NAME_DEFAULT))
     print("    $ " + " ".join(clonecmd))
@@ -59,18 +56,15 @@ chowncmd = ['chown','-R',
             USERNAME+":"+USERNAME,
             basedir]
 
-print("About to chown htdocs using command:\n")
+print("About to chown /www directory using command:\n")
 print("    $ " + " ".join(chowncmd))
 print("\n")
-try:
-    p = subprocess.Popen(chowncmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-except:
-    msg = "Something went wrong with the chown command. Output:"
-    msg += "\n"
-    msg += p.stdout.readline()
-    msg += "\n"
-    msg += p.stderr.readline()
-    print(msg)
-finally:
-    print("Done.")
+
+print("Command Output:")
+for loo in execute(chowncmd):
+    print(loo)
+print("\n")
+
+print("Done.")
+
 
