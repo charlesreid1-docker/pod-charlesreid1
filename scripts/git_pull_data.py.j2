@@ -41,9 +41,9 @@ if os.path.exists(datadir):
     print("    $ " + " ".join(pullcmd))
     print("\n")
 
-    print("\tCommand Output:")
+    print("Command Output:")
     for loo in execute(pullcmd):
-        print("\t %s"%(loo), end="")
+        print(loo, end="")
     print("\n")
 
     print("Done.")
@@ -60,8 +60,9 @@ print("About to chown /www directory using command:\n")
 print("    $ " + " ".join(chowncmd))
 print("\n")
 
+print("Command Output:")
 for loo in execute(chowncmd):
-    print("\t> "+loo, end="")
+    print(loo, end="")
 print("\n")
 
 print("Done.")
