@@ -3,3 +3,5 @@ root.password
 docker-compose.yml
 *.zip
 scripts/output
+scripts/forever_loop.py.j2
+scripts/forever_loop.service.j2
