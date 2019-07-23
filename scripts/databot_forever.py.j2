@@ -1,0 +1,73 @@
+#!/usr/bin/env python3
+import subprocess
+import os, sys
+import time
+from datetime import datetime
+from executioner import execute
+
+"""
+Forever Loop of Data Bot (Gitea) Task
+
+Run a forever loop to scrape gitea for
+commit counts, commit the new commit counts,
+and check them all in.
+"""
+
+def task(pod_dir):
+
+    work_dir = os.path.join(pod_dir,'utils-gitea')
+
+    def run_cmd(f,cmd):
+        """
+        This runs a databot command
+        and writes the output to a log file.
+        """
+        f.write("About to run the following command for databot forever task:\n")
+        f.write("    $ " + " ".join(cmd))
+        f.write("\n")
+        f.write("Command Output:")
+        for loo in execute(cmd):
+            f.write(loo)
+        f.write("\n")
+        f.write("Done.")
+
+    d = datetime.now().strftime('%Y-m-%d')
+
+    with open('/tmp/databot_forever_%s.log'%(d),'w') as f:
+
+        py_bin = sys.executable
+
+        # Step 1:
+        # scrape gitea as sudo
+        scrape_script = 'scrape_gitea_as_sudo.sh'
+        scrape_cmd = ['sudo',
+                      py_bin,scrape_script]
+        run_cmd(scrape_cmd)
+
+        time.sleep(5)
+
+        # Step 2:
+        # assemble gitea counts as user
+        assemble_script = 'assemble_gitea_counts.sh'
+        assemble_cmd = ['sudo','-H','-u','charles',
+                        py_bin,assemble_script]
+        run_cmd(assemble_cmd)
+
+        time.sleep(5)
+
+        # Step 3:
+        # gitea pull data as user
+        pull_script = 'git_pull_data.py.j2'
+        pull_cmd = ['sudo','-H','-u','charles',
+                    py_bin,pull_script]
+        run_cmd(pull_cmd)
+
+
+
+if __name__=="__main__":
+
+    # Run a forever loop
+    while True:
+        task('{{ pod_install_dir }}')
+        time.sleep(5)
+
