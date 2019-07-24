@@ -39,7 +39,7 @@ def task(pod_dir):
 
         # Step 1:
         # scrape gitea as sudo
-        scrape_script = 'scrape_gitea_as_sudo.sh'
+        scrape_script = os.path.join(work_dir,'scrape_gitea_as_sudo.sh')
         scrape_cmd = ['sudo',
                       py_bin,scrape_script]
         run_cmd(scrape_cmd)
@@ -48,7 +48,7 @@ def task(pod_dir):
 
         # Step 2:
         # assemble gitea counts as user
-        assemble_script = 'assemble_gitea_counts.sh'
+        assemble_script = os.path.join(work_dir,'assemble_gitea_counts.sh')
         assemble_cmd = ['sudo','-H','-u','charles',
                         py_bin,assemble_script]
         run_cmd(assemble_cmd)
@@ -67,6 +67,7 @@ def task(pod_dir):
 if __name__=="__main__":
 
     # Run a forever loop
+    time.sleep(5)
     while True:
         task('{{ pod_install_dir }}')
         time.sleep(5)
