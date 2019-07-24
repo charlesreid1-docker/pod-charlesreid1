@@ -3,7 +3,7 @@ Description=do the mysql backup task with a forever loop
 
 [Service]
 Restart=always
-ExecStart=/usr/bin/python {{ pod_install_dir }}/scripts/bacup_mysql.py.j2
+ExecStart=/usr/bin/python {{ pod_install_dir }}/scripts/backup_mysql.py.j2
 ExecStop=/usr/bin/pgrep -f backup_mysql | /usr/bin/xargs /bin/kill
 
 [Install]
