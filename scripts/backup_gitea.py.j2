@@ -1,0 +1,73 @@
+#!/usr/bin/env python3
+import subprocess
+import os, sys
+import time
+from datetime import datetime
+from executioner import execute
+
+"""
+Forever Loop of Gitea Backup Task
+
+Run a forever loop to back up Gitea instance.
+"""
+
+def task(pod_dir,username):
+
+    work_dir = os.path.join(pod_dir,'scripts')
+
+    gitea_dir = os.path.join(pod_dir,'utils-gitea')
+
+    backup_dir = os.path.join('/backups','gitea')
+
+    def run_cmd(f,cmd):
+        """This runs a command and writes the output to a log file."""
+        f.write("About to run the following command for backup gitea task:\n")
+        f.write("    $ " + " ".join(cmd))
+        f.write("\n")
+        f.write("Command Output:")
+        for loo in execute(cmd):
+            f.write(loo)
+        f.write("\n")
+        f.write("Done.")
+
+    d = datetime.now().strftime('%Y-m-%d')
+
+    with open('/tmp/backup_gitea_forever_%s.log'%(d),'w') as f:
+
+        py_bin = sys.executable
+
+        # Step 1:
+        # Make sure work dir and backup dir exist
+        if not os.path.exists(work_dir):
+            # Quit if working dir does not exist
+            return
+
+        if not os.path.exists(backup_dir):
+            # Make backup dir if it does not exist
+            subprocess.call(['mkdir','-p',backup_dir])
+            subprocess.call(['chown',username+':'+username,backup_dir])
+
+        time.sleep(5)
+
+        # Step 2:
+        # Back up gitea to file
+        backup_script = os.path.join(gitea_dir,'backup_gitea.sh')
+        backup_target = backup_dir
+
+        backup_cmd = [backup_script,backup_target]
+        run_cmd(backup_cmd)
+
+        time.sleep(5)
+
+
+
+if __name__=="__main__":
+
+    # Run a forever loop
+    time.sleep(10)
+    while True:
+        task('{{ pod_install_dir }}','{{ username }}')
+        fudge = 30
+        two_weeks = 2*7*24*60*60 - fudge
+        time.sleep(two_weeks)
+
