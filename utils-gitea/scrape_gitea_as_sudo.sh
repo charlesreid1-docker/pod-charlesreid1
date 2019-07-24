@@ -83,14 +83,10 @@ rm -f ${GITDIR}/commit_dates
 chown charles:charles ${GITDIR}/commit_counts.csv
 
 
-# leave commits to the user.
-### 
-### (
-### cd ${GITDIR}
-### sudo -H -u charles git config user.name "databot"
-### sudo -H -u charles git config user.email "databot@charlesreid1.com"
-### sudo -H -u charles git add commit_counts.csv
-### sudo -H -u charles git commit commit_counts.csv -m '[scrape_gitea_as_sudo.sh] updating gitea commit count data'
-### sudo -H -u charles git push origin master
-### )
+# Step 4: commit new commit count data as databot
+# 
+# Instead of doing this here,
+# run the script 
+# assemble_gitea_counts.sh
+# as a regular user.
 

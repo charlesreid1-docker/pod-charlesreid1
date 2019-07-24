@@ -1,0 +1,10 @@
+[Unit]
+Description=do the forever task with a forever loop
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/python {{ pod_install_dir }}/scripts/forever_loop.py
+ExecStop=/usr/bin/pgrep -f forever_loop | /usr/bin/xargs /bin/kill
+
+[Install]
+WantedBy=default.target

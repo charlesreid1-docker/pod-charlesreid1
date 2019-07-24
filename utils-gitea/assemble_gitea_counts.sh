@@ -13,7 +13,7 @@
 if [ "$(id -u)" == "0" ]; then
     echo ""
     echo ""
-    echo "This script should be run as a  regular user."
+    echo "This script should be run as a regular user."
     echo ""
     echo ""
     exit 1;
