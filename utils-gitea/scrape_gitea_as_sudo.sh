@@ -9,8 +9,6 @@
 # like this one - if you try and run ssh through sudo,
 # you can't deal with keys or passphrases.
 # 
-# Seriously. Gimme a fucking break.
-#
 #
 # This script scrapes repository logs
 # from the docker volume holding gitea.
