@@ -32,7 +32,9 @@ def task(pod_dir,username):
 
     d = datetime.now().strftime('%Y-%m-%d_%H%M')
 
-    with open('/tmp/backup_mw_forever_%s.log'%(d),'w') as f:
+    logfile = '/tmp/backup_mw_forever_%s.log'%(d)
+    print("Log file: %s"%(logfile))
+    with open(logfile,'w') as f:
 
         py_bin = sys.executable
 
