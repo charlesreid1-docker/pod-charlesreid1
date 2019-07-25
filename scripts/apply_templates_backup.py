@@ -1,10 +1,10 @@
 import os, re, sys
 import glob
+import subprocess
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 """
 Apply Default Values to Jinja Templates
-for pod-charlesreid1 startup service
 
 
 This script applies default values to 
@@ -17,7 +17,8 @@ variable values to the template files
 and make real files.
 
 only variables are:
-    - `pod_install_dir` - location where pod-charlesreid1 repo is
+    - `username` - user/group name to change ownership to
+    - `pod_install_dir` - installation directory of pod
 """
 
 
@@ -32,7 +33,10 @@ OUTDIR = 'output'
 OVERWRITE = True
 
 # Template variables
-TV = { 'pod_install_dir' : '/home/charles/pod-charlesreid1' }
+TV = {
+        'pod_install_dir':  '/home/charles/pod-charlesreid1',
+        'username':         'charles'
+}
 
 
 
@@ -53,8 +57,7 @@ def apply_templates(template_dir, output_dir, template_vars, overwrite=False):
     env = Environment(loader=FileSystemLoader('.'))
 
     # Render templates
-    template_files = glob.glob('dockerpod*') \
-            + glob.glob('databot*')
+    template_files = glob.glob('backup_*')
     render_files = [re.sub('\.j2','',s) for s in template_files]
 
     for rfile,tfile in zip(render_files,template_files):
@@ -70,6 +73,9 @@ def apply_templates(template_dir, output_dir, template_vars, overwrite=False):
 
         with open(dest,'w') as f:
             f.write(content)
+
+    x = 'executioner.py'
+    subprocess.call(['cp',x,os.path.join(output_dir,x)])
 
     print("Rendered the following templates:%s\nOutput files:%s\n"%(
             "".join(["\n- "+os.path.join(template_dir,j) for j in template_files]),
