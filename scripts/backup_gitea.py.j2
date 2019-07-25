@@ -33,7 +33,7 @@ def task(pod_dir,username):
     d = datetime.now().strftime('%Y-%m-%d_%H%M')
 
     logfile = '/tmp/backup_gitea_forever_%s.log'%(d)
-    print("Log file: %s"%(logfile))
+    print("Running task. Log file: %s"%(logfile))
     with open(logfile,'w') as f:
 
         py_bin = sys.executable
