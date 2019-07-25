@@ -56,7 +56,7 @@ def task(pod_dir,username):
         backup_target = os.path.join(backup_dir,tar_file)
 
         backup_cmd = [backup_script,backup_target]
-        run_cmd(backup_cmd)
+        run_cmd(f,backup_cmd)
 
         time.sleep(5)
 
