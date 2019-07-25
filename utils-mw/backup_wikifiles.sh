@@ -2,7 +2,6 @@
 #
 # Create a tar file containing wiki files
 # from the stormy_mw container.
-set -x
 
 function usage {
     echo ""
@@ -28,7 +27,7 @@ then
     echo "------------------------"
     echo ""
 
-    NAME="podcharlesreid1_stormy_mw_1"
+    NAME="pod-charlesreid1_stormy_mw_1"
     TAR="wikifiles.tar.gz"
 
     # If this script is being run from a cron job,
@@ -42,6 +41,8 @@ then
         DOCKER="docker exec -it"
     fi
 
+    set -x
+
     # zip to temp dir inside container
     ${DOCKER} ${NAME} tar czf /tmp/${TAR} /var/www/html/images 
 
@@ -51,6 +52,8 @@ then
 
     # clean up container
     ${DOCKER} ${NAME} rm /tmp/${TAR}
+
+    set +x
 
 else
     usage
