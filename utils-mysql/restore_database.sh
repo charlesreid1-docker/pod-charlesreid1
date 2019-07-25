@@ -6,7 +6,6 @@
 # Note that this expects the .sql dump
 # to create its own databases.
 # Use the --databases flag with mysqldump.
-set -x
 
 function usage {
     echo ""
@@ -44,9 +43,11 @@ function usage {
 
 if [[ "$#" -eq 1 ]];
 then
+    set -x
     docker exec -i podcharlesreid1_stormy_mysql_1 \
         mysql -uroot -p$MYSQL_ROOT_PASSWORD \
         < $1 
+    set +x
 else
     usage
 fi
