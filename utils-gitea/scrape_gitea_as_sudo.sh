@@ -8,18 +8,31 @@
 # landmines that containers cannot avoid,
 # like this one - if you try and run ssh through sudo,
 # you can't deal with keys or passphrases.
-# 
-# Seriously. Gimme a fucking break.
-#
-#
-# This script scrapes repository logs
-# from the docker volume holding gitea.
-# 
-# It assembles a commit count for use 
-# in visualizing git commits.
-# 
-# It commits the new commit count data
-# to https://git.charlesreid1.com/data/charlesreid1-data
+
+function usage {
+    echo ""
+    echo "scrape_gitea_as_sudo.sh script:"
+    echo "This script scrapes repository logs from the "
+    echo "docker volume holding gitea."
+    echo ""
+    echo "It uses git to assemble a commit count,"
+    echo "and exports the data to a CSV file for"
+    echo "visualization and analysis."
+    echo ""
+    echo "       ./scrape_gitea_as_sudo.sh [USER]"
+    echo ""
+    echo "The *optional* parameter USER is the"
+    echo "final owner of the CSV file, via the"
+    echo "final (chown) command in this script."
+    echo ""
+    echo "Also see:"
+    echo "https://git.charlesreid1.com/data/charlesreid1-data"
+    echo ""
+    exit 1;
+}
+
+
+# Make sure running as root
 
 if [ "$(id -u)" != "0" ]; then
     echo ""
@@ -30,13 +43,31 @@ if [ "$(id -u)" != "0" ]; then
     exit 1;
 fi
 
+
+# Check number of arguments (0 or 1)
+
+if [[ "$#" -eq 0 ]];
+then
+    # default value
+    USER="charles"
+elif [[ "$#" -eq 1 ]];
+    # user-provided value
+    USER="$1"
+else
+    # sorry dude
+    usage
+fi
+
+
+# Let's do it
+
 WORKDIR="/tmp/gitea-temp"
 GITDIR="/tmp/gitea-temp/charlesreid1-data"
 
 rm -rf ${WORKDIR}
 mkdir -p ${WORKDIR} 
 
-sudo chown -R charles:charles ${WORKDIR}
+sudo chown -R ${USER}:${USER} ${WORKDIR}
 
 rm -rf ${GITDIR}
 mkdir -p ${GITDIR} 

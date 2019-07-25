@@ -10,6 +10,7 @@ Update:
 - jinja templates
 - apply template scripts
 - executioner
+- forever tasks and forever loops
 
 
 ## `dockerpod-charlesreid1.service`

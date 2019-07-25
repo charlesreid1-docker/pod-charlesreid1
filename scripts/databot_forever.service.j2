@@ -1,0 +1,10 @@
+[Unit]
+Description=do the databot task with a forever loop
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/python {{ pod_install_dir }}/scripts/databot_forever.py
+ExecStop=/usr/bin/pgrep -f databot_forever | /usr/bin/xargs /bin/kill
+
+[Install]
+WantedBy=default.target
