@@ -53,7 +53,7 @@ then
     #    '/usr/bin/mysql -uroot -p`echo $MYSQL_ROOT_PASSWORD` < ' $1 
 
     ## What we got working:
-    #docker exec -i pod-charlesreid1_stormy_mysql_1 /usr/bin/mysql --user=root --password='CHLoe!_1695' < /backups/wikidb_2019-07-24/wikidb_2019-07-24.sql
+    #docker exec -i pod-charlesreid1_stormy_mysql_1 /usr/bin/mysql --user=root --password='ABCDEFG' < /backups/wikidb_2019-07-24/wikidb_2019-07-24.sql
 
     echo "This script is broken right now"
 
