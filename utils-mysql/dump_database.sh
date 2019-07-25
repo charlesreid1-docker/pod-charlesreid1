@@ -20,14 +20,14 @@ function usage {
     exit 1;
 }
 
-NAME="podcharlesreid1_stormy_mysql_1"
+CONTAINER_NAME="pod-charlesreid1_stormy_mysql_1"
 
 if [[ "$#" -gt 0 ]];
 then
 
     TARGET="$1"
     mkdir -p $(dirname $TARGET)
-    docker exec -i ${NAME} sh -c 'exec mysqldump wikidb --databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > $TARGET
+    docker exec -i ${CONTAINER_NAME} sh -c 'exec mysqldump wikidb --databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > $TARGET
 
 else
     usage
