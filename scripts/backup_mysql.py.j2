@@ -30,7 +30,7 @@ def task(pod_dir,username):
         f.write("\n")
         f.write("Done.")
 
-    d = datetime.now().strftime('%Y-m-%d')
+    d = datetime.now().strftime('%Y-%m-%d_%H%M')
 
     with open('/tmp/backup_mysql_forever_%s.log'%(d),'w') as f:
 
