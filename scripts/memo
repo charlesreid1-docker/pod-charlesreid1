@@ -1,0 +1,12 @@
+the way we're writing to output files,
+we can't stream it, because it writes each line
+of output from the command as it happens,
+but it writes it to an open stream, 
+which it does not close until the command
+is finished.
+
+what if you just want everything to frikin
+work like a unix command line utility?
+the logging, the flags, the robustness,
+the simplicity, the lightweight footprint
+
