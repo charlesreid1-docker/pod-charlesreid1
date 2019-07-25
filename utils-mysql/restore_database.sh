@@ -42,14 +42,21 @@ function usage {
 # because of all these one-off 
 # "whoopsie we don't do that" problems.
 
-CONTAINER_NAME="pod-charlesreid1_stormy_mysql"
+CONTAINER_NAME="pod-charlesreid1_stormy_mysql_1"
 
 if [[ "$#" -eq 1 ]];
 then
     set -x
-    docker exec -i ${CONTAINER_NAME} \
-        mysql -uroot -p${MYSQL_ROOT_PASSWORD} \
-        < $1 
+
+    ## What we had (not working):
+    #docker exec -i ${CONTAINER_NAME} \
+    #    '/usr/bin/mysql -uroot -p`echo $MYSQL_ROOT_PASSWORD` < ' $1 
+
+    ## What we got working:
+    #docker exec -i pod-charlesreid1_stormy_mysql_1 /usr/bin/mysql --user=root --password='CHLoe!_1695' < /backups/wikidb_2019-07-24/wikidb_2019-07-24.sql
+
+    echo "This script is broken right now"
+
     set +x
 else
     usage
