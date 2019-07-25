@@ -10,9 +10,11 @@
 function usage {
     echo ""
     echo "restore_database.sh script:"
+    echo ""
     echo "Restores a database from an SQL dump."
     echo "Restores the database into the "
     echo "stormy_msyql container."
+    echo ""
     echo "Obtains MySQL password from"
     echo "MYSQL_ROOT_PASSWORD env var"
     echo "inside mysql container."
@@ -39,13 +41,14 @@ function usage {
 # a complete and utterpain in the ass
 # because of all these one-off 
 # "whoopsie we don't do that" problems.
-# 
+
+CONTAINER_NAME="pod-charlesreid1_stormy_mysql"
 
 if [[ "$#" -eq 1 ]];
 then
     set -x
-    docker exec -i podcharlesreid1_stormy_mysql_1 \
-        mysql -uroot -p$MYSQL_ROOT_PASSWORD \
+    docker exec -i ${CONTAINER_NAME} \
+        mysql -uroot -p${MYSQL_ROOT_PASSWORD} \
         < $1 
     set +x
 else
