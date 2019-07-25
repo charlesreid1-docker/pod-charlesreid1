@@ -28,11 +28,11 @@ function usage {
 if [[ "$#" -eq 1 ]];
 then
 
-    NAME="podcharlesreid1_stormy_mw_1"
+    NAME="pod-charlesreid1_stormy_mw_1"
     TAR=$(basename "$1")
     docker cp $1 ${NAME}:/tmp/${TAR}
     docker exec -it ${NAME} mv /var/www/html/images /var/www/html/images.old
-    docker exec -it ${NAME} tar -xf /tmp/${TAR} -C /var/www/html/ && rm -f /tmp/${TAR}
+    docker exec -it ${NAME} tar -xf /tmp/${TAR} -C / && rm -f /tmp/${TAR}
 
 else
     usage
