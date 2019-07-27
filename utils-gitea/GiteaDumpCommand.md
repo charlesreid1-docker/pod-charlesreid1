@@ -23,12 +23,12 @@ The restore script will take two zip files as inputs,
 the dump zip and the avatars zip:
 
 ```
-./backup_gitea.sh <gitea-dump-zip> <gitea-avatars-zip>
+./restore_gitea.sh <gitea-dump-zip> <gitea-avatars-zip>
 ```
 
 Example using some bash completion magic:
 
 ```
-$ ./backup_gitea.sh /path/to/backup/target/gitea-{dump-00000,avatars}.zip
+$ ./restore_gitea.sh /path/to/backup/target/gitea-{dump-00000,avatars}.zip
 ```
 
