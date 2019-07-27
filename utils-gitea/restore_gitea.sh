@@ -21,7 +21,7 @@ echo "Restore Gitea:"
 echo "----------------"
 echo ""
 
-NAME="podcharlesreid1_stormy_gitea_1"
+NAME="pod-charlesreid1_stormy_gitea_1"
 
 if [[ "$#" -eq 2 ]];
 then
