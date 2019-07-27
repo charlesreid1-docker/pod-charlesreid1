@@ -92,7 +92,7 @@ mkdir -p ${GITDIR}
 
 
 
-for dir in `find /var/lib/docker/volumes/podcharlesreid1_stormy_gitea_data/_data/git/repositories -mindepth 2 -maxdepth 2 -type d`; do
+for dir in `find /var/lib/docker/volumes/pod-charlesreid1_stormy_gitea_data/_data/git/repositories -mindepth 2 -maxdepth 2 -type d`; do
     git --git-dir=$dir --work-tree=${WORKDIR} \
         log \
         --all --author="harles" --oneline --pretty="%H %ai" \
