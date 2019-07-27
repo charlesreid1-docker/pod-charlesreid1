@@ -24,6 +24,19 @@ function usage {
     exit 1;
 }
 
+function problem {
+    set +x
+    echo ""
+    echo "backup_gitea.sh script:"
+    echo "This script is temporarily out of service."
+    echo "The gitea dump command is broken, which renders"
+    echo "this script useless."
+    echo ""
+    exit 0;
+}
+
+problem
+
 if [[ "$#" -gt 0 ]];
 then
 
@@ -32,7 +45,7 @@ then
     echo "----------------"
     echo ""
 
-    NAME="podcharlesreid1_stormy_gitea_1"
+    NAME="pod-charlesreid1_stormy_gitea_1"
 
     # If this script is being run from a cron job,
     # don't use -i flag with docker
@@ -45,57 +58,43 @@ then
         DOCKER="docker exec -it"
     fi
 
-    echo "Step 1: Creating backup target"
     set -x
-    ${DOCKER} $NAME /bin/bash -c 'mkdir /backup'
-    set +x
+    echo "Step 1: Creating backup target (inside docker machine)"
+    ${DOCKER} $NAME /bin/bash -c 'mkdir -p /backup'
     
     echo "Step 2: Creating backup zip files:"
 
-    echo "     Step 2A: gitea dump zip"
-    set -x
-    ${DOCKER} $NAME /bin/bash -c '/app/gitea/gitea dump'
-    set +x
+    echo "     Step 2A: gitea dump zip to temp (inside docker machine)"
+    ${DOCKER} -u git $NAME /bin/bash -c "/app/gitea/gitea dump"
 
-    echo "     Step 2B: gitea avatars zip"
-    set -x
+    # above command leading to
+    # empty folder only
+    # (???????)
+
+    echo "     Step 2B: gitea zip up avatars (inside docker machine)"
     ${DOCKER} $NAME /bin/bash -c 'cd /data/gitea/ && tar czf /backup/gitea-avatars.tar.gz avatars'
-    set +x
 
-    echo "Step 3: Moving gitea dump to /backup directory"
-    set -x
-    ${DOCKER} $NAME /bin/bash -c 'mv /tmp/gitea-dump-*/* /backup/.'
-    set +x
+    echo "Step 3: Moving gitea dump to backup directory (inside docker machine)"
+    ${DOCKER} $NAME /bin/bash -c "mv /tmp/gitea-dump-${stamp}.zip /backup/."
 
-    TEMP_BACKUP=`mktemp -d 2>/dev/null || mktemp -d -t 'mytmpdir'`
-
-    echo "Step 4: Copying backup directory (with zip files) to backup location $1"
-
-    echo "     Step 4A: Making temporary backup location"
-    #mkdir -p $TEMP_BACKUP
-
-    echo "     Step 4B: Copying /backup directory to temporary backup location $1"
-    set -x
+    echo "Step 4: Copying backup directory (in container) to backup location $1 (on docker host)"
     docker cp $NAME:/backup/* $1/.
-    set +x
 
     TAR_PREFIX="$(echo $V | sed 's+/$++g')"
 
-    set -x
+    echo "Step 5: Compressing contents of $1 into tar file ${TAR_PREFIX}.tar"
     tar -cvf ${TAR_PREFIX}.tar $1
-    rm -fr $1
-    set +x
+    ### rm -fr $1
 
     echo "Step 6: Cleaning up container"
-    set -x
     ${DOCKER} $NAME /bin/bash -c 'rm -rf /backup'
     ${DOCKER} $NAME /bin/bash -c 'rm -rf /tmp/gitea-dump-*'
-    set +x
 
     echo "Step 7: Cleaning up local host"
     #rm -rf $TEMP_BACKUP
 
     echo "    ~ ~ ~ ~ PEACE OUT ~ ~ ~ ~"
+    ### set +x
 
 else
     usage
