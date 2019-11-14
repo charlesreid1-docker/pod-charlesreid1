@@ -31,3 +31,4 @@ set +x
 
 echo "Done" | tee ${log_target}
 
+cat ${log_target}
