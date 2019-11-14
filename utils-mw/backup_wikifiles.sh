@@ -2,7 +2,6 @@
 #
 # Create a tar file containing wiki files
 # from the stormy_mw container.
-set -x
 
 function usage {
     echo ""
@@ -41,16 +40,19 @@ then
     else
         DOCKER="docker exec -it"
     fi
+    DOCKERCP="docker cp"
 
+    set -x
     # zip to temp dir inside container
     ${DOCKER} ${NAME} tar czf /tmp/${TAR} /var/www/html/images 
 
     # copy from container to target $1
-    mkdir -p $(dirname $TARGET)
-    ${DOCKER} ${NAME} cp ${NAME}:/tmp/${TAR} $1
+    mkdir -p $(dirname $1)
+    ${DOCKERCP} ${NAME}:/tmp/${TAR} $1
 
     # clean up container
     ${DOCKER} ${NAME} rm /tmp/${TAR}
+    set +x
 
 else
     usage
