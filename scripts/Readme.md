@@ -44,17 +44,3 @@ This script pulls the latest changes from the
 `gh-pages` branch in the `/www/` folder cloned
 with the `git_clone_www.sh` script.
 
-## `git_clone_data.sh`
-
-This clones the data repository (under version control
-at <https://git.charlesreid1.com/data/charlesreid1>)
-into the `/www` folder cloned with the `git_clone_www.sh`
-script.
-
-## `git_pull_data.sh`
-
-This script pulls the latest changes to the
-charlesreid1-data repository and updates the
-`data/` folder in the `/www/charlesreid1.com/htdocs`
-folder.
-
