@@ -16,3 +16,6 @@
 [submodule "mkdocs-material"]
 	path = mkdocs-material
 	url = git@github.com:charlesreid1-docker/mkdocs-material.git
+[submodule "d-gitea"]
+	path = d-gitea
+	url = git@github.com:charlesreid1-docker/d-gitea.git
