@@ -66,7 +66,7 @@ then
 
     # Step 2: Run sqldump inside the container
     set -x
-    docker exec -i ${CONTAINER_NAME} "/usr/bin/mysql -uroot < /tmp/${TARGET}"
+    docker exec -i ${CONTAINER_NAME} '/usr/bin/mysql --default-file /root/.mysql.rootpw.cnf < /tmp/*.sql'
     set +x
     #'/usr/bin/mysql -uroot -p`echo $MYSQL_ROOT_PASSWORD` < ' $1 
     #/usr/bin/mysql --user=root --password='ABCDEFG' < /backups/wikidb_2019-07-24/wikidb_2019-07-24.sql
@@ -75,7 +75,7 @@ then
 
     # Step 3: Clean up sql dump from inside container
     set -x
-    docker exec -i ${CONTAINER_NAME} "/bin/rm -fr /tmp/${TARGET}"
+    docker exec -i ${CONTAINER_NAME} "/bin/rm -fr /tmp/*.sql"
     set +x
 
 
