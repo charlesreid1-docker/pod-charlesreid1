@@ -18,12 +18,12 @@ function usage {
     echo "and copy the resulting zip file to the specified directory."
     echo "The resulting gitea dump zip file will be timestamped."
     echo ""
-    echo "       ./gitea_dump.sh [BACKUP_DIRECTORY]"
+    echo "       ./gitea_dump.sh"
     echo ""
     echo "Example:"
     echo ""
-    echo "       ./gitea_dump.sh /path/to/backups/"
-    echo "       (creates /path/to/backups/gitea-dump_20200101_000000.zip)"
+    echo "       ./gitea_dump.sh"
+    echo "       (creates ${BACKUP_DIR}/gitea-dump_20200101_000000.zip)"
     echo ""
     exit 1;
 }
@@ -37,7 +37,7 @@ if [ "$(id -u)" == "0" ]; then
     exit 1;
 fi
 
-if [ "$#" == "1" ]; then
+if [ "$#" == "0" ]; then
 
     STAMP="`date +"%Y-%m-%d"`"
     TARGET="gitea-dump_${STAMP}.zip"
