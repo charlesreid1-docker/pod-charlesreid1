@@ -64,7 +64,7 @@ if [ "$#" == "0" ]; then
 
     echo "Running mysqldump"
     set -x
-    ${DOCKERX} ${CONTAINER_NAME} sh -c 'exec mysqldump wikidb --databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > $TARGET
+    ${DOCKERX} ${CONTAINER_NAME} sh -c 'exec mysqldump wikidb --databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > ${BACKUP_DIR}/${TARGET}
     set +x
 
     echo "Done."
