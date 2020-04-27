@@ -46,7 +46,6 @@ CONTAINER_NAME="pod-charlesreid1_stormy_mysql_1"
 
 if [[ "$#" -eq 1 ]];
 then
-    set -x
 
     ## What we had (not working):
     #docker exec -i ${CONTAINER_NAME} \
@@ -55,7 +54,25 @@ then
     ## What we got working:
     #docker exec -i pod-charlesreid1_stormy_mysql_1 /usr/bin/mysql --user=root --password='ABCDEFG' < /backups/wikidb_2019-07-24/wikidb_2019-07-24.sql
 
-    echo "This script is broken right now"
+    # --------------------
+
+    # Step 1: Copy the sql dump into the container
+    set -x
+    docker cp $1 ${CONTAINER_NAME}:/tmp/$1
+    set +x
+
+    # Step 2: Run sqldump inside the container
+    set -x
+    docker exec -i ${CONTAINER_NAME} "/usr/bin/mysql -uroot -p`echo $MYSQL_ROOT_PASSWORD` < /tmp/$1"
+    set +x
+    #'/usr/bin/mysql -uroot -p`echo $MYSQL_ROOT_PASSWORD` < ' $1 
+    #/usr/bin/mysql --user=root --password='ABCDEFG' < /backups/wikidb_2019-07-24/wikidb_2019-07-24.sql
+
+    # Step 3: Clean up sql dump from inside container
+    set -x
+    docker exec -i ${CONTAINER_NAME} "/bin/rm -fr /tmp/$1"
+    set +x
+
 
     set +x
 else
