@@ -2,7 +2,6 @@
 #
 # Restore wiki files from a tar file
 # into the stormy_mw container.
-set -x
 
 function usage {
     echo ""
@@ -30,9 +29,11 @@ then
 
     NAME="pod-charlesreid1_stormy_mw_1"
     TAR=$(basename "$1")
+    set -x
     docker cp $1 ${NAME}:/tmp/${TAR}
     docker exec -it ${NAME} mv /var/www/html/images /var/www/html/images.old
     docker exec -it ${NAME} tar -xf /tmp/${TAR} -C / && rm -f /tmp/${TAR}
+    set +x
 
 else
     usage
