@@ -33,6 +33,7 @@ then
     docker cp $1 ${NAME}:/tmp/${TAR}
     docker exec -it ${NAME} mv /var/www/html/images /var/www/html/images.old
     docker exec -it ${NAME} tar -xf /tmp/${TAR} -C / && rm -f /tmp/${TAR}
+    docker exec -it ${NAME} chown -R www-data:www-data /var/www/html/images
     set +x
 
 else
