@@ -43,6 +43,9 @@ function usage {
 # "whoopsie we don't do that" problems.
 
 CONTAINER_NAME="pod-charlesreid1_stormy_mysql_1"
+TARGET=$(basename $1)
+TARGET_DIR=$(dirname $1)
+
 
 if [[ "$#" -eq 1 ]];
 then
@@ -58,19 +61,21 @@ then
 
     # Step 1: Copy the sql dump into the container
     set -x
-    docker cp $1 ${CONTAINER_NAME}:/tmp/$1
+    docker cp $1 ${CONTAINER_NAME}:/tmp/${TARGET}
     set +x
 
     # Step 2: Run sqldump inside the container
     set -x
-    docker exec -i ${CONTAINER_NAME} "/usr/bin/mysql -uroot -p`echo $MYSQL_ROOT_PASSWORD` < /tmp/$1"
+    docker exec -i ${CONTAINER_NAME} "/usr/bin/mysql -uroot < /tmp/${TARGET}"
     set +x
     #'/usr/bin/mysql -uroot -p`echo $MYSQL_ROOT_PASSWORD` < ' $1 
     #/usr/bin/mysql --user=root --password='ABCDEFG' < /backups/wikidb_2019-07-24/wikidb_2019-07-24.sql
+    #docker exec -i ${CONTAINER_NAME} "/usr/bin/mysql -uroot -p`echo $MYSQL_ROOT_PASSWORD` < /tmp/$1"
+    #docker exec -i ${CONTAINER_NAME} "/usr/bin/mysql -uroot -p$( < /tmp/${TARGET}"
 
     # Step 3: Clean up sql dump from inside container
     set -x
-    docker exec -i ${CONTAINER_NAME} "/bin/rm -fr /tmp/$1"
+    docker exec -i ${CONTAINER_NAME} "/bin/rm -fr /tmp/${TARGET}"
     set +x
 
 
