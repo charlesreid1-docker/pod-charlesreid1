@@ -12,9 +12,8 @@ services:
     restart: always
     volumes:
       - "stormy_gitea_data:/data"
-      - "./d-gitea/custom/conf:/data/gitea/conf"
-      - "./d-gitea/custom/public:/data/gitea/public"
-      - "./d-gitea/custom/templates:/data/gitea/templates"
+      - "./d-gitea/custom:/data/gitea"
+      - "./d-gitea/data:/app/gitea/data"
     logging:
       driver: "json-file"
       options:
