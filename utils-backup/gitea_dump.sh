@@ -69,7 +69,7 @@ if [ "$#" == "0" ]; then
 
     echo "Step 2: Copy gitea dump file out of docker machine"
     set -x
-    docker cp ${CONTAINER_NAME}:/app/gitea/gitea-dump.zip $1/${TARGET}
+    docker cp ${CONTAINER_NAME}:/app/gitea/gitea-dump.zip ${BACKUP_DIR}/${TARGET}
     set +x
 
     echo "Step 3: Clean up gitea dump file"
