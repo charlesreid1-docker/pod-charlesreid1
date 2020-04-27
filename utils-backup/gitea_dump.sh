@@ -46,7 +46,7 @@ if [ "$#" == "0" ]; then
     echo "pod-charlesreid1: gitea_dump.sh"
     echo "-------------------------------"
     echo ""
-    echo "Backup target: ${TARGET}"
+    echo "Backup target: ${BACKUP_DIR}/${TARGET}"
     echo ""
 
     mkdir -p $BACKUP_DIR

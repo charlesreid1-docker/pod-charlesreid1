@@ -19,12 +19,12 @@ function usage {
     echo "from the mediawiki docker container."
     echo "The resulting tar file will be timestamped."
     echo ""
-    echo "       ./wikifiles_dump.sh [BACKUP_DIRECTORY]"
+    echo "       ./wikifiles_dump.sh"
     echo ""
     echo "Example:"
     echo ""
-    echo "       ./wikifiles_dump.sh /path/to/backups/"
-    echo "       (creates /path/to/backups/wikifiles_20200101_000000.tar.gz)"
+    echo "       ./wikifiles_dump.sh"
+    echo "       (creates ${BACKUP_DIR}/wikifiles_20200101_000000.tar.gz)"
     echo ""
     exit 1;
 }
@@ -38,7 +38,7 @@ if [ "$(id -u)" == "0" ]; then
     exit 1;
 fi
 
-if [ "$#" == "1" ]; then
+if [ "$#" == "0" ]; then
 
     TARGET="wikifiles_${STAMP}.tar.gz"
 
@@ -46,7 +46,7 @@ if [ "$#" == "1" ]; then
     echo "pod-charlesreid1: wikifiles_dump.sh"
     echo "-----------------------------------"
     echo ""
-    echo "Backup target: ${TARGET}"
+    echo "Backup target: ${BACKUP_DIR}/${TARGET}"
     echo ""
 
     mkdir -p $BACKUP_DIR
@@ -70,7 +70,7 @@ if [ "$#" == "1" ]; then
     echo "Step 2: Copy tar.gz file out of container"
     mkdir -p $(dirname "$1")
     set -x
-    docker cp ${CONTAINER_NAME}:/tmp/${TARGET} $1
+    docker cp ${CONTAINER_NAME}:/tmp/${TARGET} ${BACKUP_DIR}/${TARGET}
     set +x
 
     echo "Step 3: Clean up tar.gz file"
