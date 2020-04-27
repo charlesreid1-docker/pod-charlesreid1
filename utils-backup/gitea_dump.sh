@@ -64,7 +64,7 @@ if [ "$#" == "0" ]; then
 
     echo "Step 1: Run gitea dump command inside docker machine"
     set -x
-    ${DOCKERX} ${CONTAINER_NAME} /bin/bash -c 'cd /app/gitea && /app/gitea/gitea dump --file gitea-dump.zip --skip-repository'
+    ${DOCKERX} --user git ${CONTAINER_NAME} /bin/bash -c 'cd /app/gitea && /app/gitea/gitea dump --file gitea-dump.zip --skip-repository'
     set +x
 
     echo "Step 2: Copy gitea dump file out of docker machine"
@@ -74,7 +74,7 @@ if [ "$#" == "0" ]; then
 
     echo "Step 3: Clean up gitea dump file"
     set -x
-    ${DOCKERX} ${CONTAINER_NAME} /bin/bash -c "rm /app/gitea/gitea-dump.zip"
+    ${DOCKERX} ${CONTAINER_NAME} /bin/bash -c "rm -f /app/gitea/gitea-dump.zip"
     set +x
 
     echo "Done."
