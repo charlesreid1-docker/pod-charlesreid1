@@ -46,7 +46,7 @@ services:
     environment:
       - MEDIAWIKI_SITE_SERVER=https://{{ server_name_default }}
       - MEDIAWIKI_SECRETKEY={{ mediawiki_secretkey }}
-      - MYSQL_HOST=mysql
+      - MYSQL_HOST=stormy_mysql
       - MYSQL_DATABASE=wikidb
       - MYSQL_USER=root
       - MYSQL_PASSWORD={{ mysql_password }}
