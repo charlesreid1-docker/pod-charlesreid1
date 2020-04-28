@@ -50,15 +50,6 @@ TARGET_DIR=$(dirname $1)
 if [[ "$#" -eq 1 ]];
 then
 
-    ## What we had (not working):
-    #docker exec -i ${CONTAINER_NAME} \
-    #    '/usr/bin/mysql -uroot -p`echo $MYSQL_ROOT_PASSWORD` < ' $1 
-
-    ## What we got working:
-    #docker exec -i pod-charlesreid1_stormy_mysql_1 /usr/bin/mysql --user=root --password='ABCDEFG' < /backups/wikidb_2019-07-24/wikidb_2019-07-24.sql
-
-    # --------------------
-
     # Step 1: Copy the sql dump into the container
     set -x
     docker cp $1 ${CONTAINER_NAME}:/tmp/${TARGET}
@@ -66,16 +57,12 @@ then
 
     # Step 2: Run sqldump inside the container
     set -x
-    docker exec -i ${CONTAINER_NAME} '/usr/bin/mysql --default-file /root/.mysql.rootpw.cnf < /tmp/*.sql'
+    docker exec -i ${CONTAINER_NAME} sh -c "/usr/bin/mysql --defaults-file=/root/.mysql.rootpw.cnf < /tmp/${TARGET}"
     set +x
-    #'/usr/bin/mysql -uroot -p`echo $MYSQL_ROOT_PASSWORD` < ' $1 
-    #/usr/bin/mysql --user=root --password='ABCDEFG' < /backups/wikidb_2019-07-24/wikidb_2019-07-24.sql
-    #docker exec -i ${CONTAINER_NAME} "/usr/bin/mysql -uroot -p`echo $MYSQL_ROOT_PASSWORD` < /tmp/$1"
-    #docker exec -i ${CONTAINER_NAME} "/usr/bin/mysql -uroot -p$( < /tmp/${TARGET}"
 
     # Step 3: Clean up sql dump from inside container
     set -x
-    docker exec -i ${CONTAINER_NAME} "/bin/rm -fr /tmp/*.sql"
+    docker exec -i ${CONTAINER_NAME} sh -c "/bin/rm -fr /tmp/${TARGET}.sql"
     set +x
 
 
