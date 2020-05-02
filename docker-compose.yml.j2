@@ -14,6 +14,7 @@ services:
       - "stormy_gitea_data:/data"
       - "./d-gitea/custom:/data/gitea"
       - "./d-gitea/data:/app/gitea/data"
+      - "/gitea_repositories:/data/gitea/repositories"
     logging:
       driver: "json-file"
       options:
