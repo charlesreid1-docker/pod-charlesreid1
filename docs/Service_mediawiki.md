@@ -4,7 +4,7 @@ This describes the container-specific
 details of the MediaWiki part of the 
 Apache-MediaWiki container.
 
-Also see [Apache + PHP](/Service_apachephp.md).
+Also see [Apache + PHP](Service_apachephp.md).
 
 ## The Container
 

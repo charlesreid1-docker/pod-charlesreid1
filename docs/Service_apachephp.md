@@ -4,7 +4,7 @@ This describes the container-specific
 details of the Apache part of the 
 Apache-MediaWiki container.
 
-Also see [MediaWiki](/Service_mediawiki.md).
+Also see [MediaWiki](Service_mediawiki.md).
 
 ## Configuration Files and Folders
 
