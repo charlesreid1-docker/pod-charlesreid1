@@ -34,7 +34,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href=".">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.3">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-3.0.3">
     
     
       
@@ -637,7 +637,7 @@ for running the charlesreid1.com site.</p>
 </ul>
 <h2 id="links">Links<a class="headerlink" href="#links" title="Permanent link">&para;</a></h2>
 <p>See the documentation site here: <a href="https://pages.charlesreid1.com/pod-charlesreid1">https://pages.charlesreid1.com/pod-charlesreid1</a></p>
-<p>Or visit docs/index.md`.</p>
+<p>Or visit <code>docs/index.md</code>.</p>
 <p>Source code on git.charlesreid1.com: <a href="https://git.charlesreid1.com/docker/pod-charlesreid1">https://git.charlesreid1.com/docker/pod-charlesreid1</a></p>
 <p>Source code on github.com: <a href="https://github.com/charlesreid1-docker/pod-charlesreid1">https://github.com/charlesreid1-docker/pod-charlesreid1</a></p>
 <h2 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
@@ -666,6 +666,10 @@ add the <code>--no-cache</code> flag:</p>
 </pre></div>
 
 
+<p><strong>IMPORTANT:</strong> You should modify the contents of <code>d-mediawiki/charlesreid1-config/</code>
+(which is the repository <a href="https://github.com/charlesreid1-docker/charlesreid1-wiki-config">https://github.com/charlesreid1-docker/charlesreid1-wiki-config</a>)
+to make the MediaWiki extensions folder and turn the configuration file templates
+into actual, usable configuration files.</p>
 <h2 id="running">Running<a class="headerlink" href="#running" title="Permanent link">&para;</a></h2>
 <p>See <strong><a href="Running/">Running.md</a></strong> for info about running this docker pod:</p>
 <ul>
@@ -742,7 +746,7 @@ and acts as a reverse proxy, forwarding the requests to Apache.</p>
 <p>The user transparently sees everything happening via port 80 or (preferrably) 443,
 but on the backend nginx is passing along the URL request and returning the result.</p>
 <p>Subdomains are served via reverse proxy on port 7777+. </p>
-<p>The webhook server is a flask server listening on port 50000.</p>
+<p>The webhook server is a flask server listening on port 5000.</p>
 <h2 id="secrets">Secrets<a class="headerlink" href="#secrets" title="Permanent link">&para;</a></h2>
 <p>See <strong><a href="Secrets/">Secrets.md</a></strong> for more info about getting secrets like 
 passwords and sensitive files into various containers in the pod.</p>
@@ -839,7 +843,7 @@ the specifics of each container.</p>
     
       <script src="assets/javascripts/application.e72fd936.js"></script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:"."}})</script>
+      <script>app.initialize({version:"1.1",url:{base:"."}})</script>
       
         <script src="search/main.js"></script>
       
