@@ -20,7 +20,7 @@ You need to fix this YML file by hard-coding your
 MYSQL password in the file.
 
 (There is also a Jinja template, `docker-compose.yml.j2`,
-usable with [charlesreid1-ansible](https://git.charlesreid1.com/charlesreid1/charlesreid1-ansible).)
+usable with [charlesreid1-ansible](https://git.charlesreid1.com/ansible/charlesreid1-ansible).)
 
 See the steps below for using the "fixme" file.
 
