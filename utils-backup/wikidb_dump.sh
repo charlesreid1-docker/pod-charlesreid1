@@ -54,12 +54,13 @@ if [ "$#" == "0" ]; then
     # If this script is being run from a cron job,
     # don't use -i flag with docker
     CRON="$( pstree -s $$ | /bin/grep -c cron )"
+    DOCKER="/usr/local/bin/docker"
     DOCKERX=""
     if [[ "$CRON" -eq 1 ]]; 
     then
-        DOCKERX="docker exec -t"
+        DOCKERX="${DOCKER} exec -t"
     else
-        DOCKERX="docker exec -it"
+        DOCKERX="${DOCKER} exec -it"
     fi
 
     echo "Running mysqldump"

@@ -54,12 +54,13 @@ if [ "$#" == "0" ]; then
     # If this script is being run from a cron job,
     # don't use -i flag with docker
     CRON="$( pstree -s $$ | /bin/grep -c cron )"
+    DOCKER="/usr/local/bin/docker"
     DOCKERX=""
     if [[ "$CRON" -eq 1 ]]; 
     then
-        DOCKERX="docker exec -t"
+        DOCKERX="${DOCKER} exec -t"
     else
-        DOCKERX="docker exec -it"
+        DOCKERX="${DOCKER} exec -it"
     fi
 
     echo "Step 1: Run gitea dump command inside docker machine"
@@ -69,7 +70,7 @@ if [ "$#" == "0" ]; then
 
     echo "Step 2: Copy gitea dump file out of docker machine"
     set -x
-    docker cp ${CONTAINER_NAME}:/app/gitea/gitea-dump.zip ${BACKUP_DIR}/${TARGET}
+    ${DOCKER} cp ${CONTAINER_NAME}:/app/gitea/gitea-dump.zip ${BACKUP_DIR}/${TARGET}
     set +x
 
     echo "Step 3: Clean up gitea dump file"
