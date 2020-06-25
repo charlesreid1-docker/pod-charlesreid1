@@ -14,7 +14,7 @@ services:
       - "stormy_gitea_data:/data"
       - "./d-gitea/custom:/data/gitea"
       - "./d-gitea/data:/app/gitea/data"
-      - "/gitea_repositories:/data/gitea/repositories"
+      - "/gitea_repositories:/data/git/repositories"
     logging:
       driver: "json-file"
       options:
@@ -39,7 +39,7 @@ services:
     build: d-mediawiki
     volumes:
       - "stormy_mw_data:/var/www/html"
-      - "./mwf2b.log:/var/log/apache2/mwf2b.log"
+      - "./mwf2b:/var/log/mwf2b"
     logging:
       driver: "json-file"
       options:
