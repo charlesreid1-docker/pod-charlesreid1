@@ -39,6 +39,7 @@ services:
     build: d-mediawiki
     volumes:
       - "stormy_mw_data:/var/www/html"
+      - "./mwf2b.log:/var/log/apache2/mwf2b.log"
     logging:
       driver: "json-file"
       options:
