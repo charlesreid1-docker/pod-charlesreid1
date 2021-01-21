@@ -6,6 +6,7 @@ services:
 
   stormy_gitea:
     image: gitea/gitea:latest
+    container_name: stormy_gitea
     environment:
       - USER_UID=1000
       - USER_GID=1000
@@ -25,6 +26,7 @@ services:
 
   stormy_mysql:
     build: d-mysql
+    container_name: stormy_mysql
     volumes:
       - "stormy_mysql_data:/var/lib/mysql"
     logging:
@@ -37,6 +39,7 @@ services:
 
   stormy_mw:
     build: d-mediawiki
+    container_name: stormy_mw
     volumes:
       - "stormy_mw_data:/var/www/html"
       - "./mwf2b:/var/log/mwf2b"
@@ -59,6 +62,7 @@ services:
     restart: always
     image: nginx
     hostname: {{ server_name_default }}
+    hostname: charlesreid1.com
     command: /bin/bash -c "nginx -g 'daemon off;'"
     volumes:
       - "./d-nginx-charlesreid1/conf.d:/etc/nginx/conf.d:ro"
