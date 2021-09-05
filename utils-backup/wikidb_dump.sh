@@ -7,7 +7,7 @@
 #       /home/user/backups/mysql
 
 BACKUP_DIR="$HOME/backups/mysql"
-CONTAINER_NAME="pod-charlesreid1_stormy_mysql_1"
+CONTAINER_NAME="stormy_mysql"
 
 function usage {
     set +x
@@ -54,7 +54,7 @@ if [ "$#" == "0" ]; then
     # If this script is being run from a cron job,
     # don't use -i flag with docker
     CRON="$( pstree -s $$ | /bin/grep -c cron )"
-    DOCKER="/usr/local/bin/docker"
+    DOCKER="/usr/bin/docker"
     DOCKERX=""
     if [[ "$CRON" -eq 1 ]]; 
     then
