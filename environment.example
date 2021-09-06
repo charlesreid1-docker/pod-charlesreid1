@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+# Env vars
+POD_CHARLESREID1_DIR="/home/charles/pod-charlesreid1"
+
+# S3 bucket for offsite backups
+POD_CHARLESREID1_BACKUP_S3BUCKET=""
+
+# Secret credentials
+POD_CHARLESREID1_BACKUPCANARY_WEBHOOKURL=""
