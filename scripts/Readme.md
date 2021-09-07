@@ -1,31 +1,34 @@
 # pod-charlesreid1 scripts
 
-Contains useful scripts for setting up and maintaining
-the charlesreid1.com docker pod.
-
-## TODO
-
-Update:
-
-- jinja templates
-- apply template scripts
-- executioner
-- forever tasks and forever loops
+Contains scripts for the charlesreid1 docker pod.
+Some scripts are called by Ansible, some scripts
+are called by the Makefile.
 
 
-## `dockerpod-charlesreid1.service`
+# Template Scripts
 
-This .service script is a systemd startup script that
-is installed with pod-charlesreid1. This makes it 
-possible to run the pod as a startup service.
+These scripts are used to perform actions involving the Jinja templates.
 
-## `git_clone_www.sh`
+## `apply_templates.py`
+
+Render Jinja templates. Variable values come from environment variables.
+This should be used with the `environment` file in the repo root.
+
+## `clean_templates.py`
+
+Cleans all rendered Jinja templates. Does not require environment variables.
+
+This script is destructive! Be careful!
+
+
+# Ansible Scripts
+
+These scripts are used by ansible when setting up a machine
+to run the charlesreid1 docker pod.
+
+## `git_clone_www.py`
 
 This script clones the charlesreid1.com live site contents
-(under version control as the `gh-pages` branch of the
-repo <https://git.charlesreid1.com/charlesreid1/charlesreid1.com>
-and mirrored at 
-<https://github.com/charlesreid1-docker/charlesreid1.com>)
 to the directory `/www/` with the following directory
 layout:
 
@@ -44,3 +47,11 @@ This script pulls the latest changes from the
 `gh-pages` branch in the `/www/` folder cloned
 with the `git_clone_www.sh` script.
 
+
+# Utilities
+
+### `executioner.py`
+
+This provides a utility function to display captured stdout
+output as it is printed to the screen, rather than having to
+wait until the command is finished to see the output.
