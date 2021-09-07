@@ -1,10 +1,32 @@
 #!/bin/bash
-#
-# Env vars
-POD_CHARLESREID1_DIR="/home/charles/pod-charlesreid1"
 
-# S3 bucket for offsite backups
-POD_CHARLESREID1_BACKUP_S3BUCKET=""
+# multiple templates:
+# -------------------
+POD_CHARLESREID1_DIR="/path/to/pod-charlesreid1"
+POD_CHARLESREID1_TLD="example.com"
 
-# Secret credentials
-POD_CHARLESREID1_BACKUPCANARY_WEBHOOKURL=""
+# mediawiki:
+# ----------
+POD_CHARLESREID1_MW_ADMIN_EMAIL="email@example.com"
+POD_CHARLESREID1_MW_SECRET_KEY="SecretKeyString"
+
+# mysql:
+# ------
+POD_CHARLESREID1_MYSQL_PASSWORD="SuperSecretPassword"
+
+# gitea:
+# ------
+POD_CHARLESREID1_GITEA_APP_NAME=""
+POD_CHARLESREID1_GITEA_SECRET_KEY="GiteaSecretKey"
+POD_CHARLESREID1_GITEA_INTERNAL_TOKEN="GiteaInternalToken"
+
+# aws:
+# ----
+POD_CHARLESREID1_AWS_ACCESS_KEY="AAAAAAAAAAAAAAAAAAAA"
+POD_CHARLESREID1_AWS_ACCESS_SECRET="0000000000000000000000000000000000000000"
+
+# backups and scripts:
+# --------------------
+POD_CHARLESREID1_USER="charles"
+POD_CHARLESREID1_BACKUP_S3BUCKET="name-of-backups-bucket"
+POD_CHARLESREID1_BACKUPCANARY_WEBHOOKURL="https://hooks.slack.com/services/000000000/AAAAAAAAA/111111111111111111111111"
