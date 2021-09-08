@@ -31,7 +31,7 @@ help:
 	@echo ""
 	@echo "make install:        Install and start systemd service to run pod-charlesreid1."
 	@echo "                     Also install and start systemd service for pod-charlesreid1 backup services"
-	@echo "                     for each service (gitea/mediawiki/mysql) part of pod-charlesreid1.
+	@echo "                     for each service (gitea/mediawiki/mysql) part of pod-charlesreid1."
 	@echo ""
 	@echo "make uninstall:      Remove all systemd startup services and timers part of pod-charlesreid1"
 	@echo ""
