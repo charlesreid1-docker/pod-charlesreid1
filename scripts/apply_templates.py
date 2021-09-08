@@ -49,7 +49,7 @@ def main():
     check_env_vars()
 
     p = os.path.join(repo_root,'**','*.j2')
-    template_files = glob.glob(p)
+    template_files = glob.glob(p, recursive=True)
 
     print(f"Found {len(template_files)} template files in {repo_root}:")
     print("\n".join([f"- {j}" for j in template_files]))
