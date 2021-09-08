@@ -20,7 +20,7 @@ function usage {
     exit 1;
 }
 
-CONTAINER_NAME="pod-charlesreid1_stormy_mysql_1"
+CONTAINER_NAME="stormy_mysql"
 
 if [[ "$#" -gt 0 ]];
 then

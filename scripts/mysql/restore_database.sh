@@ -42,7 +42,7 @@ function usage {
 # because of all these one-off 
 # "whoopsie we don't do that" problems.
 
-CONTAINER_NAME="pod-charlesreid1_stormy_mysql_1"
+CONTAINER_NAME="stormy_mysql"
 TARGET=$(basename $1)
 TARGET_DIR=$(dirname $1)
 
