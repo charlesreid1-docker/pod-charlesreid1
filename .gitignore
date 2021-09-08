@@ -7,5 +7,5 @@ docker-compose.yml
 *.zip
 scripts/executioner.pyc
 scripts/git_*_www.py
-scripts/backups/pod-charlesreid1-backups-*.service
-scripts/backups/pod-charlesreid1-backups-*.timer
+*.timer
+*.service
