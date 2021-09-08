@@ -1,0 +1,12 @@
+[Unit]
+Description=Back up the pod-charlesreid1 wiki database
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+StandardError=/var/log/pod-charlesreid1-backups/wikifiles.error.log
+StandardOutput=/var/log/pod-charlesreid1-backups/wikifiles.output.log
+ExecStart={{ pod_install_dir }}/scripts/backups/wikifiles_dump.sh
+User=charles
+Group=charles
