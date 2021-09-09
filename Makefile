@@ -106,15 +106,15 @@ ifeq ($(shell which systemctl),)
 	$(error Please run this make command on a system with systemctl installed)
 endif
 	cp $(POD_CHARLESREID1_DIR)/scripts/pod-charlesreid1.service /etc/systemd/system/pod-charlesreid1.service
-	cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-gitea.{service,timer} /etc/systemd/system/.
+	#cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-gitea.{service,timer} /etc/systemd/system/.
 	cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-wikidb.{service,timer} /etc/systemd/system/.
 	cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-wikifiles.{service,timer} /etc/systemd/system/.
 	systemctl daemon-reload
 	systemctl enable pod-charlesreid1
-	systemctl enable pod-charlesreid1-backups-gitea.timer
+	#systemctl enable pod-charlesreid1-backups-gitea.timer
 	systemctl enable pod-charlesreid1-backups-wikidb.timer
 	systemctl enable pod-charlesreid1-backups-wikifiles.timer
-	systemctl start pod-charlesreid1-backups-gitea.timer
+	#systemctl start pod-charlesreid1-backups-gitea.timer
 	systemctl start pod-charlesreid1-backups-wikidb.timer
 	systemctl start pod-charlesreid1-backups-wikifiles.timer
 
@@ -123,15 +123,15 @@ ifeq ($(shell which systemctl),)
 	$(error Please run this make command on a system with systemctl installed)
 endif
 	systemctl disable pod-charlesreid1
-	systemctl disable pod-charlesreid1-backups-gitea.timer
+	#systemctl disable pod-charlesreid1-backups-gitea.timer
 	systemctl disable pod-charlesreid1-backups-wikidb.timer
 	systemctl disable pod-charlesreid1-backups-wikifiles.timer
 	systemctl stop pod-charlesreid1
-	systemctl stop pod-charlesreid1-backups-gitea.timer
+	#systemctl stop pod-charlesreid1-backups-gitea.timer
 	systemctl stop pod-charlesreid1-backups-wikidb.timer
 	systemctl stop pod-charlesreid1-backups-wikifiles.timer
 	rm -f /etc/systemd/system/pod-charlesreid1.service
-	rm -f /etc/systemd/system/pod-charlesreid1-backups-gitea.{service,timer}
+	#rm -f /etc/systemd/system/pod-charlesreid1-backups-gitea.{service,timer}
 	rm -f /etc/systemd/system/pod-charlesreid1-backups-wikidb.{service,timer}
 	rm -f /etc/systemd/system/pod-charlesreid1-backups-wikifiles.{service,timer}
 	systemctl daemon-reload
