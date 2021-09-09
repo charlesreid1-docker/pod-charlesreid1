@@ -1,0 +1,124 @@
+blockquote#quote {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+@font-face
+{
+    font-family: 'GenBasI';
+    src: url('/css/font/GenBasI.ttf');
+}
+
+blockquote#quote p {
+    /*
+    font-family: "HelveticaNeue Light","Helvetica Neue Light","Helvetica Neue","Helvetica";
+    */
+    font-family: 'GenBasI'; 
+    font-weight: 100;
+    font-size: 20px;
+    line-height: 150%;
+}
+
+img {
+    /*background-color: #fff;*/
+    padding: 5px;
+}
+img.tex {
+    background-color: #ddd;
+}
+
+body.mediawiki {
+    padding-top: 0px;
+}
+
+@media (min-width: 981px) {
+    /*
+    body.mediawiki {
+        padding-top: 100px;
+    }
+    */
+}
+
+div.wikilink_btn a {
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.wikitable th,.wikitable td {
+    border-top:1px solid #222; background: transparent;
+}
+
+.wikitable th,.wikitable td{border-top:1px solid #222;}
+.wikitable tbody tr:hover th,.wikitable tbody tr:hover td{background-color:#444;}
+.wikitable tbody tr:hover td,.table tbody tr:hover th{background-color:#444;}
+.wikitable,.well,.prettyprint,input,textarea,select{-webkit-border-radius:1px;-moz-border-radius:1px;border-radius:1px;}
+.wikitable{width:100%;margin-bottom:18px;}.wikitable th,.wikitable td{padding:8px;line-height:18px;text-align:left;vertical-align:top;border-top:1px solid #dddddd;}
+.wikitable th{font-weight:bold;}
+.wikitable thead th{vertical-align:bottom;}
+.wikitable caption+thead tr:first-child th,.wikitable caption+thead tr:first-child td,.wikitable colgroup+thead tr:first-child th,.wikitable colgroup+thead tr:first-child td,.wikitable thead:first-child tr:first-child th,.wikitable thead:first-child tr:first-child td{border-top:0;}
+.wikitable tbody+tbody{border-top:2px solid #dddddd;}
+
+.wikitable tbody tr:hover th,.wikitable tbody tr:hover td{background-color:#333;}
+.wikitable{width:100%;margin-bottom:18px;}.wikitable th,.wikitable td{padding:8px;line-height:18px;text-align:left;vertical-align:top;border-top:1px solid #dddddd;}
+.wikitable th{font-weight:bold;}
+.wikitable thead th{vertical-align:bottom;}
+.wikitable caption+thead tr:first-child th,.wikitable caption+thead tr:first-child td,.wikitable colgroup+thead tr:first-child th,.wikitable colgroup+thead tr:first-child td,.wikitable thead:first-child tr:first-child th,.wikitable thead:first-child tr:first-child td{border-top:0;}
+.wikitable tbody+tbody{border-top:2px solid #dddddd;}
+
+table.wikitable, table.wikitable th {
+    background: none repeat scroll 0 0 #222;
+}
+
+/*
+ul, div {
+    font-size: 18px;
+}
+*/
+
+div#mw-normal-catlinks {
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+table, table.navbox, 
+table ul li, table.navbox ul li, 
+table ul, table.navbox ul, 
+table p, table.navbox p, 
+table a, table.navbox a { 
+    font-size: 14px;
+}
+
+h1, h2, h3, h4, h5 {
+    padding-top: 20px;
+}
+
+div.mw-geshi {
+    font-size: 14px;
+}
+pre {
+    font-size: 14px;
+}
+
+div.mainarticle {
+    font-size: 18px;
+}
+
+a:visited {
+    /* 
+    unvisited link color:
+    color: #33b5e5;
+     */
+    /*
+    visited link color:
+    http://www.w3schools.com/tags/ref_colorpicker.asp
+    */
+    color: #2E8AE6;
+}
+
+#toc, .toc, 
+#catlinks, .catlinks {
+    background-color: #333;
+}
+    
