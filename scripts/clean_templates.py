@@ -6,15 +6,18 @@ repo_root = os.path.abspath(os.path.join(scripts_dir, '..'))
 
 def clean():
     p = os.path.join(repo_root,'**','*.j2')
-    template_files = glob.glob(p)
+    template_files = glob.glob(p, recursive=True)
     for template_file in template_files:
         tpath = os.path.abspath(template_file)
         tdir, tname = os.path.split(tpath)
         rname = tname[:-3]
         rpath = os.path.join(tdir, rname)
 
-        print(f"Removing file {rpath}")
-        os.remove(rpath)
+        if os.path.exists(rpath):
+            print(f"Removing file {rpath}")
+            os.remove(rpath)
+        else:
+            print(f"Skipping file {rpath}")
 
     print("Done")
 

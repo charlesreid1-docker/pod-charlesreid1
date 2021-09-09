@@ -1,0 +1,111 @@
+####################
+#
+# {{ server_name_default }}
+# https/443
+# 
+# {{ server_name_default }} and www.{{ server_name_default }}
+# should handle the following cases:
+# - w/ and wiki/ should reverse proxy story_mw
+# - gitea subdomain should reverse proxy stormy_gitea
+#
+####################
+
+
+# default 
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name {{ server_name_default }} default_server;
+
+    ssl_certificate /etc/letsencrypt/live/{{ server_name_default }}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/{{ server_name_default }}/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    include /etc/nginx/conf.d/secheaders.conf;
+    include /etc/nginx/conf.d/csp.conf;
+
+    location / {
+        try_files $uri $uri/ =404;
+        root /www/{{ server_name_default }}/htdocs;
+        index index.html;
+    }
+
+    location /wiki/ {
+        proxy_set_header X-Real-IP  $remote_addr;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header Host $host;
+        proxy_pass http://stormy_mw:8989/wiki/;
+    }
+
+    location /w/ {
+        proxy_set_header X-Real-IP  $remote_addr;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header Host $host;
+        proxy_pass http://stormy_mw:8989/w/;
+    }
+
+    # ~ means case-sensitive regex match, rather than string literal
+    # (ignores .git, .gitignore, etc.)
+    location ~ /\.git {
+        deny all;
+    }
+}
+
+
+# www
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name www.{{ server_name_default }};
+
+    ssl_certificate /etc/letsencrypt/live/www.{{ server_name_default }}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/www.{{ server_name_default }}/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    include /etc/nginx/conf.d/secheaders.conf;
+    include /etc/nginx/conf.d/csp.conf;
+
+    root /www/{{ server_name_default }}/htdocs;
+
+    location / {
+        try_files $uri $uri/ =404;
+        index index.html;
+    }
+
+    location /wiki/ {
+        proxy_set_header X-Real-IP  $remote_addr;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header Host $host;
+        proxy_pass http://stormy_mw:8989/wiki/;
+    }
+
+    location /w/ {
+        proxy_set_header X-Real-IP  $remote_addr;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header Host $host;
+        proxy_pass http://stormy_mw:8989/w/;
+    }
+
+    location ~ /\.git {
+        deny all;
+    }
+}
+
+
+# gitea 
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name git.{{ server_name_default }};
+
+    ssl_certificate /etc/letsencrypt/live/git.{{ server_name_default }}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/git.{{ server_name_default }}/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    include /etc/nginx/conf.d/secheaders.conf;
+    include /etc/nginx/conf.d/giteacsp.conf;
+
+    location / {
+        proxy_set_header X-Real-IP  $remote_addr;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header Host $host;
+        proxy_pass http://stormy_gitea:3000/;
+    }
+}

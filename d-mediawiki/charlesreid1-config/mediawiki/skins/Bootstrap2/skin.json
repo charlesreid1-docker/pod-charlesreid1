@@ -1,0 +1,33 @@
+{
+	"name": "Bootstrap2",
+	"author": [
+		"Charles Reid",
+		"..."
+	],
+	"url": "",
+	"descriptionmsg": "Bootstrap2-desc",
+	"namemsg": "skinname-Bootstrap2",
+	"license-name": "GPL-2.0+",
+	"type": "skin",
+	"ValidSkinNames": {
+		"Bootstrap2": "Bootstrap2"
+	},
+	"MessagesDirs": {
+		"Bootstrap2": [
+			"i18n"
+		]
+	},
+	"ResourceModules": {
+		"skins.Bootstrap2.styles": {
+			"styles": {
+				"main.css": {
+					"media": "screen"
+				}
+			}
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteSkinPath": "Bootstrap2"
+	}
+}

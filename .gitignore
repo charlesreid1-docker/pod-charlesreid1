@@ -1,11 +1,26 @@
+*.pyc
 environment
 attic
 
+# gitea
+#d-gitea/data/
+d-gitea/custom/conf/app.ini
+d-gitea/custom/gitea.db
+d-gitea/custom/avatars
+d-gitea/custom/log/
+d-gitea/custom/queues/
+
+# mediawiki
+charlesreid1.wiki.conf
+
+# scripts dir
+scripts/git_*_www.py
+*.timer
+*.service
+
+# misc
 site
 root.password
 docker-compose.yml
 *.zip
-scripts/executioner.pyc
-scripts/git_*_www.py
-*.timer
-*.service
+

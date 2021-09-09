@@ -2,6 +2,7 @@
 #
 # Restore wiki files from a tar file
 # into the stormy_mw container.
+set -eux
 
 function usage {
     echo ""
@@ -29,6 +30,11 @@ then
 
     NAME="stormy_mw"
     TAR=$(basename "$1")
+
+	echo "Checking that container exists"
+	docker ps --format '{{.Names}}' | grep ${NAME} || exit 1;
+
+	echo "Copying $1 into container ${NAME}"
     set -x
     docker cp $1 ${NAME}:/tmp/${TAR}
     docker exec -it ${NAME} mv /var/www/html/images /var/www/html/images.old
@@ -39,5 +45,3 @@ then
 else
     usage
 fi
-
-
