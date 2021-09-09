@@ -1,0 +1,452 @@
+<?php
+/**
+  * Bootstrap2 MediaWiki skin
+  *
+  * @file Bootstrap2.php
+  */
+
+if( !defined( 'MEDIAWIKI' ) )
+    die( -1 );
+
+/**
+ * Inherit main code from SkinTemplate, set the CSS and template filter.
+ */
+class SkinBootstrap2 extends SkinTemplate {
+    /** Using Bootstrap2 */
+    var $skinname = 'Bootstrap2', 
+        $stylename = 'Bootstrap2',
+        // -------- Start ---------
+        // making this true, to match the Dash style
+        $useHeadElement = true,
+        //$useHeadElement = false,
+        // -------- End ---------
+        // cmr 05/08/2014
+        $template = 'Bootstrap2Template';
+
+    function setupSkinUserCss( OutputPage $out ) {
+        global $wgHandheldStyle;
+
+        parent::setupSkinUserCss( $out );
+
+        // Append to the default screen common & print styles...
+        $out->addStyle( 'Bootstrap2/IE50Fixes.css', 'screen', 'lt IE 5.5000' );
+        $out->addStyle( 'Bootstrap2/IE55Fixes.css', 'screen', 'IE 5.5000' );
+        $out->addStyle( 'Bootstrap2/IE60Fixes.css', 'screen', 'IE 6' );
+        $out->addStyle( 'Bootstrap2/IE70Fixes.css', 'screen', 'IE 7' );
+
+        $out->addStyle( 'Bootstrap2/rtl.css', 'screen', '', 'rtl' );
+
+
+        $out->addStyle('Bootstrap2/bootstrap.css' );
+        $out->addStyle('Bootstrap2/slate.css' );
+        $out->addStyle('Bootstrap2/main.css' );
+        $out->addStyle('Bootstrap2/dox.css' );
+
+        $out->addStyle('Bootstrap2/css/font-awesome.css');
+        //$out->addStyle('Bootstrap2/cmr-bootstrap-cyborg.css');
+        //$out->addStyle('Bootstrap2/cmr-bootstrap-cyborg-wiki.css');
+        //
+        //$out->addStyle('Bootstrap2/bootstrap-cyborg.css' );
+        //$out->addStyle('Bootstrap2/bootstrap-responsive-cyborg.css');
+
+        //$out->addStyle( 'Bootstrap2/main.css', 'screen' );
+    }
+}
+
+class Bootstrap2Template extends QuickTemplate {
+    var $skin;
+
+    /**
+     * Template filter callback for Bootstrap2 skin.
+     * Takes an associative array of data set from a SkinTemplate-based
+     * class, and a wrapper for MediaWiki's localization database, and
+     * outputs a formatted page.
+     *
+     * @access private
+     */
+    function execute() {
+        global $wgRequest;
+
+        $this->skin = $skin = $this->data['skin'];
+        $action = $wgRequest->getText( 'action' );
+
+        // -------- Start ------------
+        // Adding the following line makes Geshi work
+        $this->html( 'headelement' );
+        // Left this out because the [edit] buttons were becoming right-aligned
+        // Got around that behavior by changing shared.css
+        // -------- End ------------
+        // cmr 01-10-2014
+
+
+
+/////////////////////////////
+// begin custom
+// bootstrap content
+
+$get_override = 'True';
+$url_array = explode('/',$_SERVER['REQUEST_URI']);
+array_shift($url_array); // remove first value as it's empty
+
+$p = "wiki";
+
+// path, inside container
+include('/var/www/html/skins/Bootstrap2/navbar.php');
+
+?>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/favicon.ico">
+
+<div class="container">
+
+    <!-- Row: Navigation bar for wiki -->
+    <div class="row">
+        <nav class="wiki navbar navbar-default">
+    
+            <div class="container-fixed">
+                <div class="navbar-header">
+                    <a href="/wiki/" class="navbar-brand">
+                    {{ top_domain }} wiki
+                    </a>
+                </div>
+                <div>
+                    <ul class="wiki nav navbar-nav">
+                        <?php
+    
+                        /*
+                        // Print debug information
+                        echo "\n";
+                        echo "<!--";
+                        echo "\n";
+                        echo print_r($this->data['content_actions']);
+                        echo "\n";
+                        echo "~~~~~~~~~";
+                        echo "\n";
+                        foreach($this->data['content_actions'] as $key => $tab) {
+                            echo $key;
+                            echo "\n";
+                            //echo print_r($tab);
+                            echo $tab['href'];
+                            echo "\n";
+                            echo "\n";
+                            echo "\n";
+                        }
+                        echo "\n";
+                        echo "-->";
+                        echo "\n";
+                        */
+    
+                        echo "\n";
+                        foreach($this->data['content_actions'] as $key => $tab) {
+    
+                            if( in_array($key, array('nstab-main','edit','history','viewsource','delete','move'))) {
+    
+                                echo '<li class="wiki';
+                                if( $tab['class'] ) {
+                                    echo ' ';
+                                    echo $tab['class'];
+                                }
+                                echo '" id="' . Sanitizer::escapeId( "ca-$key" ) . '">';
+                                echo '<a href="';
+                                echo htmlspecialchars($tab['href']);
+                                echo '">';
+                                echo $tab['text'];
+                                echo "</a>";
+                                echo "</li>";
+                                //echo '>'.htmlspecialchars($tab['text']).'</a></li>';
+                                echo "\n";
+    
+                            }
+    
+                        } ?>
+                    </ul>
+                </div>
+            </div>
+    
+        </nav>
+    </div>
+
+
+    <!-- Row: Page content for wiki -->
+    <div class="row">
+        <div class="span10 offset1">
+
+            <!--
+            =========================
+            Begin MediaWiki content
+            =========================
+            -->
+
+            <div class="mw_content">
+            
+                <div id="content" <?php $this->html("specialpageattributes") ?>>
+            
+                <!-- page title -->
+                <div class="page-header">
+                    <h1 id="firstHeading" class="firstHeading">
+                    <?php $this->html('title') ?>
+                    </h1>
+                </div><!--div page-header-->
+                
+                <!-- pre-article stuff -->
+                <div id="bodyContent">
+                    <h3 id="siteSub"><?php $this->msg('tagline') ?></h3>
+                    <div id="contentSub"<?php $this->html('userlangattributes') ?>><?php $this->html('subtitle') ?>
+                    </div>
+                    <?php 
+                    if($this->data['undelete']) { ?>
+                        <div id="contentSub2"><?php $this->html('undelete') ?></div>
+                    <?php 
+                    } 
+                    if($this->data['newtalk'] ) { ?>
+                        <div class="usermessage"><?php $this->html('newtalk')  ?></div>
+                    <?php 
+                    }
+                    ?>
+                
+                    <!-- article -->
+                    
+                    <!-- begin mediawiki content -->
+                    <?php $this->html('bodytext') ?>
+                    
+                    <?php 
+                    if($this->data['catlinks']) { 
+                        $this->html('catlinks'); 
+                    } ?>
+                </div><!-- end bodyContent -->
+                
+                </div><!--div special page attributes-->
+
+            </div><!--div mw content-->
+            <!--
+            =========================
+            End MediaWiki content
+            =========================
+            -->
+
+        </div><!--div span10 -->
+    </div><!--row-->
+
+<!--
+==========================================================
+====================== Begin Wiki Footer =================
+==========================================================
+-->
+
+</div>
+
+<?php
+include('/var/www/html/skins/Bootstrap2/footer.php');
+?>
+
+<?php
+    } // end of execute() method
+
+    /*************************************************************************************************/
+    function searchBox() {
+        global $wgUseTwoButtonsSearchForm;
+?>
+    <div id="p-search" class="portlet">
+        <div id="searchBody" class="pBody">
+            <form class="navbar-search pull-left" action="<?php $this->text('wgScript') ?>" id="searchform">
+                <input type='hidden' name="title" value="<?php $this->text('searchtitle') ?>"/>
+                <?php
+        echo Html::input( 'search',
+            isset( $this->data['search'] ) ? $this->data['search'] : '', 'search',
+            array(
+                'id' => 'searchInput',
+                'class' => 'search-query',
+                'title' => $this->skin->titleAttrib( 'search' ),
+                'accesskey' => $this->skin->accesskey( 'search' )
+            ) ); ?>
+
+                <!--
+                <input type='submit' name="go" class="searchButton" id="searchGoButton" value="<?php $this->msg('searcharticle') ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-go' ); ?> /><?php if ($wgUseTwoButtonsSearchForm) { ?>&nbsp;
+                -->
+                <input type='submit' name="fulltext" class="btn btn-large" id="mw-searchButton" value="<?php $this->msg('searchbutton') ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-fulltext' ); ?> /><?php } else { ?>
+
+                <div><a href="<?php $this->text('searchaction') ?>" rel="search"><?php $this->msg('powersearch-legend') ?></a></div><?php } ?>
+
+            </form>
+        </div>
+    </div>
+<?php
+    }
+
+    /*************************************************************************************************/
+    function personalTools() {
+        ?>
+        <ul class="nav nav-list">
+	        <li class="nav-header"><?php $this->msg('personaltools') ?></li>
+            <?php
+            foreach($this->data['personal_urls'] as $key => $item) { 
+                if( strcmp($key,"userpage") == 0
+                    || strcmp($key,"preferences") == 0
+                    || strcmp($key,"logout") == 0 ) { ?>
+                    <li> <a href="<?php
+	        	    echo htmlspecialchars($item['href']) ?>"<?php echo $skin->tooltipAndAccesskey('pt-'.$key) ?><?php
+	        	    if(!empty($item['class'])) { ?> class="<?php
+	        	        echo htmlspecialchars($item['class']) ?>"<?php } ?>><?php
+	        	        echo htmlspecialchars($item['text']) ?></a></li>
+                    <?php
+                    } else {
+                  }
+            } 
+            // put a log in button
+            ?>
+            <li><a href="/wiki/Special:UserLogin">Log in</a></li>
+    <?php
+    }
+
+    /*************************************************************************************************/
+    function toolbox() {
+?>
+    <!--
+    <div class="portlet" id="p-tb">
+        <div class="pBody">
+        -->
+            <ul class="nav nav-list">
+                <li class="nav-header"><?php $this->msg('toolbox') ?></li>
+<?php
+        /*
+        if($this->data['notspecialpage']) { ?>
+                <li id="t-whatlinkshere"><a href="<?php
+                echo htmlspecialchars($this->data['nav_urls']['whatlinkshere']['href'])
+                ?>"<?php echo $this->skin->tooltipAndAccesskey('t-whatlinkshere') ?>><?php $this->msg('whatlinkshere') ?></a></li>
+<?php
+            if( $this->data['nav_urls']['recentchangeslinked'] ) { ?>
+                <li id="t-recentchangeslinked"><a href="<?php
+                echo htmlspecialchars($this->data['nav_urls']['recentchangeslinked']['href'])
+                ?>"<?php echo $this->skin->tooltipAndAccesskey('t-recentchangeslinked') ?>><?php $this->msg('recentchangeslinked-toolbox') ?></a></li>
+<?php       }
+
+        }
+
+        if( isset( $this->data['nav_urls']['trackbacklink'] ) && $this->data['nav_urls']['trackbacklink'] ) { ?>
+            <li id="t-trackbacklink"><a href="<?php
+                echo htmlspecialchars($this->data['nav_urls']['trackbacklink']['href'])
+                ?>"<?php echo $this->skin->tooltipAndAccesskey('t-trackbacklink') ?>><?php $this->msg('trackbacklink') ?></a></li>
+<?php   }
+        if($this->data['feeds']) { ?>
+            <li id="feedlinks"><?php foreach($this->data['feeds'] as $key => $feed) {
+                    ?><a id="<?php echo Sanitizer::escapeId( "feed-$key" ) ?>" href="<?php
+                    echo htmlspecialchars($feed['href']) ?>" rel="alternate" type="application/<?php echo $key ?>+xml" class="feedlink"<?php echo $this->skin->tooltipAndAccesskey('feed-'.$key) ?>><?php echo htmlspecialchars($feed['text'])?></a>&nbsp;
+                    <?php } ?></li><?php
+        }
+        */
+
+
+
+        // Upload files, and list all files
+
+        if($this->data['nav_urls']['upload']) {
+            ?><li id="t-<?php echo 'upload'; ?>"><a href="<?php echo htmlspecialchars($this->data['nav_urls']['upload']['href'])
+            ?>" <?php echo $this->skin->tooltipAndAccesskey('t-upload') ?>><?php $this->msg('upload') ?></a></li>
+<?php
+        }
+
+
+
+        // Special pages, and list all pages
+
+        if( $this->data['nav_urls']['specialpages'] ) {
+            ?><li id="t-<?php echo 'specialpages'; ?>"><a href="<?php echo htmlspecialchars($this->data['nav_urls']['specialpages']['href'])
+            ?>" <?php echo $this->skin->tooltipAndAccesskey('t-specialpages') ?>><?php $this->msg('specialpages') ?></a></li>
+<?php
+            $element_name = 'all_pages';
+            $element_title = 'List All Pages';
+            $element_href = "/wiki/Special:AllPages";
+            $this->data['nav_urls'][$element_name]['href'] = $element_href;
+?>
+            <li id="t-<?php echo $element_name; ?>"><a href="<?php echo htmlspecialchars( $this->data['nav_urls'][$element_name]['href'] )
+            ?>" title="<?php echo $element_title ?>"><?php echo $element_title; ?></a></li>
+<?php
+        }
+        
+
+
+        /*
+        foreach( array('contributions', 'log', 'blockip', 'emailuser') as $special ) {
+
+            if($this->data['nav_urls'][$special]) {
+                ?><li id="t-<?php echo $special ?>"><a href="<?php echo htmlspecialchars($this->data['nav_urls'][$special]['href'])
+                ?>"<?php echo $this->skin->tooltipAndAccesskey('t-'.$special) ?>><?php $this->msg($special) ?></a></li>
+<?php       }
+        }
+        */
+
+        /*
+        if(!empty($this->data['nav_urls']['print']['href'])) { ?>
+                <li id="t-print"><a href="<?php echo htmlspecialchars($this->data['nav_urls']['print']['href'])
+                ?>" rel="alternate"<?php echo $this->skin->tooltipAndAccesskey('t-print') ?>><?php $this->msg('printableversion') ?></a></li><?php
+        }
+        */
+
+        if(!empty($this->data['nav_urls']['permalink']['href'])) { ?>
+                <li id="t-permalink"><a href="<?php echo htmlspecialchars($this->data['nav_urls']['permalink']['href'])
+                ?>"<?php echo $this->skin->tooltipAndAccesskey('t-permalink') ?>><?php $this->msg('permalink') ?></a></li><?php
+        } elseif ($this->data['nav_urls']['permalink']['href'] === '') { ?>
+                <li id="t-ispermalink"<?php echo $this->skin->tooltip('t-ispermalink') ?>><?php $this->msg('permalink') ?></li><?php
+        }
+
+        //wfRunHooks( 'BootstrapTemplateToolboxEnd', array( &$this ) );
+        wfRunHooks( 'BootstrapTemplateToolboxEnd', array( &$this ) );
+?>
+            </ul>
+<!--
+        </div>
+    </div>
+-->
+<?php
+    }
+
+    /*************************************************************************************************/
+    function languageBox() {
+        if( $this->data['language_urls'] ) {
+?>
+    <div id="p-lang" class="portlet">
+        <h5<?php $this->html('userlangattributes') ?>><?php $this->msg('otherlanguages') ?></h5>
+        <div class="pBody">
+            <ul>
+<?php       foreach($this->data['language_urls'] as $langlink) { ?>
+                <li class="<?php echo htmlspecialchars($langlink['class'])?>"><?php
+                ?><a href="<?php echo htmlspecialchars($langlink['href']) ?>"><?php echo $langlink['text'] ?></a></li>
+<?php       } ?>
+            </ul>
+        </div>
+    </div>
+<?php
+        }
+    }
+
+    /*************************************************************************************************/
+    function customBox( $bar, $cont ) {
+?>
+    <!--
+    <div class='generated-sidebar portlet' id='<?php echo Sanitizer::escapeId( "p-$bar" ) ?>'<?php echo $this->skin->tooltip('p-'.$bar) ?>>
+        <div class='pBody'>
+-->
+
+<?php   if ( is_array( $cont ) ) { ?>
+            <ul class="nav nav-list">
+                <li class="nav-header"><?php $out = wfMsg( $bar ); if (wfEmptyMsg($bar, $out)) echo htmlspecialchars($bar); else echo htmlspecialchars($out); ?></li>
+<?php           foreach($cont as $key => $val) { ?>
+                <li id="<?php echo Sanitizer::escapeId($val['id']) ?>"<?php
+                    if ( $val['active'] ) { ?> class="active" <?php }
+                ?>><a href="<?php echo htmlspecialchars($val['href']) ?>"<?php echo $this->skin->tooltipAndAccesskey($val['id']) ?>><?php echo htmlspecialchars($val['text']) ?></a></li>
+<?php           } ?>
+            </ul>
+<?php   } else {
+            # allow raw HTML block to be defined by extensions
+            print $cont;
+        }
+?>
+<!--
+        </div>
+    </div>
+-->
+<?php
+    }
+} // end of class
+
+

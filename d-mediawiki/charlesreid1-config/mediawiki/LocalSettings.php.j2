@@ -1,0 +1,250 @@
+<?php
+$wgSitename = "charlesreid1";
+$wgMetaNamespace = "Charlesreid1";
+
+# from http://www.mediawiki.org/wiki/Manual:Short_URL#Recommended_how-to_guide_.28setup_used_on_Wikipedia.29
+$wgScriptPath = "/w";      # Path to the actual files. This should already be there
+$wgArticlePath = "/wiki/$1";  # Virtual path. This directory MUST be different from the one used in $wgScriptPath
+$wgUsePathInfo = true;        # Enable use of pretty URLs
+
+# Protect against web entry
+if ( !defined( 'MEDIAWIKI' ) ) {
+	exit;
+}
+
+## The protocol and server name to use in fully-qualified URLs
+$wgServer = 'https://{{ server_name_default }}';
+$wgCanonicalServer = 'https://{{ server_name_default }}';
+
+## The URL path to static resources (images, scripts, etc.)
+$wgStylePath = "$wgScriptPath/skins";
+$wgResourceBasePath = $wgScriptPath;
+
+# The URL path to the logo.  Make sure you change this from the default,
+# or else you'll overwrite your logo when you upgrade!
+$wgLogo = "$wgResourceBasePath/resources/assets/wiki.png";
+
+# UPO means: this is also a user preference option
+$wgEnableEmail = true;
+$wgEmergencyContact = "charles@charlesreid1.com";
+$wgPasswordSender = "charles@charlesreid1.com";
+$wgEnableUserEmail = true; # UPO
+$wgEnotifUserTalk = false; # UPO
+$wgEnotifWatchlist = false; # UPO
+$wgEmailAuthentication = true;
+
+# Database settings
+$wgDBtype = "mysql";
+$wgDBserver = getenv('MYSQL_HOST');
+$wgDBname = getenv('MYSQL_DATABASE');
+$wgDBuser = getenv('MYSQL_USER');
+$wgDBpassword = getenv('MYSQL_PASSWORD');
+
+# MySQL specific settings
+$wgDBprefix = "";
+$wgDBTableOptions = "ENGINE=InnoDB, DEFAULT CHARSET=binary";
+$wgDBmysql5 = true;
+
+# Shared memory settings
+$wgMainCacheType = CACHE_ACCEL;
+$wgMemCachedServers = [];
+
+# To enable image uploads, make sure the 'images' directory
+# is writable, then set this to true:
+$wgEnableUploads = true;
+$wgMaxUploadSize = 1024*1024*100; # 100 MB
+# also set in php.ini
+
+$wgUseImageMagick = true;
+$wgImageMagickConvertCommand = "/usr/bin/convert";
+
+# InstantCommons allows wiki to use images from https://commons.wikimedia.org
+$wgUseInstantCommons = false;
+
+# Allow specific file extensions
+$wgStrictFileExtensions = false;
+$wgFileExtensions[] = 'pdf';
+$wgFileExtensions[] = 'svg';
+$wgFileExtensions[] = 'mm';
+$wgFileExtensions[] = 'png';
+$wgFileExtensions[] = 'jpg';
+$wgFileExtensions[] = 'JPG';
+$wgFileExtensions[] = 'jpeg';
+$wgFileExtensions[] = 'py';
+
+# Allow any file extensions, but print a warning if not in $wgFileExtensions[]
+$wgCheckFileExtensions = false;
+
+# do not send pingback to https://www.mediawiki.org
+$wgPingback = false;
+
+# If you use ImageMagick (or any other shell command) on a
+# Linux server, this will need to be set to the name of an
+# available UTF-8 locale
+$wgShellLocale = "en_US.utf8";
+
+# If you have the appropriate support software installed
+# you can enable inline LaTeX equations:
+$wgUseTeX           = true;
+$wgTexvc = "$IP/extensions/Math/math/texvc";
+#$wgTexvc = '/usr/bin/texvc';
+
+# Set MathML as default rendering option
+$wgDefaultUserOptions['math'] = 'mathml';
+$wgMathFullRestbaseURL = 'https://en.wikipedia.org/api/rest_';
+$wgMathMathMLUrl = 'https://mathoid-beta.wmflabs.org/';
+
+# Site language code, should be one of the list in ./languages/data/Names.php
+$wgLanguageCode = "en";
+
+$wgSecretKey = getenv('MEDIAWIKI_SECRETKEY');
+
+# Changing this will log out all existing sessions.
+$wgAuthenticationTokenVersion = "1";
+
+# Site upgrade key. Must be set to a string (default provided) to turn on the
+# web installer while LocalSettings.php is in place
+$wgUpgradeKey = "984c1d9858dabc27";
+
+# No license info
+$wgRightsPage = "";
+$wgRightsUrl = "";
+$wgRightsText = "";
+$wgRightsIcon = "";
+
+# Alternative:
+$wgEnableCreativeCommonsRdf = true;
+$wgRightsPage = "";
+$wgRightsUrl = "http://creativecommons.org/licenses/by-nc-nd/3.0/us/";
+$wgRightsText = "Attribution-NonCommercial-NoDerivs 3.0 United States";
+$wgRightsIcon = "/w/skins/charlesmartinreid/cc.png";
+
+# Path to the GNU diff3 utility. Used for conflict resolution.
+$wgDiff3 = "/usr/bin/diff3";
+
+# Boostrap2 skin:
+wfLoadSkin( 'Bootstrap2' );
+require_once "$IP/skins/Bootstrap2/Bootstrap2.php";
+$wgDefaultSkin = 'Bootstrap2';
+$wgValidSkinNames['bootstrap2'] = 'Bootstrap2';
+
+# Change to true for debugging
+$wgShowExceptionDetails=false;
+
+# When you make changes to this configuration file, this will make
+# sure that cached pages are cleared.
+session_save_path("tmp");
+$wgCacheEpoch = max( $wgCacheEpoch, gmdate( 'YmdHis', @filemtime( __FILE__ ) ) );
+
+############################################################
+############# Charles-Modified Settings ####################
+
+# Allow external images (to do this, simply insert the image's URL)
+# http://url.for/some/image.png
+# But these cannot be resized.
+$wgAllowExternalImages = true;
+
+# Use ImageMagick
+$wgUseImageMagic=true;
+
+# $wgAllowDisplayTitle - Allow the magic word { { DISPLAYTITLE: } } to override the title of a page.
+$wgAllowdisplayTitle=true;
+
+# Log IP addresses in the recentchanges table.
+$wgPutIPinRC=true;
+
+# Getting some weird "Error creating thumbnail: Invalid thumbnail parameters" messages w/ thumbnail
+# http://www.gossamer-threads.com/lists/wiki/mediawiki/169439
+$wgMaxImageArea=64000000;
+$wgMaxShellMemory=0;
+
+$wgFavicon="$wgScriptPath/favicon.ico";
+
+######################
+# Edit permissions
+
+# only admin can edit
+$wgGroupPermissions['*']['edit'] = false;
+$wgGroupPermissions['user']['edit'] = false;
+$wgGroupPermissions['sysop']['edit'] = true;
+
+# only admin can register new accounts
+$wgGroupPermissions['*']['createaccount'] = false;
+$wgGroupPermissions['user']['createaccount'] = false;
+$wgGroupPermissions['sysop']['createaccount'] = true;
+
+# only admin can upload
+$wgGroupPermissions['*']['upload'] = false;
+$wgGroupPermissions['user']['upload'] = false;
+$wgGroupPermissions['sysop']['upload'] = true;
+
+$wgGroupPermissions['*']['reupload'] = false;
+$wgGroupPermissions['user']['reupload'] = false;
+$wgGroupPermissions['sysop']['reupload'] = true;
+
+###############################
+## GeSHi syntax highlighting/code extension
+# https://github.com/wikimedia/mediawiki-extensions-SyntaxHighlight_GeSHi.git
+
+wfLoadExtension( 'SyntaxHighlight_GeSHi' );
+$wgSyntaxHighlightDefaultLang = "text";
+
+##############################
+# Parser functions
+# http://www.mediawiki.org/wiki/Extension:ParserFunctions
+# http://en.wikipedia.org/wiki/Template_talk:Navbox
+
+wfLoadExtension( 'ParserFunctions' );
+
+##############################################
+# Embed videos extension
+# https://github.com/HydraWiki/mediawiki-embedvideo/
+# require_once("$IP/extensions/EmbedVideo/EmbedVideo.php");
+
+wfLoadExtension( 'EmbedVideo' );
+
+###########################################
+# Math extension
+# https://github.com/wikimedia/mediawiki-extensions-Math.git
+
+require_once "$IP/extensions/Math/Math.php";
+
+#############################################
+# Fail2banlog extension
+# https://www.mediawiki.org/wiki/Extension:Fail2banlog
+
+require_once "$IP/extensions/Fail2banlog/Fail2banlog.php";
+$wgFail2banlogfile = "/var/log/apache2/mwf2b.log";
+
+#############################################
+# Fix cookies crap
+
+session_save_path("/tmp");
+
+##############################################
+# Secure login
+
+$wgServer = "https://{{ server_name_default }}";
+$wgSecureLogin = true;
+
+###################################
+# Raw html
+
+$wgRawHtml = true;
+
+# but also keep things locked down
+$wgUseRCPatrol=true;
+$wgNewUserLog=true;
+
+##################################
+# Paths
+
+$wgUploadPath = "$wgScriptPath/images";
+$wgUploadDirectory = "$IP/images";
+$wgMathPath = "$wgUploadPath/math";
+$wgMathDirectory = "$wgUploadDirectory/math";
+$wgTmpDirectory = "$wgUploadDirectory/tmp";
+$wgLatexCommand = "/usr/bin/latex"; 
+#$wgUploadBaseUrl = false; # not sure about why this one too...
+$wgVerifyMimeType = false;
+#$wgDebugLogFile = "/var/log/apache2/wiki.log";

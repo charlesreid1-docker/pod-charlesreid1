@@ -1,0 +1,81 @@
+h1.hero {
+    padding: 0px 45px;
+    color: white;
+    font: bold 24px/45pxHelvetica,Sans-Serif;
+    letter-spacing:-1px;
+/*
+    background: rgb(0,0,0);
+    background: rgba(0,0,0,0.7);
+*/
+    padding:10px;
+}
+
+a.nav_well_title {
+    font-variant: small-caps;
+}
+
+.label-big{ 
+    font-size:14px;
+    line-height: 18px;
+}
+
+h4.widgettitle {
+    font-size: 18px;
+    padding-top: 25px;
+}
+
+
+
+/*
+//////////////////////////////////
+make a hero unit that actually looks good with cyborg skin
+*/
+
+h1.superhero {
+  margin: 10px 0;
+  font-family: inherit;
+  font-weight: bold;
+  color: #000;
+  text-rendering: optimizelegibility;
+  font-size: 60px;
+  margin-bottom: 0;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+p.hero-unit {
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 30px;
+  color: #333;
+}
+
+.superhero td {
+    padding: 30px;
+}
+
+.hero-unit-no-padding { 
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+
+
+
+/* 
+ * use the nicest helvetica you can
+ */
+body, p {
+    /*
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, "Lucida Grande", sans-serif; 
+    */
+    font-weight: 300;
+    line-height: 150%;
+}
+
+
+/* give the navbar on the right more padding */
+#sidebar1{
+    margin-left:20px;
+}
+
