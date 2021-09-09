@@ -1,11 +1,23 @@
 environment
 attic
 
-site
-root.password
-docker-compose.yml
-*.zip
+# gitea
+#d-gitea/data/
+d-gitea/custom/conf/app.ini
+d-gitea/custom/gitea.db
+d-gitea/custom/avatars
+d-gitea/custom/log/
+d-gitea/custom/queues/
+
+# scripts dir
 scripts/executioner.pyc
 scripts/git_*_www.py
 *.timer
 *.service
+
+# misc
+site
+root.password
+docker-compose.yml
+*.zip
+
