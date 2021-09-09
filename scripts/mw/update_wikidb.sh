@@ -23,7 +23,7 @@ function usage {
 if [[ "$#" -eq 0 ]];
 then
 
-    NAME="pod-charlesreid1_stormy_mw_1"
+    NAME="stormy_mw"
     docker exec -it ${NAME} php /var/www/html/maintenance/update.php
 
 else

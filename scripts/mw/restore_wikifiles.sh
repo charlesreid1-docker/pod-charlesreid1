@@ -27,7 +27,7 @@ function usage {
 if [[ "$#" -eq 1 ]];
 then
 
-    NAME="pod-charlesreid1_stormy_mw_1"
+    NAME="stormy_mw"
     TAR=$(basename "$1")
     set -x
     docker cp $1 ${NAME}:/tmp/${TAR}
