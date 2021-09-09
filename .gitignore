@@ -1,3 +1,4 @@
+*.pyc
 environment
 attic
 
@@ -9,8 +10,10 @@ d-gitea/custom/avatars
 d-gitea/custom/log/
 d-gitea/custom/queues/
 
+# mediawiki
+charlesreid1.wiki.conf
+
 # scripts dir
-scripts/executioner.pyc
 scripts/git_*_www.py
 *.timer
 *.service
