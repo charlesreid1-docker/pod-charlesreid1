@@ -3,32 +3,31 @@
 These scripts use docker exec to run scripts inside the 
 running MySQL container.
 
-## dumping to backups
+## dump database
 
-To create backups, use the `dump_database.sh` script,
-and point it to a dumpfile to create:
+Use the `dump_database.sh` script to create a backup dump of the database:
 
 ```
-dump_database.sh script: 
-Dump a database to an SQL dump. 
- 
        ./dump_database.sh <sql-dump-file> 
- 
+```
+
 Example: 
  
+```
        ./dump_database.sh /path/to/wikidb_dump.sql 
 ```
 
-## restoring from backups
+## restore database
+
+Use the `restore_database.sh` script to restore the database from a dump file:
 
 ```
-restore_database.sh script:
-Restores a database from an SQL dump.
-
        ./restore_database.sh <sql-dump-file>
+```
 
 Example:
 
+```
        ./restore_database.sh /path/to/wikidb_dump.sql"
 ```
 
