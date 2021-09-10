@@ -2,11 +2,8 @@
 #
 # Run the mysql dump command to back up wikidb table, and send the
 # resulting SQL file to the specified backup directory.
-#
-# Backup directory:
-#       /home/user/backups/mysql
+set -eux
 
-BACKUP_DIR="$HOME/backups"
 CONTAINER_NAME="stormy_mysql"
 STAMP="`date +"%Y%m%d"`"
 
@@ -23,7 +20,7 @@ function usage {
     echo "Example:"
     echo ""
     echo "       ./wikidb_dump.sh"
-    echo "       (creates ${BACKUP_DIR}/20200101/wikidb_20200101.sql)"
+    echo "       (creates ${POD_CHARLESREID1_BACKUP_DIR}/20200101/wikidb_20200101.sql)"
     echo ""
     exit 1;
 }
@@ -40,35 +37,26 @@ fi
 if [ "$#" == "0" ]; then
 
     TARGET="wikidb_${STAMP}.sql"
-    BACKUP_TARGET="${BACKUP_DIR}/${STAMP}/${TARGET}"
+    BACKUP_TARGET="${POD_CHARLESREID1_BACKUP_DIR}/${STAMP}/${TARGET}"
 
     echo ""
     echo "pod-charlesreid1: wikidb_dump.sh"
     echo "--------------------------------"
     echo ""
+    echo "Backup directory: ${POD_CHARLESREID1_BACKUP_DIR}"
     echo "Backup target: ${BACKUP_TARGET}"
     echo ""
 
-    mkdir -p ${BACKUP_DIR}/${STAMP}
+    mkdir -p ${POD_CHARLESREID1_BACKUP_DIR}/${STAMP}
 
-    # If this script is being run from a cron job,
-    # don't use -i flag with docker
-    CRON="$( pstree -s $$ | /bin/grep -c cron )"
     DOCKER=$(which docker)
-    DOCKERX=""
-    if [[ "$CRON" -eq 1 ]]; 
-    then
-        DOCKERX="${DOCKER} exec -t"
-    else
-        DOCKERX="${DOCKER} exec -it"
-    fi
+    DOCKERX="${DOCKER} exec -t"
 
-    echo "Running mysqldump"
-    set -x
+    echo "Running mysqldump inside the mysql container"
     ${DOCKERX} ${CONTAINER_NAME} sh -c 'exec mysqldump wikidb --databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > ${BACKUP_TARGET}
-    set +x
 
     echo "Done."
+
 else
     usage
 fi

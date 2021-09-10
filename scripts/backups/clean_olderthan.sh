@@ -18,7 +18,6 @@ function usage {
     echo ""
     echo "       ./aws_backup.sh"
     echo ""
-    echo ""
     exit 1;
 }
 
@@ -42,10 +41,10 @@ if [ "$#" == "0" ]; then
 
     echo "Cleaning backups directory $BACKUP_DIR"
     echo "The following files older than $N days will be deleted:"
-    find $BACKUP_DIR -mtime +${N}
+    find ${POD_CHARLESREID1_BACKUP_DIR} -mtime +${N}
 
     echo "Deleting files"
-    find $BACKUP_DIR -mtime +${N} -delete
+    find ${POD_CHARLESREID1_BACKUP_DIR} -mtime +${N} -delete
     echo "Done"
 
 else

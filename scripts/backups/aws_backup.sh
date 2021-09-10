@@ -1,4 +1,7 @@
 #!/usr/bin/bash
+#
+# Find the last backup created, and copy it
+# to an S3 bucket.
 set -eux
 
 function usage {
@@ -10,7 +13,6 @@ function usage {
     echo "and copy it to the backups bucket."
     echo ""
     echo "       ./aws_backup.sh"
-    echo ""
     echo ""
     exit 1;
 }
@@ -43,10 +45,11 @@ if [ "$#" == "0" ]; then
     # Get name of last backup, to copy to AWS
     LAST_BACKUP=$(/bin/ls -1 -t ${POD_CHARLESREID1_BACKUP_DIR} | /usr/bin/head -n1)
     echo "Last backup found: ${LAST_BACKUP}"
+    echo "Last backup directory: ${POD_CHARLESREID1_BACKUP_DIR}/${LAST_BACKUP}"
 
     # Copy to AWS
     echo "Backing up directory ${POD_CHARLESREID1_BACKUP_DIR}/${LAST_BACKUP}"
-    aws s3 cp --recursive ${POD_CHARLESREID1_BACKUP_DIR}/${LAST_BACKUP} s3://charlesreid1-com-backups/backups/.
+    aws s3 cp --recursive ${POD_CHARLESREID1_BACKUP_DIR}/${LAST_BACKUP} s3://charlesreid1-com-backups/backups/${LAST_BACKUP}
     echo "Done."
 
 else
