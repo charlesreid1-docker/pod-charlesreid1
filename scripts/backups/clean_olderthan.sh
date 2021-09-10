@@ -2,13 +2,25 @@
 #
 # Clean any files older than N days
 # from the backup directory.
-set -eu
+set -eux
 
 # Number of days of backups to retain.
 # Everything older than this many days will be deleted
 N="30"
 
-BACKUP_DIR="$HOME/backups"
+function usage {
+    set +x
+    echo ""
+    echo "aws_backup.sh script:"
+    echo ""
+    echo "Find the last backup that was created,"
+    echo "and copy it to the backups bucket."
+    echo ""
+    echo "       ./aws_backup.sh"
+    echo ""
+    echo ""
+    exit 1;
+}
 
 if [ "$(id -u)" == "0" ]; then
     echo ""
@@ -21,8 +33,21 @@ fi
 
 if [ "$#" == "0" ]; then
 
-    echo "Cleaning backups directory $BACKUP_DIR"
-    echo "Files older than $N days will be deleted"
-    find $BACKUP_DIR -mtime +${N} -delete
+    echo ""
+    echo "pod-charlesreid1: clean_olderthan.sh"
+    echo "------------------------------------"
+    echo ""
+    echo "Backup directory: ${POD_CHARLESREID1_BACKUP_DIR}"
+    echo ""
 
+    echo "Cleaning backups directory $BACKUP_DIR"
+    echo "The following files older than $N days will be deleted:"
+    find $BACKUP_DIR -mtime +${N}
+
+    echo "Deleting files"
+    find $BACKUP_DIR -mtime +${N} -delete
+    echo "Done"
+
+else
+    usage
 fi
