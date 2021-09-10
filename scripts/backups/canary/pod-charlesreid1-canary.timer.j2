@@ -1,8 +1,8 @@
 [Unit]
-Description=Timer to copy the lastest pod-charlesreid1 backup to an S3 bucket
+Description=Timer to run the pod-charlesreid1 backups canary
 
 [Timer]
-OnCalendar=Sun *-*-* 0/2:13:00
+OnCalendar=Sun *-*-* 0/6:03:00
 
 [Install]
 WantedBy=timers.target

@@ -70,7 +70,7 @@ def check_exists(bucket_name, bucket_path):
 
 
 def alert(msg):
-    title = ":bangbang: pod-charlesreid1 backup canary"
+    title = ":bangbang: pod-charlesreid1 backups canary"
     hostname = subprocess.getoutput('hostname')
     msg += f"\n\nHost: {hostname}"
     slack_data = {
