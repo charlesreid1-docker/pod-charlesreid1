@@ -107,12 +107,15 @@ endif
 	sudo cp $(POD_CHARLESREID1_DIR)/scripts/pod-charlesreid1.service /etc/systemd/system/pod-charlesreid1.service
 	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-wikidb.{service,timer} /etc/systemd/system/.
 	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-wikifiles.{service,timer} /etc/systemd/system/.
+	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-gitea.{service,timer} /etc/systemd/system/.
 	sudo systemctl daemon-reload
 	sudo systemctl enable pod-charlesreid1
 	sudo systemctl enable pod-charlesreid1-backups-wikidb.timer
 	sudo systemctl enable pod-charlesreid1-backups-wikifiles.timer
+	sudo systemctl enable pod-charlesreid1-backups-gitea.timer
 	sudo systemctl start pod-charlesreid1-backups-wikidb.timer
 	sudo systemctl start pod-charlesreid1-backups-wikifiles.timer
+	sudo systemctl start pod-charlesreid1-backups-gitea.timer
 
 uninstall:
 ifeq ($(shell which systemctl),)
@@ -121,12 +124,15 @@ endif
 	-sudo systemctl disable pod-charlesreid1
 	-sudo systemctl disable pod-charlesreid1-backups-wikidb.timer
 	-sudo systemctl disable pod-charlesreid1-backups-wikifiles.timer
+	-sudo systemctl disable pod-charlesreid1-backups-gitea.timer
 	-sudo systemctl stop pod-charlesreid1
 	-sudo systemctl stop pod-charlesreid1-backups-wikidb.timer
 	-sudo systemctl stop pod-charlesreid1-backups-wikifiles.timer
-	sudo rm -f /etc/systemd/system/pod-charlesreid1.service
-	sudo rm -f /etc/systemd/system/pod-charlesreid1-backups-wikidb.{service,timer}
-	sudo rm -f /etc/systemd/system/pod-charlesreid1-backups-wikifiles.{service,timer}
+	-sudo systemctl stop pod-charlesreid1-backups-gitea.timer
+	-sudo rm -f /etc/systemd/system/pod-charlesreid1.service
+	-sudo rm -f /etc/systemd/system/pod-charlesreid1-backups-wikidb.{service,timer}
+	-sudo rm -f /etc/systemd/system/pod-charlesreid1-backups-wikifiles.{service,timer}
+	-sudo rm -f /etc/systemd/system/pod-charlesreid1-backups-gitea.{service,timer}
 	sudo systemctl daemon-reload
 
 .PHONY: help
