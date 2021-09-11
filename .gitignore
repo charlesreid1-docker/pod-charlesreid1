@@ -3,7 +3,7 @@ environment
 attic
 
 # gitea
-#d-gitea/data/
+d-gitea/data/
 d-gitea/custom/conf/app.ini
 d-gitea/custom/gitea.db
 d-gitea/custom/avatars
