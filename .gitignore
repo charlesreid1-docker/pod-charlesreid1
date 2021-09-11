@@ -4,11 +4,7 @@ attic
 
 # gitea
 d-gitea/data/
-d-gitea/custom/conf/app.ini
-d-gitea/custom/gitea.db
-d-gitea/custom/avatars
-d-gitea/custom/log/
-d-gitea/custom/queues/
+d-gitea/custom/
 
 # mediawiki
 charlesreid1.wiki.conf
