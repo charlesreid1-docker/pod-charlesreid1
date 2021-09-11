@@ -1,0 +1,8 @@
+[Unit]
+Description=Timer to back up the pod-charlesreid1 wiki database
+
+[Timer]
+OnCalendar=Sun *-*-* 0/2:03:00
+
+[Install]
+WantedBy=timers.target

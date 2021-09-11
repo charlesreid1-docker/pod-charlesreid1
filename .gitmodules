@@ -1,15 +1,3 @@
-[submodule "d-mysql"]
-	path = d-mysql
-	url = git@github.com:charlesreid1-docker/d-mysql.git
-[submodule "d-mediawiki"]
-	path = d-mediawiki
-	url = git@github.com:charlesreid1-docker/d-mediawiki.git
-[submodule "d-nginx-charlesreid1"]
-	path = d-nginx-charlesreid1
-	url = git@github.com:charlesreid1-docker/d-nginx-charlesreid1.git
 [submodule "mkdocs-material"]
 	path = mkdocs-material
 	url = git@github.com:charlesreid1-docker/mkdocs-material.git
-[submodule "d-gitea"]
-	path = d-gitea
-	url = git@github.com:charlesreid1-docker/d-gitea.git
