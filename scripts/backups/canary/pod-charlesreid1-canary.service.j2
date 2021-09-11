@@ -1,0 +1,13 @@
+[Unit]
+Description=Backup canary service for pod-charlesreid1
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+StandardError={{ pod_install_dir }}/.pod-charlesreid1-canary.service.error.log
+StandardOutput={{ pod_install_dir }}/.pod-charlesreid1-canary.service.output.log
+ExecStart=bash -ac './{{ pod_install_dir }}/environment; python3 {{ pod_install_dir }}/scripts/backups/canary/backups_canary.py'
+User=charles
+Group=charles
+

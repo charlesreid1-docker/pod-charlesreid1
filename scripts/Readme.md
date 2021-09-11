@@ -21,10 +21,12 @@ Cleans all rendered Jinja templates. Does not require environment variables.
 This script is destructive! Be careful!
 
 
-# Ansible Scripts
+# /www Directory Scripts
 
-These scripts are used by ansible when setting up a machine
-to run the charlesreid1 docker pod.
+These scripts set up or pull a git repo that is set up to
+have a pecular directory structure.
+
+The clone script is used by Ansible when setting up this pod.
 
 ## `git_clone_www.py`
 

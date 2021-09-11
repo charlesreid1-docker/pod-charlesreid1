@@ -26,7 +26,7 @@ help:
 	@echo "--------------------------------------------------"
 	@echo "                   Backups:"
 	@echo ""
-	@echo "make backups:        Create backups of every service (gitea, wiki database, wiki files) in ~/backups"
+	@echo "make backups:        Create backups of every service (wiki database, wiki files) in ~/backups"
 	@echo ""
 	@echo "make clean-backups:  Remove files from ~/backups directory older than 30 days"
 	@echo ""
@@ -53,7 +53,7 @@ help:
 	@echo ""
 	@echo "make install:        Install and start systemd service to run pod-charlesreid1."
 	@echo "                     Also install and start systemd service for pod-charlesreid1 backup services"
-	@echo "                     for each service (gitea/mediawiki/mysql) part of pod-charlesreid1."
+	@echo "                     for each service (mediawiki/mysql) part of pod-charlesreid1."
 	@echo ""
 	@echo "make uninstall:      Remove all systemd startup services and timers part of pod-charlesreid1"
 	@echo ""
@@ -72,7 +72,6 @@ clean-templates:
 # Backups
 
 backups: templates
-	$(POD_CHARLESREID1_DIR)/scripts/backups/gitea_dump.sh
 	$(POD_CHARLESREID1_DIR)/scripts/backups/wikidb_dump.sh
 	$(POD_CHARLESREID1_DIR)/scripts/backups/wikifiles_dump.sh
 
@@ -106,15 +105,12 @@ ifeq ($(shell which systemctl),)
 	$(error Please run this make command on a system with systemctl installed)
 endif
 	cp $(POD_CHARLESREID1_DIR)/scripts/pod-charlesreid1.service /etc/systemd/system/pod-charlesreid1.service
-	#cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-gitea.{service,timer} /etc/systemd/system/.
 	cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-wikidb.{service,timer} /etc/systemd/system/.
 	cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-wikifiles.{service,timer} /etc/systemd/system/.
 	systemctl daemon-reload
 	systemctl enable pod-charlesreid1
-	#systemctl enable pod-charlesreid1-backups-gitea.timer
 	systemctl enable pod-charlesreid1-backups-wikidb.timer
 	systemctl enable pod-charlesreid1-backups-wikifiles.timer
-	#systemctl start pod-charlesreid1-backups-gitea.timer
 	systemctl start pod-charlesreid1-backups-wikidb.timer
 	systemctl start pod-charlesreid1-backups-wikifiles.timer
 
@@ -123,15 +119,12 @@ ifeq ($(shell which systemctl),)
 	$(error Please run this make command on a system with systemctl installed)
 endif
 	systemctl disable pod-charlesreid1
-	#systemctl disable pod-charlesreid1-backups-gitea.timer
 	systemctl disable pod-charlesreid1-backups-wikidb.timer
 	systemctl disable pod-charlesreid1-backups-wikifiles.timer
 	systemctl stop pod-charlesreid1
-	#systemctl stop pod-charlesreid1-backups-gitea.timer
 	systemctl stop pod-charlesreid1-backups-wikidb.timer
 	systemctl stop pod-charlesreid1-backups-wikifiles.timer
 	rm -f /etc/systemd/system/pod-charlesreid1.service
-	#rm -f /etc/systemd/system/pod-charlesreid1-backups-gitea.{service,timer}
 	rm -f /etc/systemd/system/pod-charlesreid1-backups-wikidb.{service,timer}
 	rm -f /etc/systemd/system/pod-charlesreid1-backups-wikifiles.{service,timer}
 	systemctl daemon-reload

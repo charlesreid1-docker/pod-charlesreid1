@@ -1,0 +1,8 @@
+[Unit]
+Description=Timer to run the pod-charlesreid1 backups canary
+
+[Timer]
+OnCalendar=Sun *-*-* 0/6:03:00
+
+[Install]
+WantedBy=timers.target

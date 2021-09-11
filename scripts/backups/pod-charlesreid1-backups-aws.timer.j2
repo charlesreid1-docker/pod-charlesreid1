@@ -1,0 +1,8 @@
+[Unit]
+Description=Timer to copy the lastest pod-charlesreid1 backup to an S3 bucket
+
+[Timer]
+OnCalendar=Sun *-*-* 0/2:13:00
+
+[Install]
+WantedBy=timers.target
