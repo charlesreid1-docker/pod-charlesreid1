@@ -12,6 +12,10 @@ d-gitea/custom/queues/
 
 # mediawiki
 charlesreid1.wiki.conf
+d-mediawiki/charlesreid1-config/mediawiki/skins/Bootstrap2/Bootstrap2.php
+d-mediawiki/charlesreid1-config/mediawiki/skins/Bootstrap2/navbar.php
+d-nginx-charlesreid1/conf.d/http.DOMAIN.conf
+d-nginx-charlesreid1/conf.d/https.DOMAIN.conf
 
 # scripts dir
 scripts/git_*_www.py
