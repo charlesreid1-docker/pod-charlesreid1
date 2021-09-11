@@ -4,36 +4,38 @@ import sys
 import glob
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-"""
-Apply Default Values to all Jinja Templates
-"""
-
 
 # Should existing files be overwritten
 OVERWRITE = True 
 
+# Map of jinja variables to environment variables
+jinja_to_env = {
+    "pod_install_dir": "POD_CHARLESREID1_DIR",
+    "top_domain": "POD_CHARLESREID1_TLD",
+    "server_name_default" : "POD_CHARLESREID1_TLD",
+    "username": "POD_CHARLESREID1_USER",
+    # docker-compose:
+    "mysql_password" : "POD_CHARLESREID1_MYSQL_PASSWORD",
+    "mediawiki_secretkey" : "POD_CHARLESREID1_MW_ADMIN_EMAIL",
+    # mediawiki:
+    "admin_email": "POD_CHARLESREID1_MW_ADMIN_EMAIL",
+    # gitea:
+    "gitea_app_name": "POD_CHARLESREID1_GITEA_APP_NAME",
+    "gitea_secret_key": "POD_CHARLESREID1_GITEA_SECRET_KEY",
+    "gitea_internal_token": "POD_CHARLESREID1_GITEA_INTERNAL_TOKEN",
+    # aws:
+    "aws_backup_s3_bucket": "POD_CHARLESREID1_BACKUP_S3BUCKET",
+    "aws_access_key": "POD_CHARLESREID1_AWS_ACCESS_KEY",
+    "aws_access_secret": "POD_CHARLESREID1_AWS_ACCESS_SECRET",
+    "backup_canary_webhook_url": "POD_CHARLESREID1_CANARY_WEBHOOK",
+}
 
 scripts_dir = os.path.dirname(os.path.abspath(__file__))
 repo_root = os.path.abspath(os.path.join(scripts_dir, '..'))
 
 
 def check_env_vars():
-    env_var_list = [
-        'POD_CHARLESREID1_DIR',
-        'POD_CHARLESREID1_TLD',
-        'POD_CHARLESREID1_USER',
-        'POD_CHARLESREID1_MYSQL_PASSWORD',
-        'POD_CHARLESREID1_MW_ADMIN_EMAIL',
-        'POD_CHARLESREID1_MW_SECRET_KEY',
-        'POD_CHARLESREID1_GITEA_APP_NAME',
-        'POD_CHARLESREID1_GITEA_SECRET_KEY',
-        'POD_CHARLESREID1_GITEA_INTERNAL_TOKEN',
-        'POD_CHARLESREID1_BACKUP_DIR',
-        'POD_CHARLESREID1_BACKUP_S3BUCKET',
-        'POD_CHARLESREID1_AWS_ACCESS_KEY',
-        'POD_CHARLESREID1_AWS_ACCESS_SECRET',
-        'POD_CHARLESREID1_CANARY_WEBHOOK',
-    ]
+    env_var_list = jinja_to_env.values()
     nerrs = 0
     print("Checking environment variables")
     for env_var in env_var_list:
@@ -70,27 +72,12 @@ def main():
         print(f"Rendering template {tname}:")
         print(f"    Template path: {tpath}")
         print(f"    Output path: {rpath}")
-        #content = env.get_template(tpath).render({
-        content = env.get_template(tname).render({
-            "pod_install_dir": os.environ['POD_CHARLESREID1_DIR'],
-            "top_domain": os.environ['POD_CHARLESREID1_TLD'],
-            "server_name_default" : os.environ['POD_CHARLESREID1_TLD'],
-            "username": os.environ['POD_CHARLESREID1_USER'],
-            # docker-compose:
-            "mysql_password" : os.environ['POD_CHARLESREID1_MYSQL_PASSWORD'],
-            "mediawiki_secretkey" : os.environ['POD_CHARLESREID1_MW_ADMIN_EMAIL'],
-            # mediawiki:
-            "admin_email": os.environ['POD_CHARLESREID1_MW_ADMIN_EMAIL'],
-            # gitea:
-            "gitea_app_name": os.environ['POD_CHARLESREID1_GITEA_APP_NAME'],
-            "gitea_secret_key": os.environ['POD_CHARLESREID1_GITEA_SECRET_KEY'],
-            "gitea_internal_token": os.environ['POD_CHARLESREID1_GITEA_INTERNAL_TOKEN'],
-            # aws:
-            "aws_backup_s3_bucket": os.environ['POD_CHARLESREID1_BACKUP_S3BUCKET'],
-            "aws_access_key": os.environ['POD_CHARLESREID1_AWS_ACCESS_KEY'],
-            "aws_access_secret": os.environ['POD_CHARLESREID1_AWS_ACCESS_SECRET'],
-            "backup_canary_webhook_url": os.environ['POD_CHARLESREID1_BACKUPCANARY_WEBHOOKURL'],
-        })
+
+        jinja_vars = {}
+        for k, v in jinja_to_env:
+            jinja_vars[k] = os.environ[v]
+
+        content = env.get_template(tname).render(jinja_vars)
     
         # Write to file
         if os.path.exists(rpath) and not OVERWRITE:
