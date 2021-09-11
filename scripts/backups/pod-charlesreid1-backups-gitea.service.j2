@@ -1,0 +1,13 @@
+[Unit]
+Description=Back up pod-charlesreid1 gitea files
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+StandardError={{ pod_install_dir }}/.pod-charlesreid1-backups-gitea.service.error.log
+StandardOutput={{ pod_install_dir }}/.pod-charlesreid1-backups-gitea.service.output.log
+ExecStart={{ pod_install_dir }}/scripts/backups/gitea_backup.sh
+User=charles
+Group=charles
+
