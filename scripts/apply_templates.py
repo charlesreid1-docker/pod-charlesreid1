@@ -74,7 +74,7 @@ def main():
         print(f"    Output path: {rpath}")
 
         jinja_vars = {}
-        for k, v in jinja_to_env:
+        for k, v in jinja_to_env.items():
             jinja_vars[k] = os.environ[v]
 
         content = env.get_template(tname).render(jinja_vars)
