@@ -18,7 +18,7 @@ The data directory contains any instance-specific gitea data.
 
 The data directory is bind-mounted to `/app/gitea/data` in the container.
 
-## Repository Data
+## Repository Drive
 
 Gitea stores all of its repositories in a separate drive that is at
 `/gitea_repositories` on the host machine.
