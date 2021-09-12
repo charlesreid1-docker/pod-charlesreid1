@@ -87,10 +87,10 @@ mw-fix-extensions: mw-build-extensions
 	$(POD_CHARLESREID1_DIR)/scripts/mw/build_extensions_dir.sh
 
 mw-fix-localsettings:
-	$(POD_CHARLESEREID1_DIR)/scripts/mw/fix_LocalSettings.sh
+	$(POD_CHARLESREID1_DIR)/scripts/mw/fix_LocalSettings.sh
 
 mw-fix-skins:
-	$(POD_CHARLESEREID1_DIR)/scripts/mw/fix_skins.sh
+	$(POD_CHARLESREID1_DIR)/scripts/mw/fix_skins.sh
 
 # /www Dir
 
