@@ -18,6 +18,7 @@ d-nginx-charlesreid1/conf.d/https.DOMAIN.conf
 
 # scripts dir
 scripts/git_*_www.py
+scripts/certbot/renew_charlesreid1_certs.sh
 *.timer
 *.service
 
