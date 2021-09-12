@@ -1,5 +1,5 @@
 [Unit]
-Description=Renew certificates for pod-charelsreid1
+Description=Renew certificates for pod-charlesreid1
 Requires=docker.service
 After=docker.service
 
@@ -7,6 +7,6 @@ After=docker.service
 Type=oneshot
 StandardError={{ pod_install_dir }}/.pod-charlesreid1-certbot.service.error.log
 StandardOutput={{ pod_install_dir }}/.pod-charlesreid1-certbot.service.output.log
-ExecStart=bash -ac './{{ pod_install_dir }}/environment; {{ pod_install_dir }}/scripts/backups/renew_charlesreid1_certs.sh'
+ExecStart=bash -ac './{{ pod_install_dir }}/environment; {{ pod_install_dir }}/scripts/certbot/renew_charlesreid1_certs.sh'
 User=charles
 Group=charles
