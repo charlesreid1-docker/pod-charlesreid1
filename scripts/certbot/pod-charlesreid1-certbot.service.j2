@@ -5,8 +5,8 @@ After=docker.service
 
 [Service]
 Type=oneshot
-StandardError={{ pod_install_dir }}/.pod-charlesreid1-certbot.service.error.log
-StandardOutput={{ pod_install_dir }}/.pod-charlesreid1-certbot.service.output.log
-ExecStart=bash -ac './{{ pod_install_dir }}/environment; {{ pod_install_dir }}/scripts/certbot/renew_charlesreid1_certs.sh'
+StandardError=file:{{ pod_install_dir }}/.pod-charlesreid1-certbot.service.error.log
+StandardOutput=file:{{ pod_install_dir }}/.pod-charlesreid1-certbot.service.output.log
+ExecStart=/bin/bash -ac '. {{ pod_install_dir }}/environment; {{ pod_install_dir }}/scripts/certbot/renew_charlesreid1_certs.sh'
 User=charles
 Group=charles
