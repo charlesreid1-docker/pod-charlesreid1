@@ -1,0 +1,12 @@
+[Unit]
+Description=Copy the latest pod-charlesreid1 backup to an S3 bucket
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+StandardError={{ pod_install_dir }}/.pod-charlesreid1-certbot.service.error.log
+StandardOutput={{ pod_install_dir }}/.pod-charlesreid1-certbot.service.output.log
+ExecStart=bash -ac './{{ pod_install_dir }}/environment; {{ pod_install_dir }}/scripts/backups/renew_charlesreid1_certs.sh'
+User=charles
+Group=charles

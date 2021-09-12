@@ -1,0 +1,76 @@
+#!/bin/bash
+#
+# renew/run certbot on krash
+set -eux
+
+SERVICE="pod-charlesreid1"
+
+function usage {
+    set +x
+    echo ""
+    echo "renew_charlesreid1_certs.sh script:"
+    echo ""
+    echo "Renew all certs used in the charlesreid1.com pod"
+    echo ""
+    echo "       ./renew_charlesreid1_certs.sh"
+    echo ""
+    exit 1;
+}
+
+if [ "$(id -u)" != "0" ]; then
+    echo ""
+    echo ""
+    echo "This script should be run as root."
+    echo ""
+    echo ""
+    exit 1;
+fi
+
+if [ "$#" == "0" ]; then
+
+    # disable system service that will re-spawn docker pod
+    echo "Disable and stop system service ${SERVICE}"
+    sudo systemctl disable ${SERVICE}
+    sudo systemctl stop ${SERVICE}
+    
+    echo "Stop pod"
+    docker-compose -f {{ pod_install_dir }}/docker-compose.yml down
+    
+    echo "Run certbot renew"
+    SUBS="git www"
+    DOMS="charlesreid1.com"
+
+    # top level domains
+    for DOM in $DOMS; do
+        certbot certonly \
+            --standalone \
+            --non-interactive \
+            --agree-tos \
+            --email charles@charlesreid1.com \
+            -d ${DOM}
+    done
+
+    # subdomains
+    for SUB in $SUBS; do
+        for DOM in $DOMS; do
+            certbot certonly \
+                --standalone \
+                --non-interactive \
+                --agree-tos \
+                --email charles@charlesreid1.com \
+                -d ${SUB}.${DOM}
+        done
+    done
+    
+    echo "Start pod"
+    docker-compose -f {{ pod_install_dir }}/docker-compose.yml up -d
+    
+    echo "Enable and start system service ${SERVICE}"
+    sudo systemctl enable ${SERVICE}
+    sudo systemctl start ${SERVICE}
+
+    echo "Done"
+
+else
+    usage
+fi
