@@ -56,7 +56,7 @@ if [ "$#" == "0" ]; then
     ${DOCKERX} ${CONTAINER_NAME} /bin/tar czf /tmp/${TARGET} /var/www/html/images
 
     echo "Step 2: Copy tar.gz file out of container"
-    mkdir -p $(dirname "$1")
+    mkdir -p $(dirname "${BACKUP_TARGET}")
     ${DOCKER} cp ${CONTAINER_NAME}:/tmp/${TARGET} ${BACKUP_TARGET}
 
     echo "Step 3: Clean up tar.gz file"
