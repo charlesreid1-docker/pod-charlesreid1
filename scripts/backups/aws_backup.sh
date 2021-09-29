@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 #
 # Find the last backup created, and copy it
 # to an S3 bucket.
