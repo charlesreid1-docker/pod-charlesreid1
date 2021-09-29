@@ -108,16 +108,19 @@ endif
 	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-wikidb.{service,timer} /etc/systemd/system/.
 	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-wikifiles.{service,timer} /etc/systemd/system/.
 	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-gitea.{service,timer} /etc/systemd/system/.
+	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-aws.{service,timer} /etc/systemd/system/.
 	sudo cp $(POD_CHARLESREID1_DIR)/scripts/certbot/pod-charlesreid1-certbot.{service,timer} /etc/systemd/system/.
 	sudo systemctl daemon-reload
 	sudo systemctl enable pod-charlesreid1
 	sudo systemctl enable pod-charlesreid1-backups-wikidb.timer
 	sudo systemctl enable pod-charlesreid1-backups-wikifiles.timer
 	sudo systemctl enable pod-charlesreid1-backups-gitea.timer
+	sudo systemctl enable pod-charlesreid1-backups-aws.timer
 	sudo systemctl enable pod-charlesreid1-certbot.timer
 	sudo systemctl start pod-charlesreid1-backups-wikidb.timer
 	sudo systemctl start pod-charlesreid1-backups-wikifiles.timer
 	sudo systemctl start pod-charlesreid1-backups-gitea.timer
+	sudo systemctl start pod-charlesreid1-backups-aws.timer
 	sudo systemctl start pod-charlesreid1-certbot.timer
 
 uninstall:
@@ -128,16 +131,19 @@ endif
 	-sudo systemctl disable pod-charlesreid1-backups-wikidb.timer
 	-sudo systemctl disable pod-charlesreid1-backups-wikifiles.timer
 	-sudo systemctl disable pod-charlesreid1-backups-gitea.timer
+	-sudo systemctl disable pod-charlesreid1-backups-aws.timer
 	-sudo systemctl disable pod-charlesreid1-certbot.timer
 	-sudo systemctl stop pod-charlesreid1
 	-sudo systemctl stop pod-charlesreid1-backups-wikidb.timer
 	-sudo systemctl stop pod-charlesreid1-backups-wikifiles.timer
 	-sudo systemctl stop pod-charlesreid1-backups-gitea.timer
+	-sudo systemctl stop pod-charlesreid1-backups-aws.timer
 	-sudo systemctl stop pod-charlesreid1-certbot.timer
 	-sudo rm -f /etc/systemd/system/pod-charlesreid1.service
 	-sudo rm -f /etc/systemd/system/pod-charlesreid1-backups-wikidb.{service,timer}
 	-sudo rm -f /etc/systemd/system/pod-charlesreid1-backups-wikifiles.{service,timer}
 	-sudo rm -f /etc/systemd/system/pod-charlesreid1-backups-gitea.{service,timer}
+	-sudo rm -f /etc/systemd/system/pod-charlesreid1-backups-aws.{service,timer}
 	-sudo rm -f /etc/systemd/system/pod-charlesreid1-certbot.{service,timer}
 	sudo systemctl daemon-reload
 
