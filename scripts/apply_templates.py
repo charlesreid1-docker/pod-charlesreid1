@@ -24,9 +24,6 @@ jinja_to_env = {
     "gitea_secret_key": "POD_CHARLESREID1_GITEA_SECRET_KEY",
     "gitea_internal_token": "POD_CHARLESREID1_GITEA_INTERNAL_TOKEN",
     # aws:
-    "aws_backup_s3_bucket": "POD_CHARLESREID1_BACKUP_S3BUCKET",
-    "aws_access_key": "POD_CHARLESREID1_AWS_ACCESS_KEY",
-    "aws_access_secret": "POD_CHARLESREID1_AWS_ACCESS_SECRET",
     "backup_canary_webhook_url": "POD_CHARLESREID1_CANARY_WEBHOOK",
 }
 
