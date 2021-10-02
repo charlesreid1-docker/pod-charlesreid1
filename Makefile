@@ -61,9 +61,9 @@ help:
 # Templates
 
 templates:
+	@find * -name "*.service.j2" | xargs -I '{}' chmod 644 {}
+	@find * -name "*.timer.j2" | xargs -I '{}' chmod 644 {}
 	python3 $(POD_CHARLESREID1_DIR)/scripts/apply_templates.py
-	@find * -name "*.service" | xargs -I '{}' chmod 644 {}
-	@find * -name "*.timer" | xargs -I '{}' chmod 644 {}
 
 list-templates:
 	@find * -name "*.j2"
@@ -112,7 +112,7 @@ endif
 	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-gitea.{service,timer} /etc/systemd/system/.
 	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-aws.{service,timer} /etc/systemd/system/.
 	sudo cp $(POD_CHARLESREID1_DIR)/scripts/certbot/pod-charlesreid1-certbot.{service,timer} /etc/systemd/system/.
-	sudo chmod 755 /etc/systemd/system/pod-charlesreid1*
+	sudo chmod 664 /etc/systemd/system/pod-charlesreid1*
 	sudo systemctl daemon-reload
 	sudo systemctl enable pod-charlesreid1
 	sudo systemctl enable pod-charlesreid1-backups-wikidb.timer
