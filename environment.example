@@ -2,32 +2,33 @@
 
 # multiple templates:
 # -------------------
-POD_CHARLESREID1_DIR="/path/to/pod-charlesreid1"
-POD_CHARLESREID1_TLD="example.com"
-POD_CHARLESREID1_USER="nonrootuser"
+export POD_CHARLESREID1_DIR="/path/to/pod-charlesreid1"
+export POD_CHARLESREID1_TLD="example.com"
+export POD_CHARLESREID1_USER="nonrootuser"
 
 # mediawiki:
 # ----------
-POD_CHARLESREID1_MW_ADMIN_EMAIL="email@example.com"
-POD_CHARLESREID1_MW_SECRET_KEY="SecretKeyString"
+export POD_CHARLESREID1_MW_ADMIN_EMAIL="email@example.com"
+export POD_CHARLESREID1_MW_SECRET_KEY="SecretKeyString"
 
 # mysql:
 # ------
-POD_CHARLESREID1_MYSQL_PASSWORD="SuperSecretPassword"
+export POD_CHARLESREID1_MYSQL_PASSWORD="SuperSecretPassword"
 
 # gitea:
 # ------
-POD_CHARLESREID1_GITEA_APP_NAME=""
-POD_CHARLESREID1_GITEA_SECRET_KEY="GiteaSecretKey"
-POD_CHARLESREID1_GITEA_INTERNAL_TOKEN="GiteaInternalToken"
+export POD_CHARLESREID1_GITEA_APP_NAME=""
+export POD_CHARLESREID1_GITEA_SECRET_KEY="GiteaSecretKey"
+export POD_CHARLESREID1_GITEA_INTERNAL_TOKEN="GiteaInternalToken"
 
 # aws:
 # ----
-POD_CHARLESREID1_AWS_ACCESS_KEY="AAAAAAAAAAAAAAAAAAAA"
-POD_CHARLESREID1_AWS_ACCESS_SECRET="0000000000000000000000000000000000000000"
+export AWS_ACCESS_KEY_ID="AAAAAAA"
+export AWS_SECRET_ACCESS_KEY="BBBBBBBB"
+export AWS_DEFAULT_REGION="us-west-1"
 
 # backups and scripts:
 # --------------------
-POD_CHARLESREID1_USER="charles"
-POD_CHARLESREID1_BACKUP_S3BUCKET="name-of-backups-bucket"
-POD_CHARLESREID1_CANARY_WEBHOOK="https://hooks.slack.com/services/000000000/AAAAAAAAA/111111111111111111111111"
+export POD_CHARLESREID1_USER="charles"
+export POD_CHARLESREID1_BACKUP_S3BUCKET="name-of-backups-bucket"
+export POD_CHARLESREID1_CANARY_WEBHOOK="https://hooks.slack.com/services/000000000/AAAAAAAAA/111111111111111111111111"

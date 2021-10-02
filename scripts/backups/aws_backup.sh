@@ -39,12 +39,6 @@ if [ "$#" == "0" ]; then
     echo "Checking that directory exists"
     /usr/bin/test -d ${POD_CHARLESREID1_BACKUP_DIR}
 
-    echo "Configuring AWS CLI"
-
-    export AWS_ACCESS_KEY_ID="${POD_CHARLESREID1_AWS_ACCESS_KEY}"
-    export AWS_SECRET_ACCESS_KEY="${POD_CHARLESREID1_AWS_ACCESS_SECRET}"
-    export AWS_DEFAULT_REGION="${POD_CHARLESREID1_AWS_REGION}"
-
     echo "Checking that we can access the S3 bucket"
     aws s3 ls s3://${POD_CHARLESREID1_BACKUP_S3BUCKET} > /dev/null
     
@@ -52,6 +46,9 @@ if [ "$#" == "0" ]; then
     LAST_BACKUP=$(/bin/ls -1 -t ${POD_CHARLESREID1_BACKUP_DIR} | /usr/bin/head -n1)
     echo "Last backup found: ${LAST_BACKUP}"
     echo "Last backup directory: ${POD_CHARLESREID1_BACKUP_DIR}/${LAST_BACKUP}"
+
+    BACKUP_SIZE=$(du -hs /home/charles/backups/20211002)
+    echo "Backup directory size: ${BACKUP_SIZE}"
 
     # Copy to AWS
     echo "Backing up directory ${POD_CHARLESREID1_BACKUP_DIR}/${LAST_BACKUP}"
