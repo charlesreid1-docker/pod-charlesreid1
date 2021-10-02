@@ -62,6 +62,8 @@ help:
 
 templates:
 	python3 $(POD_CHARLESREID1_DIR)/scripts/apply_templates.py
+	@find * -name "*.service" | xargs -I '{}' chmod 644 {}
+	@find * -name "*.timer" | xargs -I '{}' chmod 644 {}
 
 list-templates:
 	@find * -name "*.j2"
