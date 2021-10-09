@@ -7,7 +7,7 @@ After=docker.service
 Type=oneshot
 StandardError=file:{{ pod_install_dir }}/.pod-charlesreid1-canary.service.error.log
 StandardOutput=file:{{ pod_install_dir }}/.pod-charlesreid1-canary.service.output.log
-ExecStart=/bin/bash -ac '. {{ pod_install_dir }}/environment; python3 {{ pod_install_dir }}/scripts/backups/canary/backups_canary.py'
+ExecStart=/bin/bash -ac '. {{ pod_install_dir }}/environment; {{ pod_install_dir }}/scripts/backups/canary/vp/bin/python3 {{ pod_install_dir }}/scripts/backups/canary/backups_canary.py'
 User=charles
 Group=charles
 
