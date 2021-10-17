@@ -52,8 +52,8 @@ def main():
     bucket_base_path = os.path.join('backups', newest_backup_name)
     for backup_file in newest_backup_files:
         backup_name = os.path.basename(backup_file)
-        bucket_backup_path = os.path.join(bucket_base_path, backup_name)
-        check_exists(bucket_name, bucket_backup_path)
+        backup_bucket_path = os.path.join(bucket_base_path, backup_name)
+        check_exists(backup_bucket, backup_bucket_path)
 
 def check_exists(bucket_name, bucket_path):
     try:
