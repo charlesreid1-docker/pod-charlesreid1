@@ -6,17 +6,17 @@ set -eux
 
 # Number of days of backups to retain.
 # Everything older than this many days will be deleted
-N="30"
+N="60"
 
 function usage {
     set +x
     echo ""
-    echo "aws_backup.sh script:"
+    echo "clean_olderthan.sh script:"
     echo ""
-    echo "Find the last backup that was created,"
-    echo "and copy it to the backups bucket."
+    echo "Clean files older than ${N} days from the"
+    echo "backups directory, ~/backups"
     echo ""
-    echo "       ./aws_backup.sh"
+    echo "       ./clean_olderthan.sh"
     echo ""
     exit 1;
 }
