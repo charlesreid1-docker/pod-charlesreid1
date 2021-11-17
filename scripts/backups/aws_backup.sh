@@ -52,7 +52,7 @@ if [ "$#" == "0" ]; then
 
     # Copy to AWS
     echo "Backing up directory ${POD_CHARLESREID1_BACKUP_DIR}/${LAST_BACKUP}"
-    aws s3 cp --recursive ${POD_CHARLESREID1_BACKUP_DIR}/${LAST_BACKUP} s3://charlesreid1-com-backups/backups/${LAST_BACKUP}
+    aws s3 cp --only-show-errors --recursive ${POD_CHARLESREID1_BACKUP_DIR}/${LAST_BACKUP} s3://charlesreid1-com-backups/backups/${LAST_BACKUP}
     echo "Done."
 
 else
