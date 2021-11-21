@@ -2,6 +2,7 @@ import os
 import re
 import sys
 import glob
+import subprocess
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 
@@ -84,6 +85,9 @@ def main():
                 f.write(content)
             print(f"    Done!")
             print("")
+
+        if rpath[-3:] == ".sh":
+            subprocess.call(['chmod', '+x', rpath])
     
 if __name__=="__main__":
     main()
