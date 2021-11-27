@@ -17,7 +17,7 @@ jinja_to_env = {
     "username": "POD_CHARLESREID1_USER",
     # docker-compose:
     "mysql_password" : "POD_CHARLESREID1_MYSQL_PASSWORD",
-    "mediawiki_secretkey" : "POD_CHARLESREID1_MW_ADMIN_EMAIL",
+    "mediawiki_secretkey" : "POD_CHARLESREID1_MW_SECRET_KEY",
     # mediawiki:
     "admin_email": "POD_CHARLESREID1_MW_ADMIN_EMAIL",
     # gitea:
