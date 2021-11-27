@@ -8,7 +8,7 @@ This directory contains several files for several services:
 
 Use `make templates` in the top level of this repo to render
 the Jinja templates using the environment variables in the
-evnrionemtn file. That fixes the locations of the scripts
+evnrionment file. That fixes the locations of the scripts
 for the systemd service.
 
 Use `make install` in the top level of this repo to install
