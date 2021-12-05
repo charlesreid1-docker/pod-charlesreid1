@@ -53,7 +53,7 @@ if [ "$#" == "0" ]; then
     DOCKERX="${DOCKER} exec -t"
 
     echo "Running mysqldump inside the mysql container"
-    ${DOCKERX} ${CONTAINER_NAME} sh -c 'exec mysqldump wikidb --databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > ${BACKUP_TARGET}
+    ${DOCKERX} ${CONTAINER_NAME} sh -c 'exec mysqldump wikidb --databases -uroot -p"$MYSQL_ROOT_PASSWORD"' 2>&1 | grep -v "Using a password" > ${BACKUP_TARGET}
 
     echo "Done."
 
