@@ -14,8 +14,7 @@ NAME="stormy_mw"
 EXTENSIONS="SyntaxHighlight_GeSHi ParserFunctions EmbedVideo Math Fail2banlog"
 
 MW_DIR="${POD_CHARLESREID1_DIR}/d-mediawiki"
-CONF_DIR="${MW_DIR}/charlesreid1-config"
-MW_CONF_DIR="${MW_CONF_DIR}/mediawiki"
+MW_CONF_DIR="${MW_DIR}/charlesreid1-config/mediawiki"
 EXT_DIR="${MW_CONF_DIR}/extensions"
 
 echo "Checking that container exists..."

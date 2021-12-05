@@ -13,8 +13,7 @@ set -eux
 NAME="stormy_mw"
 
 MW_DIR="${POD_CHARLESREID1_DIR}/d-mediawiki"
-CONF_DIR="${MW_DIR}/charlesreid1-config"
-MW_CONF_DIR="${MW_CONF_DIR}/mediawiki"
+MW_CONF_DIR="${MW_DIR}/charlesreid1-config/mediawiki"
 SKINS_DIR="${MW_CONF_DIR}/skins"
 
 echo "Checking that container exists"
