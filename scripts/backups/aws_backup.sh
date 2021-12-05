@@ -47,12 +47,12 @@ if [ "$#" == "0" ]; then
     echo "Last backup found: ${LAST_BACKUP}"
     echo "Last backup directory: ${POD_CHARLESREID1_BACKUP_DIR}/${LAST_BACKUP}"
 
-    BACKUP_SIZE=$(du -hs /home/charles/backups/20211002)
+    BACKUP_SIZE=$(du -hs ${POD_CHARLESREID1_BACKUP_DIR}/${LAST_BACKUP})
     echo "Backup directory size: ${BACKUP_SIZE}"
 
     # Copy to AWS
     echo "Backing up directory ${POD_CHARLESREID1_BACKUP_DIR}/${LAST_BACKUP}"
-    aws s3 cp --only-show-errors --recursive ${POD_CHARLESREID1_BACKUP_DIR}/${LAST_BACKUP} s3://charlesreid1-com-backups/backups/${LAST_BACKUP}
+    aws s3 cp --only-show-errors --recursive ${POD_CHARLESREID1_BACKUP_DIR}/${LAST_BACKUP} s3://${POD_CHARLESREID1_BACKUP_S3BUCKET}/backups/${LAST_BACKUP}
     echo "Done."
 
 else
