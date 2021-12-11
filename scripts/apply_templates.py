@@ -2,12 +2,13 @@ import os
 import re
 import sys
 import glob
+import time
 import subprocess
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 
 # Should existing files be overwritten
-OVERWRITE = True 
+OVERWRITE = False
 
 # Map of jinja variables to environment variables
 jinja_to_env = {
@@ -50,6 +51,8 @@ def main():
 
     check_env_vars()
 
+    ignore_list = ['environment']
+
     p = os.path.join(repo_root,'**','*.j2')
     template_files = glob.glob(p, recursive=True)
 
@@ -65,6 +68,10 @@ def main():
         rname = tname[:-3]
         rpath = os.path.join(tdir, rname)
 
+        if rname in ignore_list:
+            print(f"\nSkipping template on ignore list: {tname}\n")
+            continue
+
         env = Environment(loader=FileSystemLoader(tdir))
     
         print(f"Rendering template {tname}:")
@@ -79,7 +86,9 @@ def main():
     
         # Write to file
         if os.path.exists(rpath) and not OVERWRITE:
-            raise Exception("Error: file %s already exists!"%(rpath))
+            msg = "\n[!!!] Warning: file %s already exists! Skipping...\n"%(rpath)
+            print(msg)
+            time.sleep(1)
         else:
             with open(rpath,'w') as f:
                 f.write(content)
