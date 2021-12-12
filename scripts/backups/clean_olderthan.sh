@@ -6,7 +6,7 @@ set -eux
 
 # Number of days of backups to retain.
 # Everything older than this many days will be deleted
-N="60"
+N="45"
 
 function usage {
     set +x
