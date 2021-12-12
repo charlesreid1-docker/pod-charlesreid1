@@ -111,6 +111,7 @@ endif
 	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-wikifiles.{service,timer} /etc/systemd/system/.
 	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-gitea.{service,timer} /etc/systemd/system/.
 	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-aws.{service,timer} /etc/systemd/system/.
+	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-cleanolderthan.{service,timer} /etc/systemd/system/.
 	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/canary/pod-charlesreid1-canary.{service,timer} /etc/systemd/system/.
 	sudo cp $(POD_CHARLESREID1_DIR)/scripts/certbot/pod-charlesreid1-certbot.{service,timer} /etc/systemd/system/.
 
@@ -122,6 +123,7 @@ endif
 	sudo systemctl enable pod-charlesreid1-backups-wikifiles.timer
 	sudo systemctl enable pod-charlesreid1-backups-gitea.timer
 	sudo systemctl enable pod-charlesreid1-backups-aws.timer
+	sudo systemctl enable pod-charlesreid1-backups-cleanolderthan.timer
 	sudo systemctl enable pod-charlesreid1-canary.timer
 	sudo systemctl enable pod-charlesreid1-certbot.timer
 
@@ -129,6 +131,7 @@ endif
 	sudo systemctl start pod-charlesreid1-backups-wikifiles.timer
 	sudo systemctl start pod-charlesreid1-backups-gitea.timer
 	sudo systemctl start pod-charlesreid1-backups-aws.timer
+	sudo systemctl start pod-charlesreid1-backups-cleanolderthan.timer
 	sudo systemctl start pod-charlesreid1-canary.timer
 	sudo systemctl start pod-charlesreid1-certbot.timer
 
@@ -141,6 +144,7 @@ endif
 	-sudo systemctl disable pod-charlesreid1-backups-wikifiles.timer
 	-sudo systemctl disable pod-charlesreid1-backups-gitea.timer
 	-sudo systemctl disable pod-charlesreid1-backups-aws.timer
+	-sudo systemctl disable pod-charlesreid1-backups-cleanolderthan.timer
 	-sudo systemctl disable pod-charlesreid1-canary.timer
 	-sudo systemctl disable pod-charlesreid1-certbot.timer
 
@@ -150,6 +154,7 @@ endif
 	-sudo systemctl stop pod-charlesreid1-backups-wikifiles.timer
 	-sudo systemctl stop pod-charlesreid1-backups-gitea.timer
 	-sudo systemctl stop pod-charlesreid1-backups-aws.timer
+	-sudo systemctl stop pod-charlesreid1-backups-cleanolderthan.timer
 	-sudo systemctl stop pod-charlesreid1-canary.timer
 	-sudo systemctl stop pod-charlesreid1-certbot.timer
 
@@ -158,6 +163,7 @@ endif
 	-sudo rm -f /etc/systemd/system/pod-charlesreid1-backups-wikifiles.{service,timer}
 	-sudo rm -f /etc/systemd/system/pod-charlesreid1-backups-gitea.{service,timer}
 	-sudo rm -f /etc/systemd/system/pod-charlesreid1-backups-aws.{service,timer}
+	-sudo rm -f /etc/systemd/system/pod-charlesreid1-backups-cleanolderthan.{service,timer}
 	-sudo rm -f /etc/systemd/system/pod-charlesreid1-canary.{service,timer}
 	-sudo rm -f /etc/systemd/system/pod-charlesreid1-certbot.{service,timer}
 	sudo systemctl daemon-reload
