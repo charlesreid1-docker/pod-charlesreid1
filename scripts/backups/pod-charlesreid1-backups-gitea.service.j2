@@ -5,8 +5,8 @@ After=docker.service
 
 [Service]
 Type=oneshot
-StandardError=file:{{ pod_install_dir }}/.pod-charlesreid1-backups-gitea.service.error.log
-StandardOutput=file:{{ pod_install_dir }}/.pod-charlesreid1-backups-gitea.service.output.log
+StandardError=file:/var/log/pod-charlesreid1-backups-gitea.service.error.log
+StandardOutput=file:/var/log/pod-charlesreid1-backups-gitea.service.output.log
 ExecStartPre=/usr/bin/test -f {{ pod_install_dir }}/environment
 ExecStart=/bin/bash -ac '. {{ pod_install_dir }}/environment; {{ pod_install_dir }}/scripts/backups/gitea_backup.sh'
 User=charles
