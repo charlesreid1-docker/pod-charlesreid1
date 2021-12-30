@@ -12,21 +12,22 @@ OVERWRITE = False
 
 # Map of jinja variables to environment variables
 jinja_to_env = {
-    "pod_install_dir": "POD_CHARLESREID1_DIR",
-    "top_domain": "POD_CHARLESREID1_TLD",
-    "server_name_default" : "POD_CHARLESREID1_TLD",
-    "username": "POD_CHARLESREID1_USER",
-    # docker-compose:
-    "mysql_password" : "POD_CHARLESREID1_MYSQL_PASSWORD",
-    "mediawiki_secretkey" : "POD_CHARLESREID1_MW_SECRET_KEY",
-    # mediawiki:
-    "admin_email": "POD_CHARLESREID1_MW_ADMIN_EMAIL",
-    # gitea:
-    "gitea_app_name": "POD_CHARLESREID1_GITEA_APP_NAME",
-    "gitea_secret_key": "POD_CHARLESREID1_GITEA_SECRET_KEY",
-    "gitea_internal_token": "POD_CHARLESREID1_GITEA_INTERNAL_TOKEN",
-    # aws:
-    "backup_canary_webhook_url": "POD_CHARLESREID1_CANARY_WEBHOOK",
+    "pod_charlesreid1_pod_install_dir": "POD_CHARLESREID1_DIR",
+    "pod_charlesreid1_server_name": "POD_CHARLESREID1_TLD",
+    "pod_charlesreid1_username": "POD_CHARLESREID1_USER",
+    "pod_charlesreid1_vpn_ip_addr": "POD_CHARLESREID1_VPN_IP_ADDR",
+    "pod_charlesreid1_mediawiki_admin_email": "POD_CHARLESREID1_MW_ADMIN_EMAIL",
+    "pod_charlesreid1_mediawiki_secretkey": "POD_CHARLESREID1_MW_SECRET_KEY",
+    "pod_charlesreid1_mysql_password": "POD_CHARLESREID1_MYSQL_PASSWORD",
+    "pod_charlesreid1_gitea_app_name": "POD_CHARLESREID1_GITEA_APP_NAME",
+    "pod_charlesreid1_gitea_secretkey": "POD_CHARLESREID1_GITEA_SECRET_KEY",
+    "pod_charlesreid1_gitea_internaltoken": "POD_CHARLESREID1_GITEA_INTERNAL_TOKEN",
+    "pod_charlesreid1_backups_aws_access_key": AWS_ACCESS_KEY_ID",
+    "pod_charlesreid1_backups_aws_secret_access_key": AWS_SECRET_ACCESS_KEY",
+    "pod_charlesreid1_backups_aws_region": AWS_DEFAULT_REGION",
+    "pod_charlesreid1_backups_dir": "POD_CHARLESREID1_BACKUP_DIR",
+    "pod_charlesreid1_backups_bucket": "POD_CHARLESREID1_BACKUP_S3BUCKET",
+    "pod_charlesreid1_backups_canary_slack_url": "POD_CHARLESREID1_CANARY_WEBHOOK",
 }
 
 scripts_dir = os.path.dirname(os.path.abspath(__file__))
