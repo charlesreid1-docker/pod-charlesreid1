@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# multiple templates:
+# -------------------
+export POD_CHARLESREID1_DIR="{{ pod_charlesreid1_pod_install_dir }}"
+export POD_CHARLESREID1_TLD="{{ pod_charlesreid1_server_name }}"
+export POD_CHARLESREID1_USER="{{ pod_charlesreid1_username }}"
+export POD_CHARLESREID1_VPN_IP_ADDR="{{ pod_charlesreid1_vpn_ip_addr }}"
+
+# mediawiki:
+# ----------
+export POD_CHARLESREID1_MW_ADMIN_EMAIL="{{ pod_charlesreid1_mediawiki_admin_email }}"
+export POD_CHARLESREID1_MW_SECRET_KEY="{{ pod_charlesreid1_mediawiki_secretkey }}"
+
+# mysql:
+# ------
+export POD_CHARLESREID1_MYSQL_PASSWORD="{{ pod_charlesreid1_mysql_password }}"
+
+# gitea:
+# ------
+export POD_CHARLESREID1_GITEA_APP_NAME=""
+export POD_CHARLESREID1_GITEA_SECRET_KEY="{{ pod_charlesreid1_gitea_secretkey }}"
+export POD_CHARLESREID1_GITEA_INTERNAL_TOKEN="{{ pod_charlesreid1_gitea_internaltoken }}"
+
+# aws:
+# ----
+export AWS_ACCESS_KEY_ID="{{ pod_charlesreid1_backups_aws_access_key }}"
+export AWS_SECRET_ACCESS_KEY="{{ pod_charlesreid1_backups_aws_secret_access_key }}"
+export AWS_DEFAULT_REGION="{{ pod_charlesreid1_backups_aws_region }}"
+
+# backups and scripts:
+# --------------------
+export POD_CHARLESREID1_BACKUP_DIR="{{ pod_charlesreid1_backups_dir }}"
+export POD_CHARLESREID1_BACKUP_S3BUCKET="{{ pod_charlesreid1_backups_bucket }}"
+export POD_CHARLESREID1_CANARY_WEBHOOK="{{ pod_charlesreid1_backups_canary_slack_url }}"
