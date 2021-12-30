@@ -7,9 +7,9 @@ After=docker.service
 Restart=always
 StandardError=null
 StandardOutput=null
-ExecStartPre=/usr/bin/test -f {{ pod_charlesreid1_install_dir }}/docker-compose.yml
-ExecStart=/usr/local/bin/docker-compose -f {{ pod_charlesreid1_install_dir }}/docker-compose.yml up
-ExecStop=/usr/local/bin/docker-compose  -f {{ pod_charlesreid1_install_dir }}/docker-compose.yml stop
+ExecStartPre=/usr/bin/test -f {{ pod_charlesreid1_pod_install_dir }}/docker-compose.yml
+ExecStart=/usr/local/bin/docker-compose -f {{ pod_charlesreid1_pod_install_dir }}/docker-compose.yml up
+ExecStop=/usr/local/bin/docker-compose  -f {{ pod_charlesreid1_pod_install_dir }}/docker-compose.yml stop
 
 [Install]
 WantedBy=default.target
