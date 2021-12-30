@@ -35,7 +35,7 @@ services:
         max-size: 1m
         max-file: "10"
     environment:
-      - MYSQL_ROOT_PASSWORD={{ mysql_password }}
+      - MYSQL_ROOT_PASSWORD={{ pod_charlesreid1_mysql_password }}
 
   stormy_mw:
     build: d-mediawiki
@@ -49,12 +49,12 @@ services:
         max-size: 1m
         max-file: "10"
     environment:
-      - MEDIAWIKI_SITE_SERVER=https://{{ server_name_default }}
-      - MEDIAWIKI_SECRETKEY={{ mediawiki_secretkey }}
+      - MEDIAWIKI_SITE_SERVER=https://{{ pod_charlesreid1_server_name }}
+      - MEDIAWIKI_SECRETKEY={{ pod_charlesreid1_mediawiki_secretkey }}
       - MYSQL_HOST=stormy_mysql
       - MYSQL_DATABASE=wikidb
       - MYSQL_USER=root
-      - MYSQL_PASSWORD={{ mysql_password }}
+      - MYSQL_PASSWORD={{ pod_charlesreid1_mysql_password }}
     depends_on:
       - stormy_mysql
 
@@ -62,14 +62,14 @@ services:
     restart: always
     image: nginx
     container_name: stormy_nginx
-    hostname: {{ server_name_default }}
+    hostname: {{ pod_charlesreid1_server_name }}
     hostname: charlesreid1.com
     command: /bin/bash -c "nginx -g 'daemon off;'"
     volumes:
       - "./d-nginx-charlesreid1/conf.d:/etc/nginx/conf.d:ro"
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/letsencrypt:/etc/letsencrypt"
-      - "/www/{{ server_name_default }}/htdocs:/www/{{ server_name_default }}/htdocs:ro"
+      - "/www/{{ pod_charlesreid1_server_name }}/htdocs:/www/{{ pod_charlesreid1_server_name }}/htdocs:ro"
     logging:
       driver: "json-file"
       options:

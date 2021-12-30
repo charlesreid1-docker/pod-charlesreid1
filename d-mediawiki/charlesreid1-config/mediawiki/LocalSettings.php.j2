@@ -13,8 +13,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 ## The protocol and server name to use in fully-qualified URLs
-$wgServer = 'https://{{ server_name_default }}';
-$wgCanonicalServer = 'https://{{ server_name_default }}';
+$wgServer = 'https://{{ pod_charlesreid1_server_name }}';
+$wgCanonicalServer = 'https://{{ pod_charlesreid1_server_name }}';
 
 ## The URL path to static resources (images, scripts, etc.)
 $wgStylePath = "$wgScriptPath/skins";
@@ -224,7 +224,7 @@ session_save_path("/tmp");
 ##############################################
 # Secure login
 
-$wgServer = "https://{{ server_name_default }}";
+$wgServer = "https://{{ pod_charlesreid1_server_name }}";
 $wgSecureLogin = true;
 
 ###################################

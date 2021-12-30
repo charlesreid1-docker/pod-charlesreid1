@@ -1,4 +1,4 @@
-ServerName {{ server_name_default }}
+ServerName {{ pod_charlesreid1_server_name }}
 
 Listen 8989
 
@@ -7,10 +7,10 @@ Listen 8989
     # talks to apache via 127.0.0.1
     # on port 8989
 
-    ServerAlias www.{{ server_name_default }}
+    ServerAlias www.{{ pod_charlesreid1_server_name }}
 
     LogLevel warn
-    ServerAdmin {{ admin_email }}
+    ServerAdmin {{ pod_charlesreid1_mediawiki_admin_email }}
     DirectoryIndex index.html index.cgi index.php
 
 

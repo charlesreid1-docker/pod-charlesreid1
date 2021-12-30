@@ -1,9 +1,9 @@
 ####################
 #
-# {{ server_name_default }}
+# {{ pod_charlesreid1_server_name }}
 # https/443
 # 
-# {{ server_name_default }} and www.{{ server_name_default }}
+# {{ pod_charlesreid1_server_name }} and www.{{ pod_charlesreid1_server_name }}
 # should handle the following cases:
 # - w/ and wiki/ should reverse proxy story_mw
 # - gitea subdomain should reverse proxy stormy_gitea
@@ -15,17 +15,17 @@
 server {
     listen 443 ssl;
     listen [::]:443 ssl;
-    server_name {{ server_name_default }} default_server;
+    server_name {{ pod_charlesreid1_server_name }} default_server;
 
-    ssl_certificate /etc/letsencrypt/live/{{ server_name_default }}/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/{{ server_name_default }}/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/{{ pod_charlesreid1_server_name }}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/{{ pod_charlesreid1_server_name }}/privkey.pem;
     include /etc/letsencrypt/options-ssl-nginx.conf;
     include /etc/nginx/conf.d/secheaders.conf;
     include /etc/nginx/conf.d/csp.conf;
 
     location / {
         try_files $uri $uri/ =404;
-        root /www/{{ server_name_default }}/htdocs;
+        root /www/{{ pod_charlesreid1_server_name }}/htdocs;
         index index.html;
     }
 
@@ -55,15 +55,15 @@ server {
 server {
     listen 443 ssl;
     listen [::]:443 ssl;
-    server_name www.{{ server_name_default }};
+    server_name www.{{ pod_charlesreid1_server_name }};
 
-    ssl_certificate /etc/letsencrypt/live/www.{{ server_name_default }}/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/www.{{ server_name_default }}/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/www.{{ pod_charlesreid1_server_name }}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/www.{{ pod_charlesreid1_server_name }}/privkey.pem;
     include /etc/letsencrypt/options-ssl-nginx.conf;
     include /etc/nginx/conf.d/secheaders.conf;
     include /etc/nginx/conf.d/csp.conf;
 
-    root /www/{{ server_name_default }}/htdocs;
+    root /www/{{ pod_charlesreid1_server_name }}/htdocs;
 
     location / {
         try_files $uri $uri/ =404;
@@ -94,10 +94,10 @@ server {
 server {
     listen 443 ssl;
     listen [::]:443 ssl;
-    server_name git.{{ server_name_default }};
+    server_name git.{{ pod_charlesreid1_server_name }};
 
-    ssl_certificate /etc/letsencrypt/live/git.{{ server_name_default }}/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/git.{{ server_name_default }}/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/git.{{ pod_charlesreid1_server_name }}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/git.{{ pod_charlesreid1_server_name }}/privkey.pem;
     include /etc/letsencrypt/options-ssl-nginx.conf;
     include /etc/nginx/conf.d/secheaders.conf;
     include /etc/nginx/conf.d/giteacsp.conf;

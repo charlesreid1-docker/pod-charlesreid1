@@ -6,7 +6,7 @@
 ;; https://github.com/go-gitea/gitea/blob/master/conf/app.ini
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-APP_NAME = {{ gitea_app_name }}
+APP_NAME = {{ pod_charlesreid1_gitea_app_name }}
 RUN_USER = git
 RUN_MODE = prod
 
@@ -31,13 +31,13 @@ DISABLE_HTTP_GIT = false
 
 [server]
 PROTOCOL     = http
-DOMAIN       = git.{{ server_name_default }}
+DOMAIN       = git.{{ pod_charlesreid1_server_name }}
 #CERT_FILE    = /www/gitea/certs/cert.pem
 #KEY_FILE     = /www/gitea/certs/key.pem
-SSH_DOMAIN   = git.{{ server_name_default }}
+SSH_DOMAIN   = git.{{ pod_charlesreid1_server_name }}
 HTTP_PORT    = 3000
 HTTP_ADDR    = 0.0.0.0
-ROOT_URL     = https://git.{{ server_name_default }}
+ROOT_URL     = https://git.{{ pod_charlesreid1_server_name }}
 ;ROOT_URL     = %(PROTOCOL)s://%(DOMAIN)s:%(HTTP_PORT)s/
 DISABLE_SSH  = false
 ; port to display in clone url:
@@ -92,9 +92,9 @@ ENABLED      = false
 
 [security]
 INSTALL_LOCK        = true
-SECRET_KEY          = {{ gitea_secret_key }}
+SECRET_KEY          = {{ pod_charlesreid1_gitea_secretkey }}
 MIN_PASSWORD_LENGTH = 6
-INTERNAL_TOKEN      = {{ gitea_internal_token }}
+INTERNAL_TOKEN      = {{ pod_charlesreid1_gitea_internaltoken }}
 
 [other]
 SHOW_FOOTER_BRANDING           = false
