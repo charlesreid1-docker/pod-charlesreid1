@@ -13,7 +13,9 @@ def clean():
         rname = tname[:-3]
         rpath = os.path.join(tdir, rname)
 
-        if os.path.exists(rpath):
+        ignore_list = ['environment']
+
+        if os.path.exists(rpath) and rname not in ignore_list:
             print(f"Removing file {rpath}")
             os.remove(rpath)
         else:
