@@ -69,7 +69,8 @@ list-templates:
 	@find * -name "*.j2"
 
 clean-templates:
-	python3 $(POD_CHARLESREID1_DIR)/scripts/clean_templates.py
+	# sudo is required because bind-mounted gitea files end up owned by root. stupid docker.
+	sudo -E python3 $(POD_CHARLESREID1_DIR)/scripts/clean_templates.py
 
 # Backups
 
