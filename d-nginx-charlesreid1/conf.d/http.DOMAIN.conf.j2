@@ -1,6 +1,6 @@
 ####################
 # 
-# {{ server_name_default }}
+# {{ pod_charlesreid1_server_name }}
 # http/{{ port_default }}
 # 
 # basically, just redirects to https
@@ -10,20 +10,20 @@
 server {
     listen 80;
     listen [::]:80;
-    server_name {{ server_name_default }};
-    return 301 https://{{ server_name_default }}$request_uri;
+    server_name {{ pod_charlesreid1_server_name }};
+    return 301 https://{{ pod_charlesreid1_server_name }}$request_uri;
 }
 
 server {
     listen 80;
     listen [::]:80;
-    server_name www.{{ server_name_default }};
-    return 301 https://www.{{ server_name_default }}$request_uri;
+    server_name www.{{ pod_charlesreid1_server_name }};
+    return 301 https://www.{{ pod_charlesreid1_server_name }}$request_uri;
 }
 
 server {
     listen 80;
     listen [::]:80;
-    server_name git.{{ server_name_default }};
-    return 301 https://git.{{ server_name_default }}$request_uri;
+    server_name git.{{ pod_charlesreid1_server_name }};
+    return 301 https://git.{{ pod_charlesreid1_server_name }}$request_uri;
 }

@@ -7,4 +7,4 @@ After=docker.service
 Type=oneshot
 StandardError=file:/var/log/pod-charlesreid1-certbot.service.error.log
 StandardOutput=file:/var/log/pod-charlesreid1-certbot.service.output.log
-ExecStart=/bin/bash -ac '. {{ pod_install_dir }}/environment; {{ pod_install_dir }}/scripts/certbot/renew_charlesreid1_certs.sh'
+ExecStart=/bin/bash -ac '. {{ pod_charlesreid1_install_dir }}/environment; {{ pod_charlesreid1_install_dir }}/scripts/certbot/renew_charlesreid1_certs.sh'

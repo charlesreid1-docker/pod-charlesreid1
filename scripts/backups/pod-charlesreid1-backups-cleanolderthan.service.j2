@@ -7,6 +7,6 @@ After=docker.service
 Type=oneshot
 StandardError=file:/var/log/pod-charlesreid1-backups-cleanolderthan.service.error.log
 StandardOutput=file:/var/log/pod-charlesreid1-backups-cleanolderthan.service.output.log
-ExecStart=/bin/bash -ac '. {{ pod_install_dir }}/environment; {{ pod_install_dir }}/scripts/backups/clean_olderthan.sh'
+ExecStart=/bin/bash -ac '. {{ pod_charlesreid1_install_dir }}/environment; {{ pod_charlesreid1_install_dir }}/scripts/backups/clean_olderthan.sh'
 User=charles
 Group=charles

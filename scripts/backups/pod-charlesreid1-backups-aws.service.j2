@@ -7,8 +7,8 @@ After=docker.service
 Type=oneshot
 StandardError=file:/var/log/pod-charlesreid1-backups-aws.service.error.log
 StandardOutput=file:/var/log/pod-charlesreid1-backups-aws.service.output.log
-ExecStartPre=/usr/bin/test -f {{ pod_install_dir }}/environment
-ExecStart=/bin/bash -ac '. {{ pod_install_dir }}/environment; {{ pod_install_dir }}/scripts/backups/aws_backup.sh'
+ExecStartPre=/usr/bin/test -f {{ pod_charlesreid1_install_dir }}/environment
+ExecStart=/bin/bash -ac '. {{ pod_charlesreid1_install_dir }}/environment; {{ pod_charlesreid1_install_dir }}/scripts/backups/aws_backup.sh'
 User=charles
 Group=charles
 
