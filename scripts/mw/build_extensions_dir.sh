@@ -80,19 +80,5 @@ fi
 
 ##############################
 
-Extension="Fail2banlog"
-if [ ! -d ${Extension} ]
-then
-    git clone https://github.com/charlesreid1-docker/mw-fail2ban.git ${Extension}
-    (
-    cd ${Extension}
-    git checkout master
-    )
-else
-    echo "Skipping ${Extension}"
-fi
-
-##############################
-
 # fin
 )

@@ -210,13 +210,6 @@ wfLoadExtension( 'EmbedVideo' );
 require_once "$IP/extensions/Math/Math.php";
 
 #############################################
-# Fail2banlog extension
-# https://www.mediawiki.org/wiki/Extension:Fail2banlog
-
-require_once "$IP/extensions/Fail2banlog/Fail2banlog.php";
-$wgFail2banlogfile = "/var/log/apache2/mwf2b.log";
-
-#############################################
 # Fix cookies crap
 
 session_save_path("/tmp");
