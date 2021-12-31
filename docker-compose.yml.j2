@@ -42,7 +42,6 @@ services:
     container_name: stormy_mw
     volumes:
       - "stormy_mw_data:/var/www/html"
-      - "./mwf2b:/var/log/mwf2b"
     logging:
       driver: "json-file"
       options:

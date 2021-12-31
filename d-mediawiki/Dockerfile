@@ -47,11 +47,6 @@ COPY charlesreid1-config/mediawiki/LocalSettings.php /var/www/html/LocalSettings
 RUN chown -R www-data:www-data /var/www/html/LocalSettings*
 RUN chmod 600 /var/www/html/LocalSettings.php
 
-# MediaWiki Fail2ban log directory
-RUN mkdir -p /var/log/mwf2b
-RUN chown -R www-data:www-data /var/log/mwf2b
-RUN chmod 700 /var/log/mwf2b
-
 # Apache conf file
 COPY charlesreid1-config/apache/*.conf /etc/apache2/sites-enabled/
 RUN a2enmod rewrite
