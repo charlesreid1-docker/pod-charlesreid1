@@ -1,4 +1,4 @@
-FROM mediawiki
+FROM mediawiki:1.34
 
 EXPOSE 8989
 
@@ -54,4 +54,10 @@ RUN service apache2 restart
 
 ## make texvc
 #CMD cd /var/www/html/extensions/Math && make && apache2-foreground
+
+# PHP conf file
+# https://hub.docker.com/_/php/
+COPY php/php.ini /usr/local/etc/php/
+
+# Start
 CMD apache2-foreground
