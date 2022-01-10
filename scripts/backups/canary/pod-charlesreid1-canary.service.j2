@@ -6,7 +6,7 @@ After=docker.service
 [Service]
 Type=oneshot
 StandardError=append:/var/log/pod-charlesreid1-canary.service.log
-StandardOutput=append:/var/log/pod-charlesreid1-canary.service.log
+#StandardOutput=append:/var/log/pod-charlesreid1-canary.service.log
 ExecStart=/bin/bash -ac '. {{ pod_charlesreid1_pod_install_dir }}/environment; {{ pod_charlesreid1_pod_install_dir }}/scripts/backups/canary/vp/bin/python3 {{ pod_charlesreid1_pod_install_dir }}/scripts/backups/canary/backups_canary.py'
 User=charles
 Group=charles

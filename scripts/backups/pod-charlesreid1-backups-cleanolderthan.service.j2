@@ -6,7 +6,7 @@ After=docker.service
 [Service]
 Type=oneshot
 StandardError=append:/var/log/pod-charlesreid1-backups-cleanolderthan.service.log
-StandardOutput=append:/var/log/pod-charlesreid1-backups-cleanolderthan.service.log
+#StandardOutput=append:/var/log/pod-charlesreid1-backups-cleanolderthan.service.log
 ExecStart=/bin/bash -ac '. {{ pod_charlesreid1_pod_install_dir }}/environment; {{ pod_charlesreid1_pod_install_dir }}/scripts/backups/clean_olderthan.sh'
 User=charles
 Group=charles
