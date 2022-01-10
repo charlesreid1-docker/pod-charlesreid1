@@ -5,8 +5,8 @@ After=docker.service
 
 [Service]
 Type=oneshot
-StandardError=file:/var/log/pod-charlesreid1-backups-wikidb.service.error.log
-StandardOutput=file:/var/log/pod-charlesreid1-backups-wikidb.service.output.log
+StandardError=append:/var/log/pod-charlesreid1-backups-wikidb.service.log
+StandardOutput=append:/var/log/pod-charlesreid1-backups-wikidb.service.log
 ExecStartPre=/usr/bin/test -f {{ pod_charlesreid1_pod_install_dir }}/environment
 ExecStart=/bin/bash -ac '. {{ pod_charlesreid1_pod_install_dir }}/environment; {{ pod_charlesreid1_pod_install_dir }}/scripts/backups/wikidb_dump.sh'
 User=charles

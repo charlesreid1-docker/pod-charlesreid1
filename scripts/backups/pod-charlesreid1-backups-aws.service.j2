@@ -5,8 +5,8 @@ After=docker.service
 
 [Service]
 Type=oneshot
-StandardError=file:/var/log/pod-charlesreid1-backups-aws.service.error.log
-StandardOutput=file:/var/log/pod-charlesreid1-backups-aws.service.output.log
+StandardError=append:/var/log/pod-charlesreid1-backups-aws.service.log
+StandardOutput=append:/var/log/pod-charlesreid1-backups-aws.service.log
 ExecStartPre=/usr/bin/test -f {{ pod_charlesreid1_pod_install_dir }}/environment
 ExecStart=/bin/bash -ac '. {{ pod_charlesreid1_pod_install_dir }}/environment; {{ pod_charlesreid1_pod_install_dir }}/scripts/backups/aws_backup.sh'
 User=charles
