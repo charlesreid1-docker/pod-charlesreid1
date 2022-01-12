@@ -116,6 +116,8 @@ endif
 	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/canary/pod-charlesreid1-canary.{service,timer} /etc/systemd/system/.
 	sudo cp $(POD_CHARLESREID1_DIR)/scripts/certbot/pod-charlesreid1-certbot.{service,timer} /etc/systemd/system/.
 
+	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/10-pod-charlesreid1-rsyslog.conf /etc/rsyslog.d/.
+
 	sudo chmod 664 /etc/systemd/system/pod-charlesreid1*
 	sudo systemctl daemon-reload
 
@@ -168,5 +170,8 @@ endif
 	-sudo rm -f /etc/systemd/system/pod-charlesreid1-canary.{service,timer}
 	-sudo rm -f /etc/systemd/system/pod-charlesreid1-certbot.{service,timer}
 	sudo systemctl daemon-reload
+
+	-sudo rm -f /etc/rsyslog.d/10-pod-charlesreid1-rsyslog.conf
+
 
 .PHONY: help

@@ -26,22 +26,25 @@ First, install the services.
 
 Then, install the following rsyslog config file:
 
-`/etc/rsyslog.d/11-pod-charlesreid1.conf`:
+`/etc/rsyslog.d/10-pod-charlesreid1-rsyslog.conf`:
 
 ```
-if $programname == 'pod-charlesreid1-backups-aws' then /var/log/pod-charlesreid1-backups-aws.log
+if $programname == 'pod-charlesreid1-canary' then /var/log/pod-charlesreid1-canary.service.log
+if $programname == 'pod-charlesreid1-canary' then stop
+
+if $programname == 'pod-charlesreid1-backups-aws' then /var/log/pod-charlesreid1-backups-aws.service.log
 if $programname == 'pod-charlesreid1-backups-aws' then stop
 
-if $programname == 'pod-charlesreid1-backups-cleanolderthan' then /var/log/pod-charlesreid1-backups-cleanolderthan.log
+if $programname == 'pod-charlesreid1-backups-cleanolderthan' then /var/log/pod-charlesreid1-backups-cleanolderthan.service.log
 if $programname == 'pod-charlesreid1-backups-cleanolderthan' then stop
 
-if $programname == 'pod-charlesreid1-backups-gitea' then /var/log/pod-charlesreid1-backups-gitea.log
+if $programname == 'pod-charlesreid1-backups-gitea' then /var/log/pod-charlesreid1-backups-gitea.service.log
 if $programname == 'pod-charlesreid1-backups-gitea' then stop
 
-if $programname == 'pod-charlesreid1-backups-wikidb' then /var/log/pod-charlesreid1-backups-wikidb.log
+if $programname == 'pod-charlesreid1-backups-wikidb' then /var/log/pod-charlesreid1-backups-wikidb.service.log
 if $programname == 'pod-charlesreid1-backups-wikidb' then stop
 
-if $programname == 'pod-charlesreid1-backups-wikifiles' then /var/log/pod-charlesreid1-backups-wikifiles.log
+if $programname == 'pod-charlesreid1-backups-wikifiles' then /var/log/pod-charlesreid1-backups-wikifiles.service.log
 if $programname == 'pod-charlesreid1-backups-wikifiles' then stop
 ```
 
