@@ -107,6 +107,9 @@ install:
 ifeq ($(shell which systemctl),)
 	$(error Please run this make command on a system with systemctl installed)
 endif
+	-python3 -c 'import botocore' || (echo "Please install the botocore library using python3 or pip3 binary"; exit 1)
+	-python3 -c 'import boto3' || (echo "Please install the boto3 library using python3 or pip3 binary"; exit 1)
+
 	sudo cp $(POD_CHARLESREID1_DIR)/scripts/pod-charlesreid1.service /etc/systemd/system/pod-charlesreid1.service
 	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-wikidb.{service,timer} /etc/systemd/system/.
 	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-wikifiles.{service,timer} /etc/systemd/system/.
