@@ -13,6 +13,7 @@ services:
     restart: always
     volumes:
       - "stormy_gitea_data:/data"
+      - "./d-nginx/robots:/var/www/robots:ro"
       - "./d-gitea/custom:/data/gitea"
       - "./d-gitea/data:/app/gitea/data"
       - "/gitea_repositories:/data/git/repositories"
@@ -66,6 +67,7 @@ services:
     command: /bin/bash -c "nginx -g 'daemon off;'"
     volumes:
       - "./d-nginx-charlesreid1/conf.d:/etc/nginx/conf.d:ro"
+      - "./d-nginx/robots:/var/www/robots:ro"
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/letsencrypt:/etc/letsencrypt"
       - "/www/{{ pod_charlesreid1_server_name }}/htdocs:/www/{{ pod_charlesreid1_server_name }}/htdocs:ro"
