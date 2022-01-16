@@ -13,3 +13,4 @@ Disallow: *?tab=activity
 Disallow: *?tab=stars
 Disallow: *?tab=following
 Disallow: *?tab=followers
+Disallow: *?lang=*
