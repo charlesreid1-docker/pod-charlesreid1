@@ -1,0 +1,15 @@
+User-agent: *
+Disallow: */commit/*
+Disallow: */src/*
+Disallow: */tree/*
+Disallow: */activity/*
+Disallow: */wiki/*
+Disallow: */releases/*
+Disallow: */pulls/*
+Disallow: */stars
+Disallow: */watchers
+Disallow: */forks
+Disallow: *?tab=activity
+Disallow: *?tab=stars
+Disallow: *?tab=following
+Disallow: *?tab=followers
