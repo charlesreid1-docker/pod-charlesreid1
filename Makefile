@@ -126,6 +126,8 @@ endif
 	sudo chmod 664 /etc/systemd/system/pod-charlesreid1*
 	sudo systemctl daemon-reload
 
+	sudo systemctl restart rsyslog
+
 	sudo systemctl enable pod-charlesreid1
 	sudo systemctl enable pod-charlesreid1-backups-wikidb.timer
 	sudo systemctl enable pod-charlesreid1-backups-wikifiles.timer
@@ -180,5 +182,6 @@ endif
 	sudo systemctl daemon-reload
 
 	-sudo rm -f /etc/rsyslog.d/10-pod-charlesreid1-rsyslog.conf
+	-sudo systemctl restart rsyslog
 
 .PHONY: help
