@@ -47,7 +47,7 @@ if [ "$#" == "0" ]; then
     echo "Last backup found: ${LAST_BACKUP}"
     echo "Last backup directory: ${POD_CHARLESREID1_BACKUP_DIR}/${LAST_BACKUP}"
 
-    BACKUP_SIZE=$(du -hs ${POD_CHARLESREID1_BACKUP_DIR}/${LAST_BACKUP})
+    BACKUP_SIZE=$(du -hs ${POD_CHARLESREID1_BACKUP_DIR}/${LAST_BACKUP} | cut -f 1 -d " ")
     echo "Backup directory size: ${BACKUP_SIZE}"
 
     # Copy to AWS
