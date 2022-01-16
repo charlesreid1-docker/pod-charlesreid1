@@ -107,15 +107,17 @@ install:
 ifeq ($(shell which systemctl),)
 	$(error Please run this make command on a system with systemctl installed)
 endif
-	-python3 -c 'import botocore' || (echo "Please install the botocore library using python3 or pip3 binary"; exit 1)
-	-python3 -c 'import boto3' || (echo "Please install the boto3 library using python3 or pip3 binary"; exit 1)
+	python3 -c 'import botocore' || (echo "Please install the botocore library using python3 or pip3 binary"; exit 1)
+	python3 -c 'import boto3' || (echo "Please install the boto3 library using python3 or pip3 binary"; exit 1)
 
 	sudo cp $(POD_CHARLESREID1_DIR)/scripts/pod-charlesreid1.service /etc/systemd/system/pod-charlesreid1.service
-	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-wikidb.{service,timer} /etc/systemd/system/.
-	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-wikifiles.{service,timer} /etc/systemd/system/.
-	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-gitea.{service,timer} /etc/systemd/system/.
+
 	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-aws.{service,timer} /etc/systemd/system/.
 	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-cleanolderthan.{service,timer} /etc/systemd/system/.
+	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-gitea.{service,timer} /etc/systemd/system/.
+	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-wikidb.{service,timer} /etc/systemd/system/.
+	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/pod-charlesreid1-backups-wikifiles.{service,timer} /etc/systemd/system/.
+
 	sudo cp $(POD_CHARLESREID1_DIR)/scripts/backups/canary/pod-charlesreid1-canary.{service,timer} /etc/systemd/system/.
 	sudo cp $(POD_CHARLESREID1_DIR)/scripts/certbot/pod-charlesreid1-certbot.{service,timer} /etc/systemd/system/.
 
@@ -146,35 +148,37 @@ ifeq ($(shell which systemctl),)
 	$(error Please run this make command on a system with systemctl installed)
 endif
 	-sudo systemctl disable pod-charlesreid1
-	-sudo systemctl disable pod-charlesreid1-backups-wikidb.timer
-	-sudo systemctl disable pod-charlesreid1-backups-wikifiles.timer
-	-sudo systemctl disable pod-charlesreid1-backups-gitea.timer
 	-sudo systemctl disable pod-charlesreid1-backups-aws.timer
 	-sudo systemctl disable pod-charlesreid1-backups-cleanolderthan.timer
+	-sudo systemctl disable pod-charlesreid1-backups-gitea.timer
+	-sudo systemctl disable pod-charlesreid1-backups-wikidb.timer
+	-sudo systemctl disable pod-charlesreid1-backups-wikifiles.timer
 	-sudo systemctl disable pod-charlesreid1-canary.timer
 	-sudo systemctl disable pod-charlesreid1-certbot.timer
 
 	# Leave the pod running!
 	# -sudo systemctl stop pod-charlesreid1
-	-sudo systemctl stop pod-charlesreid1-backups-wikidb.timer
-	-sudo systemctl stop pod-charlesreid1-backups-wikifiles.timer
-	-sudo systemctl stop pod-charlesreid1-backups-gitea.timer
+
 	-sudo systemctl stop pod-charlesreid1-backups-aws.timer
 	-sudo systemctl stop pod-charlesreid1-backups-cleanolderthan.timer
+	-sudo systemctl stop pod-charlesreid1-backups-gitea.timer
+	-sudo systemctl stop pod-charlesreid1-backups-wikidb.timer
+	-sudo systemctl stop pod-charlesreid1-backups-wikifiles.timer
 	-sudo systemctl stop pod-charlesreid1-canary.timer
 	-sudo systemctl stop pod-charlesreid1-certbot.timer
 
 	-sudo rm -f /etc/systemd/system/pod-charlesreid1.service
-	-sudo rm -f /etc/systemd/system/pod-charlesreid1-backups-wikidb.{service,timer}
-	-sudo rm -f /etc/systemd/system/pod-charlesreid1-backups-wikifiles.{service,timer}
-	-sudo rm -f /etc/systemd/system/pod-charlesreid1-backups-gitea.{service,timer}
+
 	-sudo rm -f /etc/systemd/system/pod-charlesreid1-backups-aws.{service,timer}
 	-sudo rm -f /etc/systemd/system/pod-charlesreid1-backups-cleanolderthan.{service,timer}
+	-sudo rm -f /etc/systemd/system/pod-charlesreid1-backups-gitea.{service,timer}
+	-sudo rm -f /etc/systemd/system/pod-charlesreid1-backups-wikidb.{service,timer}
+	-sudo rm -f /etc/systemd/system/pod-charlesreid1-backups-wikifiles.{service,timer}
 	-sudo rm -f /etc/systemd/system/pod-charlesreid1-canary.{service,timer}
 	-sudo rm -f /etc/systemd/system/pod-charlesreid1-certbot.{service,timer}
+
 	sudo systemctl daemon-reload
 
 	-sudo rm -f /etc/rsyslog.d/10-pod-charlesreid1-rsyslog.conf
-
 
 .PHONY: help
