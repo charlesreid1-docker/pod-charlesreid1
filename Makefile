@@ -63,14 +63,14 @@ help:
 templates:
 	@find * -name "*.service.j2" | xargs -I '{}' chmod 644 {}
 	@find * -name "*.timer.j2" | xargs -I '{}' chmod 644 {}
-	python3 $(POD_CHARLESREID1_DIR)/scripts/apply_templates.py
+	/home/charles/.pyenv/shims/python3 $(POD_CHARLESREID1_DIR)/scripts/apply_templates.py
 
 list-templates:
 	@find * -name "*.j2"
 
 clean-templates:
 	# sudo is required because bind-mounted gitea files end up owned by root. stupid docker.
-	sudo -E python3 $(POD_CHARLESREID1_DIR)/scripts/clean_templates.py
+	sudo -E /home/charles/.pyenv/shims/python3 $(POD_CHARLESREID1_DIR)/scripts/clean_templates.py
 
 # Backups
 
@@ -98,17 +98,17 @@ mw-fix-skins:
 # /www Dir
 
 clone-www:
-	python3 $(POD_CHARLESREID1_DIR)/scripts/git_clone_www.py
+	/home/charles/.pyenv/shims/python3 $(POD_CHARLESREID1_DIR)/scripts/git_clone_www.py
 
 pull-www:
-	python3 $(POD_CHARLESREID1_DIR)/scripts/git_pull_www.py
+	/home/charles/.pyenv/shims/python3 $(POD_CHARLESREID1_DIR)/scripts/git_pull_www.py
 
 install:
 ifeq ($(shell which systemctl),)
 	$(error Please run this make command on a system with systemctl installed)
 endif
-	python3 -c 'import botocore' || (echo "Please install the botocore library using python3 or pip3 binary"; exit 1)
-	python3 -c 'import boto3' || (echo "Please install the boto3 library using python3 or pip3 binary"; exit 1)
+	/home/charles/.pyenv/shims/python3 -c 'import botocore' || (echo "Please install the botocore library using python3 or pip3 binary"; exit 1)
+	/home/charles/.pyenv/shims/python3 -c 'import boto3' || (echo "Please install the boto3 library using python3 or pip3 binary"; exit 1)
 
 	sudo cp $(POD_CHARLESREID1_DIR)/scripts/pod-charlesreid1.service /etc/systemd/system/pod-charlesreid1.service
 
