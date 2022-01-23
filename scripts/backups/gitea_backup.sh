@@ -53,7 +53,7 @@ if [ "$#" == "0" ]; then
     # We don't need to use docker, since these directories
     # are both bind-mounted into the Docker container
     echo "Backing up custom directory"
-    tar --ignore-failed-read -czf ${CUSTOM_TARGET} ${POD_CHARLESREID1_DIR}/d-gitea/custom
+    tar --exclude='gitea.log' --ignore-failed-read -czf ${CUSTOM_TARGET} ${POD_CHARLESREID1_DIR}/d-gitea/custom
     echo "Backing up data directory"
     tar czf ${DATA_TARGET} ${POD_CHARLESREID1_DIR}/d-gitea/data
 
