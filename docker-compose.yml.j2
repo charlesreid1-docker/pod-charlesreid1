@@ -67,7 +67,7 @@ services:
     command: /bin/bash -c "nginx -g 'daemon off;'"
     volumes:
       - "./d-nginx-charlesreid1/conf.d:/etc/nginx/conf.d:ro"
-      - "./d-nginx/robots:/var/www/robots:ro"
+      - "./d-nginx-charlesreid1/robots:/var/www/robots:ro"
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/letsencrypt:/etc/letsencrypt"
       - "/www/{{ pod_charlesreid1_server_name }}/htdocs:/www/{{ pod_charlesreid1_server_name }}/htdocs:ro"
