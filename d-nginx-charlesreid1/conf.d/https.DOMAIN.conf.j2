@@ -10,6 +10,11 @@
 #
 ####################
 
+# Ban jerks
+geo $blocked {
+    default 0;
+    45.32.86.191/32 1;
+}
 
 # default 
 server {
@@ -17,8 +22,10 @@ server {
     listen [::]:443 ssl;
     server_name {{ pod_charlesreid1_server_name }} default_server;
 
-    # Ban jerks
-    deny 45.32.86.191;
+    # So we don't fill the logs with deny errors
+    if ($blocked) {
+        return 444;
+    }
 
     ssl_certificate /etc/letsencrypt/live/{{ pod_charlesreid1_server_name }}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/{{ pod_charlesreid1_server_name }}/privkey.pem;
@@ -64,8 +71,10 @@ server {
     listen [::]:443 ssl;
     server_name www.{{ pod_charlesreid1_server_name }};
 
-    # Ban jerks
-    deny 45.32.86.191;
+    # So we don't fill the logs with deny errors
+    if ($blocked) {
+        return 444;
+    }
 
     ssl_certificate /etc/letsencrypt/live/www.{{ pod_charlesreid1_server_name }}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/www.{{ pod_charlesreid1_server_name }}/privkey.pem;
@@ -110,8 +119,10 @@ server {
     listen [::]:443 ssl;
     server_name git.{{ pod_charlesreid1_server_name }};
 
-    # Ban jerks
-    deny 45.32.86.191;
+    # So we don't fill the logs with deny errors
+    if ($blocked) {
+        return 444;
+    }
 
     ssl_certificate /etc/letsencrypt/live/git.{{ pod_charlesreid1_server_name }}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/git.{{ pod_charlesreid1_server_name }}/privkey.pem;
