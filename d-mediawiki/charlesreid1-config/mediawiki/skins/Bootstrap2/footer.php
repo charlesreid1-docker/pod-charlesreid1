@@ -11,7 +11,7 @@
     </span>
     Made from the command line with vim by 
     <a href="http://charlesreid1.com">charlesreid1</a><br />
-    with help from <a href="https://getbootstrap.com/">Bootstrap</a> and <a href="http://getpelican.com">Pelican</a>.
+    with help from <a href="https://getbootstrap.com/">Bootstrap</a> and <a href="http://mediawiki.org">MediaWiki</a>.
 </p>
 
 <p style="text-align: center">
