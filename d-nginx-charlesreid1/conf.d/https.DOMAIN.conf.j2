@@ -121,3 +121,19 @@ server {
         alias /var/www/robots/gitea.txt;
     }
 }
+
+
+# tree
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name tree.{{ pod_charlesreid1_server_name }};
+
+    add_header X-Robots-Tag noindex; 
+
+    location / {
+        try_files $uri $uri/ =404;
+        root /www/tree.{{ pod_charlesreid1_server_name }}/htdocs;
+        index index.html;
+    }
+}
