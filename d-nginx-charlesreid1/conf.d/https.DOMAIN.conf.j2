@@ -131,6 +131,11 @@ server {
 
     add_header X-Robots-Tag noindex; 
 
+    ssl_certificate /etc/letsencrypt/live/tree.{{ pod_charlesreid1_server_name }}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/tree.{{ pod_charlesreid1_server_name }}/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    include /etc/nginx/conf.d/secheaders.conf;
+
     location / {
         try_files $uri $uri/ =404;
         root /www/tree.{{ pod_charlesreid1_server_name }}/htdocs;
