@@ -37,7 +37,7 @@ if [ "$#" == "0" ]; then
     docker-compose -f {{ pod_charlesreid1_pod_install_dir }}/docker-compose.yml down
     
     echo "Run certbot renew"
-    SUBS="git www"
+    SUBS="git www tree"
     DOMS="charlesreid1.com"
 
     # top level domains
