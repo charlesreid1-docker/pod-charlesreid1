@@ -72,6 +72,7 @@ services:
       - "/etc/letsencrypt:/etc/letsencrypt"
       - "/www/{{ pod_charlesreid1_server_name }}/htdocs:/www/{{ pod_charlesreid1_server_name }}/htdocs:ro"
       - "/www/tree.{{ pod_charlesreid1_server_name }}/htdocs:/www/tree.{{ pod_charlesreid1_server_name }}/htdocs:ro"
+      - "/etc/nginx/.tree.htpasswd:/etc/nginx/.tree.htpasswd"
     logging:
       driver: "json-file"
       options:
