@@ -121,26 +121,3 @@ server {
         alias /var/www/robots/gitea.txt;
     }
 }
-
-
-# tree
-server {
-    listen 443 ssl;
-    listen [::]:443 ssl;
-    server_name tree.{{ pod_charlesreid1_server_name }};
-
-    add_header X-Robots-Tag noindex; 
-
-    ssl_certificate /etc/letsencrypt/live/tree.{{ pod_charlesreid1_server_name }}/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/tree.{{ pod_charlesreid1_server_name }}/privkey.pem;
-    include /etc/letsencrypt/options-ssl-nginx.conf;
-    include /etc/nginx/conf.d/secheaders.conf;
-
-    location / {
-        try_files $uri $uri/ =404;
-        auth_basic "Restricted Access";
-        auth_basic_user_file /etc/nginx/.tree.htpasswd;
-        root /www/tree.{{ pod_charlesreid1_server_name }}/htdocs;
-        index index.html;
-    }
-}
