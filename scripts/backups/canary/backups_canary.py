@@ -24,7 +24,7 @@ def main():
         alert(msg)
 
     # verify there is a backup newer than N days
-    newer_backups = subprocess.getoutput(f'find {backup_dir} -mtime -{N}').split('\n')
+    newer_backups = subprocess.getoutput(f'find {backup_dir}/* -mtime -{N}').split('\n')
     if len(newer_backups)==1 and newer_backups[0]=='':
         msg = "Local Backups Error:\n"
         msg += f"The backup directory `{backup_dir}` is missing backup files from the last {N} day(s)!"
@@ -97,7 +97,7 @@ def alert(msg):
         raise Exception(response.status_code, response.text)
 
     print("Goodbye.")
-    sys.exit(1)
+    sys.exit(0)
 
 
 if __name__ == '__main__':
