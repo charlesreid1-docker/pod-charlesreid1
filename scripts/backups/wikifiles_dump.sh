@@ -5,7 +5,8 @@
 set -eux
 
 CONTAINER_NAME="stormy_mw"
-STAMP="`date +"%Y%m%d"`"
+DATESTAMP="`date +"%Y%m%d"`"
+TIMESTAMP="`date +"%Y%m%d_%H%M%S"`"
 
 function usage {
     set +x
@@ -20,7 +21,7 @@ function usage {
     echo "Example:"
     echo ""
     echo "       ./wikifiles_dump.sh"
-    echo "       (creates ${POD_CHARLESREID1_BACKUP_DIR}/20200101/wikifiles_20200101.tar.gz)"
+    echo "       (creates ${POD_CHARLESREID1_BACKUP_DIR}/YYYYMMDD/wikifiles_YYYYMMDD_HHMMSS.tar.gz)"
     echo ""
     exit 1;
 }
@@ -36,18 +37,19 @@ fi
 
 if [ "$#" == "0" ]; then
 
-    TARGET="wikifiles_${STAMP}.tar.gz"
-    BACKUP_TARGET="${POD_CHARLESREID1_BACKUP_DIR}/${STAMP}/${TARGET}"
+    TARGET="wikifiles_${TIMESTAMP}.tar.gz"
+    BACKUP_DIR="${POD_PRIVATE_WIKI_BACKUP_DIR}/${DATESTAMP}"
+    BACKUP_TARGET="${BACKUP_DIR}/${TARGET}"
 
     echo ""
     echo "pod-charlesreid1: wikifiles_dump.sh"
     echo "-----------------------------------"
     echo ""
-    echo "Backup directory: ${POD_CHARLESREID1_BACKUP_DIR}"
+    echo "Backup directory: ${BACKUP_DIR}"
     echo "Backup target: ${BACKUP_TARGET}"
     echo ""
 
-    mkdir -p ${POD_CHARLESREID1_BACKUP_DIR}/${STAMP}
+    mkdir -p ${BACKUP_DIR}
 
     DOCKER=$(which docker)
     DOCKERX="${DOCKER} exec -t"
@@ -62,6 +64,7 @@ if [ "$#" == "0" ]; then
     echo "Step 3: Clean up tar.gz file"
     ${DOCKERX} ${CONTAINER_NAME} /bin/rm -f /tmp/${TARGET}
 
+    echo "Successfully wrote wikifiles dump to file: ${BACKUP_TARGET}"
     echo "Done."
 
 else

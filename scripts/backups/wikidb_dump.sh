@@ -5,7 +5,8 @@
 set -eux
 
 CONTAINER_NAME="stormy_mysql"
-STAMP="`date +"%Y%m%d"`"
+DATESTAMP="`date +"%Y%m%d"`"
+TIMESTAMP="`date +"%Y%m%d_%H%M%S"`"
 
 function usage {
     set +x
@@ -20,7 +21,7 @@ function usage {
     echo "Example:"
     echo ""
     echo "       ./wikidb_dump.sh"
-    echo "       (creates ${POD_CHARLESREID1_BACKUP_DIR}/20200101/wikidb_20200101.sql)"
+    echo "       (creates ${POD_CHARLESREID1_BACKUP_DIR}/20200101/wikidb_20200101_HHMMSS.sql)"
     echo ""
     exit 1;
 }
@@ -36,25 +37,33 @@ fi
 
 if [ "$#" == "0" ]; then
 
-    TARGET="wikidb_${STAMP}.sql"
-    BACKUP_TARGET="${POD_CHARLESREID1_BACKUP_DIR}/${STAMP}/${TARGET}"
+    TARGET="wikidb_${TIMESTAMP}.sql"
+    BACKUP_DIR="${POD_CHARLESREID1_BACKUP_DIR}/${DATESTAMP}"
+    BACKUP_TARGET="${BACKUP_DIR}/${TARGET}"
 
     echo ""
     echo "pod-charlesreid1: wikidb_dump.sh"
     echo "--------------------------------"
     echo ""
-    echo "Backup directory: ${POD_CHARLESREID1_BACKUP_DIR}"
+    echo "Backup directory: ${BACKUP_DIR}"
     echo "Backup target: ${BACKUP_TARGET}"
     echo ""
 
-    mkdir -p ${POD_CHARLESREID1_BACKUP_DIR}/${STAMP}
+    mkdir -p ${BACKUP_DIR}
 
     DOCKER=$(which docker)
     DOCKERX="${DOCKER} exec -t"
 
     echo "Running mysqldump inside the mysql container"
-    ${DOCKERX} ${CONTAINER_NAME} sh -c 'exec mysqldump wikidb --databases -uroot -p"$MYSQL_ROOT_PASSWORD"' 2>&1 | grep -v "Using a password" > ${BACKUP_TARGET}
 
+    # this works, except the first line is a stupid warning about passwords
+    ${DOCKERX} ${CONTAINER_NAME} sh -c 'exec mysqldump wikidb --databases -uroot -p"$MYSQL_ROOT_PASSWORD" --default-character-set=binary' > ${BACKUP_TARGET}
+
+    # trim stupid first line warning
+    tail -n +2 ${BACKUP_TARGET} > ${BACKUP_TARGET}.tmp
+    mv ${BACKUP_TARGET}.tmp ${BACKUP_TARGET}
+
+    echo "Successfully wrote SQL dump to file: ${BACKUP_TARGET}"
     echo "Done."
 
 else

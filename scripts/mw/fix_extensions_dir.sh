@@ -1,12 +1,6 @@
 #!/bin/bash
 # 
 # fix extensions dir in the mediawiki container
-#
-# in theory, we should be able to update the
-# extensions folder in d-mediawiki/charlesreid1-config,
-# but in reality this falls on its face.
-# So, we have to fix the fucking extensions directory
-# ourselves.
 set -eux
 
 NAME="stormy_mw"
