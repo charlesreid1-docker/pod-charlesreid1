@@ -6,6 +6,7 @@
 # Note that this expects the .sql dump
 # to create its own databases.
 # Use the --databases flag with mysqldump.
+set -eu
 
 function usage {
     echo ""
@@ -42,31 +43,23 @@ function usage {
 # because of all these one-off 
 # "whoopsie we don't do that" problems.
 
-CONTAINER_NAME="stormy_mysql"
-TARGET=$(basename $1)
-TARGET_DIR=$(dirname $1)
-
-
 if [[ "$#" -eq 1 ]];
 then
 
-    # Step 1: Copy the sql dump into the container
+	CONTAINER_NAME="stormy_mysql"
+	TARGET=$(basename $1)
+	TARGET_DIR=$(dirname $1)
+
     set -x
+    # Step 1: Copy the sql dump into the container
     docker cp $1 ${CONTAINER_NAME}:/tmp/${TARGET}
-    set +x
 
     # Step 2: Run sqldump inside the container
-    set -x
     docker exec -i ${CONTAINER_NAME} sh -c "/usr/bin/mysql --defaults-file=/root/.mysql.rootpw.cnf < /tmp/${TARGET}"
-    set +x
 
     # Step 3: Clean up sql dump from inside container
-    set -x
-    docker exec -i ${CONTAINER_NAME} sh -c "/bin/rm -fr /tmp/${TARGET}.sql"
-    set +x
+    docker exec -i ${CONTAINER_NAME} sh -c "/bin/rm -fr /tmp/${TARGET}"
 
-
-    set +x
 else
     usage
 fi
