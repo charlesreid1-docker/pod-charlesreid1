@@ -21,7 +21,7 @@ function usage {
     echo "Example:"
     echo ""
     echo "       ./wikidb_dump.sh"
-    echo "       (creates ${POD_CHARLESREID1_BACKUP_DIR}/20200101/wikidb_20200101_HHMMSS.sql)"
+    echo "       (creates ${POD_CHARLESREID1_BACKUP_DIR}/YYYYMMDD/wikidb_YYYYMMDD_HHMMSS.sql)"
     echo ""
     exit 1;
 }
