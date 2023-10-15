@@ -38,7 +38,7 @@ fi
 if [ "$#" == "0" ]; then
 
     TARGET="wikifiles_${TIMESTAMP}.tar.gz"
-    BACKUP_DIR="${POD_PRIVATE_WIKI_BACKUP_DIR}/${DATESTAMP}"
+    BACKUP_DIR="${POD_CHARLESREID1_BACKUP_DIR}/${DATESTAMP}"
     BACKUP_TARGET="${BACKUP_DIR}/${TARGET}"
 
     echo ""
