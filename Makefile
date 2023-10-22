@@ -145,6 +145,13 @@ endif
 	sudo systemctl start pod-charlesreid1-canary.timer
 	sudo systemctl start pod-charlesreid1-certbot.timer
 
+	sudo chown syslog:syslog /var/log/pod-charlesreid1-backups-aws.service.log
+	sudo chown syslog:syslog /var/log/pod-charlesreid1-backups-cleanolderthan.service.log
+	sudo chown syslog:syslog /var/log/pod-charlesreid1-backups-gitea.service.log
+	sudo chown syslog:syslog /var/log/pod-charlesreid1-backups-wikidb.service.log
+	sudo chown syslog:syslog /var/log/pod-charlesreid1-backups-wikifiles.service.log
+	sudo chown syslog:syslog /var/log/pod-charlesreid1-canary.service.log
+
 uninstall:
 ifeq ($(shell which systemctl),)
 	$(error Please run this make command on a system with systemctl installed)
