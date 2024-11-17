@@ -111,6 +111,13 @@ server {
     include /etc/nginx/conf.d/giteacsp.conf;
 
     location / {
+        # Ban jerks
+        deny 52.39.237.48;
+        deny 52.70.240.171;
+        deny 54.36.148.135;
+        deny 34.215.160.160;
+        allow all;
+
         proxy_set_header X-Real-IP  $remote_addr;
         proxy_set_header X-Forwarded-For $remote_addr;
         proxy_set_header Host $host;
