@@ -119,8 +119,13 @@ server {
         deny 217.113.194.226;
         deny 47.76.209.138;
         deny 47.76.220.119;
+        deny 47.79.118.97;
         deny 84.33.26.105;
-        deny 8.218.91.49;
+        deny 8.210.0.0/16;
+        # Fuck you in particular
+        deny 8.210.187.5;
+        deny 8.218.0.0/16;
+        deny 89.116.78.169;
         allow all;
 
         proxy_set_header X-Real-IP  $remote_addr;
