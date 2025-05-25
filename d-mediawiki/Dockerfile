@@ -41,6 +41,7 @@ RUN chown -R www-data:www-data /var/www/html/*
 # Skins
 COPY charlesreid1-config/mediawiki/skins /var/www/html/skins
 RUN chown -R www-data:www-data /var/www/html/skins
+RUN touch /var/www/html/skins
 
 # Settings
 COPY charlesreid1-config/mediawiki/LocalSettings.php /var/www/html/LocalSettings.php

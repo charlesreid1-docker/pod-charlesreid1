@@ -5,6 +5,10 @@ To update the MediaWiki skin:
 - Rebuild the MW container while the docker pod is still running (won't effect the docker pod)
 - When finished rebuilding the MW container, restart the docker pod.
 
+The skin currently in use is in `charlesreid1-config/mediawiki/skins/Bootstrap2`
+
+To rebuild and then restart the pod:
+
 ```
 # switch to main pod directory
 cd ../
