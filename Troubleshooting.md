@@ -3,6 +3,7 @@ To get a shell in a container that has been created, before it is runnning in a 
 ```
 docker run --rm -it --entrypoint bash <image-name-or-id>
 
+
 docker run --rm -it --entrypoint bash pod-charlesreid1_stormy_mediawiki
 ```
 
@@ -15,3 +16,4 @@ docker exec -it stormy_mw /bin/bash
 ```
 
 Also, if no changes are picking up, and you've already tried rebuilding the container image, try editing the Dockerfile.
+
