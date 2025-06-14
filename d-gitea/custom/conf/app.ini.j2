@@ -9,9 +9,11 @@
 APP_NAME = {{ pod_charlesreid1_gitea_app_name }}
 RUN_USER = git
 RUN_MODE = prod
+WORK_PATH = /data/gitea
 
 [ui]
-DEFAULT_THEME = arc-green
+DEFAULT_THEME = gitea-dark
+THEMES = gitea-dark
 
 [database]
 DB_TYPE  = sqlite3
