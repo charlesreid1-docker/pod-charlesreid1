@@ -41,6 +41,9 @@ server {
     }
 
     location /w/ {
+        # Apply rate limit here.
+        limit_req zone=gitealimit burst=20 nodelay;
+
         proxy_set_header X-Real-IP  $remote_addr;
         proxy_set_header X-Forwarded-For $remote_addr;
         proxy_set_header Host $host;
@@ -86,6 +89,9 @@ server {
     }
 
     location /w/ {
+        # Apply rate limit here.
+        limit_req zone=gitealimit burst=20 nodelay;
+
         proxy_set_header X-Real-IP  $remote_addr;
         proxy_set_header X-Forwarded-For $remote_addr;
         proxy_set_header Host $host;
@@ -111,33 +117,9 @@ server {
     include /etc/nginx/conf.d/giteacsp.conf;
 
     location / {
-        # Ban jerks
-        deny 52.39.237.48;
-        deny 52.70.240.171;
-        deny 54.36.148.135;
-        deny 34.215.160.160;
-        deny 217.113.194.226;
-        deny 189.84.38.222;
-
-        deny 47.76.0.0/16;
-        deny 47.79.0.0/16;
-        # Fuck you in particular
-        deny 47.76.209.138;
-        deny 47.76.99.127;
-        deny 47.76.220.119;
-        deny 47.79.118.97;
-        deny 84.33.26.105;
-
-        deny 8.210.0.0/16;
-        deny 8.218.0.0/16;
-        # Fuck you in particular
-        deny 8.210.187.5;
-        deny 8.210.164.94;
-        deny 168.90.209.163;
-        deny 168.90.209.127;
-
-        deny 89.116.78.169;
-        allow all;
+        # Apply the rate limit here.
+        # Allows a burst of 20 requests, but anything beyond the max is queued.
+        limit_req zone=gitealimit burst=20 nodelay;
 
         proxy_set_header X-Real-IP  $remote_addr;
         proxy_set_header X-Forwarded-For $remote_addr;
