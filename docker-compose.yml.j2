@@ -30,6 +30,7 @@ services:
     container_name: stormy_mysql
     volumes:
       - "stormy_mysql_data:/var/lib/mysql"
+      - "./d-mysql/conf.d:/etc/mysql/conf.d:ro"
     logging:
       driver: "json-file"
       options:
@@ -63,9 +64,9 @@ services:
     image: nginx
     container_name: stormy_nginx
     hostname: {{ pod_charlesreid1_server_name }}
-    hostname: charlesreid1.com
     command: /bin/bash -c "nginx -g 'daemon off;'"
     volumes:
+      - "./d-nginx-charlesreid1/nginx.conf:/etc/nginx/nginx.conf:ro"
       - "./d-nginx-charlesreid1/conf.d:/etc/nginx/conf.d:ro"
       - "./d-nginx-charlesreid1/robots:/var/www/robots:ro"
       - "/etc/localtime:/etc/localtime:ro"
