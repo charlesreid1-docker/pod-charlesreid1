@@ -72,6 +72,7 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/letsencrypt:/etc/letsencrypt"
       - "/www/{{ pod_charlesreid1_server_name }}/htdocs:/www/{{ pod_charlesreid1_server_name }}/htdocs:ro"
+      - "/var/log/nginx:/var/log/nginx"
     logging:
       driver: "json-file"
       options:
