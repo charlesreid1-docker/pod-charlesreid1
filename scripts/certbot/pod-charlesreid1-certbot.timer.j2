@@ -2,8 +2,8 @@
 Description=Timer to renew certificates for pod-charlesreid1
 
 [Timer]
-# Run on the first Sunday of every month
-OnCalendar=Sun *-*-01..07 4:03:00
+# Run daily
+OnCalendar=*-*-* 4:03:00
 
 [Install]
 WantedBy=timers.target
