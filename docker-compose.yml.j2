@@ -52,6 +52,7 @@ services:
     environment:
       - MEDIAWIKI_SITE_SERVER=https://{{ pod_charlesreid1_server_name }}
       - MEDIAWIKI_SECRETKEY={{ pod_charlesreid1_mediawiki_secretkey }}
+      - MEDIAWIKI_UPGRADEKEY={{ pod_charlesreid1_mediawiki_upgradekey }}
       - MYSQL_HOST=stormy_mysql
       - MYSQL_DATABASE=wikidb
       - MYSQL_USER=root

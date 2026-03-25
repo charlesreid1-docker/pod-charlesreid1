@@ -105,7 +105,7 @@ $wgAuthenticationTokenVersion = "1";
 
 # Site upgrade key. Must be set to a string (default provided) to turn on the
 # web installer while LocalSettings.php is in place
-$wgUpgradeKey = "984c1d9858dabc27";
+$wgUpgradeKey = getenv('MEDIAWIKI_UPGRADEKEY');
 
 # No license info
 $wgRightsPage = "";

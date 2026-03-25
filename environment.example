@@ -10,6 +10,7 @@ export POD_CHARLESREID1_USER="nonrootuser"
 # ----------
 export POD_CHARLESREID1_MW_ADMIN_EMAIL="email@example.com"
 export POD_CHARLESREID1_MW_SECRET_KEY="SecretKeyString"
+export POD_CHARLESREID1_MW_UPGRADE_KEY="UpgradeKeyString"
 
 # mysql:
 # ------
