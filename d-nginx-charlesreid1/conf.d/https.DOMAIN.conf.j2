@@ -41,6 +41,7 @@ server {
 
         proxy_set_header X-Real-IP  $remote_addr;
         proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header Host $host;
         proxy_pass http://stormy_mw:8989/wiki/;
     }
@@ -53,6 +54,7 @@ server {
 
         proxy_set_header X-Real-IP  $remote_addr;
         proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header Host $host;
         proxy_pass http://stormy_mw:8989/w/;
     }
@@ -91,6 +93,7 @@ server {
     location /wiki/ {
         proxy_set_header X-Real-IP  $remote_addr;
         proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header Host $host;
         proxy_pass http://stormy_mw:8989/wiki/;
     }
@@ -101,6 +104,7 @@ server {
 
         proxy_set_header X-Real-IP  $remote_addr;
         proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header Host $host;
         proxy_pass http://stormy_mw:8989/w/;
     }
@@ -132,6 +136,7 @@ server {
 
         proxy_set_header X-Real-IP  $remote_addr;
         proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header Host $host;
         proxy_pass http://stormy_gitea:3000/;
     }
