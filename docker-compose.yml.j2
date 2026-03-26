@@ -82,7 +82,7 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/letsencrypt:/etc/letsencrypt:ro"
       - "/www/{{ pod_charlesreid1_server_name }}/htdocs:/www/{{ pod_charlesreid1_server_name }}/htdocs:ro"
-      - "/var/log/nginx:/var/log/nginx"
+      - "stormy_nginx_logs:/var/log/nginx"
     logging:
       driver: "json-file"
       options:
@@ -106,3 +106,4 @@ volumes:
   stormy_mysql_data:
   stormy_mw_data:
   stormy_gitea_data:
+  stormy_nginx_logs:
