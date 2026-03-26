@@ -24,6 +24,8 @@ services:
         max-file: "10"
     ports:
       - "22:22"
+    networks:
+      - frontend
 
   stormy_mysql:
     restart: always
@@ -39,6 +41,8 @@ services:
         max-file: "10"
     environment:
       - MYSQL_ROOT_PASSWORD={{ pod_charlesreid1_mysql_password }}
+    networks:
+      - backend
 
   stormy_mw:
     restart: always
@@ -61,6 +65,9 @@ services:
       - MYSQL_PASSWORD={{ pod_charlesreid1_mysql_password }}
     depends_on:
       - stormy_mysql
+    networks:
+      - frontend
+      - backend
 
   stormy_nginx:
     restart: always
@@ -88,6 +95,12 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    networks:
+      - frontend
+
+networks:
+  frontend:
+  backend:
 
 volumes:
   stormy_mysql_data:
