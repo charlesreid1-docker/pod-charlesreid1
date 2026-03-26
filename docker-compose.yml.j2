@@ -5,7 +5,7 @@ services:
 # https://stackoverflow.com/a/39039830
 
   stormy_gitea:
-    image: gitea/gitea:latest
+    image: gitea/gitea:1.24.5
     container_name: stormy_gitea
     environment:
       - USER_UID=1000
@@ -62,7 +62,7 @@ services:
 
   stormy_nginx:
     restart: always
-    image: nginx
+    image: nginx:1.27.5
     container_name: stormy_nginx
     hostname: {{ pod_charlesreid1_server_name }}
     command: /bin/bash -c "nginx -g 'daemon off;'"
@@ -71,7 +71,7 @@ services:
       - "./d-nginx-charlesreid1/conf.d:/etc/nginx/conf.d:ro"
       - "./d-nginx-charlesreid1/robots:/var/www/robots:ro"
       - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/letsencrypt:/etc/letsencrypt"
+      - "/etc/letsencrypt:/etc/letsencrypt:ro"
       - "/www/{{ pod_charlesreid1_server_name }}/htdocs:/www/{{ pod_charlesreid1_server_name }}/htdocs:ro"
       - "/var/log/nginx:/var/log/nginx"
     logging:
