@@ -15,7 +15,7 @@
 server {
     listen 443 ssl;
     listen [::]:443 ssl;
-    server_name {{ pod_charlesreid1_server_name }} default_server;
+    server_name {{ pod_charlesreid1_server_name }};
 
     ssl_certificate /etc/letsencrypt/live/{{ pod_charlesreid1_server_name }}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/{{ pod_charlesreid1_server_name }}/privkey.pem;
