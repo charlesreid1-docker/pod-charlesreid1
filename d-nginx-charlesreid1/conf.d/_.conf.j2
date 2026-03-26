@@ -1,0 +1,17 @@
+# https://serverfault.com/a/525011
+server {
+    server_name _;
+    listen *:80 default_server deferred;
+    return 444;
+}
+
+server {
+    server_name _;
+    listen 443 ssl default_server;
+    listen [::]:443 ssl default_server;
+
+    ssl_certificate /etc/letsencrypt/live/{{ pod_charlesreid1_server_name }}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/{{ pod_charlesreid1_server_name }}/privkey.pem;
+
+    return 444;
+}

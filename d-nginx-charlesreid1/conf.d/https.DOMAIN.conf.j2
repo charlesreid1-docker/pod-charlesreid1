@@ -15,7 +15,7 @@
 server {
     listen 443 ssl;
     listen [::]:443 ssl;
-    server_name {{ pod_charlesreid1_server_name }} default_server;
+    server_name {{ pod_charlesreid1_server_name }};
 
     ssl_certificate /etc/letsencrypt/live/{{ pod_charlesreid1_server_name }}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/{{ pod_charlesreid1_server_name }}/privkey.pem;
@@ -41,6 +41,7 @@ server {
 
         proxy_set_header X-Real-IP  $remote_addr;
         proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header Host $host;
         proxy_pass http://stormy_mw:8989/wiki/;
     }
@@ -53,6 +54,7 @@ server {
 
         proxy_set_header X-Real-IP  $remote_addr;
         proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header Host $host;
         proxy_pass http://stormy_mw:8989/w/;
     }
@@ -89,8 +91,12 @@ server {
     }
 
     location /wiki/ {
+        limit_req zone=gitealimit burst=20 nodelay;
+        limit_rate 500k;
+
         proxy_set_header X-Real-IP  $remote_addr;
         proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header Host $host;
         proxy_pass http://stormy_mw:8989/wiki/;
     }
@@ -101,6 +107,7 @@ server {
 
         proxy_set_header X-Real-IP  $remote_addr;
         proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header Host $host;
         proxy_pass http://stormy_mw:8989/w/;
     }
@@ -132,6 +139,7 @@ server {
 
         proxy_set_header X-Real-IP  $remote_addr;
         proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header Host $host;
         proxy_pass http://stormy_gitea:3000/;
     }

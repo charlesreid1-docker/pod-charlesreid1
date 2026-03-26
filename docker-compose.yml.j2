@@ -5,7 +5,7 @@ services:
 # https://stackoverflow.com/a/39039830
 
   stormy_gitea:
-    image: gitea/gitea:latest
+    image: gitea/gitea:1.24.5
     container_name: stormy_gitea
     environment:
       - USER_UID=1000
@@ -24,8 +24,11 @@ services:
         max-file: "10"
     ports:
       - "22:22"
+    networks:
+      - frontend
 
   stormy_mysql:
+    restart: always
     build: d-mysql
     container_name: stormy_mysql
     volumes:
@@ -38,8 +41,11 @@ services:
         max-file: "10"
     environment:
       - MYSQL_ROOT_PASSWORD={{ pod_charlesreid1_mysql_password }}
+    networks:
+      - backend
 
   stormy_mw:
+    restart: always
     build: d-mediawiki
     container_name: stormy_mw
     volumes:
@@ -52,16 +58,20 @@ services:
     environment:
       - MEDIAWIKI_SITE_SERVER=https://{{ pod_charlesreid1_server_name }}
       - MEDIAWIKI_SECRETKEY={{ pod_charlesreid1_mediawiki_secretkey }}
+      - MEDIAWIKI_UPGRADEKEY={{ pod_charlesreid1_mediawiki_upgradekey }}
       - MYSQL_HOST=stormy_mysql
       - MYSQL_DATABASE=wikidb
       - MYSQL_USER=root
       - MYSQL_PASSWORD={{ pod_charlesreid1_mysql_password }}
     depends_on:
       - stormy_mysql
+    networks:
+      - frontend
+      - backend
 
   stormy_nginx:
     restart: always
-    image: nginx
+    image: nginx:1.27.5
     container_name: stormy_nginx
     hostname: {{ pod_charlesreid1_server_name }}
     command: /bin/bash -c "nginx -g 'daemon off;'"
@@ -70,9 +80,9 @@ services:
       - "./d-nginx-charlesreid1/conf.d:/etc/nginx/conf.d:ro"
       - "./d-nginx-charlesreid1/robots:/var/www/robots:ro"
       - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/letsencrypt:/etc/letsencrypt"
+      - "/etc/letsencrypt:/etc/letsencrypt:ro"
       - "/www/{{ pod_charlesreid1_server_name }}/htdocs:/www/{{ pod_charlesreid1_server_name }}/htdocs:ro"
-      - "/var/log/nginx:/var/log/nginx"
+      - "stormy_nginx_logs:/var/log/nginx"
     logging:
       driver: "json-file"
       options:
@@ -85,8 +95,15 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    networks:
+      - frontend
+
+networks:
+  frontend:
+  backend:
 
 volumes:
   stormy_mysql_data:
   stormy_mw_data:
   stormy_gitea_data:
+  stormy_nginx_logs:

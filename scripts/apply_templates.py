@@ -18,6 +18,7 @@ jinja_to_env = {
     "pod_charlesreid1_vpn_ip_addr": "POD_CHARLESREID1_VPN_IP_ADDR",
     "pod_charlesreid1_mediawiki_admin_email": "POD_CHARLESREID1_MW_ADMIN_EMAIL",
     "pod_charlesreid1_mediawiki_secretkey": "POD_CHARLESREID1_MW_SECRET_KEY",
+    "pod_charlesreid1_mediawiki_upgradekey": "POD_CHARLESREID1_MW_UPGRADE_KEY",
     "pod_charlesreid1_mysql_password": "POD_CHARLESREID1_MYSQL_PASSWORD",
     "pod_charlesreid1_gitea_app_name": "POD_CHARLESREID1_GITEA_APP_NAME",
     "pod_charlesreid1_gitea_secretkey": "POD_CHARLESREID1_GITEA_SECRET_KEY",

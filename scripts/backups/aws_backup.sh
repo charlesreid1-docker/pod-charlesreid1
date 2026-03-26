@@ -37,22 +37,22 @@ if [ "$#" == "0" ]; then
     echo ""
 
     echo "Checking that directory exists"
-    /usr/bin/test -d ${POD_CHARLESREID1_BACKUP_DIR}
+    /usr/bin/test -d "${POD_CHARLESREID1_BACKUP_DIR}"
 
     echo "Checking that we can access the S3 bucket"
-    aws s3 ls s3://${POD_CHARLESREID1_BACKUP_S3BUCKET} > /dev/null
-    
+    aws s3 ls "s3://${POD_CHARLESREID1_BACKUP_S3BUCKET}" > /dev/null
+
     # Get name of last backup, to copy to AWS
-    LAST_BACKUP=$(/bin/ls -1 -t ${POD_CHARLESREID1_BACKUP_DIR} | /usr/bin/head -n1)
+    LAST_BACKUP=$(/bin/ls -1 -t "${POD_CHARLESREID1_BACKUP_DIR}" | /usr/bin/head -n1)
     echo "Last backup found: ${LAST_BACKUP}"
     echo "Last backup directory: ${POD_CHARLESREID1_BACKUP_DIR}/${LAST_BACKUP}"
 
-    BACKUP_SIZE=$(/usr/bin/du -hs ${POD_CHARLESREID1_BACKUP_DIR}/${LAST_BACKUP} | cut -f 1)
+    BACKUP_SIZE=$(/usr/bin/du -hs "${POD_CHARLESREID1_BACKUP_DIR}/${LAST_BACKUP}" | cut -f 1)
     echo "Backup directory size: ${BACKUP_SIZE}"
 
     # Copy to AWS
     echo "Backing up directory ${POD_CHARLESREID1_BACKUP_DIR}/${LAST_BACKUP}"
-    aws s3 cp --only-show-errors --no-progress --recursive ${POD_CHARLESREID1_BACKUP_DIR}/${LAST_BACKUP} s3://${POD_CHARLESREID1_BACKUP_S3BUCKET}/backups/${LAST_BACKUP}
+    aws s3 cp --only-show-errors --no-progress --recursive "${POD_CHARLESREID1_BACKUP_DIR}/${LAST_BACKUP}" "s3://${POD_CHARLESREID1_BACKUP_S3BUCKET}/backups/${LAST_BACKUP}"
     echo "Done."
 
 else

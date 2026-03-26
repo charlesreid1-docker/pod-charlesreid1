@@ -35,7 +35,7 @@ def main():
     newest_backup_files = subprocess.getoutput(f'find {newest_backup_path} -type f').split('\n')
 
     # verify the most recent backup directory is not empty
-    if len(newest_backup_files)==1 and newer_backups[0]=='':
+    if len(newest_backup_files)==1 and newest_backup_files[0]=='':
         msg = "Local Backups Error:\n"
         msg += f"The most recent backup directory `{newest_backup_path}` is empty!"
         alert(msg)
@@ -64,10 +64,12 @@ def check_exists(bucket_name, bucket_path):
             # File does not exist
             msg = "S3 Backups Error:\n"
             msg += f"Failed to find the file `{bucket_path}` in bucket `{bucket_name}`"
+            alert(msg)
         else:
             # Problem accessing backups on bucket
             msg = "S3 Backups Error:\n"
             msg += f"Failed to access the file `{bucket_path}` in bucket `{bucket_name}`"
+            alert(msg)
 
 
 def alert(msg):
