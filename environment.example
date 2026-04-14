@@ -5,6 +5,7 @@
 export POD_CHARLESREID1_DIR="/path/to/pod-charlesreid1"
 export POD_CHARLESREID1_TLD="example.com"
 export POD_CHARLESREID1_USER="nonrootuser"
+export POD_CHARLESREID1_VPN_IP_ADDR="1.2.3.4"
 
 # mediawiki:
 # ----------
@@ -30,6 +31,6 @@ export AWS_DEFAULT_REGION="us-west-1"
 
 # backups and scripts:
 # --------------------
-export POD_CHARLESREID1_USER="charles"
+export POD_CHARLESREID1_BACKUP_DIR="/path/to"
 export POD_CHARLESREID1_BACKUP_S3BUCKET="name-of-backups-bucket"
 export POD_CHARLESREID1_CANARY_WEBHOOK="https://hooks.slack.com/services/000000000/AAAAAAAAA/111111111111111111111111"
