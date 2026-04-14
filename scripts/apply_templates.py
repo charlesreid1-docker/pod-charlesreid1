@@ -20,6 +20,7 @@ jinja_to_env = {
     "pod_charlesreid1_mediawiki_secretkey": "POD_CHARLESREID1_MW_SECRET_KEY",
     "pod_charlesreid1_mediawiki_upgradekey": "POD_CHARLESREID1_MW_UPGRADE_KEY",
     "pod_charlesreid1_mysql_password": "POD_CHARLESREID1_MYSQL_PASSWORD",
+    "pod_charlesreid1_mysql_wikiuser_password": "POD_CHARLESREID1_MYSQL_WIKIUSER_PASSWORD",
     "pod_charlesreid1_gitea_app_name": "POD_CHARLESREID1_GITEA_APP_NAME",
     "pod_charlesreid1_gitea_secretkey": "POD_CHARLESREID1_GITEA_SECRET_KEY",
     "pod_charlesreid1_gitea_internaltoken": "POD_CHARLESREID1_GITEA_INTERNAL_TOKEN",

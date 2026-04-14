@@ -41,6 +41,9 @@ services:
         max-file: "10"
     environment:
       - MYSQL_ROOT_PASSWORD={{ pod_charlesreid1_mysql_password }}
+      - MYSQL_DATABASE=wikidb
+      - MYSQL_USER=wikiuser
+      - MYSQL_PASSWORD={{ pod_charlesreid1_mysql_wikiuser_password }}
     networks:
       - backend
 
@@ -61,8 +64,8 @@ services:
       - MEDIAWIKI_UPGRADEKEY={{ pod_charlesreid1_mediawiki_upgradekey }}
       - MYSQL_HOST=stormy_mysql
       - MYSQL_DATABASE=wikidb
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD={{ pod_charlesreid1_mysql_password }}
+      - MYSQL_USER=wikiuser
+      - MYSQL_PASSWORD={{ pod_charlesreid1_mysql_wikiuser_password }}
     depends_on:
       - stormy_mysql
     networks:
