@@ -48,6 +48,24 @@ def main():
             msg += f"Backup file name: {backup_file}!"
             alert(msg)
 
+    # verify .sql dumps end with the mysqldump completion trailer.
+    # A non-empty file can still be truncated mid-row (e.g. PTY deadlock,
+    # net_write_timeout) — without this check, a 439 MB partial dump looks
+    # healthy to a size-only canary.
+    for backup_file in newest_backup_files:
+        if not backup_file.endswith('.sql'):
+            continue
+        with open(backup_file, 'rb') as f:
+            f.seek(0, os.SEEK_END)
+            f.seek(max(0, f.tell() - 512))
+            tail = f.read()
+        if b'Dump completed on' not in tail:
+            msg = "Local Backups Error:\n"
+            msg += f"SQL backup file `{backup_file}` is missing the "
+            msg += "`-- Dump completed on ...` trailer.\n"
+            msg += "mysqldump did not finish — the dump is truncated and not restorable."
+            alert(msg)
+
     # verify the most recent backup files exist in the s3 backups bucket
     bucket_base_path = os.path.join('backups', newest_backup_name)
     for backup_file in newest_backup_files:
