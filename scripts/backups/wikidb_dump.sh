@@ -58,8 +58,10 @@ if [ "$#" == "0" ]; then
     # reads automatically). No -t: a PTY corrupts --default-character-set=binary
     # output (LF→CRLF translation on binary blobs) and its small kernel buffer
     # can deadlock on large dumps.
+    set +x
     MYSQL_PWD="$(docker exec "${CONTAINER_NAME}" printenv MYSQL_ROOT_PASSWORD)"
     export MYSQL_PWD
+    set -x
 
     docker exec -i \
         -e MYSQL_PWD \
