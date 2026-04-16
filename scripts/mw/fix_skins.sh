@@ -16,8 +16,8 @@ echo "Checking that skins dir exists"
 test -d ${SKINS_DIR}
 
 echo "Installing skins into $NAME"
-docker exec -it $NAME /bin/bash -c 'rm -rf /var/www/html/skins'
+docker exec -i $NAME /bin/bash -c 'rm -rf /var/www/html/skins'
 docker cp ${SKINS_DIR} $NAME:/var/www/html/skins
-docker exec -it $NAME /bin/bash -c 'chown -R www-data:www-data /var/www/html/skins'
+docker exec -i $NAME /bin/bash -c 'chown -R www-data:www-data /var/www/html/skins'
 
 echo "Finished installing skins into $NAME"
