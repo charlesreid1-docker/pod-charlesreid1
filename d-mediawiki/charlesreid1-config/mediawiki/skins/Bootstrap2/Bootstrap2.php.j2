@@ -23,12 +23,12 @@ class SkinBootstrap2 extends SkinTemplate {
         // cmr 05/08/2014
         $template = 'Bootstrap2Template';
 
-    function setupSkinUserCss( OutputPage $out ) {
-        global $wgHandheldStyle;
+    // MW 1.39: Skin::setupSkinUserCss() was removed. initPage() is the
+    // per-request hook that still receives OutputPage and runs before
+    // headElement is generated, so addStyle() calls land in the <head>.
+    public function initPage( OutputPage $out ) {
+        parent::initPage( $out );
 
-        parent::setupSkinUserCss( $out );
-
-        // Append to the default screen common & print styles...
         $out->addStyle( 'Bootstrap2/IE50Fixes.css', 'screen', 'lt IE 5.5000' );
         $out->addStyle( 'Bootstrap2/IE55Fixes.css', 'screen', 'IE 5.5000' );
         $out->addStyle( 'Bootstrap2/IE60Fixes.css', 'screen', 'IE 6' );
@@ -36,13 +36,12 @@ class SkinBootstrap2 extends SkinTemplate {
 
         $out->addStyle( 'Bootstrap2/rtl.css', 'screen', '', 'rtl' );
 
+        $out->addStyle( 'Bootstrap2/bootstrap.css' );
+        $out->addStyle( 'Bootstrap2/slate.css' );
+        $out->addStyle( 'Bootstrap2/main.css' );
+        $out->addStyle( 'Bootstrap2/dox.css' );
 
-        $out->addStyle('Bootstrap2/bootstrap.css' );
-        $out->addStyle('Bootstrap2/slate.css' );
-        $out->addStyle('Bootstrap2/main.css' );
-        $out->addStyle('Bootstrap2/dox.css' );
-
-        $out->addStyle('Bootstrap2/css/font-awesome.css');
+        $out->addStyle( 'Bootstrap2/css/font-awesome.css' );
         //$out->addStyle('Bootstrap2/cmr-bootstrap-cyborg.css');
         //$out->addStyle('Bootstrap2/cmr-bootstrap-cyborg-wiki.css');
         //
@@ -72,7 +71,8 @@ class Bootstrap2Template extends QuickTemplate {
 
         // -------- Start ------------
         // Adding the following line makes Geshi work
-        $this->html( 'headelement' );
+        // (MW 1.39: read $this->data directly to avoid QuickTemplate::html('headelement') deprecation)
+        echo $this->data['headelement'];
         // Left this out because the [edit] buttons were becoming right-aligned
         // Got around that behavior by changing shared.css
         // -------- End ------------
@@ -146,7 +146,7 @@ include('/var/www/html/skins/Bootstrap2/navbar.php');
                                     echo ' ';
                                     echo $tab['class'];
                                 }
-                                echo '" id="' . Sanitizer::escapeId( "ca-$key" ) . '">';
+                                echo '" id="' . Sanitizer::escapeIdForAttribute( "ca-$key" ) . '">';
                                 echo '<a href="';
                                 echo htmlspecialchars($tab['href']);
                                 echo '">';
@@ -329,7 +329,7 @@ include('/var/www/html/skins/Bootstrap2/footer.php');
 <?php   }
         if($this->data['feeds']) { ?>
             <li id="feedlinks"><?php foreach($this->data['feeds'] as $key => $feed) {
-                    ?><a id="<?php echo Sanitizer::escapeId( "feed-$key" ) ?>" href="<?php
+                    ?><a id="<?php echo Sanitizer::escapeIdForAttribute( "feed-$key" ) ?>" href="<?php
                     echo htmlspecialchars($feed['href']) ?>" rel="alternate" type="application/<?php echo $key ?>+xml" class="feedlink"<?php echo $this->skin->tooltipAndAccesskey('feed-'.$key) ?>><?php echo htmlspecialchars($feed['text'])?></a>&nbsp;
                     <?php } ?></li><?php
         }
@@ -390,7 +390,7 @@ include('/var/www/html/skins/Bootstrap2/footer.php');
         }
 
         //wfRunHooks( 'BootstrapTemplateToolboxEnd', array( &$this ) );
-        wfRunHooks( 'BootstrapTemplateToolboxEnd', array( &$this ) );
+        Hooks::run( 'BootstrapTemplateToolboxEnd', array( &$this ) );
 ?>
             </ul>
 <!--
@@ -429,7 +429,7 @@ include('/var/www/html/skins/Bootstrap2/footer.php');
 
 <?php   if ( is_array( $cont ) ) { ?>
             <ul class="nav nav-list">
-                <li class="nav-header"><?php $out = wfMsg( $bar ); if (wfEmptyMsg($bar, $out)) echo htmlspecialchars($bar); else echo htmlspecialchars($out); ?></li>
+                <li class="nav-header"><?php $msg = wfMessage( $bar ); if ($msg->isDisabled()) echo htmlspecialchars($bar); else echo htmlspecialchars($msg->text()); ?></li>
 <?php           foreach($cont as $key => $val) { ?>
                 <li id="<?php echo Sanitizer::escapeId($val['id']) ?>"<?php
                     if ( $val['active'] ) { ?> class="active" <?php }

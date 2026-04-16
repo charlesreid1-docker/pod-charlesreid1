@@ -16,6 +16,7 @@ export POD_CHARLESREID1_MW_UPGRADE_KEY="UpgradeKeyString"
 # mysql:
 # ------
 export POD_CHARLESREID1_MYSQL_PASSWORD="SuperSecretPassword"
+export POD_CHARLESREID1_MYSQL_WIKIUSER_PASSWORD="AnotherSecretPassword"
 
 # gitea:
 # ------

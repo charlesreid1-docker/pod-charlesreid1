@@ -1,4 +1,4 @@
-FROM mediawiki:1.34
+FROM mediawiki:1.39
 
 EXPOSE 8989
 
@@ -31,8 +31,7 @@ RUN apt-get update && \
 # and when you run the commands in this dockerfile, 
 # YOU CANNOT SEE THE BIND-MOUNTED STUFF.
 
-# Extensions
-COPY charlesreid1-config/mediawiki/extensions/EmbedVideo              /var/www/html/extensions/EmbedVideo
+# Extensions (REL1_39 branches; EmbedVideo skipped for the 1.34 -> 1.39 upgrade)
 COPY charlesreid1-config/mediawiki/extensions/Math                    /var/www/html/extensions/Math
 COPY charlesreid1-config/mediawiki/extensions/ParserFunctions         /var/www/html/extensions/ParserFunctions
 COPY charlesreid1-config/mediawiki/extensions/SyntaxHighlight_GeSHi   /var/www/html/extensions/SyntaxHighlight_GeSHi
@@ -42,6 +41,12 @@ RUN chown -R www-data:www-data /var/www/html/*
 COPY charlesreid1-config/mediawiki/skins /var/www/html/skins
 RUN chown -R www-data:www-data /var/www/html/skins
 RUN touch /var/www/html/skins
+
+# MathJax 3.2.2 (self-hosted, served via Apache alias at /w/mathjax/*).
+# Math extension runs in 'source' mode; MathJax renders client-side, so we
+# never call out to restbase/mathoid. See LocalSettings.php.j2.
+COPY charlesreid1-config/mediawiki/mathjax /var/www/html/mathjax
+RUN chown -R www-data:www-data /var/www/html/mathjax
 
 # Settings
 COPY charlesreid1-config/mediawiki/LocalSettings.php /var/www/html/LocalSettings.php

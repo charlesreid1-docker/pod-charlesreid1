@@ -9,9 +9,10 @@ d-gitea/custom/
 
 # mediawiki
 charlesreid1.wiki.conf
+d-mediawiki/mediawiki/
 d-mediawiki/charlesreid1-config/mediawiki/skins/Bootstrap2/Bootstrap2.php
 d-mediawiki/charlesreid1-config/mediawiki/skins/Bootstrap2/navbar.php
-d-mediawiki/mediawiki/
+d-mediawiki/charlesreid1-config/mediawiki/mathjax
 
 # nginx
 d-nginx-charlesreid1/conf.d/http.DOMAIN.conf

@@ -43,7 +43,7 @@ $wgDBpassword = getenv('MYSQL_PASSWORD');
 # MySQL specific settings
 $wgDBprefix = "";
 $wgDBTableOptions = "ENGINE=InnoDB, DEFAULT CHARSET=binary";
-$wgDBmysql5 = true;
+# $wgDBmysql5 removed — deprecated in MW 1.39
 
 # Shared memory settings
 $wgMainCacheType = CACHE_ACCEL;
@@ -84,13 +84,25 @@ $wgPingback = false;
 # available UTF-8 locale
 $wgShellLocale = "en_US.utf8";
 
-# Math rendering: use 'source' mode so <math> tags render as raw LaTeX
-# in a <code> block. No Restbase, no Mathoid, no latex/dvipng shell-out.
-# REL1_34's Math extension removed the local texvc renderer; 'png' and
-# 'mathml' modes both call out to Wikimedia's Restbase, which no longer
-# answers third-party requests.
+# Math rendering: Math extension emits raw LaTeX ('source' mode), then
+# a self-hosted MathJax 3 build at /w/mathjax/ renders it client-side.
+# No mathoid, no restbase, no external CDN.
 $wgDefaultUserOptions['math'] = 'source';
 $wgMathValidModes = [ 'source' ];
+# Skip TeX validation entirely — default validator calls out to restbase,
+# which breaks air-gapped installs even when we only emit source HTML.
+$wgMathDisableTexFilter = 'always';
+$wgHooks['BeforePageDisplay'][] = function ( $out, $skin ) {
+    $out->addHeadItem( 'mathjax',
+        '<script>window.MathJax = {'
+        . 'tex: { inlineMath: [["$","$"],["\\\\(","\\\\)"]], '
+        . 'displayMath: [["$$","$$"],["\\\\[","\\\\]"]], '
+        . 'processEscapes: true }, '
+        . 'options: { processHtmlClass: "mwe-math-fallback-source-inline|mwe-math-fallback-source-display|mwe-math-element" } '
+        . '};</script>'
+        . '<script async src="/w/mathjax/tex-chtml.js"></script>'
+    );
+};
 
 # Site language code, should be one of the list in ./languages/data/Names.php
 $wgLanguageCode = "en";
@@ -195,17 +207,22 @@ $wgSyntaxHighlightDefaultLang = "text";
 wfLoadExtension( 'ParserFunctions' );
 
 ##############################################
-# Embed videos extension
-# https://github.com/HydraWiki/mediawiki-embedvideo/
-# require_once("$IP/extensions/EmbedVideo/EmbedVideo.php");
-
-wfLoadExtension( 'EmbedVideo' );
+# Embed videos extension — SKIPPED for MW 1.39 upgrade (add back later)
 
 ###########################################
 # Math extension
 # https://github.com/wikimedia/mediawiki-extensions-Math.git
 
-require_once "$IP/extensions/Math/Math.php";
+wfLoadExtension( 'Math' );
+
+###########################################
+# Parsoid (bundled in MW 1.39, runs in-process)
+# Required for REST API /v1/page/{title}/with_html endpoint
+
+wfLoadExtension( 'Parsoid', "$IP/vendor/wikimedia/parsoid/extension.json" );
+$wgParsoidSettings = [
+    'useSelser' => true,
+];
 
 #############################################
 # Fix cookies crap
