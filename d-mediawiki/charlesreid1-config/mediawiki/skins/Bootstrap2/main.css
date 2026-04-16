@@ -518,10 +518,14 @@ a.new:visited {
         color: #a55858;
 }
 
-.mw-editsection, .mw-editsection-bracket, .editsection {
+.mw-editsection, .editsection {
 	font-size: small;
 	font-weight: normal;
 	margin-left: 1em;
+}
+
+.mw-editsection-bracket {
+    margin-left: 0;
 }
 
 #preftoc {
