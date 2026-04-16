@@ -163,7 +163,7 @@ docker exec -i stormy_mysql_new sh -c \
 docker run --rm \
   -v stormy_mw_data:/old:ro \
   -v stormy_mw_new_data:/new \
-  alpine sh -c 'cp -a /old/images /new/images 2>/dev/null; echo done'
+  alpine sh -c 'cp -a /old/images/. /new/images/ 2>/dev/null; echo done'
 ```
 
 ### 2.5 Run MediaWiki database upgrade
