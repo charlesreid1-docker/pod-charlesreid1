@@ -24,6 +24,7 @@ jinja_to_env = {
     "pod_charlesreid1_gitea_app_name": "POD_CHARLESREID1_GITEA_APP_NAME",
     "pod_charlesreid1_gitea_secretkey": "POD_CHARLESREID1_GITEA_SECRET_KEY",
     "pod_charlesreid1_gitea_internaltoken": "POD_CHARLESREID1_GITEA_INTERNAL_TOKEN",
+    "pod_charlesreid1_gitea_runner_token": "POD_CHARLESREID1_GITEA_RUNNER_TOKEN",
     "pod_charlesreid1_backups_aws_access_key": "AWS_ACCESS_KEY_ID",
     "pod_charlesreid1_backups_aws_secret_access_key": "AWS_SECRET_ACCESS_KEY",
     "pod_charlesreid1_backups_aws_region": "AWS_DEFAULT_REGION",
