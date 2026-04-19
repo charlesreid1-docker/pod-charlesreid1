@@ -524,6 +524,10 @@ a.new:visited {
 	margin-left: 1em;
 }
 
+.editOptions {
+    background-color: #777;
+}
+
 .mw-editsection-bracket {
     margin-left: 0;
 }
