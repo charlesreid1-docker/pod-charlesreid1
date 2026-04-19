@@ -1,8 +1,7 @@
-FROM mediawiki:1.39
+FROM mediawiki:1.39.12
 
 EXPOSE 8989
 
-VOLUME ["/var/www/html"]
 
 # Install ImageMagick (used for image thumbnailing)
 RUN apt-get update && \
