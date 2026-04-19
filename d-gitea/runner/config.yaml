@@ -1,0 +1,17 @@
+log:
+  level: info
+
+runner:
+  # Label format: <label>:<runner-type>:<image>
+  # "ubuntu-latest" is the standard GitHub Actions label.
+  # Map it (and common aliases) to a Docker image so jobs don't sit waiting.
+  labels:
+    # alpine: ~50MB, has python3+pip; install extras with: apk add --no-cache git curl
+    - "alpine:docker://python:3.12-alpine"
+    - "ubuntu-latest:docker://catthehacker/ubuntu:act-22.04"
+    - "ubuntu-22.04:docker://catthehacker/ubuntu:act-22.04"
+    - "ubuntu-20.04:docker://catthehacker/ubuntu:act-20.04"
+    - "ubuntu-24.04:docker://catthehacker/ubuntu:act-22.04"
+
+cache:
+  enabled: true
