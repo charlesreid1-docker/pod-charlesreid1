@@ -5,7 +5,7 @@ EXPOSE 8989
 
 # Install ImageMagick (used for image thumbnailing)
 RUN apt-get update && \
-    apt-get install -y imagemagick && \
+    apt-get install -y --no-install-recommends imagemagick && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy skins, config files, and other particulars into container
@@ -24,28 +24,25 @@ RUN apt-get update && \
 COPY charlesreid1-config/mediawiki/extensions/Math                    /var/www/html/extensions/Math
 COPY charlesreid1-config/mediawiki/extensions/ParserFunctions         /var/www/html/extensions/ParserFunctions
 COPY charlesreid1-config/mediawiki/extensions/SyntaxHighlight_GeSHi   /var/www/html/extensions/SyntaxHighlight_GeSHi
-RUN chown -R www-data:www-data /var/www/html/*
 
 # Skins
 COPY charlesreid1-config/mediawiki/skins /var/www/html/skins
-RUN chown -R www-data:www-data /var/www/html/skins
-RUN touch /var/www/html/skins
 
 # MathJax 3.2.2 (self-hosted, served via Apache alias at /w/mathjax/*).
 # Math extension runs in 'source' mode; MathJax renders client-side, so we
 # never call out to restbase/mathoid. See LocalSettings.php.j2.
 COPY charlesreid1-config/mediawiki/mathjax /var/www/html/mathjax
-RUN chown -R www-data:www-data /var/www/html/mathjax
 
 # Settings
 COPY charlesreid1-config/mediawiki/LocalSettings.php /var/www/html/LocalSettings.php
-RUN chown -R www-data:www-data /var/www/html/LocalSettings*
-RUN chmod 600 /var/www/html/LocalSettings.php
 
 # Apache conf file
 COPY charlesreid1-config/apache/*.conf /etc/apache2/sites-enabled/
-RUN a2enmod rewrite
-RUN service apache2 restart
+
+RUN chown -R www-data:www-data /var/www/html/* /var/www/html/skins /var/www/html/mathjax /var/www/html/LocalSettings* && \
+    touch /var/www/html/skins && \
+    chmod 600 /var/www/html/LocalSettings.php && \
+    a2enmod rewrite
 
 # PHP conf file
 # https://hub.docker.com/_/php/
