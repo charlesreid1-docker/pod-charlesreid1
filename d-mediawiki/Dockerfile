@@ -1,22 +1,12 @@
-FROM mediawiki:1.39
+FROM mediawiki:1.39.12
 
 EXPOSE 8989
 
-VOLUME ["/var/www/html"]
 
-# Install ImageMagick
-# and math stuff mentioned by Math extension readme
+# Install ImageMagick (used for image thumbnailing)
 RUN apt-get update && \
-    apt-get install -y build-essential \
-            dvipng \
-            ocaml \
-            ghostscript \
-            imagemagick \
-            texlive-latex-base \
-            texlive-latex-extra \
-            texlive-fonts-recommended \
-            texlive-lang-greek \
-            texlive-latex-recommended
+    apt-get install -y imagemagick && \
+    rm -rf /var/lib/apt/lists/*
 
 # Copy skins, config files, and other particulars into container
 
@@ -24,7 +14,6 @@ RUN apt-get update && \
 # MediaWiki needs everything, everything, to be in one folder.
 # Docker is totally incapable of mounting a file in a volume.
 # I cannot update LocalSettings.php without clearing the cache.
-# I cannot clear the cache without reinstalling all of latex.
 # I can't bind-mount the skins dir, because then it's owned by root.
 # I can't fix the fact that all bind-mounted dirs are owned by root, 
 # because I can only add commands in THIS DOCKERFILE.
@@ -57,9 +46,6 @@ RUN chmod 600 /var/www/html/LocalSettings.php
 COPY charlesreid1-config/apache/*.conf /etc/apache2/sites-enabled/
 RUN a2enmod rewrite
 RUN service apache2 restart
-
-## make texvc
-#CMD cd /var/www/html/extensions/Math && make && apache2-foreground
 
 # PHP conf file
 # https://hub.docker.com/_/php/

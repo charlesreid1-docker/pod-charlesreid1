@@ -27,6 +27,29 @@ services:
     networks:
       - frontend
 
+  stormy_gitea_runner:
+    image: gitea/act_runner:latest
+    container_name: stormy_gitea_runner
+    restart: always
+    volumes:
+      - "stormy_gitea_runner_data:/data"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./d-gitea/runner/config.yaml:/etc/act_runner/config.yaml:ro"
+    environment:
+      - GITEA_INSTANCE_URL=http://stormy_gitea:3000
+      - GITEA_RUNNER_REGISTRATION_TOKEN={{ pod_charlesreid1_gitea_runner_token }}
+      - GITEA_RUNNER_NAME=stormy-runner
+      - CONFIG_FILE=/etc/act_runner/config.yaml
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 1m
+        max-file: "10"
+    depends_on:
+      - stormy_gitea
+    networks:
+      - frontend
+
   stormy_mysql:
     restart: always
     build: d-mysql
@@ -52,7 +75,7 @@ services:
     build: d-mediawiki
     container_name: stormy_mw
     volumes:
-      - "stormy_mw_data:/var/www/html"
+      - "stormy_mw_images:/var/www/html/images"
     logging:
       driver: "json-file"
       options:
@@ -107,6 +130,8 @@ networks:
 
 volumes:
   stormy_mysql_data:
-  stormy_mw_data:
+  stormy_mw_images:
+    external: true
   stormy_gitea_data:
+  stormy_gitea_runner_data:
   stormy_nginx_logs:
