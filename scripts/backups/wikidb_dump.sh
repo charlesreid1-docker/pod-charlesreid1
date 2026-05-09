@@ -53,20 +53,12 @@ if [ "$#" == "0" ]; then
 
     echo "Running mysqldump inside the mysql container"
 
-    # Pull the root password out of the container so we don't duplicate the
-    # secret on the host, and forward it in via MYSQL_PWD (which mysqldump
-    # reads automatically). No -t: a PTY corrupts --default-character-set=binary
-    # output (LF→CRLF translation on binary blobs) and its small kernel buffer
-    # can deadlock on large dumps.
-    set +x
-    MYSQL_PWD="$(docker exec "${CONTAINER_NAME}" printenv MYSQL_ROOT_PASSWORD)"
-    export MYSQL_PWD
-    set -x
-
+    # The container already has MYSQL_ROOT_PASSWORD in its environment.
+    # Use it directly inside the container via MYSQL_PWD so the password
+    # never appears in the host process table.
     docker exec -i \
-        -e MYSQL_PWD \
         "${CONTAINER_NAME}" \
-        sh -c 'exec mysqldump \
+        sh -c 'MYSQL_PWD="$MYSQL_ROOT_PASSWORD" exec mysqldump \
                   --user=root \
                   --single-transaction \
                   --quick \
@@ -76,8 +68,6 @@ if [ "$#" == "0" ]; then
                   --default-character-set=binary \
                   --databases wikidb' \
         > "${BACKUP_TARGET}"
-
-    unset MYSQL_PWD
 
     # A complete mysqldump always ends with "-- Dump completed on ...".
     # Missing trailer means the dump is truncated and not restorable.
