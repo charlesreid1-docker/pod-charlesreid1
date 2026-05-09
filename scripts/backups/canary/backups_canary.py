@@ -1,10 +1,12 @@
 import os
 import sys
 import json
+import socket
+import time
+from pathlib import Path
 import requests
 import boto3
 import botocore
-import subprocess
 
 
 webhook_url = os.environ['POD_CHARLESREID1_CANARY_WEBHOOK']
@@ -24,18 +26,21 @@ def main():
         alert(msg)
 
     # verify there is a backup newer than N days
-    newer_backups = subprocess.getoutput(f'find {backup_dir}/* -mtime -{N}').split('\n')
-    if len(newer_backups)==1 and newer_backups[0]=='':
+    backup_path = Path(backup_dir)
+    cutoff = time.time() - (N * 86400)
+    newer_backups = [p for p in backup_path.iterdir() if p.stat().st_mtime > cutoff]
+    if not newer_backups:
         msg = "Local Backups Error:\n"
         msg += f"The backup directory `{backup_dir}` is missing backup files from the last {N} day(s)!"
         alert(msg)
 
-    newest_backup_name = subprocess.getoutput(f'ls -t {backup_dir} | head -n1')
-    newest_backup_path = os.path.join(backup_dir, newest_backup_name)
-    newest_backup_files = subprocess.getoutput(f'find {newest_backup_path} -type f').split('\n')
+    newest_backup = max(backup_path.iterdir(), key=lambda p: p.stat().st_mtime)
+    newest_backup_name = newest_backup.name
+    newest_backup_path = str(newest_backup)
+    newest_backup_files = [str(p) for p in newest_backup.rglob('*') if p.is_file()]
 
     # verify the most recent backup directory is not empty
-    if len(newest_backup_files)==1 and newest_backup_files[0]=='':
+    if not newest_backup_files:
         msg = "Local Backups Error:\n"
         msg += f"The most recent backup directory `{newest_backup_path}` is empty!"
         alert(msg)
@@ -92,7 +97,7 @@ def check_exists(bucket_name, bucket_path):
 
 def alert(msg):
     title = ":bangbang: pod-charlesreid1 backups canary"
-    hostname = subprocess.getoutput('hostname')
+    hostname = socket.gethostname()
     msg += f"\n\nHost: {hostname}"
     slack_data = {
         "username": "backups_canary",
