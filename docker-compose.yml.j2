@@ -27,19 +27,44 @@ services:
     networks:
       - frontend
 
+  docker_socket_proxy:
+    image: tecnativa/docker-socket-proxy:latest
+    container_name: docker_socket_proxy
+    restart: always
+    privileged: true
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    environment:
+      - CONTAINERS=1
+      - IMAGES=1
+      - NETWORKS=1
+      - VOLUMES=1
+      - EXEC=1
+      - POST=1
+      - ALLOW_START=1
+      - ALLOW_STOP=1
+      - ALLOW_RESTARTS=1
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 1m
+        max-file: "10"
+    networks:
+      - frontend
+
   stormy_gitea_runner:
     image: gitea/act_runner:latest
     container_name: stormy_gitea_runner
     restart: always
     volumes:
       - "stormy_gitea_runner_data:/data"
-      - "/var/run/docker.sock:/var/run/docker.sock"
       - "./d-gitea/runner/config.yaml:/etc/act_runner/config.yaml:ro"
     environment:
       - GITEA_INSTANCE_URL=http://stormy_gitea:3000
       - GITEA_RUNNER_REGISTRATION_TOKEN={{ pod_charlesreid1_gitea_runner_token }}
       - GITEA_RUNNER_NAME=stormy-runner
       - CONFIG_FILE=/etc/act_runner/config.yaml
+      - DOCKER_HOST=tcp://docker_socket_proxy:2375
     logging:
       driver: "json-file"
       options:
@@ -47,6 +72,7 @@ services:
         max-file: "10"
     depends_on:
       - stormy_gitea
+      - docker_socket_proxy
     networks:
       - frontend
 
