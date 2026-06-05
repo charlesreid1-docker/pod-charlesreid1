@@ -93,14 +93,24 @@ $wgMathValidModes = [ 'source' ];
 # which breaks air-gapped installs even when we only emit source HTML.
 $wgMathDisableTexFilter = 'always';
 $wgHooks['BeforePageDisplay'][] = function ( $out, $skin ) {
-    $out->addHeadItem( 'mathjax',
-        '<script>window.MathJax = {'
-        . 'tex: { inlineMath: [["$","$"],["\\\\(","\\\\)"]], '
-        . 'displayMath: [["$$","$$"],["\\\\[","\\\\]"]], '
-        . 'processEscapes: true }, '
-        . 'options: { processHtmlClass: "mwe-math-fallback-source-inline|mwe-math-fallback-source-display|mwe-math-element" } '
-        . '};</script>'
-        . '<script async src="/w/mathjax/tex-chtml.js"></script>'
+    $out->addHeadItem( 'mathjax-config',
+        '<script>'
+        . 'window.MathJax = {'
+        . '  tex: {'
+        . '    inlineMath: [["$","$"],["\\\\(","\\\\)"]],'
+        . '    displayMath: [["$$","$$"],["\\\\[","\\\\]"]],'
+        . '    processEscapes: true'
+        . '  },'
+        . '  options: {'
+        . '    enableMenu: false,'
+        . '    renderActions: { addMenu: [] }'
+        . '  },'
+        . '  startup: { typeset: true }'
+        . '};'
+        . '</script>'
+    );
+    $out->addHeadItem( 'mathjax-script',
+        '<script defer src="/w/mathjax/tex-chtml.js"></script>'
     );
 };
 
