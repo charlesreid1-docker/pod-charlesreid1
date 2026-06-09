@@ -37,7 +37,7 @@ services:
       - "./d-gitea/runner/config.yaml:/etc/act_runner/config.yaml:ro"
     environment:
       - GITEA_INSTANCE_URL=http://stormy_gitea:3000
-      - GITEA_RUNNER_REGISTRATION_TOKEN={{ pod_charlesreid1_gitea_runner_token }}
+      - GITEA_RUNNER_REGISTRATION_TOKEN=${POD_CHARLESREID1_GITEA_RUNNER_TOKEN}
       - GITEA_RUNNER_NAME=stormy-runner
       - CONFIG_FILE=/etc/act_runner/config.yaml
     logging:
