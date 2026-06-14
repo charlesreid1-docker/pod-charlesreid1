@@ -2,7 +2,7 @@
 #
 # {{ pod_charlesreid1_server_name }}
 # https/443
-# 
+#
 # {{ pod_charlesreid1_server_name }} and www.{{ pod_charlesreid1_server_name }}
 # should handle the following cases:
 # - w/ and wiki/ should reverse proxy story_mw
@@ -10,8 +10,16 @@
 #
 ####################
 
+map $http_user_agent $is_bot {
+    default 0;
+    ~*meta-externalagent 1;
+    ~*meta-webindexer 1;
+    ~*ClaudeBot 1;
+    ~*Amazonbot 1;
+    ~*SemrushBot 1;
+}
 
-# default 
+# default
 server {
     listen 443 ssl;
     listen [::]:443 ssl;
@@ -34,9 +42,10 @@ server {
     }
 
     location /wiki/ {
-        # Apply rate limit here.
+        if ($is_bot) {
+            return 429;
+        }
         limit_req zone=gitealimit burst=20 nodelay;
-        # Limit download rate to 500 KB/s per connection (4 Mbps)
         limit_rate 500k;
 
         proxy_set_header X-Real-IP  $remote_addr;
@@ -47,9 +56,10 @@ server {
     }
 
     location /w/ {
-        # Apply rate limit here.
+        if ($is_bot) {
+            return 429;
+        }
         limit_req zone=gitealimit burst=20 nodelay;
-        # Limit download rate to 500 KB/s per connection (4 Mbps)
         limit_rate 500k;
 
         proxy_set_header X-Real-IP  $remote_addr;
@@ -59,8 +69,6 @@ server {
         proxy_pass http://stormy_mw:8989/w/;
     }
 
-    # ~ means case-sensitive regex match, rather than string literal
-    # (ignores .git, .gitignore, etc.)
     location ~ /\.git {
         deny all;
     }
@@ -91,6 +99,9 @@ server {
     }
 
     location /wiki/ {
+        if ($is_bot) {
+            return 429;
+        }
         limit_req zone=gitealimit burst=20 nodelay;
         limit_rate 500k;
 
@@ -102,7 +113,9 @@ server {
     }
 
     location /w/ {
-        # Apply rate limit here.
+        if ($is_bot) {
+            return 429;
+        }
         limit_req zone=gitealimit burst=20 nodelay;
 
         proxy_set_header X-Real-IP  $remote_addr;
@@ -131,10 +144,10 @@ server {
     include /etc/nginx/conf.d/giteacsp.conf;
 
     location / {
-        # Apply the rate limit here.
-        # Allows a burst of 20 requests, but anything beyond the max is queued.
+        if ($is_bot) {
+            return 429;
+        }
         limit_req zone=gitealimit burst=20 nodelay;
-        # Limit download rate to 500 KB/s per connection (4 Mbps)
         limit_rate 500k;
 
         proxy_set_header X-Real-IP  $remote_addr;
