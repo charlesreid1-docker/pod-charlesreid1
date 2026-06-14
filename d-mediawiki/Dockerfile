@@ -36,7 +36,10 @@ COPY charlesreid1-config/mediawiki/mathjax /var/www/html/mathjax
 # Settings
 COPY charlesreid1-config/mediawiki/LocalSettings.php /var/www/html/LocalSettings.php
 
-# Apache conf file
+# Apache MPM prefork tuning (stock default of 150 workers is way too high for this box)
+COPY charlesreid1-config/apache/mods/mpm_prefork.conf /etc/apache2/mods-enabled/mpm_prefork.conf
+
+# Apache vhost conf file
 COPY charlesreid1-config/apache/*.conf /etc/apache2/sites-enabled/
 
 RUN chown -R www-data:www-data /var/www/html/* /var/www/html/skins /var/www/html/mathjax /var/www/html/LocalSettings* && \
