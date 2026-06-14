@@ -23,6 +23,7 @@ export POD_CHARLESREID1_MYSQL_WIKIUSER_PASSWORD="AnotherSecretPassword"
 export POD_CHARLESREID1_GITEA_APP_NAME=""
 export POD_CHARLESREID1_GITEA_SECRET_KEY="GiteaSecretKey"
 export POD_CHARLESREID1_GITEA_INTERNAL_TOKEN="GiteaInternalToken"
+export POD_CHARLESREID1_GITEA_RUNNER_TOKEN="GiteaRunnerRegistrationToken"
 
 # aws:
 # ----
