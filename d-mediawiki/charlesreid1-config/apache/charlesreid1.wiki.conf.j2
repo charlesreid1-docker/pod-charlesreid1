@@ -9,6 +9,10 @@ Listen 8989
 
     ServerAlias www.{{ pod_charlesreid1_server_name }}
 
+    # Trust nginx proxy and use real client IP in logs
+    RemoteIPHeader X-Real-IP
+    RemoteIPTrustedProxy 172.16.0.0/12
+
     LogLevel warn
     ServerAdmin {{ pod_charlesreid1_mediawiki_admin_email }}
     DirectoryIndex index.html index.cgi index.php
