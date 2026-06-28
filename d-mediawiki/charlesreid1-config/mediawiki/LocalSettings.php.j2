@@ -266,3 +266,20 @@ $wgLatexCommand = "/usr/bin/latex";
 #$wgUploadBaseUrl = false; # not sure about why this one too...
 $wgVerifyMimeType = false;
 #$wgDebugLogFile = "/var/log/apache2/wiki.log";
+
+################################
+# Speed things up
+
+# Use file caching
+$wgUseFileCache = true;
+$wgFileCacheDirectory = "$IP/cache";
+
+# Cache sidebar
+$wgEnableSidebarCache = true;
+
+# Enable miser mode
+$wgMiserMode = true;
+
+# Run a job on ~1% of page loads (MW default is 1 per request, which is
+# too aggressive for a low-traffic site running Parsoid)
+$wgJobRunRate = 0.01;
