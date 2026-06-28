@@ -88,6 +88,11 @@ services:
       options:
         max-size: 1m
         max-file: "10"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 384M
     environment:
       - MYSQL_ROOT_PASSWORD={{ pod_charlesreid1_mysql_password }}
       - MYSQL_DATABASE=wikidb
@@ -107,6 +112,11 @@ services:
       options:
         max-size: 1m
         max-file: "10"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.80'
+          memory: 512M
     environment:
       - MEDIAWIKI_SITE_SERVER=https://{{ pod_charlesreid1_server_name }}
       - MEDIAWIKI_SECRETKEY={{ pod_charlesreid1_mediawiki_secretkey }}
