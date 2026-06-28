@@ -45,6 +45,7 @@ COPY charlesreid1-config/apache/*.conf /etc/apache2/sites-enabled/
 RUN chown -R www-data:www-data /var/www/html/* /var/www/html/skins /var/www/html/mathjax /var/www/html/LocalSettings* && \
     touch /var/www/html/skins && \
     chmod 600 /var/www/html/LocalSettings.php && \
+    a2dissite 000-default && \
     a2enmod rewrite remoteip
 
 # PHP conf file
